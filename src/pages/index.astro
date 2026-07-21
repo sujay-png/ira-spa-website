@@ -1,0 +1,150 @@
+---
+import Welcome from "../components/Welcome.astro";
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import BookingsFormAstroComponent from "../components/Home/bookings_form.astro";
+import Aboutspa from "../components/Home/Aboutspa.astro"
+import HowItWorks from "../components/Home/HowItWorks.astro";
+import Services from "../components/Home/Services-list.astro";
+import MenuList from "../components/Home/MenuList.astro";
+import Customerreview from "../components/Home/Customerreview.astro";
+import "../style/global.scss";
+import Button from "../components/Button.astro";
+import Footer from "../components/Footer.astro"
+---
+
+<Layout>
+	<div class="hero" id="hero-section">
+		<div class="hero-text">
+			<p class="tagline">
+				Relax, Rejuvenate, and Restore Your Well-Being With Every Touch.
+			</p>
+			<h1>Ira Spa Beauty</h1>
+			<Button text="Book Now" href="/BookAnAppointment/Appointment" />
+		</div>
+	</div>
+	<div>
+		<BookingsFormAstroComponent />
+		<Aboutspa/>
+		<HowItWorks/>
+		<Services/>
+		<MenuList/>
+		<Customerreview/>
+		<Footer/>
+
+		
+	</div>
+</Layout>
+<style>
+	.hero {
+		position: relative;
+		width: 100%;
+		height: 500px;
+		background-image: url("https://iraspa.in/wp-content/uploads/2026/06/attractive-african-woman-enjoying-face-massage-spa-salon.jpg-1-scaled.jpeg");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		transition: opacity 0.1s linear, height 0.1s linear;
+	}
+
+	.hero::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.25);
+	}
+	.hero::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 0.85) 100%
+		);
+		pointer-events: none;
+	}
+
+	.hero-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -70%);
+		z-index: 1;
+		text-align: center;
+		color: white;
+		width: 100%;
+		padding: 0 20px;
+		box-sizing: border-box;
+		white-space: nowrap;
+	}
+
+	.tagline {
+		font-family: "Manrope", Sans-serif;
+		font-size: 20px;
+		text-transform: uppercase;
+		color: #ffffff;
+	}
+
+	.hero-text h1 {
+		font-family: "Petit Formal Script", Sans-serif;
+		font-size: 90px;
+		color: #ffffff;
+	}
+
+	.book-btn {
+		display: inline-block;
+		background-color: #cfa23c;
+		color: white;
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		padding: 12px 28px;
+		border-radius: 2px;
+		text-decoration: none;
+		margin-top: 20px;
+	}
+
+	.book-btn:hover {
+		background-color: #b88f32;
+	}
+</style>
+
+<script>
+	const hero = document.getElementById('hero-section') as HTMLElement | null;
+	const maxHeight = 500; // must match the .hero height in CSS
+	let ticking = false;
+
+	function updateHero() {
+		const scrollY = window.scrollY;
+
+		if (!hero) {
+			ticking = false;
+			return;
+		}
+
+		if (scrollY > 0 && scrollY < maxHeight) {
+			const progress = scrollY / maxHeight; // 0 to 1
+			const newHeight = maxHeight * (1 - progress);
+			hero.style.height = newHeight + 'px';
+			hero.style.opacity = String(1 - progress);
+		} else if (scrollY >= maxHeight) {
+			hero.style.height = '0px';
+			hero.style.opacity = '0';
+		} else {
+			hero.style.height = maxHeight + 'px';
+			hero.style.opacity = '1';
+		}
+		ticking = false;
+	}
+
+	window.addEventListener('scroll', () => {
+		if (!ticking) {
+			requestAnimationFrame(updateHero);
+			ticking = true;
+		}
+	});
+</script>

@@ -1,0 +1,16 @@
+---
+import LayoutAstroComponent from "../../layouts/Layout.astro";
+import ServiceDescription from "../../components/services/service_description.astro";
+import { serviceData } from "../../data/services";
+
+const { slug } = Astro.params;
+const service = serviceData[slug as keyof typeof serviceData];
+
+if (!service) {
+  return Astro.redirect("/services");
+}
+---
+
+<LayoutAstroComponent>
+  <ServiceDescription {...service} />
+</LayoutAstroComponent>

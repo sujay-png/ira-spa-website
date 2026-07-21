@@ -1,0 +1,219 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<footer class="site-footer">
+	<div class="footer-container">
+		<div class="footer-logo">
+			<img
+				src="https://iraspa.in/wp-content/uploads/2025/04/cropped-Ira-spa-4-e1754647926834.png"
+				alt="Ira Spa"
+			/>
+		</div>
+
+		<div class="footer-column">
+			<h4>Useful Links</h4>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/about-us">About Us</a></li>
+				<li><a href="/our-services">Our Services</a></li>
+				<li><a href="/book-an-appointment">Book An Apointment</a></li>
+				<li><a href="/contact">Contact</a></li>
+				<li><a href="/site-map">Sitemap</a></li>
+				<li><a href="/terms-conditions">Terms & Conditons</a></li>
+				<li><a href="/refund_returns">Refund & Returns Policy</a></li>
+				<li><a href="/privacy-policy">Privacy Policy</a></li>
+			</ul>
+			<a href="/brochure" class="brochure-btn">Download brochure</a>
+		</div>
+
+		<div class="footer-column">
+			<h4>Kalaburgi &ndash; Gulbarga</h4>
+			<p>
+				1st floor , Tulips inn by Vkg hotel,<br />
+				Sedam Rd, opp. ESIC Hospital,<br />
+				Kalaburagi, Karnataka 585106, India
+			</p>
+			<p class="phone">+91 7022865999</p>
+			<h5>Timing</h5>
+			<p class="timing">
+				Monday: 9:00 AM to 9:30 PM<br />
+				Saturday: 9:00 AM to 9:30 PM
+			</p>
+		</div>
+
+		<div class="footer-column">
+			<h4>Kodialbail &ndash; Mangalore</h4>
+			<p>
+				#301, 3rd Floor, Lotus Paradise Elite,<br />
+				Opp AJ Grand Hotel,<br />
+				Kodialbail, Mangalore 575003
+			</p>
+			<p class="phone">+91 89716 67199</p>
+			<h5>Timing</h5>
+			<p class="timing">
+				Monday: 9:00 AM to 9:30 PM<br />
+				Saturday: 9:00 AM to 9:30 PM
+			</p>
+
+			<div class="social-icons">
+				<a href="https://www.instagram.com/the_ira_spa/" aria-label="Instagram">
+					<Icon name="mdi:instagram" width="20" height="20" />
+				</a>
+				<a href="https://www.facebook.com/share/1BW2YTGEVW/" aria-label="Facebook">
+					<Icon name="mdi:facebook" width="20" height="20" />
+				</a>
+				<a href="http://www.linkedin.com/in/ira-spa-a3a618382" aria-label="LinkedIn">
+					<Icon name="mdi:linkedin" width="20" height="20" />
+				</a>
+				<a href="https://www.youtube.com/@IraSpa-n5f" aria-label="YouTube">
+					<Icon name="mdi:youtube" width="20" height="20" />
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer-bottom">
+		<p>Copyright &copy; Ira Spa 2025 | All Rights Reserved</p>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		background-color: #1c1c1c;
+		padding: 60px 40px 0 40px;
+	}
+
+	.footer-container {
+		display: grid;
+		grid-template-columns: 1fr 1.3fr 1.3fr 1.3fr;
+		gap: 40px;
+		max-width: 1400px;
+		margin: 0 auto;
+		padding-bottom: 40px;
+	}
+
+	.footer-logo img {
+		width: 160px;
+		height: auto;
+	}
+
+	.footer-column h4 {
+		font-family: "Poppins", sans-serif;
+		font-size: 1.1em;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0 0 20px 0;
+	}
+
+	.footer-column h5 {
+		font-family: "Poppins", sans-serif;
+		font-size: 1em;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 20px 0 10px 0;
+	}
+
+	.footer-column p {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		color: #cfcfcf;
+		line-height: 1.7;
+		margin: 0 0 12px 0;
+	}
+
+	.footer-column .timing {
+		color: #999;
+	}
+
+	.footer-column .phone {
+		color: #ffffff;
+	}
+
+	.footer-column ul {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 24px 0;
+	}
+
+	.footer-column ul li {
+		margin-bottom: 12px;
+	}
+
+	.footer-column ul li a {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		font-weight: 600;
+		color: #e5e5e5;
+		text-decoration: none;
+		letter-spacing: 0.3px;
+	}
+
+	.footer-column ul li a:hover {
+		color: #cfa23c;
+	}
+
+	.brochure-btn {
+		display: inline-block;
+		background-color: #cfa23c;
+		color: #ffffff;
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		font-weight: 700;
+		text-decoration: none;
+		padding: 12px 24px;
+		border-radius: 6px;
+		transition: background-color 0.2s ease;
+	}
+
+	.brochure-btn:hover {
+		background-color: #b88f32;
+	}
+
+	.social-icons {
+		display: flex;
+		gap: 12px;
+		margin-top: 20px;
+	}
+
+	.social-icons a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		background-color: #cfa23c;
+		border-radius: 8px;
+		color: #1c1c1c;
+		transition: background-color 0.2s ease;
+	}
+
+	.social-icons a:hover {
+		background-color: #b88f32;
+	}
+
+	.footer-bottom {
+		border-top: 1px solid #333;
+		padding: 20px 0;
+		text-align: center;
+	}
+
+	.footer-bottom p {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		color: #cfcfcf;
+		margin: 0;
+	}
+
+	@media (max-width: 1100px) {
+		.footer-container {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 600px) {
+		.footer-container {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

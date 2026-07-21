@@ -1,0 +1,62 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+	<Icon name="mdi:weather-sunny" width="20" height="20" class="icon-sun" />
+	<Icon name="mdi:weather-night" width="20" height="20" class="icon-moon" />
+</button>
+
+<style>
+	.theme-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 38px;
+		height: 38px;
+		border-radius: 50%;
+		border: 1px solid var(--border-color, #e0e0e0);
+		background-color: var(--surface-color, #ffffff);
+		color: var(--text-color, #1a1a1a);
+		cursor: pointer;
+		transition: background-color 0.2s ease, transform 0.15s ease;
+	}
+
+	.theme-toggle:hover {
+		transform: translateY(-1px);
+	}
+
+	.icon-sun,
+	.icon-moon {
+		display: none;
+	}
+
+	/* Light mode: show sun (click to go dark) */
+	:global(html:not([data-theme='dark'])) .icon-sun {
+		display: inline-block;
+		color: #cfa23c;
+	}
+
+	/* Dark mode: show moon (click to go light) */
+	:global(html[data-theme='dark']) .icon-moon {
+		display: inline-block;
+		color: #cfa23c;
+	}
+</style>
+
+<script>
+	function initThemeToggle() {
+		const button = document.getElementById('theme-toggle');
+		if (!button) return;
+
+		button.addEventListener('click', () => {
+			const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+			const next = isDark ? 'light' : 'dark';
+			document.documentElement.setAttribute('data-theme', next);
+			localStorage.setItem('theme', next);
+		});
+	}
+
+	initThemeToggle();
+	document.addEventListener('astro:page-load', initThemeToggle);
+</script>

@@ -1,0 +1,81 @@
+---
+import LayoutAstroComponent from "../../layouts/Layout.astro";
+import ServiceType from "../../components/services/servicetype.astro";
+import ServiceDescriptionAstroComponent from "../../components/services/service_description.astro";
+import MenuList from "../../components/Home/MenuList.astro";
+import Footer from "../../components/Footer.astro";
+import SearchTabs from "../../components/services/SearchTabs.astro";
+---
+
+<LayoutAstroComponent>
+    <section class="servicebanner">
+        <div class="bannercontent">
+            <h1>Best Spa Services</h1>
+            <p>Ira Spa offers a range of massage and beauty spatherapy</p>
+        </div>
+    </section>
+    <ServiceType />
+    <ServiceDescriptionAstroComponent />
+    <MenuList />
+ 
+    <Footer />
+</LayoutAstroComponent>
+<style>
+    .servicebanner {
+        margin-bottom: 40px;
+        position: relative;
+        width: 100%;
+        height: 500px;
+        background-image: url("/src/images/spa-salon.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+
+        /* Initial state */
+        opacity: 0;
+        transform: translateY(40px);
+
+        /* Smooth entrance */
+        animation: slide-up-fade-in 1.8s ease-out forwards;
+    }
+    @keyframes slide-up-fade-in {
+        0% {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        60% {
+            opacity: 0.8;
+            transform: translateY(8px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .bannercontent {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+    .bannercontent h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: gold;
+    }
+    .bannercontent p {
+        position: absolute;
+        left: 40%;
+        top: 60%;
+        font-size: larger;
+        color: --var(color: blanchedalmond);
+    }
+</style>

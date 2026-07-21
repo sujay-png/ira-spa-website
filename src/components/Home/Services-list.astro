@@ -1,0 +1,269 @@
+---
+// src/components/Services.astro
+---
+
+<section class="services">
+	<div class="services-header">
+		<div>
+			<span class="services-label">Exclusive Treatments</span>
+			<h2>Signature Rituals</h2>
+		</div>
+		<a href="/ourservice/OurService" class="view-all">View All Services &rarr;</a>
+	</div>
+
+	<div class="services-grid">
+		<div class="service-card featured reveal">
+			<img
+				src="https://iraspa.in/wp-content/uploads/2025/10/woman-receiving-massage-clavicle-1536x1022.jpg"
+				alt="Deep Tissue Reset"
+			/>
+			<div class="card-overlay"></div>
+			<div class="card-info">
+				<h3>Deep Tissue Reset</h3>
+				<p class="description">
+					Intense therapy designed to release chronic muscle tension and
+					promote long-term recovery.
+				</p>
+				<p class="price">$120 / 90 min</p>
+			</div>
+		</div>
+
+		<div class="service-card reveal">
+			<img
+				src="src/images/serviceimg2.jpg"
+				alt="Aromatherapy Ritual"
+			/>
+			<div class="card-overlay"></div>
+			<div class="card-info">
+				<h3>Aromatherapy Ritual</h3>
+				<p class="price">$95 / 60 min</p>
+			</div>
+		</div>
+
+		<div class="service-pair">
+			<div class="service-card reveal">
+				<img
+					src="src/images/image1.jpg"
+					alt="Reflexology"
+				/>
+				<div class="card-overlay"></div>
+				<div class="card-info">
+					<h3>Reflexology</h3>
+					<p class="price">$60 / 45 min</p>
+				</div>
+			</div>
+
+			<div class="service-card reveal">
+				<img
+					src="https://iraspa.in/wp-content/uploads/2025/09/young-attractive-woman-having-massage-relaxing-spa-salon-2048x1367.jpg"
+					alt="Facial Glow"
+				/>
+				<div class="card-overlay"></div>
+				<div class="card-info">
+					<h3>Facial Glow</h3>
+					<p class="price">$85 / 50 min</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.services {
+		background-color: var(--bg-color, #f9f9f9);
+		padding: 80px 40px;
+	}
+
+	.services-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		max-width: 1300px;
+		margin: 0 auto 40px auto;
+	}
+
+	.services-label {
+		display: block;
+		font-family: "Poppins", sans-serif;
+		font-size: 0.8em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1.5px;
+		color: var(--accent-color, #cfa23c);
+		margin-bottom: 10px;
+	}
+
+	.services-header h2 {
+		font-family: "Georgia", "Times New Roman", serif;
+		font-size: 2.6em;
+		color: var(--text-color, #1a1a1a);
+		margin: 0;
+	}
+
+	.view-all {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.85em;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: var(--accent-color, #cfa23c);
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.view-all:hover {
+		color: var(--accent-hover-color, #f0c96b);
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: 1.05fr 1fr;
+		gap: 24px;
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+
+	.service-card {
+		position: relative;
+		overflow: hidden;
+		border-radius: 6px;
+		min-height: 260px;
+	}
+
+	.service-card.featured {
+		grid-row: span 2;
+	}
+
+	.service-card img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.5s ease;
+	}
+
+	.service-card:hover img {
+		transform: scale(1.08);
+	}
+
+	.card-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba(0, 0, 0, 0.8) 0%,
+			rgba(0, 0, 0, 0) 55%
+		);
+	}
+
+	/*
+	  card-info text sits on top of a photo with a dark gradient overlay
+	  (.card-overlay above), not on the page background — keep this
+	  white/light-gray in both themes on purpose. Don't switch these to
+	  --text-color, or the text will nearly vanish against the dark
+	  overlay once --text-color itself turns light in dark mode.
+	*/
+	.card-info {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		padding: 24px;
+		color: #ffffff;
+	}
+
+	.card-info h3 {
+		font-family: "Poppins", sans-serif;
+		font-size: 1.2em;
+		font-weight: 700;
+		margin: 0 0 8px 0;
+	}
+
+	.card-info .description {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		color: #d9d9d9;
+		max-width: 320px;
+		margin: 0 0 10px 0;
+	}
+
+	.card-info .price {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.95em;
+		font-weight: 600;
+		color: var(--accent-color, #cfa23c);
+		margin: 0;
+	}
+
+	.service-pair {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+	}
+
+	/* --- scroll reveal --- */
+	.reveal {
+		opacity: 0;
+		transform: translateY(40px);
+		transition: opacity 0.7s ease, transform 0.7s ease;
+	}
+
+	.reveal.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.services-grid > .service-card:nth-child(1) {
+		transition-delay: 0s;
+	}
+	.services-grid > .service-card:nth-child(2) {
+		transition-delay: 0.1s;
+	}
+	.service-pair .service-card:nth-child(1) {
+		transition-delay: 0.2s;
+	}
+	.service-pair .service-card:nth-child(2) {
+		transition-delay: 0.3s;
+	}
+
+	@media (max-width: 900px) {
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+		.service-card.featured {
+			grid-row: auto;
+		}
+		.service-pair {
+			grid-template-columns: 1fr 1fr;
+		}
+		.services-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 16px;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.service-pair {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const revealEls = document.querySelectorAll('.reveal');
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('is-visible');
+					observer.unobserve(entry.target);
+				}
+			});
+		},
+		{ threshold: 0.15 }
+	);
+
+	revealEls.forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,97 @@
+---
+import ThemeToggle from "../components/ThemeToggle.astro";
+import "../style/global.scss";
+import Button from "../components/Button.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem("theme");
+				const prefersDark = window.matchMedia(
+					"(prefers-color-scheme: dark)",
+				).matches;
+				const theme = stored || (prefersDark ? "dark" : "light");
+				document.documentElement.setAttribute("data-theme", theme);
+			})();
+		</script>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Petit+Formal+Script&display=swap"
+		/>
+
+		<title>Ira-Spa</title>
+	</head>
+	<body>
+		<header>
+			<ThemeToggle />
+			<img
+				style="height: 80px;"
+				src="https://iraspa.in/wp-content/uploads/2025/04/cropped-IRA-SPA-12-scaled-1.png"
+				alt="iraspa logo"
+			/>
+			<nav>
+				<ul>
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/about">About Us</a>
+					</li>
+					<li>
+						<a href="/ourservice">Our Services</a>
+					</li>
+					<li>
+						<a href="/BookAnAppointment/">Book An Appointment</a>
+					</li>
+					<li>
+						<a href="/Contactus">ContactUs</a>
+					</li>
+					<li>
+						<a href="/Blogs">Blogs</a>
+					</li>
+				</ul>
+			</nav>
+			<Button text="Book Now" href="/BookAnAppointment/Appointment" />
+		</header>
+		<slot />
+	</body>
+</html>
+
+<style>
+	body {
+		margin: 0;
+		padding-top: 80px;
+	}
+	h1 {
+		margin: 0;
+		color: gold;
+	}
+
+	a {
+		font-family: "Poppins", Sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		padding-left: 32px;
+		padding-right: 32px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+		color: #f3d27f;
+		text-decoration: none;
+	}
+	ul,
+	ol {
+		display: flex;
+		list-style-type: none;
+	}
+</style>

@@ -1,0 +1,309 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// Add/remove testimonials here — the carousel adjusts automatically.
+const testimonials = [
+  {
+    name: "Isiri Hg",
+    role: "Customer",
+    avatar: "/images/reviewer-isiri.jpg",
+    rating: 4,
+    quote:
+      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum vel illo nihil corrupti voluptates nobis, quibusdam vitae perspiciatis tenetur rerum. Tenetur eius illo velit perspiciatis culpa quod ut veritatis? Expedita.",
+  },
+  {
+    name: "Rahul Mehta",
+    role: "Customer",
+    avatar: "/images/reviewer-rahul.jpg",
+    rating: 5,
+    quote:
+      "The attention to detail here is what stood out most. Every session felt personal, calm, and genuinely restorative from start to finish.",
+  },
+  {
+    name: "Ananya Rao",
+    role: "Customer",
+    avatar: "/images/reviewer-ananya.jpg",
+    rating: 4,
+    quote:
+      "A wonderfully relaxing experience with a team that clearly cares. I left feeling lighter, and I've already booked my next visit.",
+  },
+];
+---
+
+<section class="customer-review">
+  <h3>Testimonials</h3>
+  <h1>Client Reflections</h1>
+
+  <div class="carousel" data-carousel>
+    <div class="carousel-track" data-track>
+      {
+        testimonials.map((t) => (
+          <div class="slide">
+            <div class="row">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Icon
+                  name="mdi:star"
+                  color={i < t.rating ? "#cfa23c" : "#e5d9bd"}
+                  width="32"
+                  height="32"
+                />
+              ))}
+            </div>
+
+            <span class="custreviewlabel">
+              What are they talking about?
+            </span>
+
+            <p class="desc">
+              {t.quote}
+            </p>
+
+            <div class="reviewer">
+              <img src={t.avatar} alt={t.name} class="reviewer-avatar" />
+              <span class="reviewer-name">{t.name}</span>
+              <span class="reviewer-role">{t.role}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <button class="carousel-arrow prev" data-prev aria-label="Previous testimonial">
+      <Icon name="mdi:chevron-left" width="28" height="28" />
+    </button>
+    <button class="carousel-arrow next" data-next aria-label="Next testimonial">
+      <Icon name="mdi:chevron-right" width="28" height="28" />
+    </button>
+
+    <div class="carousel-dots" data-dots>
+      {testimonials.map((_, i) => <button class="dot" data-dot={i} aria-label={`Go to testimonial ${i + 1}`} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .customer-review {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--bg-color, transparent);
+  }
+  .customer-review h3 {
+    color: var(--accent-color, #cfa23c);
+    font-family: "Poppins", tahoma, sans-serif;
+  }
+  .customer-review h1 {
+    color: var(--text-color, #1a1a1a);
+    font-family: "Poppins", tahoma, sans-serif;
+  }
+  .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  .custreviewlabel {
+    display: block;
+    margin-top: 8px;
+    color: var(--accent-color, #cfa23c);
+    font-family: "Poppins", tahoma, sans-serif;
+    font-size: 1.2em;
+  }
+  .desc {
+    margin-top: 8px;
+    text-align: justify;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-color, #333);
+    font-family: "Poppins", tahoma, sans-serif;
+    font-size: 1.2em;
+  }
+
+  .reviewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  .reviewer-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-color, #cfa23c);
+    margin-bottom: 10px;
+  }
+
+  .reviewer-name {
+    font-family: "Poppins", tahoma, sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--text-color, #1a1a1a);
+  }
+
+  .reviewer-role {
+    font-family: "Poppins", tahoma, sans-serif;
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-color, #cfa23c);
+    margin-top: 2px;
+  }
+
+  /* Carousel shell */
+  .carousel {
+    position: relative;
+    max-width: 760px;
+    margin: 24px auto 0;
+    overflow: hidden;
+  }
+
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .slide {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 50px;
+    box-sizing: border-box;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--surface-color, white);
+    border: 1px solid var(--border-color, #e6d5ab);
+    color: var(--accent-color, #cfa23c);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    z-index: 2;
+  }
+
+  .carousel-arrow:hover {
+    background-color: #fbf3e2;
+  }
+
+  .carousel-arrow.prev {
+    left: 0;
+  }
+
+  .carousel-arrow.next {
+    right: 0;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--border-color, #e5d9bd);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .dot.active {
+    background-color: var(--accent-color, #cfa23c);
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 600px) {
+    .slide {
+      padding: 0 36px;
+    }
+    .carousel-arrow {
+      width: 32px;
+      height: 32px;
+    }
+  }
+</style>
+
+<script>
+  function initTestimonialCarousel() {
+    const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+
+    carousels.forEach((carousel) => {
+      const track = carousel.querySelector<HTMLElement>("[data-track]");
+      const slides = Array.from(carousel.querySelectorAll<HTMLElement>(".slide"));
+      const prevBtn = carousel.querySelector<HTMLButtonElement>("[data-prev]");
+      const nextBtn = carousel.querySelector<HTMLButtonElement>("[data-next]");
+      const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>(".dot"));
+
+      if (!track || slides.length === 0) return;
+
+      let index = 0;
+      let autoplayTimer: ReturnType<typeof setInterval> | null = null;
+
+      function render() {
+        track!.style.transform = `translateX(-${index * 100}%)`;
+        dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+      }
+
+      function goTo(i: number) {
+        index = (i + slides.length) % slides.length;
+        render();
+      }
+
+      function next() {
+        goTo(index + 1);
+      }
+
+      function prev() {
+        goTo(index - 1);
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(next, 6000);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) clearInterval(autoplayTimer);
+      }
+
+      nextBtn?.addEventListener("click", () => {
+        next();
+        startAutoplay();
+      });
+
+      prevBtn?.addEventListener("click", () => {
+        prev();
+        startAutoplay();
+      });
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          goTo(i);
+          startAutoplay();
+        });
+      });
+
+      carousel.addEventListener("mouseenter", stopAutoplay);
+      carousel.addEventListener("mouseleave", startAutoplay);
+
+      render();
+      startAutoplay();
+    });
+  }
+
+  initTestimonialCarousel();
+  document.addEventListener("astro:page-load", initTestimonialCarousel);
+</script>

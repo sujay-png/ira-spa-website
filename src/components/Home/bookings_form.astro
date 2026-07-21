@@ -1,0 +1,174 @@
+---
+// src/components/bookings_form.astro
+import Button from "../Button.astro";
+---
+
+<section class="booking-bar">
+	<div class="row">
+		<div class="field">
+			<label for="name">Name</label>
+			<input type="text" id="name" placeholder="Enter your name" />
+		</div>
+
+		<div class="divider"></div>
+
+		<div class="field">
+			<label for="phone">Phone</label>
+			<input type="tel" id="phone" placeholder="+91" />
+		</div>
+		<div class="divider"></div>
+		<div class="field">
+			<label for ="time">Time</label>
+			<select id="time">
+				<option>10:00 AM</option>
+				<option>11:00 AM</option>
+				<option>12:00 PM</option>
+				<option>01:00 PM</option>
+				<option>02:00 PM</option>
+				<option>03:00 PM</option>
+				<option>04:00 PM</option>
+				<option>05:00 PM</option>
+			</select>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="field">
+			<label for="service">Select Service</label>
+			<select id="service">
+				<option>Quick Body Massage</option>
+				<option>Full Body Massage</option>
+				<option>Facial</option>
+				<option>Manicure</option>
+			</select>
+		</div>
+
+		<div class="divider"></div>
+
+		<div class="field">
+			<label for="location">Location</label>
+			<select id="location">
+				<option>Kalaburagi - Gulbarga</option>
+				<option>Bengaluru</option>
+				<option>Hyderabad</option>
+			</select>
+		</div>
+
+		<div class="divider"></div>
+
+		<div class="field">
+			<label for="date">Date</label>
+			<input type="date" id="date" />
+		</div>
+<Button text="Reserve Now" href="/BookAnAppointment/Appointment" type="submit" />
+		<!-- <button type="submit" class="reserve-btn">Reserve Now</button> -->
+	</div>
+</section>
+
+<style>
+.booking-bar {
+	    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #1412108c;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid #f3c51bbd;
+    margin: -78px auto 0;
+    padding: 24px 40px;
+    position: relative;
+    z-index: 2;
+    max-width: none;
+    height: 161px;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	.field label {
+		font-family: "Poppins", sans-serif;
+		font-size: 0.75em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: #cfa23c;
+		margin-bottom: 8px;
+	}
+
+	.field select,
+	.field input {
+		background: transparent;
+		border: none;
+		color: #ffffff;
+		font-family: "Poppins", sans-serif;
+		font-size: 1em;
+		padding: 0;
+		outline: none;
+	}
+
+	.field select {
+		appearance: none;
+		-webkit-appearance: none;
+		cursor: pointer;
+		background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%23ffffff' stroke-width='2' fill='none' fill-rule='evenodd'/></svg>");
+		background-repeat: no-repeat;
+		background-position: right center;
+		padding-right: 20px;
+	}
+
+	.field select option {
+		color: #1a1a1a; /* dropdown list itself can't be transparent in most browsers */
+	}
+
+	.field input[type="date"] {
+		color-scheme: dark; /* makes the native date picker icon white */
+	}
+
+	.divider {
+		width: 1px;
+		height: 40px;
+		background: rgba(255, 255, 255, 0.2);
+	}
+
+	.reserve-btn {
+		background-color: #cfa23c;
+		color: #1a1a1a;
+		font-family: "Poppins", sans-serif;
+		font-size: 0.9em;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		border: none;
+		border-radius: 4px;
+		padding: 16px 32px;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: background-color 0.2s ease;
+	}
+
+	.reserve-btn:hover {
+		background-color: #b88f32;
+	}
+
+	@media (max-width: 800px) {
+		.booking-bar {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 20px;
+			margin-top: -30px;
+		}
+		.divider {
+			display: none;
+		}
+	}
+</style>

@@ -1,0 +1,125 @@
+---
+// src/components/services/ServiceBoxes.astro
+import { serviceData } from "../../data/services";
+---
+
+<section class="services-boxes">
+  <!-- 1. ADDED: Search input field matching your script -->
+  <div class="search-wrapper">
+    <input 
+      type="text" 
+      id="service-search" 
+      placeholder="Search services..." 
+      autocomplete="off"
+    />
+  </div>
+
+  <div class="row-container">
+    {Object.entries(serviceData).map(([slug, service]) => (
+      <a class="box" href={`/services/${slug}`}>
+        {service.name}
+      </a>
+    ))}
+  </div>
+
+  <!-- 2. ADDED: No results placeholder template -->
+  <p id="no-results" class="no-results" hidden>No services matched your search.</p>
+</section>
+
+<style>
+  .services-boxes {
+    padding: 40px 5%;
+  }
+
+  .search-wrapper {
+    margin-bottom: 24px;
+  }
+
+  #service-search {
+    width: min(420px, 100%);
+    padding: 14px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    font-size: 1rem;
+  }
+
+  #service-search::placeholder {
+    color: #d7c7a8;
+  }
+
+  .row-container {
+    display: flex;
+    gap: 1rem; 
+    flex-wrap: wrap;
+  }
+
+ .box {
+    flex: 1;
+    min-width: 200px;
+    padding: 2rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+
+  .box:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-6px);
+  }
+
+  /* 3. ADDED: Style display logic for hidden elements */
+  .box[hidden], #no-results[hidden] {
+    display: none !important;
+  }
+
+  .no-results {
+    color: #d9a52d;
+    margin-top: 1rem;
+    font-family: Georgia, serif;
+  }
+</style>
+
+<script>
+  const searchInput = document.querySelector("#service-search") as HTMLInputElement;
+  const services = document.querySelectorAll<HTMLElement>(".box");
+  const noResults = document.querySelector("#no-results") as HTMLElement;
+
+  searchInput?.addEventListener("input", (event) => {
+    // FIX: TypeScript type assertion for event.target
+    const target = event.target as HTMLInputElement;
+    const searchText = target.value.toLowerCase().trim();
+    let matches = 0;
+
+    services.forEach((service) => {
+      // FIX: Null-safe handling of content strings
+      const serviceText = service.textContent?.toLowerCase() || "";
+      const isMatch = serviceText.includes(searchText);
+
+      // FIX: HTML hidden attribute works cleanly with display utility style
+      if (isMatch) {
+        service.removeAttribute("hidden");
+        matches++;
+      } else {
+        service.setAttribute("hidden", "");
+      }
+    });
+
+    if (noResults) {
+      if (matches === 0 && searchText !== "") {
+        noResults.removeAttribute("hidden");
+      } else {
+        noResults.setAttribute("hidden", "");
+      }
+    }
+  });
+</script>
