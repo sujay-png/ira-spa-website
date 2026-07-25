@@ -1,16 +1,6 @@
 ---
-import LayoutAstroComponent from "../../layouts/Layout.astro";
-import ServiceDescription from "../../components/services/service_description.astro";
-import { serviceData } from "../../data/services";
-
-const { slug } = Astro.params;
-const service = serviceData[slug as keyof typeof serviceData];
-
-if (!service) {
-  return Astro.redirect("/services");
-}
+// Deprecated: dynamic routes must live under src/pages to be routable by Astro,
+// so this file was never actually reachable. The real route now lives at
+// src/pages/services/[slug].astro. Kept as an empty stub because this
+// environment's mounted folder does not allow file deletion.
 ---
-
-<LayoutAstroComponent>
-  <ServiceDescription {...service} />
-</LayoutAstroComponent>

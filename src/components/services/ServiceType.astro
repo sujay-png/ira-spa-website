@@ -1,125 +1,125 @@
 ---
-// src/components/services/ServiceBoxes.astro
 import { serviceData } from "../../data/services";
 ---
 
-<section class="services-boxes">
-  <!-- 1. ADDED: Search input field matching your script -->
-  <div class="search-wrapper">
-    <input 
-      type="text" 
-      id="service-search" 
-      placeholder="Search services..." 
-      autocomplete="off"
-    />
-  </div>
+<section class="browse">
+	<div class="container">
+		<div class="section-heading">
+			<span class="eyebrow">Browse By Category</span>
+			<h2>Find Your Ritual</h2>
+		</div>
 
-  <div class="row-container">
-    {Object.entries(serviceData).map(([slug, service]) => (
-      <a class="box" href={`/services/${slug}`}>
-        {service.name}
-      </a>
-    ))}
-  </div>
+		<div class="browse__search">
+			<input type="text" id="service-search" placeholder="Search services…" autocomplete="off" />
+		</div>
 
-  <!-- 2. ADDED: No results placeholder template -->
-  <p id="no-results" class="no-results" hidden>No services matched your search.</p>
+		<div class="browse__grid">
+			{
+				Object.entries(serviceData).map(([slug, service]) => (
+					<a class="browse__card" href={`/services/${slug}`} data-name={service.name.toLowerCase()}>
+						<img src={service.image} alt={service.name} width="320" height="220" loading="lazy" />
+						<div class="browse__card-body">
+							<span class="eyebrow">{service.category}</span>
+							<h3>{service.name}</h3>
+							<span class="browse__price">{service.price60} / 60 min</span>
+						</div>
+					</a>
+				))
+			}
+		</div>
+
+		<p id="no-results" class="browse__no-results" hidden>No services matched your search.</p>
+	</div>
 </section>
 
 <style>
-  .services-boxes {
-    padding: 40px 5%;
-  }
+	.browse {
+		padding-block: var(--space-2xl);
+	}
 
-  .search-wrapper {
-    margin-bottom: 24px;
-  }
+	.browse__search {
+		display: flex;
+		justify-content: center;
+		margin: var(--space-lg) 0;
+	}
 
-  #service-search {
-    width: min(420px, 100%);
-    padding: 14px 18px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 8px;
-    outline: none;
-    background: rgba(255, 255, 255, 0.12);
-    color: white;
-    font-size: 1rem;
-  }
+	.browse__search input {
+		max-width: 420px;
+	}
 
-  #service-search::placeholder {
-    color: #d7c7a8;
-  }
+	.browse__grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+		gap: var(--space-md);
+	}
 
-  .row-container {
-    display: flex;
-    gap: 1rem; 
-    flex-wrap: wrap;
-  }
+	.browse__card {
+		display: block;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		transition: transform 0.35s var(--ease-soft), border-color 0.35s ease;
+	}
 
- .box {
-    flex: 1;
-    min-width: 200px;
-    padding: 2rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, background 0.3s ease;
-  }
+	.browse__card:hover {
+		transform: translateY(-6px);
+		border-color: var(--color-border-strong);
+	}
 
-  .box:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-6px);
-  }
+	.browse__card img {
+		width: 100%;
+		height: 180px;
+		object-fit: cover;
+	}
 
-  /* 3. ADDED: Style display logic for hidden elements */
-  .box[hidden], #no-results[hidden] {
-    display: none !important;
-  }
+	.browse__card-body {
+		padding: var(--space-sm) var(--space-md) var(--space-md);
+	}
 
-  .no-results {
-    color: #d9a52d;
-    margin-top: 1rem;
-    font-family: Georgia, serif;
-  }
+	.browse__card-body h3 {
+		font-size: var(--font-size-lg);
+		margin: 0.4rem 0 0.6rem;
+	}
+
+	.browse__price {
+		font-size: 0.85rem;
+		font-weight: 600;
+		color: var(--color-accent-soft);
+	}
+
+	.browse__no-results {
+		text-align: center;
+		margin-top: var(--space-md);
+		font-family: var(--font-display);
+		font-style: italic;
+		color: var(--color-text-muted);
+	}
+
+	.browse__card[hidden] {
+		display: none;
+	}
 </style>
 
 <script>
-  const searchInput = document.querySelector("#service-search") as HTMLInputElement;
-  const services = document.querySelectorAll<HTMLElement>(".box");
-  const noResults = document.querySelector("#no-results") as HTMLElement;
+	function initServiceSearch() {
+		const input = document.getElementById("service-search") as HTMLInputElement | null;
+		const cards = document.querySelectorAll<HTMLElement>(".browse__card");
+		const noResults = document.getElementById("no-results");
+		if (!input) return;
 
-  searchInput?.addEventListener("input", (event) => {
-    // FIX: TypeScript type assertion for event.target
-    const target = event.target as HTMLInputElement;
-    const searchText = target.value.toLowerCase().trim();
-    let matches = 0;
-
-    services.forEach((service) => {
-      // FIX: Null-safe handling of content strings
-      const serviceText = service.textContent?.toLowerCase() || "";
-      const isMatch = serviceText.includes(searchText);
-
-      // FIX: HTML hidden attribute works cleanly with display utility style
-      if (isMatch) {
-        service.removeAttribute("hidden");
-        matches++;
-      } else {
-        service.setAttribute("hidden", "");
-      }
-    });
-
-    if (noResults) {
-      if (matches === 0 && searchText !== "") {
-        noResults.removeAttribute("hidden");
-      } else {
-        noResults.setAttribute("hidden", "");
-      }
-    }
-  });
+		input.addEventListener("input", () => {
+			const query = input.value.toLowerCase().trim();
+			let matches = 0;
+			cards.forEach((card) => {
+				const name = card.dataset.name ?? "";
+				const isMatch = name.includes(query);
+				card.toggleAttribute("hidden", !isMatch);
+				if (isMatch) matches++;
+			});
+			noResults?.toggleAttribute("hidden", !(matches === 0 && query !== ""));
+		});
+	}
+	initServiceSearch();
+	document.addEventListener("astro:page-load", initServiceSearch);
 </script>

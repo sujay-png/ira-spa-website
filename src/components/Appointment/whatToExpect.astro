@@ -1,227 +1,127 @@
 ---
 interface Props {
-  imageSrc?: string;
+	imageSrc?: string;
 }
 
-const { imageSrc = "/src/images/spa.png" } = Astro.props;
+const { imageSrc = "/images/spa.png" } = Astro.props;
+
+const steps = [
+	{
+		number: "01",
+		title: "Arrival & Sanctuary",
+		text: "Please arrive 15 minutes prior to your session. Enjoy our signature botanical infusion in the quiet lounge as you begin your transition into stillness.",
+	},
+	{
+		number: "02",
+		title: "Curated Consultation",
+		text: "Your therapist will tailor the pressure and aromatic oils to your specific needs, ensuring a bespoke restorative journey.",
+	},
+	{
+		number: "03",
+		title: "Mindful Silence",
+		text: "We maintain a digital-free environment. Kindly switch off mobile devices to preserve the sanctuary of Ira Spa for all guests.",
+	},
+];
 ---
 
-<section class="expect-section">
-  <div class="expect-container">
-    
-    <!-- Left Column: Image with Decorative Overlapping Border Box -->
-    <div class="image-wrapper">
-      <div class="decorative-box"></div>
-      <img src={imageSrc} alt="Spa experience" class="spa-image" />
-    </div>
+<section class="expect">
+	<div class="container expect__grid">
+		<div class="expect__media">
+			<img src={imageSrc} alt="Ira Spa treatment room" width="560" height="440" loading="lazy" />
+		</div>
 
-    <!-- Right Column: Text Content & Luxury List -->
-    <div class="content-wrapper">
-      <span class="subtitle">EXPERIENCE</span>
-      <h2 class="title">What to Expect</h2>
+		<div class="expect__content">
+			<span class="eyebrow">Experience</span>
+			<h2>What to Expect</h2>
 
-      <div class="experience-list">
-        
-        <!-- Step 1 -->
-        <div class="experience-item">
-          <span class="step-number">01</span>
-          <div class="item-text">
-            <h3>Arrival & Sanctuary</h3>
-            <p>Please arrive 15 minutes prior to your session. Enjoy our signature botanical infusion in the quiet lounge as you begin your transition into stillness.</p>
-          </div>
-        </div>
+			<div class="expect__list">
+				{
+					steps.map((s) => (
+						<div class="expect__item">
+							<span class="expect__number">{s.number}</span>
+							<div>
+								<h3>{s.title}</h3>
+								<p>{s.text}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
 
-        <!-- Step 2 -->
-        <div class="experience-item">
-          <span class="step-number">02</span>
-          <div class="item-text">
-            <h3>Curated Consultation</h3>
-            <p>Your therapist will tailor the pressure and aromatic oils to your specific needs, ensuring a bespoke restorative journey.</p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="experience-item">
-          <span class="step-number">03</span>
-          <div class="item-text">
-            <h3>Mindful Silence</h3>
-            <p>We maintain a digital-free environment. Kindly switch off all mobile devices to preserve the sanctuary of Ira Spa for all guests.</p>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Bottom Cancellation Banner -->
-      <footer class="policy-footer">
-        <p><em>Cancellation Policy: Please provide 24-hour notice for any rescheduling or cancellations.</em></p>
-      </footer>
-    </div>
-
-  </div>
+			<p class="expect__policy">
+				<em>Cancellation Policy: please provide 24-hour notice for any rescheduling or cancellations.</em>
+			</p>
+		</div>
+	</div>
 </section>
 
 <style>
-  /* ===== Section Base Layout ===== */
-  .expect-section {
-    /* background-color: rgb(231, 222, 222); */
-    padding: 120px 0;
-    width: 100%;
-    color:--var(color:black)
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    
-  }
+	.expect {
+		padding-block: var(--space-2xl);
+		background: var(--color-bg-alt);
+	}
 
-  .expect-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 90%;
-    display: grid;
-    /* Cleaned up layout columns mapping */
-    grid-template-columns: 1fr 1.1fr; 
-    /* Increased gap from 80px to 100px for luxurious spacing */
-    gap: 100px; 
-    align-items: center;
-  }
+	.expect__grid {
+		display: grid;
+		grid-template-columns: 1fr 1.1fr;
+		gap: clamp(2.5rem, 6vw, 5rem);
+		align-items: center;
+	}
 
-  /* ===== Left Side: Luxury Image + Decorative Frame ===== */
-  .image-wrapper {
- position: relative;
-    /* Add padding to the left and bottom so the decorative box has room to display outside the image layout bounds */
-    padding-left: 30px;
-    padding-bottom: 30px;
-    display: block;
-    width: 100%;
-  }
+	.expect__media img {
+		width: 100%;
+		height: clamp(280px, 34vw, 440px);
+		object-fit: cover;
+		border-radius: var(--radius-md);
+	}
 
-  .spa-image {
-   width: 100%;
-    height: 440px; 
-    display: flex;
-    position: relative;
-    /* z-index: 2 keeps the image clearly layered on top of the wireframe box */
-    z-index: 5;
-    object-fit: cover;
-    object-position: center;
-    padding-right: 50;
-  }
+	.expect__content h2 {
+		margin: var(--space-2xs) 0 var(--space-lg);
+	}
 
-  /* Restored the missing gold wireframe style rules */
- 
+	.expect__list {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		margin-bottom: var(--space-lg);
+	}
 
-  /* ===== Right Side: Content ===== */
-  .content-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
+	.expect__item {
+		display: flex;
+		gap: var(--space-sm);
+	}
 
-  .subtitle {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    color: #D4A63A;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
+	.expect__number {
+		font-family: var(--font-display);
+		font-size: 1.4rem;
+		color: var(--color-accent);
+		flex-shrink: 0;
+	}
 
-  .title {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 400;
-    color: --var(color:black);
-    margin-bottom: 48px;
-  }
+	.expect__item h3 {
+		font-size: 1.05rem;
+		font-family: var(--font-body);
+		font-weight: 600;
+		margin-bottom: 0.4rem;
+	}
 
-  /* ===== List Styling ===== */
-  .experience-list {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    margin-bottom: 48px;
-  }
+	.expect__item p {
+		font-size: 0.92rem;
+	}
 
-  .experience-item {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
+	.expect__policy {
+		border-top: 1px solid var(--color-border);
+		padding-top: var(--space-sm);
+		font-size: 0.85rem;
+		color: var(--color-text-faint);
+	}
 
-  .step-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: --var(color:#443c2c);
-    font-weight: 600;
-    line-height: 1.2;
-    padding-top: 2px;
-  }
-
-  .item-text h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: --var(color:black);
-    margin-bottom: 8px;
-    letter-spacing: 0.3px;
-  }
-
-  .item-text p {
-    font-size: 14px;
-    color: --var(color:#424040);
-    line-height: 1.6;
-    font-weight: 400;
-  }
-
-  /* ===== Bottom Policy Footer ===== */
-  .policy-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 24px;
-  }
-
-  .policy-footer p {
-    font-size: 13px;
-    color: #a0a0a0;
-    letter-spacing: 0.5px;
-    line-height: 1.5;
-  }
-
-  /* ===== Responsive Breakpoints ===== */
-  @media (max-width: 1024px) {
-    .expect-container {
-      /* Drop down the gap on smaller desktop viewports */
-      gap: 50px; 
-    }
-  }
-
-  @media (max-width: 992px) {
-    .expect-container {
-      grid-template-columns: 1fr;
-      gap: 60px;
-    }
-    .image-wrapper {
-      max-width: 550px;
-      margin: 0 auto;
-    }
-    .title {
-      font-size: 40px;
-      margin-bottom: 36px;
-    }
-  }
-
-  @media (max-width: 576px) {
-    .expect-section {
-      padding: 80px 0;
-    }
-    .image-wrapper {
-      padding-bottom: 20px;
-      padding-left: 20px;
-    }
-    .title {
-      font-size: 32px;
-    }
-    .experience-item {
-      flex-direction: column;
-      gap: 8px;
-    }
-    .step-number {
-      font-size: 20px;
-    }
-  }
+	@media (max-width: 900px) {
+		.expect__grid {
+			grid-template-columns: 1fr;
+		}
+		.expect__media {
+			order: -1;
+		}
+	}
 </style>

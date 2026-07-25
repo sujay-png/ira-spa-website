@@ -1,247 +1,133 @@
-<section class="about-section">
-	<div class="about-image">
-	<div class="container">
-		<img
-			src="https://iraspa.in/wp-content/uploads/2026/03/massage-in-mangalore.webp"
-			alt="Ira Spa"
-		/>
-		<div class="badge">
-			<span class="badge-number">24</span>
-			<span class="badge-caption">Years of Bliss</span>
-		</div>
-	</div>
-</div>
+---
+---
 
-	<div class="about-content">
-		<h3>Get to know us</h3>
-		<h1>About Ira Spa</h1>
-		<p>
-			Welcome to IRA Spa, your destination for massage in Mangalore. Get
-			deep relief and relaxation from pain or stress in your shoulder,
-			neck, upper and lower back, legs, feet, and overall body with
-			effective massage techniques that calm your nervous system,
-			release stress hormones, soothe muscle aches, ease anxiety and
-			depression, and keep your body, mind, and spirit rejuvenated.
-		</p>
-		<p>
-			The spa's interior setting has been designed to create a peaceful
-			atmosphere and sense of calmness from the moment you enter. It's
-			time to take a break from your daily routine and invest in your
-			mental and physical well-being. Whether you're looking for
-			massage therapy or beauty spa sessions, you'll experience
-			personalized service from our expert therapists at IRA Spa.
-		</p>
-		<div class="form-group button-group">
-			<button type="submit" class="discover-btn">Discover Now</button>
+<section class="about-spa">
+	<div class="container about-spa__grid">
+		<div class="about-spa__media reveal">
+			<img
+				src="https://iraspa.in/wp-content/uploads/2026/03/massage-in-mangalore.webp"
+				alt="Therapist performing a relaxing massage at Ira Spa"
+				width="640"
+				height="760"
+				loading="lazy"
+			/>
+			<div class="badge">
+				<span class="badge__number">12+</span>
+				<span class="badge__caption">Years of Bliss</span>
+			</div>
+		</div>
+
+		<div class="about-spa__content reveal">
+			<span class="eyebrow">Get to Know Us</span>
+			<h2>A Sanctuary Rooted in the Earth</h2>
+			<p>
+				Welcome to Ira Spa — your destination for restorative massage in
+				Mangalore and Kalaburagi. Every ritual is designed to release tension
+				from the shoulders, neck, back and feet, calming the nervous system
+				and easing the mind alongside the body.
+			</p>
+			<p>
+				Our interiors are shaped around stillness — from the moment you
+				arrive, the pace slows. Whether you're seeking deep therapeutic
+				relief or a quiet beauty ritual, our therapists tailor every session
+				to you.
+			</p>
+			<a href="/about" class="btn-secondary">Discover Our Story</a>
 		</div>
 	</div>
 </section>
 
 <style>
+	.about-spa {
+		padding-block: var(--space-2xl);
+	}
+
+	.about-spa__grid {
+		display: grid;
+		grid-template-columns: 0.85fr 1fr;
+		gap: clamp(2.5rem, 6vw, 5rem);
+		align-items: center;
+	}
+
+	.about-spa__media {
+		position: relative;
+	}
+
+	.about-spa__media img {
+		width: 100%;
+		height: clamp(320px, 40vw, 480px);
+		object-fit: cover;
+		border-radius: var(--radius-md);
+	}
+
 	.badge {
 		position: absolute;
-		bottom: clamp(-15px, -2vw, -25px);
-		right: clamp(-15px, -2vw, -25px);
-		background: linear-gradient(135deg, #f0c96b, #e8b950);
-		padding: clamp(1.5rem, 3vw, 2rem) clamp(2rem, 4vw, 2rem);
-		border-radius: 6px;
+		bottom: clamp(-1rem, -2vw, -1.5rem);
+		right: clamp(-0.75rem, -2vw, -1.25rem);
+		background: linear-gradient(135deg, var(--color-accent-soft), var(--color-accent-strong));
+		padding: 1.25rem 1.75rem;
+		border-radius: var(--radius-sm);
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
-		line-height: 1;
-		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-		z-index: 10;
+		box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
 	}
 
-	.badge-number {
-		font-family: "Georgia", serif;
-		font-size: clamp(2.2rem, 5vw, 3.2rem);
-		font-weight: 700;
-		color: #1a1a1a;
-		line-height: 1;
-	}
-
-	.badge-caption {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.7rem, 1.5vw, 0.85rem);
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 1.5px;
-		color: #1a1a1a;
-		margin-top: 0.5rem;
-	}
-
-	.about-image {
-		position: relative;
-		overflow: hidden;
-		border-radius: 8px;
-	}
-
-	.container {
-		max-width: none;
-		padding: clamp(2rem, 5vw, 2.5rem);
-		border-radius: 6px;
-		position: relative;
-	}
-
-	.container::before {
-		content: "";
-		position: absolute;
-		top: -12px;
-		left: -12px;
-		width: 40px;
-		height: 40px;
-		border-radius: 4px;
-	}
-
-	.about-section {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(2rem, 6vw, 3rem);
-		align-items: center;
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: clamp(2.5rem, 6vw, 3.75rem) clamp(1rem, 5vw, 1.25rem);
-		background-color: var(--bg-color, transparent);
-		
-		@media (max-width: 1024px) {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
-		
-		@media (max-width: 768px) {
-			padding: 2rem 1rem;
-			gap: 1.5rem;
-		}
-	}
-
-	.about-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		border-radius: 8px;
-		display: block;
-		border: 3px solid var(--accent-color, #cfa23c);
-		padding: 12px;
-		transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-	}
-
-	.about-image:hover img {
-		transform: scale(1.1);
-		border-color: var(--accent-hover, #f0c96b);
-		box-shadow: 0 12px 32px rgba(207, 162, 60, 0.2);
-	}
-
-	.about-content h3 {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		color: var(--accent-color, #cfa23c);
-		margin: 0 0 0.75rem 0;
-	}
-
-	.about-content h1 {
-		font-family: "Georgia", serif;
-		font-size: clamp(1.8rem, 4vw, 2.6rem);
-		font-weight: 700;
-		color: var(--text-color, #1a1a1a);
-		margin: 0 0 1.5rem 0;
-		line-height: 1.2;
-	}
-
-	.about-content p {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.9rem, 1.5vw, 1rem);
-		line-height: 1.7;
-		color: var(--text-muted, #555);
-		margin: 0 0 1.25rem 0;
-	}
-
-	.form-group {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.form-group label {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.8rem, 1.5vw, 0.85rem);
+	.badge__number {
+		font-family: var(--font-display);
+		font-size: clamp(1.9rem, 4vw, 2.6rem);
 		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		color: var(--text-muted, #444);
-		margin-bottom: 0.75rem;
+		color: var(--color-on-accent);
+		line-height: 1;
 	}
 
-	.form-group input,
-	.form-group select {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.9rem, 1.5vw, 0.95rem);
-		color: var(--text-color, #333);
-		background-color: var(--surface-color, #faf6f2);
-		border: 1.5px solid var(--border-color, #eee0d3);
-		border-radius: 6px;
-		padding: 0.9rem 1rem;
-		outline: none;
-		transition: all 0.3s ease;
-	}
-
-	.form-group input:focus,
-	.form-group select:focus {
-		border-color: var(--accent-color, #cfa23c);
-		box-shadow: 0 0 0 3px rgba(207, 162, 60, 0.15);
-	}
-
-	.form-group input::placeholder {
-		color: var(--text-muted, #a8a29a);
-	}
-
-	.button-group {
-		align-items: flex-start;
-		margin-top: 0.5rem;
-	}
-
-	.discover-btn {
-		background: linear-gradient(135deg, var(--accent-color, #cfa23c), #e8b950);
-		color: white;
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.9rem, 1.5vw, 0.95rem);
+	.badge__caption {
+		font-size: 0.7rem;
 		font-weight: 700;
-		letter-spacing: 1.5px;
 		text-transform: uppercase;
-		border: none;
-		border-radius: 6px;
-		padding: clamp(0.9rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
-		cursor: pointer;
-		transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-		box-shadow: 0 6px 16px rgba(207, 162, 60, 0.2);
-		min-height: 44px;
-		
-		&:hover {
-			background: linear-gradient(135deg, #e8b950, var(--accent-color, #cfa23c));
-			box-shadow: 0 10px 24px rgba(207, 162, 60, 0.3);
-			transform: translateY(-2px);
-		}
-		
-		&:active {
-			transform: translateY(0);
-		}
+		letter-spacing: 0.12em;
+		color: var(--color-on-accent);
+		margin-top: 0.4rem;
 	}
 
-	@media (max-width: 1024px) {
-		.about-section {
+	.about-spa__content h2 {
+		margin: var(--space-sm) 0 var(--space-md);
+	}
+
+	.about-spa__content p {
+		margin-bottom: var(--space-sm);
+	}
+
+	.about-spa__content .btn-secondary {
+		margin-top: var(--space-xs);
+	}
+
+	@media (max-width: 900px) {
+		.about-spa__grid {
 			grid-template-columns: 1fr;
 		}
-	}
 
-	@media (max-width: 768px) {
-		.about-image {
-			grid-row: 2;
-		}
-		
-		.discover-btn {
-			width: 100%;
+		.about-spa__media {
+			order: -1;
 		}
 	}
 </style>
+
+<script>
+	function initReveal() {
+		const els = document.querySelectorAll(".about-spa .reveal");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-visible");
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.15 },
+		);
+		els.forEach((el) => observer.observe(el));
+	}
+	initReveal();
+	document.addEventListener("astro:page-load", initReveal);
+</script>

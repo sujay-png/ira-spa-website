@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
     "@fancyapps/ui": "^6.1.14",
     "@iconify-json/mdi": "^1.2.3",
     "astro": "^7.0.7",

@@ -1,81 +1,34 @@
 ---
-import LayoutAstroComponent from "../../layouts/Layout.astro";
-import ServiceType from "../../components/services/servicetype.astro";
-import ServiceDescriptionAstroComponent from "../../components/services/service_description.astro";
+import Layout from "../../layouts/Layout.astro";
+import ServiceType from "../../components/services/ServiceType.astro";
+import ServiceDescription from "../../components/services/service_description.astro";
 import MenuList from "../../components/Home/MenuList.astro";
 import Footer from "../../components/Footer.astro";
-import SearchTabs from "../../components/services/SearchTabs.astro";
+import { serviceData } from "../../data/services";
 ---
 
-<LayoutAstroComponent>
-    <section class="servicebanner">
-        <div class="bannercontent">
-            <h1>Best Spa Services</h1>
-            <p>Ira Spa offers a range of massage and beauty spatherapy</p>
-        </div>
-    </section>
-    <ServiceType />
-    <ServiceDescriptionAstroComponent />
-    <MenuList />
- 
-    <Footer />
-</LayoutAstroComponent>
-<style>
-    .servicebanner {
-        margin-bottom: 40px;
-        position: relative;
-        width: 100%;
-        height: 500px;
-        background-image: url("/src/images/spa-salon.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        overflow: hidden;
+<Layout
+	title="Rituals & Services | Ira Spa Massage Treatments"
+	description="Explore Ira Spa's full menu of rituals — body massage, herbal therapy, body polishing and foot spa treatments in Mangalore and Kalaburagi, with transparent pricing."
+>
+	<section class="page-banner" style="background-image: url('/images/spa-treatment.jpg');">
+		<div class="container">
+			<span class="eyebrow">Curated Treatments</span>
+			<h1>Our Rituals</h1>
+			<p>A collection of somatic therapies designed to harmonize touch, scent and stillness.</p>
+		</div>
+	</section>
 
-        /* Initial state */
-        opacity: 0;
-        transform: translateY(40px);
+	<ServiceType />
 
-        /* Smooth entrance */
-        animation: slide-up-fade-in 1.8s ease-out forwards;
-    }
-    @keyframes slide-up-fade-in {
-        0% {
-            opacity: 0;
-            transform: translateY(40px);
-        }
+	<div class="ritual-showcase">
+		{
+			Object.entries(serviceData).map(([slug, service], i) => (
+				<ServiceDescription {...service} slug={slug} reverse={i % 2 === 1} />
+			))
+		}
+	</div>
 
-        60% {
-            opacity: 0.8;
-            transform: translateY(8px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .bannercontent {
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
-    }
-    .bannercontent h1 {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        color: gold;
-    }
-    .bannercontent p {
-        position: absolute;
-        left: 40%;
-        top: 60%;
-        font-size: larger;
-        color: --var(color: blanchedalmond);
-    }
-</style>
+	<MenuList />
+	<Footer />
+</Layout>

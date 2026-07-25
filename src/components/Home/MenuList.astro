@@ -1,320 +1,196 @@
 ---
 const bodyMassage = [
-  {
-    name: "Classic Swedish Therapy",
-    price: "₹2200 / 3300 / 4000",
-    sessions: "60/90/120 minute sessions",
-    accent: true,
-  },
-  {
-    name: "Deep Tissue Therapy",
-    price: "₹2750 / 4000 / 5500",
-    sessions: "60/90/120 Minute Sessions",
-    accent: false,
-  },
-  {
-    name: "Aroma Therapy",
-    price: "₹2400 / 3600 / 4800",
-    sessions: "60/90/120 Minute Sessions",
-    accent: false,
-  },
-  {
-    name: "Balinese Therapy",
-    price: "₹2750 / 4000 / 5500",
-    sessions: "60/90/120 Minute Sessions",
-    accent: true,
-  },
+	{ name: "Classic Swedish Therapy", price: "₹2,200 / 3,300 / 4,000", sessions: "60 / 90 / 120 minute sessions" },
+	{ name: "Deep Tissue Therapy", price: "₹2,750 / 4,000 / 5,500", sessions: "60 / 90 / 120 minute sessions" },
+	{ name: "Aroma Therapy", price: "₹2,400 / 3,600 / 4,800", sessions: "60 / 90 / 120 minute sessions" },
+	{ name: "Balinese Therapy", price: "₹2,750 / 4,000 / 5,500", sessions: "60 / 90 / 120 minute sessions" },
 ];
 
 const pedicure = [
-  {
-    name: "Classic Paraffin Wax Pedicure",
-    price: "₹800",
-    sessions: "45 Minute Sessions",
-    accent: true,
-  },
-  {
-    name: "Anti-Oxidant Pedicure",
-    price: "₹800",
-    sessions: "60 Minute Sessions",
-    accent: false,
-  },
-  {
-    name: "Moisturizing Exotic Pedicure",
-    price: "₹800",
-    sessions: "60 Minute Sessions",
-    accent: false,
-  },
-  {
-    name: "Brightening De-Tan Pedicure",
-    price: "₹1200",
-    sessions: "60 Minute Sessions",
-    accent: true,
-  },
-  {
-    name: "De-Stress Refreshment",
-    price: "₹1000",
-    sessions: "60 Minute Sessions",
-    accent: false,
-  },
+	{ name: "Classic Paraffin Wax Pedicure", price: "₹800", sessions: "45 minute session" },
+	{ name: "Anti-Oxidant Pedicure", price: "₹800", sessions: "60 minute session" },
+	{ name: "Moisturizing Exotic Pedicure", price: "₹800", sessions: "60 minute session" },
+	{ name: "Brightening De-Tan Pedicure", price: "₹1,200", sessions: "60 minute session" },
+	{ name: "De-Stress Refreshment", price: "₹1,000", sessions: "60 minute session" },
 ];
 ---
 
-<section class="menuheader">
-  <span class="menuheader-label">Invest in Yourself</span>
-  <h1 class="menuheader-title">The Wellness Menu</h1>
-</section>
+<section class="menu">
+	<div class="container">
+		<div class="section-heading">
+			<span class="eyebrow">Invest in Yourself</span>
+			<h2>The Wellness Menu</h2>
+		</div>
 
-<section class="menu-outer">
-  <div class="menu-wrap">
-    <div class="menu-columns">
-      <div class="menu-column">
-        <p class="menu-category">Body Massage</p>
-        <ul class="menu-list">
-          {
-            bodyMassage.map((item, i) => (
-              <li class="menu-item" style={`--i: ${i}`}>
-                <div class="menu-item-top">
-                  <span class="menu-item-name">{item.name}</span>
-                  <span class={`menu-item-line ${item.accent ? "accent" : ""}`} />
-                  <span class="menu-item-price">{item.price}</span>
-                </div>
-                <p class="menu-item-sessions">{item.sessions}</p>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+		<div class="menu__card">
+			<div class="menu__columns">
+				<div class="menu__column">
+					<p class="menu__category">Body Massage</p>
+					<ul class="menu__list">
+						{
+							bodyMassage.map((item, i) => (
+								<li class="menu__item" style={`--i: ${i}`}>
+									<div class="menu__item-top">
+										<span class="menu__item-name">{item.name}</span>
+										<span class="menu__item-line" />
+										<span class="menu__item-price">{item.price}</span>
+									</div>
+									<p class="menu__item-sessions">{item.sessions}</p>
+								</li>
+							))
+						}
+					</ul>
+				</div>
 
-      <div class="menu-column">
-        <p class="menu-category">Pedicure</p>
-        <ul class="menu-list">
-          {
-            pedicure.map((item, i) => (
-              <li class="menu-item" style={`--i: ${i}`}>
-                <div class="menu-item-top">
-                  <span class="menu-item-name">{item.name}</span>
-                  <span class={`menu-item-line ${item.accent ? "accent" : ""}`} />
-                  <span class="menu-item-price">{item.price}</span>
-                </div>
-                <p class="menu-item-sessions">{item.sessions}</p>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </div>
+				<div class="menu__column">
+					<p class="menu__category">Pedicure</p>
+					<ul class="menu__list">
+						{
+							pedicure.map((item, i) => (
+								<li class="menu__item" style={`--i: ${i}`}>
+									<div class="menu__item-top">
+										<span class="menu__item-name">{item.name}</span>
+										<span class="menu__item-line" />
+										<span class="menu__item-price">{item.price}</span>
+									</div>
+									<p class="menu__item-sessions">{item.sessions}</p>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
 
-    <div class="form-group button-group">
-      <button type="submit" class="discover-btn">View Menu</button>
-    </div>
-  </div>
+			<div class="menu__cta">
+				<a href="/ourservice" class="btn-secondary">View Full Menu</a>
+			</div>
+		</div>
+	</div>
 </section>
 
 <style>
-  .menuheader {
-    background-color: var(--bg-color, white);
-    padding: 60px 20px 30px;
-    text-align: center;
-  }
+	.menu {
+		padding-block: var(--space-2xl);
+		background: var(--color-bg-alt);
+	}
 
-  .menuheader-label {
-    display: block;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.8em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--accent-color, #cfa23c);
-    margin-bottom: 12px;
-  }
+	.menu__card {
+		margin-top: var(--space-xl);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: clamp(2rem, 5vw, 3.5rem);
+	}
 
-  .menuheader-title {
-    font-family: "Georgia", "Times New Roman", serif;
-    font-size: 2.6em;
-    color: var(--text-color, #1a1a1a);
-    margin: 0;
-  }
+	.menu__columns {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(2rem, 5vw, 4rem);
+	}
 
-  .menu-outer {
-    display: flex;
-    justify-content: center;
-    padding: 0 20px 80px;
-  }
+	.menu__category {
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-text-muted);
+		margin: 0 0 var(--space-md);
+		text-align: center;
+	}
 
-  .menu-wrap {
-    background-color: var(--surface-color, #f9f9f9);
-    padding: 40px 50px;
-    border-radius: 13px;
-    border: 1px solid var(--accent-color, #cfa23c);
-    width: fit-content;
-    max-width: 100%;
-  }
+	.menu__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 
-  .menu-columns {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    justify-items: center;
-    text-align: center;
-  }
+	.menu__item {
+		margin-bottom: var(--space-sm);
+		opacity: 0;
+		transform: translateY(24px);
+		transition: opacity 0.6s ease, transform 0.6s ease;
+		transition-delay: calc(var(--i, 0) * 0.1s);
+	}
 
-  .menu-category {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.85em;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-muted, #8a8a8a);
-    margin: 0 0 24px;
-    text-align: center;
-    width: 100%;
-  }
+	.menu__item.in-view {
+		opacity: 1;
+		transform: translateY(0);
+	}
 
-  .menu-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-  }
+	@media (prefers-reduced-motion: reduce) {
+		.menu__item {
+			opacity: 1;
+			transform: none;
+		}
+	}
 
-  .menu-item {
-    margin-bottom: 28px;
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    transition-delay: calc(var(--i, 0) * 0.12s);
-  }
+	.menu__item-top {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 0.85rem;
+	}
 
-  .menu-item.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	.menu__item-name {
+		font-size: 1rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.02em;
+		white-space: nowrap;
+	}
 
-  @media (prefers-reduced-motion: reduce) {
-    .menu-item {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
+	.menu__item-line {
+		flex: 1;
+		height: 1px;
+		background: var(--color-border-strong);
+		min-width: 16px;
+		max-width: 50px;
+	}
 
-  .menu-item-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    gap: 14px;
-  }
+	.menu__item-price {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--color-accent-soft);
+		white-space: nowrap;
+	}
 
-  .menu-item-name {
-    font-family: "Poppins", sans-serif;
-    font-size: 1.05em;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--text-color, #1a1a1a);
-    white-space: nowrap;
-  }
+	.menu__item-sessions {
+		font-size: 0.82rem;
+		color: var(--color-text-faint);
+		text-align: center;
+		margin: 0.5rem 0 0;
+	}
 
-  .menu-item-line {
-    flex: 1;
-    height: 1px;
-    background-color: var(--border-color, #d5d5d5);
-    min-width: 20px;
-    max-width: 60px;
-  }
+	.menu__cta {
+		display: flex;
+		justify-content: center;
+		margin-top: var(--space-lg);
+	}
 
-  .menu-item-line.accent {
-    background-color: #e07a3f;
-  }
-
-  .menu-item-price {
-    font-family: "Poppins", sans-serif;
-    font-size: 1.05em;
-    font-weight: 700;
-    color: var(--text-color, #1a1a1a);
-    white-space: nowrap;
-  }
-
-  .menu-item-sessions {
-    font-family: "Poppins", sans-serif;
-    font-size: 0.85em;
-    color: var(--text-muted, #a3a3a3);
-    margin: 8px 0 0;
-    text-align: center;
-  }
-
-  @media (max-width: 700px) {
-    .menu-columns {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .menu-item-name,
-    .menu-item-price {
-      font-size: 0.95em;
-    }
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .button-group {
-    align-items: center;
-    margin-top: 40px;
-  }
-
-  .discover-btn {
-    background-color: var(--accent-color, #cfa23c);
-    color: white;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.95em;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 6px;
-    padding: 14px 32px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
-  }
-
-  .discover-btn:hover {
-    background-color: #b88f32;
-    transform: translateY(-1px);
-  }
+	@media (max-width: 700px) {
+		.menu__columns {
+			grid-template-columns: 1fr;
+			gap: var(--space-lg);
+		}
+	}
 </style>
 
 <script>
-  // Reveal each menu column's items one after another as it scrolls into view.
-  // Runs client-side; re-initializes correctly on Astro view transitions.
-  function initMenuScrollAnimation() {
-    const columns = document.querySelectorAll(".menu-column");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target
-              .querySelectorAll(".menu-item")
-              .forEach((item) => item.classList.add("in-view"));
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.2,
-        rootMargin: "0px 0px -60px 0px",
-      }
-    );
-
-    columns.forEach((column) => observer.observe(column));
-  }
-
-  initMenuScrollAnimation();
-  document.addEventListener("astro:page-load", initMenuScrollAnimation);
+	function initMenuScrollAnimation() {
+		const columns = document.querySelectorAll(".menu__column");
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.querySelectorAll(".menu__item").forEach((item) => item.classList.add("in-view"));
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.2, rootMargin: "0px 0px -60px 0px" },
+		);
+		columns.forEach((column) => observer.observe(column));
+	}
+	initMenuScrollAnimation();
+	document.addEventListener("astro:page-load", initMenuScrollAnimation);
 </script>

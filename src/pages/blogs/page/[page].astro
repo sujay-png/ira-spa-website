@@ -1,0 +1,268 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Footer from "../../../components/Footer.astro";
+import { 
+	getAllPosts, 
+	getCategories, 
+	POSTS_PER_PAGE,
+	getFeaturedImage,
+	getPostCategories,
+	stripHtml
+} from "../../../lib/wordpress";
+
+export async function getStaticPaths() {
+	const allPosts = await getAllPosts();
+	const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
+
+	// Page 1 is served by /blogs/index.astro — only generate 2..N here.
+	return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
+		params: { page: String(i + 2) },
+	}));
+}
+
+const { page } = Astro.params;
+const pageNum = Number(page);
+
+const allPosts = await getAllPosts();
+const categories = await getCategories();
+const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
+const pagePosts = allPosts.slice((pageNum - 1) * POSTS_PER_PAGE, pageNum * POSTS_PER_PAGE);
+
+// Helper for clean excerpts
+const truncate = (text: string, length: number) => {
+	if (!text) return "";
+	return text.length > length ? text.substring(0, length) + "..." : text;
+};
+---
+
+<Layout
+	title={`The Serenity Feed — Page ${pageNum} | Ira Spa Journal`}
+	description="Wellness notes from Ira Spa — mindfulness, treatment guides and rituals for a calmer, more restorative life."
+	noindex={true}
+>
+	<section class="feed-header-section">
+		<div class="container">
+			<div class="feed__header">
+				<h2>The Serenity Feed <span class="page-count">— Page {pageNum}</span></h2>
+				<nav class="feed__nav">
+					<a href="/blogs" class="active">ALL POSTS</a>
+					{categories.slice(0, 3).map((cat) => (
+						<a href={`/blogs/category/${cat.slug}`}>{cat.name.toUpperCase()}</a>
+					))}
+				</nav>
+			</div>
+		</div>
+	</section>
+
+	<section class="bottom-grid-section">
+		<div class="container">
+			<div class="bottom-grid">
+				{pagePosts.map((post) => (
+					<article class="post post--text-badge">
+						<a href={`/blogs/${post.slug}`}>
+							<div class="post__image-wrap">
+								<img src={getFeaturedImage(post).src} alt={getFeaturedImage(post).alt} />
+							</div>
+							<span class="eyebrow eyebrow--small">{getPostCategories(post)[0]?.name.toUpperCase() || 'WELLNESS'}</span>
+							<h3>{stripHtml(post.title.rendered)}</h3>
+							<p>{truncate(stripHtml(post.excerpt.rendered), 110)}</p>
+						</a>
+					</article>
+				))}
+			</div>
+
+			<nav class="pagination" aria-label="Blog pagination">
+				{pageNum > 2 ? (
+					<a href={`/blogs/page/${pageNum - 1}`} class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+				) : (
+					<a href="/blogs" class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+				)}
+				
+				<span class="pagination__status">PAGE {pageNum} OF {totalPages}</span>
+				
+				{pageNum < totalPages && (
+					<a href={`/blogs/page/${pageNum + 1}`} class="link-arrow">OLDER <span class="arrow">&rarr;</span></a>
+				)}
+			</nav>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
+
+<style>
+	:root {
+		--bg-dark: #111111;
+		--text-main: #ffffff;
+		--text-muted: #a3a3a3;
+		--accent-gold: #d6b75a;
+		--font-serif: 'Playfair Display', Georgia, serif;
+		--font-sans: system-ui, -apple-system, sans-serif;
+	}
+
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.container {
+		width: 90%;
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	/* Header Section */
+	.feed-header-section {
+		background-color: var(--bg-dark);
+		padding: 8rem 0 3rem 0;
+	}
+
+	.feed__header {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		border-bottom: 1px solid #333;
+		padding-bottom: 1.5rem;
+	}
+
+	.feed__header h2 {
+		font-family: var(--font-serif);
+		font-size: 2.5rem;
+		font-weight: 400;
+		color: var(--text-main);
+		margin: 0;
+	}
+
+	.page-count {
+		color: var(--text-muted);
+		font-size: 1.5rem;
+		font-style: italic;
+	}
+
+	.feed__nav {
+		display: flex;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.feed__nav a {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		color: var(--text-muted);
+		transition: color 0.3s;
+	}
+
+	.feed__nav a:hover,
+	.feed__nav a.active {
+		color: var(--accent-gold);
+	}
+
+	@media (min-width: 768px) {
+		.feed__header {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: flex-end;
+		}
+	}
+
+	/* Grid & Cards */
+	.bottom-grid-section {
+		background-color: var(--bg-dark);
+		padding-bottom: 8rem;
+	}
+
+	.bottom-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 3rem;
+	}
+
+	@media (min-width: 768px) {
+		.bottom-grid {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	.post__image-wrap {
+		position: relative;
+		overflow: hidden;
+		background: #222;
+		margin-bottom: 1.5rem;
+		aspect-ratio: 1 / 1; 
+	}
+
+	.post__image-wrap img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.6s ease;
+	}
+
+	.post:hover .post__image-wrap img {
+		transform: scale(1.03);
+	}
+
+	.eyebrow {
+		display: block;
+		color: var(--accent-gold);
+		font-family: var(--font-sans);
+		font-weight: 700;
+		letter-spacing: 0.15em;
+	}
+
+	.eyebrow--small {
+		font-size: 0.65rem;
+		margin-top: 1.2rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.post h3 {
+		font-family: var(--font-serif);
+		font-size: 1.4rem;
+		font-weight: 400;
+		color: var(--text-main);
+		margin-bottom: 0.8rem;
+		line-height: 1.3;
+	}
+
+	.post p {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		line-height: 1.6;
+	}
+
+	/* Pagination */
+	.pagination {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 5rem;
+		padding-top: 2rem;
+		border-top: 1px solid #333;
+	}
+
+	.pagination__status {
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		letter-spacing: 0.1em;
+		font-weight: 600;
+	}
+
+	.link-arrow {
+		color: var(--accent-gold);
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		transition: opacity 0.3s ease;
+	}
+
+	.link-arrow:hover {
+		opacity: 0.8;
+	}
+</style>

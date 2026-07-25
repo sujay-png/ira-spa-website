@@ -1,18 +1,31 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Header from '../../components/Header.astro';
-import Hero from '../../components/Blogs/Hero.astro';
-import Serenityfeed from "../../components/Blogs/Serenityfeed.astro";
-import Footer from '../../components/Footer.astro';
+import Footer from "../../components/Footer.astro";
+import JournalHero from "../../components/Blogs/JournalHero.astro";
+import PostGrid from "../../components/Blogs/PostGrid.astro";
+import { getAllPosts, getCategories, POSTS_PER_PAGE } from "../../lib/wordpress";
+
+const allPosts = await getAllPosts();
+const categories = await getCategories();
+
+const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
+const featured = allPosts[0];
+const pagePosts = allPosts.slice(0, POSTS_PER_PAGE);
 ---
 
-<Layout>
- 
-  
-   <!-- <ButtonAstroComponent text="Apple",href="/" /> -->
-     
-    <Hero/>
-    <Serenityfeed/>
-   <Footer/>
-  
+<Layout
+	title="The Serenity Feed | Ira Spa Journal"
+	description="Wellness notes from Ira Spa — mindfulness, treatment guides and rituals for a calmer, more restorative life."
+>
+	{featured && <JournalHero post={featured} />}
+
+	<PostGrid
+		posts={pagePosts}
+		categories={categories}
+		currentPage={1}
+		totalPages={totalPages}
+		basePath="/blogs"
+	/>
+
+	<Footer />
 </Layout>

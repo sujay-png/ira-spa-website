@@ -1,0 +1,76 @@
+---
+import type { WPPost } from "../../lib/wordpress";
+import { getFeaturedImage, getPostCategories, stripHtml } from "../../lib/wordpress";
+
+interface Props {
+	post: WPPost;
+}
+
+const { post } = Astro.props;
+const image = getFeaturedImage(post);
+const category = getPostCategories(post)[0]?.name ?? "Feature Story";
+const excerpt = stripHtml(post.excerpt.rendered);
+---
+
+<section class="journal-hero">
+	<div class="journal-hero__bg" style={`background-image: linear-gradient(to bottom, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.45) 50%, rgba(11, 11, 10, 0.94) 100%), url('${image.src}')`}></div>
+
+	<div class="container journal-hero__container">
+		<span class="eyebrow">{category}</span>
+		<h1>{stripHtml(post.title.rendered)}</h1>
+
+		<div class="journal-hero__row">
+			<p>{excerpt}</p>
+			<a href={`/blogs/${post.slug}/`} class="link-arrow">Read The Article <span>&rarr;</span></a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.journal-hero {
+		position: relative;
+		width: 100%;
+		min-height: 70vh;
+		display: flex;
+		align-items: flex-end;
+		overflow: hidden;
+	}
+
+	.journal-hero__bg {
+		position: absolute;
+		inset: 0;
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+
+	.journal-hero__container {
+		position: relative;
+		z-index: 1;
+		padding-block: clamp(3rem, 8vw, 5rem) clamp(3rem, 6vw, 4.5rem);
+	}
+
+	.journal-hero h1 {
+		max-width: 900px;
+		color: #fff;
+		margin: var(--space-sm) 0 var(--space-lg);
+	}
+
+	.journal-hero__row {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--space-md);
+		align-items: flex-end;
+	}
+
+	.journal-hero__row p {
+		max-width: 460px;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	@media (min-width: 768px) {
+		.journal-hero__row {
+			grid-template-columns: 2fr 1fr;
+		}
+	}
+</style>

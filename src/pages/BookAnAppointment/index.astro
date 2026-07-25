@@ -1,19 +1,19 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-
-import PageHeroAstroComponent from '../../components/Appointment/pageHero.astro';
-import BookAppointment from '../../components/Appointment/BookAppointment.astro';
-import WhatToExpect from '../../components/Appointment/whatToExpect.astro';
-import Properritual from '../../components/Appointment/properritual.astro';
-import Footer from '../../components/Footer.astro';
+import Layout from "../../layouts/Layout.astro";
+import PageHero from "../../components/Appointment/pageHero.astro";
+import BookAppointment from "../../components/Appointment/BookAppointment.astro";
+import WhatToExpect from "../../components/Appointment/whatToExpect.astro";
+import Properritual from "../../components/Appointment/properritual.astro";
+import Footer from "../../components/Footer.astro";
 ---
 
-
-<Layout>
-  
-   <PageHeroAstroComponent/>
-   <BookAppointment/>
-   <WhatToExpect/>
-   <Properritual/>
-   <Footer/>
+<Layout
+	title="Book an Appointment | Ira Spa Mangalore & Kalaburagi"
+	description="Reserve your massage or spa ritual at Ira Spa. Choose your location, service and preferred time — we'll confirm your appointment shortly after."
+>
+	<PageHero />
+	<BookAppointment />
+	<WhatToExpect />
+	<Properritual />
+	<Footer />
 </Layout>

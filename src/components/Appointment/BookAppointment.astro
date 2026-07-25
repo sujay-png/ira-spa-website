@@ -1,253 +1,94 @@
-
+---
+---
 
 <section class="appointment">
-  <div class="appointment-container"  id="appointment-form">
+	<div class="container container--narrow">
+		<form class="appointment-form" id="appointment-form">
+			<div class="form-group">
+				<label for="name">Name</label>
+				<input type="text" id="name" name="name" placeholder="Your full name" required />
+			</div>
 
-    <form class="appointment-form">
+			<div class="form-group">
+				<label for="phone">Ph. No</label>
+				<input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" required />
+			</div>
 
-      <!-- Name Input -->
-      <div class="form-group">
-        <label for="name">NAME</label>
-        <input
-          type="text"
-          id="name"
-          placeholder="Your full name"
-          required
-        />
-      </div>
+			<div class="form-group">
+				<label for="location">Location</label>
+				<select id="location" name="location" required>
+					<option value="" disabled selected hidden>Select branch location</option>
+					<option value="mangalore">Mangalore</option>
+					<option value="kalaburagi">Kalaburagi</option>
+				</select>
+			</div>
 
-      <!-- Phone Input -->
-      <div class="form-group">
-        <label for="phone">PH. NO</label>
-        <input
-          type="tel"
-          id="phone"
-          placeholder="+91 00000 00000"
-          required
-        />
-      </div>
+			<div class="form-group">
+				<label for="date">Appointment Date</label>
+				<input type="date" id="date" name="date" required />
+			</div>
 
-      <!-- Location Dropdown -->
-      <div class="form-group">
-        <label for="location">LOCATION</label>
-        <div class="select-wrapper">
-          <select id="location" required>
-            <option value="" disabled selected hidden>Select branch location</option>
-            <option value="mangalore">Mangalore</option>
-            <option value="puttur">Puttur</option>
-            <option value="bangalore">Bangalore</option>
-          </select>
-        </div>
-      </div>
+			<div class="form-group">
+				<label for="services">Select Service</label>
+				<select id="services" name="services" required>
+					<option value="" disabled selected hidden>Choose your experience</option>
+					<option value="body-massage">Body Massage</option>
+					<option value="herbal-therapy">Herbal Therapy</option>
+					<option value="body-polishing">Body Polishing</option>
+					<option value="foot-spa">Foot Spa</option>
+				</select>
+			</div>
 
-      <!-- Appointment Date Input -->
-      <div class="form-group">
-        <label for="date">APPOINTMENT DATE</label>
-        <input type="date" id="date" required />
-      </div>
+			<div class="form-group">
+				<label for="time">Preferred Time</label>
+				<select id="time" name="time" required>
+					<option value="" disabled selected hidden>Select a time slot</option>
+					<option value="10:00">10:00 AM</option>
+					<option value="11:00">11:00 AM</option>
+					<option value="12:00">12:00 PM</option>
+					<option value="14:00">2:00 PM</option>
+					<option value="16:00">4:00 PM</option>
+				</select>
+			</div>
 
-      <!-- Services Dropdown -->
-      <div class="form-group">
-        <label for="services">SELECT SERVICES *</label>
-        <div class="select-wrapper">
-          <select id="services" required>
-            <option value="" disabled selected hidden>Choose your experience</option>
-            <option value="hair-spa">Hair Spa</option>
-            <option value="massage">Massage</option>
-            <option value="facial">Facial</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Preferred Time Dropdown -->
-      <div class="form-group">
-        <label for="time">PREFERRED TIME HOURS</label>
-        <div class="select-wrapper">
-          <select id="time" required>
-            <option value="" disabled selected hidden>Select a time slot</option>
-            <option value="10:00">10:00 AM</option>
-            <option value="11:00">11:00 AM</option>
-            <option value="12:00">12:00 PM</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- Submit Button -->
-      <button type="submit" class="reserve-btn">
-        RESERVE MY SESSION
-      </button>
-
-    </form>
-
-  </div>
+			<button type="submit" class="btn-primary reserve-btn">Reserve My Session</button>
+		</form>
+	</div>
 </section>
 
 <style>
-  /* ===== Section ===== */
-  .appointment {
-   /* Changed from light beige to match the page background */
-    /* padding: 100px 0;  if needed then give it */
-     padding: 1px 0 200px 0;
-  }
+	.appointment {
+		padding-block: var(--space-2xl);
+	}
 
-  /* ===== Container ===== */
-  .appointment-container {
-       width: 90%;
-    max-width: 1150px;
-    margin: 0 auto;
-     background-color: #66625e33;
-    padding: 70px 75px;
-    border: 3px solid #edad3ec0;
-  
-  }
-      
-  /* ===== Form ===== */
-  .appointment-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-  }
+	.appointment-form {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--space-md) var(--space-lg);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: clamp(1.75rem, 5vw, 3.25rem);
+	}
 
-  /* ===== Group ===== */
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  }
+	.form-group {
+		display: flex;
+		flex-direction: column;
+	}
 
-  /* ===== Labels ===== */
-  .form-group label {
-    color: #eeaf1b;
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 1.8px;
-    margin-bottom: 22px;
-    text-transform: uppercase;
-  }
+	.reserve-btn {
+		grid-column: 1 / -1;
+		margin-top: var(--space-xs);
+		justify-self: center;
+		min-width: 260px;
+	}
 
-  /* ===== Inputs & Selects ===== */
-  .form-group input,
-  .form-group select {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, .18);
-    color: black;
-    font-size: 18px;
-    padding: 0 0 14px 0;
-    outline: none;
-    font-family: inherit;
-    border-radius: 0; /* Prevents iOS rounding issues */
-  }
-
-  /* Placeholder Styling */
-  .form-group input::placeholder {
-    color: #555555; /* Dark grey placeholder as seen in design */
-  }
-
-  /* Dropdown customizations */
-  .form-group select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-    color: #8a847f; /* Matching placeholder look for unselected state */
-  }
-
-  /* Change select text color when an option is selected */
-  .form-group select:focus,
-  .form-group select:valid {
-    color: black;
-  }
-
-  /* Container wrapper for positioning modern drop icons */
-  .select-wrapper {
-    position: relative;
-    width: 100%;
-  }
-
-  /* Custom dropdown down-arrow */
-  .select-wrapper::after {
-    content: "▼";
-    font-size: 10px;
-    color: #8a847f;
-    position: absolute;
-    right: 5px;
-    bottom: 18px;
-    pointer-events: none;
-  }
-
-  /* Dropdown option background styling */
-  .form-group select option {
-    background-color: #1a1a1a;
-    color: #ffffff;
-  }
-
-  /* ===== Focus states ===== */
-  .form-group input:focus,
-  .form-group select:focus {
-    border-bottom: 1px solid #D4A63A;
-  }
-
-  /* ===== Date Field Setup ===== */
-  input[type="date"] {
-    color-scheme: dark; /* Automatically forces native picker to look good on dark theme */
-    color: #8a847f;
-    cursor: pointer;
-  }
-
-  input[type="date"]:focus,
-  input[type="date"]:valid {
-    color: #efdbbd;
-  }
-
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(70%) sepia(50%) saturate(1000%) hue-rotate(15deg); /* Tint the calendar icon subtle gold */
-    cursor: pointer;
-  }
-
-  /* ===== Button ===== */
-  .reserve-btn {
-    grid-column: 1 / -1;
-    margin-top: 20px;
-    margin-left: 350px ;
-    height: 70px;
-    width: 300px;
-    background: #E4BA5B;
-    border: none;
-    color: #111111;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: 0.3s ease;
-  }
-
-  .reserve-btn:hover {
-    background: #d9ab44;
-  }
-
-  /* ===== Responsive ===== */
-  @media (max-width: 768px) {
-    .appointment {
-      padding: 60px 0;
-    }
-
-    .appointment-container {
-      padding: 40px 25px;
-    }
-
-    .appointment-form {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .reserve-btn {
-      height: 60px;
-      font-size: 13px;
-      letter-spacing: 5px;
-    }
-  }
+	@media (max-width: 700px) {
+		.appointment-form {
+			grid-template-columns: 1fr;
+		}
+		.reserve-btn {
+			width: 100%;
+		}
+	}
 </style>
-

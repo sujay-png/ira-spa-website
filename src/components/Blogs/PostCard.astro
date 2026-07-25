@@ -1,0 +1,101 @@
+---
+import type { WPPost } from "../../lib/wordpress";
+import { getFeaturedImage, getPostCategories, formatDate, stripHtml } from "../../lib/wordpress";
+
+interface Props {
+	post: WPPost;
+}
+
+const { post } = Astro.props;
+const image = getFeaturedImage(post);
+const categories = getPostCategories(post);
+const excerpt = stripHtml(post.excerpt.rendered);
+---
+
+<article class="post-card">
+	<a href={`/blogs/${post.slug}/`} class="post-card__link">
+		<div class="post-card__image">
+			{categories[0] && <span class="post-card__badge">{categories[0].name}</span>}
+			<img src={image.src} alt={image.alt} loading="lazy" width="480" height="300" />
+		</div>
+		<div class="post-card__body">
+			<h3>{stripHtml(post.title.rendered)}</h3>
+			<p>{excerpt}</p>
+			<div class="post-card__meta">
+				<span>{formatDate(post.date)}</span>
+			</div>
+		</div>
+	</a>
+</article>
+
+<style>
+	.post-card__link {
+		display: block;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.post-card__image {
+		position: relative;
+		overflow: hidden;
+		border-radius: var(--radius-md);
+		aspect-ratio: 16 / 10;
+		background: var(--color-surface);
+		margin-bottom: var(--space-sm);
+	}
+
+	.post-card__image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.7s var(--ease-soft), filter 0.5s ease;
+		filter: brightness(0.92);
+	}
+
+	.post-card:hover .post-card__image img {
+		transform: scale(1.05);
+		filter: brightness(1);
+	}
+
+	.post-card__badge {
+		position: absolute;
+		top: 0.9rem;
+		left: 0.9rem;
+		z-index: 1;
+		background: rgba(11, 11, 10, 0.75);
+		color: var(--color-accent-soft);
+		font-size: 0.6rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		padding: 0.4rem 0.85rem;
+		border-radius: var(--radius-sm);
+	}
+
+	.post-card__body h3 {
+		font-size: 1.2rem;
+		margin-bottom: 0.5rem;
+		transition: color 0.3s ease;
+	}
+
+	.post-card:hover .post-card__body h3 {
+		color: var(--color-accent-soft);
+	}
+
+	.post-card__body p {
+		font-size: 0.88rem;
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.post-card__meta {
+		margin-top: 0.75rem;
+		font-size: 0.68rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--color-text-faint);
+	}
+</style>

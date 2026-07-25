@@ -1,193 +1,104 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import BookingsFormAstroComponent from "../components/Home/bookings_form.astro";
-import Aboutspa from "../components/Home/Aboutspa.astro"
+import BookingsForm from "../components/Home/bookings_form.astro";
+import Aboutspa from "../components/Home/Aboutspa.astro";
 import HowItWorks from "../components/Home/HowItWorks.astro";
+import Benefits from "../components/Home/list.astro";
 import Services from "../components/Home/Services-list.astro";
 import MenuList from "../components/Home/MenuList.astro";
 import Customerreview from "../components/Home/Customerreview.astro";
-import "../style/global.scss";
-import Button from "../components/Button.astro";
-import Footer from "../components/Footer.astro"
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-	<div class="hero" id="hero-section">
-		<div class="hero-text">
-			<p class="tagline">
-				Relax, Rejuvenate, and Restore Your Well-Being With Every Touch.
+<Layout
+	title="Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburagi"
+	description="Relax, rejuvenate and restore at Ira Spa — premium massage therapy, herbal treatments and body rituals in Mangalore and Kalaburagi. Book your session online."
+>
+	<section class="hero" id="hero-section">
+		<div class="hero__scrim" aria-hidden="true"></div>
+		<div class="hero__content">
+			<span class="eyebrow hero__eyebrow">Mangalore &amp; Kalaburagi</span>
+			<h1 class="hero__title">
+				Relax, Rejuvenate<br /><em>&amp; Restore</em>
+			</h1>
+			<p class="hero__tagline">
+				A sanctuary for the senses — curated massage therapy and holistic
+				rituals designed to bring mind, body and spirit back into balance.
 			</p>
-			<h1>Ira Spa Beauty</h1>
-			<Button text="Book Now" href="/BookAnAppointment/Appointment" />
+			<a href="/BookAnAppointment" class="btn-primary">Book Your Ritual</a>
 		</div>
-	</div>
-	<div>
-		<BookingsFormAstroComponent />
-		<Aboutspa/>
-		<HowItWorks/>
-		<Services/>
-		<MenuList/>
-		<Customerreview/>
-		<Footer/>
+	</section>
 
-		
-	</div>
+	<BookingsForm />
+	<Aboutspa />
+	<HowItWorks />
+	<Benefits />
+	<Services />
+	<MenuList />
+	<Customerreview />
+	<Footer />
 </Layout>
+
 <style>
 	.hero {
 		position: relative;
 		width: 100%;
-		min-height: 600px;
-		height: 100vh;
-		max-height: 900px;
+		height: 92vh;
+		min-height: 560px;
+		max-height: 920px;
 		background-image: url("https://iraspa.in/wp-content/uploads/2026/06/attractive-african-woman-enjoying-face-massage-spa-salon.jpg-1-scaled.jpeg");
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
-		background-attachment: fixed;
-		overflow: hidden;
-		transition: opacity 0.1s linear, height 0.1s linear;
-		margin-top: 60px;
-		
-		@media (max-width: 768px) {
-			background-attachment: scroll;
-			height: 500px;
-			min-height: 500px;
-			max-height: 600px;
-			margin-top: 50px;
-		}
-		
-		@media (max-width: 480px) {
-			height: 400px;
-			min-height: 400px;
-			max-height: 500px;
-			margin-top: 45px;
-		}
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.hero::before {
-		content: "";
+	.hero__scrim {
 		position: absolute;
 		inset: 0;
-		background: rgba(0, 0, 0, 0.35);
+		background:
+			linear-gradient(to bottom, rgba(11, 11, 10, 0.55) 0%, rgba(11, 11, 10, 0.35) 35%, rgba(11, 11, 10, 0.92) 100%);
+	}
+
+	.hero__content {
+		position: relative;
 		z-index: 1;
-	}
-	
-	.hero::after {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			to bottom,
-			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, 0.5) 60%,
-			rgba(0, 0, 0, 0.9) 100%
-		);
-		pointer-events: none;
-		z-index: 2;
-	}
-
-	.hero-text {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		z-index: 3;
 		text-align: center;
-		color: white;
-		width: 100%;
-		max-width: 800px;
-		padding: 0 2rem;
-		box-sizing: border-box;
+		max-width: 760px;
+		padding: 0 1.5rem;
 	}
 
-	.tagline {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(14px, 3vw, 20px);
-		text-transform: uppercase;
-		color: #ffffff;
-		letter-spacing: 2px;
-		font-weight: 500;
-		margin-bottom: 1rem;
-		animation: fadeInUp 0.8s ease 0.3s both;
+	.hero__eyebrow {
+		color: var(--color-accent-soft);
+		margin-bottom: var(--space-sm);
 	}
 
-	.hero-text h1 {
-		font-family: "Georgia", serif;
-		font-size: clamp(48px, 8vw, 90px);
-		color: #ffffff;
-		margin-bottom: 1.5rem;
-		letter-spacing: -2px;
-		line-height: 1.1;
-		animation: fadeInUp 0.8s ease 0.5s both;
-		font-weight: 700;
-	}
-	
-	@keyframes fadeInUp {
-		from {
-			opacity: 0;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
+	.hero__title {
+		font-size: clamp(2.6rem, 7vw, 5.5rem);
+		color: #fff;
+		margin-bottom: var(--space-md);
+
+		em {
+			font-style: italic;
+			color: var(--color-accent-soft);
 		}
 	}
 
-	.book-btn {
-		display: inline-block;
-		background-color: #cfa23c;
-		color: white;
-		font-family: "Poppins", sans-serif;
-		font-size: 0.9em;
-		font-weight: 700;
-		letter-spacing: 1px;
-		text-transform: uppercase;
-		padding: 12px 28px;
-		border-radius: 2px;
-		text-decoration: none;
-		margin-top: 20px;
+	.hero__tagline {
+		font-family: var(--font-body);
+		font-size: var(--font-size-lg);
+		color: rgba(255, 255, 255, 0.82);
+		max-width: 520px;
+		margin: 0 auto var(--space-lg);
+		line-height: 1.7;
 	}
 
-	.book-btn:hover {
-		background-color: #b88f32;
+	@media (max-width: 768px) {
+		.hero {
+			height: 82vh;
+			min-height: 460px;
+		}
 	}
 </style>
-
-<script>
-	const hero = document.getElementById('hero-section') as HTMLElement | null;
-	const maxHeight = 500; // must match the .hero height in CSS
-	let ticking = false;
-
-	function updateHero() {
-		const scrollY = window.scrollY;
-
-		if (!hero) {
-			ticking = false;
-			return;
-		}
-
-		if (scrollY > 0 && scrollY < maxHeight) {
-			const progress = scrollY / maxHeight; // 0 to 1
-			const newHeight = maxHeight * (1 - progress);
-			hero.style.height = newHeight + 'px';
-			hero.style.opacity = String(1 - progress);
-		} else if (scrollY >= maxHeight) {
-			hero.style.height = '0px';
-			hero.style.opacity = '0';
-		} else {
-			hero.style.height = maxHeight + 'px';
-			hero.style.opacity = '1';
-		}
-		ticking = false;
-	}
-
-	window.addEventListener('scroll', () => {
-		if (!ticking) {
-			requestAnimationFrame(updateHero);
-			ticking = true;
-		}
-	});
-</script>

@@ -1,309 +1,259 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
-// Add/remove testimonials here — the carousel adjusts automatically.
 const testimonials = [
-  {
-    name: "Isiri Hg",
-    role: "Customer",
-    avatar: "/images/reviewer-isiri.jpg",
-    rating: 4,
-    quote:
-      "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum vel illo nihil corrupti voluptates nobis, quibusdam vitae perspiciatis tenetur rerum. Tenetur eius illo velit perspiciatis culpa quod ut veritatis? Expedita.",
-  },
-  {
-    name: "Rahul Mehta",
-    role: "Customer",
-    avatar: "/images/reviewer-rahul.jpg",
-    rating: 5,
-    quote:
-      "The attention to detail here is what stood out most. Every session felt personal, calm, and genuinely restorative from start to finish.",
-  },
-  {
-    name: "Ananya Rao",
-    role: "Customer",
-    avatar: "/images/reviewer-ananya.jpg",
-    rating: 4,
-    quote:
-      "A wonderfully relaxing experience with a team that clearly cares. I left feeling lighter, and I've already booked my next visit.",
-  },
+	{
+		name: "Isiri H.G.",
+		role: "Verified Guest",
+		rating: 5,
+		quote:
+			"The Swedish massage was exactly what I needed. The therapist listened to what I asked for and the room itself felt like a different world from the moment I walked in.",
+	},
+	{
+		name: "Rahul Mehta",
+		role: "Verified Guest",
+		rating: 5,
+		quote:
+			"The attention to detail here is what stood out most. Every session felt personal, calm and genuinely restorative from start to finish.",
+	},
+	{
+		name: "Ananya Rao",
+		role: "Verified Guest",
+		rating: 4,
+		quote:
+			"A wonderfully relaxing experience with a team that clearly cares. I left feeling lighter, and I've already booked my next visit.",
+	},
 ];
 ---
 
-<section class="customer-review">
-  <h3>Testimonials</h3>
-  <h1>Client Reflections</h1>
+<section class="reviews">
+	<div class="container container--narrow">
+		<div class="section-heading">
+			<span class="eyebrow">Testimonials</span>
+			<h2>Client Reflections</h2>
+		</div>
 
-  <div class="carousel" data-carousel>
-    <div class="carousel-track" data-track>
-      {
-        testimonials.map((t) => (
-          <div class="slide">
-            <div class="row">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Icon
-                  name="mdi:star"
-                  color={i < t.rating ? "#cfa23c" : "#e5d9bd"}
-                  width="32"
-                  height="32"
-                />
-              ))}
-            </div>
+		<div class="carousel" data-carousel>
+			<div class="carousel__track" data-track>
+				{
+					testimonials.map((t) => (
+						<div class="slide">
+							<div class="stars">
+								{Array.from({ length: 5 }).map((_, i) => (
+									<Icon
+										name="mdi:star"
+										color={i < t.rating ? "#cfa23c" : "rgba(255,255,255,0.15)"}
+										width="22"
+										height="22"
+									/>
+								))}
+							</div>
 
-            <span class="custreviewlabel">
-              What are they talking about?
-            </span>
+							<p class="quote">&ldquo;{t.quote}&rdquo;</p>
 
-            <p class="desc">
-              {t.quote}
-            </p>
+							<div class="reviewer">
+								<span class="reviewer__avatar" aria-hidden="true">{t.name.charAt(0)}</span>
+								<span class="reviewer__name">{t.name}</span>
+								<span class="reviewer__role">{t.role}</span>
+							</div>
+						</div>
+					))
+				}
+			</div>
 
-            <div class="reviewer">
-              <img src={t.avatar} alt={t.name} class="reviewer-avatar" />
-              <span class="reviewer-name">{t.name}</span>
-              <span class="reviewer-role">{t.role}</span>
-            </div>
-          </div>
-        ))
-      }
-    </div>
+			<button class="carousel__arrow prev" data-prev aria-label="Previous testimonial">
+				<Icon name="mdi:chevron-left" width="24" height="24" />
+			</button>
+			<button class="carousel__arrow next" data-next aria-label="Next testimonial">
+				<Icon name="mdi:chevron-right" width="24" height="24" />
+			</button>
 
-    <button class="carousel-arrow prev" data-prev aria-label="Previous testimonial">
-      <Icon name="mdi:chevron-left" width="28" height="28" />
-    </button>
-    <button class="carousel-arrow next" data-next aria-label="Next testimonial">
-      <Icon name="mdi:chevron-right" width="28" height="28" />
-    </button>
-
-    <div class="carousel-dots" data-dots>
-      {testimonials.map((_, i) => <button class="dot" data-dot={i} aria-label={`Go to testimonial ${i + 1}`} />)}
-    </div>
-  </div>
+			<div class="carousel__dots" data-dots>
+				{testimonials.map((_, i) => <button class="dot" data-dot={i} aria-label={`Go to testimonial ${i + 1}`} />)}
+			</div>
+		</div>
+	</div>
 </section>
 
 <style>
-  .customer-review {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--bg-color, transparent);
-  }
-  .customer-review h3 {
-    color: var(--accent-color, #cfa23c);
-    font-family: "Poppins", tahoma, sans-serif;
-  }
-  .customer-review h1 {
-    color: var(--text-color, #1a1a1a);
-    font-family: "Poppins", tahoma, sans-serif;
-  }
-  .row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-  }
-  .custreviewlabel {
-    display: block;
-    margin-top: 8px;
-    color: var(--accent-color, #cfa23c);
-    font-family: "Poppins", tahoma, sans-serif;
-    font-size: 1.2em;
-  }
-  .desc {
-    margin-top: 8px;
-    text-align: justify;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-    color: var(--text-color, #333);
-    font-family: "Poppins", tahoma, sans-serif;
-    font-size: 1.2em;
-  }
+	.reviews {
+		padding-block: var(--space-2xl);
+		text-align: center;
+	}
 
-  .reviewer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 32px;
-  }
+	.stars {
+		display: flex;
+		justify-content: center;
+		gap: 6px;
+	}
 
-  .reviewer-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--accent-color, #cfa23c);
-    margin-bottom: 10px;
-  }
+	.quote {
+		margin: var(--space-md) 0;
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: clamp(1.1rem, 2vw, 1.4rem);
+		color: var(--color-text);
+		line-height: 1.6;
+		max-width: 620px;
+		margin-inline: auto;
+	}
 
-  .reviewer-name {
-    font-family: "Poppins", tahoma, sans-serif;
-    font-size: 1.1em;
-    font-weight: 700;
-    color: var(--text-color, #1a1a1a);
-  }
+	.reviewer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: var(--space-md);
+	}
 
-  .reviewer-role {
-    font-family: "Poppins", tahoma, sans-serif;
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent-color, #cfa23c);
-    margin-top: 2px;
-  }
+	.reviewer__avatar {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+		color: var(--color-on-accent);
+		font-family: var(--font-display);
+		font-size: 1.3rem;
+		font-weight: 600;
+		margin-bottom: 0.75rem;
+	}
 
-  /* Carousel shell */
-  .carousel {
-    position: relative;
-    max-width: 760px;
-    margin: 24px auto 0;
-    overflow: hidden;
-  }
+	.reviewer__name {
+		font-weight: 600;
+		font-size: 1rem;
+	}
 
-  .carousel-track {
-    display: flex;
-    transition: transform 0.5s ease;
-  }
+	.reviewer__role {
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+		margin-top: 0.2rem;
+	}
 
-  .slide {
-    flex: 0 0 100%;
-    max-width: 100%;
-    padding: 0 50px;
-    box-sizing: border-box;
-  }
+	.carousel {
+		position: relative;
+		margin-top: var(--space-lg);
+		overflow: hidden;
+	}
 
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--surface-color, white);
-    border: 1px solid var(--border-color, #e6d5ab);
-    color: var(--accent-color, #cfa23c);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
-    z-index: 2;
-  }
+	.carousel__track {
+		display: flex;
+		transition: transform 0.5s var(--ease-soft);
+	}
 
-  .carousel-arrow:hover {
-    background-color: #fbf3e2;
-  }
+	.slide {
+		flex: 0 0 100%;
+		max-width: 100%;
+		padding: 0 clamp(1.5rem, 6vw, 3.5rem);
+		box-sizing: border-box;
+	}
 
-  .carousel-arrow.prev {
-    left: 0;
-  }
+	.carousel__arrow {
+		position: absolute;
+		top: 40%;
+		transform: translateY(-50%);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border-strong);
+		color: var(--color-accent);
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		z-index: 2;
+	}
 
-  .carousel-arrow.next {
-    right: 0;
-  }
+	.carousel__arrow:hover {
+		border-color: var(--color-accent);
+	}
 
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-  }
+	.carousel__arrow.prev { left: 0; }
+	.carousel__arrow.next { right: 0; }
 
-  .dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background-color: var(--border-color, #e5d9bd);
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
+	.carousel__dots {
+		display: flex;
+		justify-content: center;
+		gap: 8px;
+		margin-top: var(--space-sm);
+	}
 
-  .dot.active {
-    background-color: var(--accent-color, #cfa23c);
-    transform: scale(1.2);
-  }
+	.dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--color-border-strong);
+		border: none;
+		padding: 0;
+		cursor: pointer;
+		transition: background-color 0.2s ease, transform 0.2s ease;
+	}
 
-  @media (max-width: 600px) {
-    .slide {
-      padding: 0 36px;
-    }
-    .carousel-arrow {
-      width: 32px;
-      height: 32px;
-    }
-  }
+	.dot.active {
+		background: var(--color-accent);
+		transform: scale(1.2);
+	}
+
+	@media (max-width: 600px) {
+		.slide { padding: 0 2.75rem; }
+		.carousel__arrow { width: 32px; height: 32px; }
+	}
 </style>
 
 <script>
-  function initTestimonialCarousel() {
-    const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+	function initTestimonialCarousel() {
+		const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
 
-    carousels.forEach((carousel) => {
-      const track = carousel.querySelector<HTMLElement>("[data-track]");
-      const slides = Array.from(carousel.querySelectorAll<HTMLElement>(".slide"));
-      const prevBtn = carousel.querySelector<HTMLButtonElement>("[data-prev]");
-      const nextBtn = carousel.querySelector<HTMLButtonElement>("[data-next]");
-      const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>(".dot"));
+		carousels.forEach((carousel) => {
+			const track = carousel.querySelector<HTMLElement>("[data-track]");
+			const slides = Array.from(carousel.querySelectorAll<HTMLElement>(".slide"));
+			const prevBtn = carousel.querySelector<HTMLButtonElement>("[data-prev]");
+			const nextBtn = carousel.querySelector<HTMLButtonElement>("[data-next]");
+			const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>(".dot"));
 
-      if (!track || slides.length === 0) return;
+			if (!track || slides.length === 0) return;
 
-      let index = 0;
-      let autoplayTimer: ReturnType<typeof setInterval> | null = null;
+			let index = 0;
+			let autoplayTimer: ReturnType<typeof setInterval> | null = null;
 
-      function render() {
-        track!.style.transform = `translateX(-${index * 100}%)`;
-        dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
-      }
+			function render() {
+				track!.style.transform = `translateX(-${index * 100}%)`;
+				dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+			}
 
-      function goTo(i: number) {
-        index = (i + slides.length) % slides.length;
-        render();
-      }
+			function goTo(i: number) {
+				index = (i + slides.length) % slides.length;
+				render();
+			}
 
-      function next() {
-        goTo(index + 1);
-      }
+			function next() { goTo(index + 1); }
+			function prev() { goTo(index - 1); }
 
-      function prev() {
-        goTo(index - 1);
-      }
+			function startAutoplay() {
+				stopAutoplay();
+				autoplayTimer = setInterval(next, 6000);
+			}
+			function stopAutoplay() {
+				if (autoplayTimer) clearInterval(autoplayTimer);
+			}
 
-      function startAutoplay() {
-        stopAutoplay();
-        autoplayTimer = setInterval(next, 6000);
-      }
+			nextBtn?.addEventListener("click", () => { next(); startAutoplay(); });
+			prevBtn?.addEventListener("click", () => { prev(); startAutoplay(); });
+			dots.forEach((dot, i) => dot.addEventListener("click", () => { goTo(i); startAutoplay(); }));
 
-      function stopAutoplay() {
-        if (autoplayTimer) clearInterval(autoplayTimer);
-      }
+			carousel.addEventListener("mouseenter", stopAutoplay);
+			carousel.addEventListener("mouseleave", startAutoplay);
 
-      nextBtn?.addEventListener("click", () => {
-        next();
-        startAutoplay();
-      });
+			render();
+			startAutoplay();
+		});
+	}
 
-      prevBtn?.addEventListener("click", () => {
-        prev();
-        startAutoplay();
-      });
-
-      dots.forEach((dot, i) => {
-        dot.addEventListener("click", () => {
-          goTo(i);
-          startAutoplay();
-        });
-      });
-
-      carousel.addEventListener("mouseenter", stopAutoplay);
-      carousel.addEventListener("mouseleave", startAutoplay);
-
-      render();
-      startAutoplay();
-    });
-  }
-
-  initTestimonialCarousel();
-  document.addEventListener("astro:page-load", initTestimonialCarousel);
+	initTestimonialCarousel();
+	document.addEventListener("astro:page-load", initTestimonialCarousel);
 </script>

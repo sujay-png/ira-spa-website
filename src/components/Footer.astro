@@ -1,45 +1,37 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+import logo from "../images/logo.webp";
 ---
 
 <footer class="site-footer">
-	<div class="footer-container">
+	<div class="container footer-container">
 		<div class="footer-logo">
-			<img
-				src="https://iraspa.in/wp-content/uploads/2025/04/cropped-Ira-spa-4-e1754647926834.png"
-				alt="Ira Spa"
-			/>
+			<a href="/"><img src={logo.src} alt="Ira Spa" width="140" height="46" loading="lazy" /></a>
+			<p class="footer-tagline">A sanctuary for holistic massage &amp; wellness in Karnataka.</p>
 		</div>
 
 		<div class="footer-column">
-			<h4>Useful Links</h4>
+			<h4>Explore</h4>
 			<ul>
 				<li><a href="/">Home</a></li>
-				<li><a href="/about-us">About Us</a></li>
-				<li><a href="/our-services">Our Services</a></li>
-				<li><a href="/book-an-appointment">Book An Apointment</a></li>
-				<li><a href="/contact">Contact</a></li>
-				<li><a href="/site-map">Sitemap</a></li>
-				<li><a href="/terms-conditions">Terms & Conditons</a></li>
-				<li><a href="/refund_returns">Refund & Returns Policy</a></li>
-				<li><a href="/privacy-policy">Privacy Policy</a></li>
+				<li><a href="/about">Our Story</a></li>
+				<li><a href="/ourservice">Rituals</a></li>
+				<li><a href="/BookAnAppointment">Book An Appointment</a></li>
+				<li><a href="/Contactus">Contact</a></li>
+				<li><a href="/blogs">Journal</a></li>
 			</ul>
-			<a href="/brochure" class="brochure-btn">Download brochure</a>
 		</div>
 
 		<div class="footer-column">
-			<h4>Kalaburgi &ndash; Gulbarga</h4>
+			<h4>Kalaburagi &ndash; Gulbarga</h4>
 			<p>
-				1st floor , Tulips inn by Vkg hotel,<br />
+				1st floor, Tulips Inn by Vkg Hotel,<br />
 				Sedam Rd, opp. ESIC Hospital,<br />
-				Kalaburagi, Karnataka 585106, India
+				Kalaburagi, Karnataka 585106
 			</p>
-			<p class="phone">+91 7022865999</p>
+			<a class="phone" href="tel:+917022865999">+91 7022865999</a>
 			<h5>Timing</h5>
-			<p class="timing">
-				Monday: 9:00 AM to 9:30 PM<br />
-				Saturday: 9:00 AM to 9:30 PM
-			</p>
+			<p class="timing">Mon &ndash; Sun: 9:00 AM to 9:30 PM</p>
 		</div>
 
 		<div class="footer-column">
@@ -49,24 +41,21 @@ import { Icon } from 'astro-icon/components';
 				Opp AJ Grand Hotel,<br />
 				Kodialbail, Mangalore 575003
 			</p>
-			<p class="phone">+91 89716 67199</p>
+			<a class="phone" href="tel:+918971667199">+91 89716 67199</a>
 			<h5>Timing</h5>
-			<p class="timing">
-				Monday: 9:00 AM to 9:30 PM<br />
-				Saturday: 9:00 AM to 9:30 PM
-			</p>
+			<p class="timing">Mon &ndash; Sun: 9:00 AM to 9:30 PM</p>
 
 			<div class="social-icons">
-				<a href="https://www.instagram.com/the_ira_spa/" aria-label="Instagram">
+				<a href="https://www.instagram.com/the_ira_spa/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
 					<Icon name="mdi:instagram" width="20" height="20" />
 				</a>
-				<a href="https://www.facebook.com/share/1BW2YTGEVW/" aria-label="Facebook">
+				<a href="https://www.facebook.com/share/1BW2YTGEVW/" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
 					<Icon name="mdi:facebook" width="20" height="20" />
 				</a>
-				<a href="http://www.linkedin.com/in/ira-spa-a3a618382" aria-label="LinkedIn">
+				<a href="http://www.linkedin.com/in/ira-spa-a3a618382" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
 					<Icon name="mdi:linkedin" width="20" height="20" />
 				</a>
-				<a href="https://www.youtube.com/@IraSpa-n5f" aria-label="YouTube">
+				<a href="https://www.youtube.com/@IraSpa-n5f" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
 					<Icon name="mdi:youtube" width="20" height="20" />
 				</a>
 			</div>
@@ -74,187 +63,148 @@ import { Icon } from 'astro-icon/components';
 	</div>
 
 	<div class="footer-bottom">
-		<p>Copyright &copy; Ira Spa 2025 | All Rights Reserved</p>
+		<p>&copy; {new Date().getFullYear()} Ira Spa. All rights reserved.</p>
 	</div>
 </footer>
 
 <style>
 	.site-footer {
-		background: linear-gradient(135deg, #1c1c1c, #0f0f0f);
-		padding: clamp(2.5rem, 6vw, 3.75rem) clamp(1rem, 5vw, 2.5rem) 0 clamp(1rem, 5vw, 2.5rem);
-		margin-top: 3rem;
+		background: var(--color-bg-alt);
+		border-top: 1px solid var(--color-border);
+		padding-top: var(--space-xl);
 	}
 
 	.footer-container {
 		display: grid;
-		grid-template-columns: 1fr 1.3fr 1.3fr 1.3fr;
-		gap: 2.5rem;
-		max-width: 1400px;
-		margin: 0 auto;
-		padding-bottom: 2.5rem;
-	}
-
-	@media (max-width: 1100px) {
-		.footer-container {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 2rem;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.footer-container {
-			grid-template-columns: 1fr;
-			gap: 2rem;
-		}
+		grid-template-columns: 1fr 1.1fr 1.2fr 1.2fr;
+		gap: var(--space-xl);
+		padding-bottom: var(--space-xl);
 	}
 
 	.footer-logo {
 		display: flex;
+		flex-direction: column;
 		align-items: flex-start;
-	}
-
-	@media (max-width: 1100px) {
-		.footer-logo {
-			grid-column: 1 / -1;
-			margin-bottom: 1rem;
-		}
+		gap: var(--space-sm);
 	}
 
 	.footer-logo img {
-		width: clamp(120px, 15vw, 160px);
+		width: clamp(110px, 12vw, 140px);
 		height: auto;
-		object-fit: contain;
 	}
 
-	.footer-column {
-		display: flex;
-		flex-direction: column;
+	.footer-tagline {
+		font-size: 0.85rem;
+		color: var(--color-text-faint);
+		max-width: 220px;
 	}
 
 	.footer-column h4 {
-		font-family: "Georgia", serif;
-		font-size: clamp(1rem, 2vw, 1.2rem);
-		font-weight: 700;
-		color: #ffffff;
-		margin: 0 0 1.5rem 0;
-		letter-spacing: -0.5px;
+		font-family: var(--font-display);
+		font-size: 1.05rem;
+		color: var(--color-text);
+		margin-bottom: var(--space-sm);
 	}
 
 	.footer-column h5 {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+		font-family: var(--font-body);
+		font-size: 0.9rem;
 		font-weight: 700;
-		color: #ffffff;
-		margin: 1.5rem 0 0.75rem 0;
+		color: var(--color-text);
+		margin: var(--space-sm) 0 0.5rem;
 	}
 
 	.footer-column p {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-		color: #cfcfcf;
+		font-size: 0.88rem;
+		color: var(--color-text-muted);
 		line-height: 1.7;
-		margin: 0 0 1rem 0;
+		margin-bottom: var(--space-sm);
 	}
 
 	.footer-column .timing {
-		color: #999;
-		font-size: 0.85rem;
+		color: var(--color-text-faint);
+		font-size: 0.82rem;
+		margin-bottom: 0;
 	}
 
 	.footer-column .phone {
-		color: #cfa23c;
+		display: inline-block;
+		color: var(--color-accent);
 		font-weight: 600;
+	}
+
+	.footer-column .phone:hover {
+		color: var(--color-accent-soft);
 	}
 
 	.footer-column ul {
 		list-style: none;
+		margin: 0;
 		padding: 0;
-		margin: 0 0 1.5rem 0;
 	}
 
 	.footer-column ul li {
-		margin-bottom: 0.75rem;
+		margin-bottom: 0.65rem;
 	}
 
 	.footer-column ul li a {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+		font-size: 0.88rem;
 		font-weight: 500;
-		color: #e5e5e5;
-		text-decoration: none;
-		letter-spacing: 0.3px;
-		transition: color 0.3s ease;
+		color: var(--color-text-muted);
 	}
 
 	.footer-column ul li a:hover {
-		color: #cfa23c;
-	}
-
-	.brochure-btn {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		background: linear-gradient(135deg, #cfa23c, #e8b950);
-		color: #ffffff;
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-		font-weight: 700;
-		text-decoration: none;
-		padding: 0.75rem 1.5rem;
-		border-radius: 4px;
-		transition: all 0.3s ease;
-		box-shadow: 0 4px 12px rgba(207, 162, 60, 0.2);
-		width: fit-content;
-		letter-spacing: 0.5px;
-	}
-
-	.brochure-btn:hover {
-		background: linear-gradient(135deg, #e8b950, #cfa23c);
-		box-shadow: 0 6px 16px rgba(207, 162, 60, 0.3);
-		transform: translateY(-2px);
+		color: var(--color-accent);
 	}
 
 	.social-icons {
 		display: flex;
-		gap: 1rem;
-		margin-top: 1.5rem;
+		gap: 0.75rem;
+		margin-top: var(--space-sm);
 	}
 
 	.social-icons a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 40px;
-		height: 40px;
-		background-color: #cfa23c;
-		border-radius: 6px;
-		color: #1c1c1c;
+		width: 38px;
+		height: 38px;
+		background-color: var(--color-accent);
+		color: var(--color-on-accent);
+		border-radius: var(--radius-sm);
 		transition: all 0.3s ease;
 	}
 
 	.social-icons a:hover {
-		background-color: #e8b950;
-		transform: translateY(-3px);
-		box-shadow: 0 4px 12px rgba(207, 162, 60, 0.3);
+		background-color: var(--color-accent-soft);
+		transform: translateY(-2px);
 	}
 
 	.footer-bottom {
-		border-top: 1px solid #333;
-		padding: 1.5rem clamp(1rem, 5vw, 2.5rem);
+		border-top: 1px solid var(--color-border);
+		padding: var(--space-sm) clamp(1.25rem, 4vw, 2.5rem);
 		text-align: center;
 	}
 
 	.footer-bottom p {
-		font-family: "Poppins", sans-serif;
-		font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-		color: #999;
+		font-size: 0.78rem;
+		color: var(--color-text-faint);
 		margin: 0;
-		letter-spacing: 0.3px;
 	}
 
-	@media (max-width: 768px) {
-		.site-footer {
-			padding: 2rem 1rem 0 1rem;
+	@media (max-width: 1000px) {
+		.footer-container {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.footer-logo {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (max-width: 620px) {
+		.footer-container {
+			grid-template-columns: 1fr;
+			gap: var(--space-lg);
 		}
 	}
 </style>

@@ -1,0 +1,265 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+
+const locations = [
+	{
+		name: "Mangalore",
+		address: "#301, 3rd Floor, Lotus Paradise Elite, Opp AJ Grand Hotel, Kodialbail, Mangalore 575003",
+		phone: "+91 89716 67199",
+		tel: "+918971667199",
+		hours: "Mon – Sun: 9:00 AM – 9:30 PM",
+	},
+	{
+		name: "Kalaburagi",
+		address: "1st Floor, Tulips Inn by Vkg Hotel, Sedam Rd, Opp. ESIC Hospital, Kalaburagi, Karnataka 585106",
+		phone: "+91 7022865999",
+		tel: "+917022865999",
+		hours: "Mon – Sun: 9:00 AM – 9:30 PM",
+	},
+];
+---
+
+<Layout
+	title="Contact Us | Ira Spa Concierge"
+	description="Reach the Ira Spa concierge team for bookings, inquiries or feedback. Two locations in Mangalore and Kalaburagi, Karnataka."
+>
+	<section class="page-banner" style="background-image: url('/images/spa-reception.jpg');">
+		<div class="container">
+			<span class="eyebrow">Private Service</span>
+			<h1>The Concierge</h1>
+			<p>
+				Step into a world of curated tranquility. Whether you seek to
+				rejuvenate in Mangalore or find balance in Kalaburagi, our concierge
+				team is ready to tailor your wellness journey.
+			</p>
+		</div>
+	</section>
+
+	<section class="concierge">
+		<div class="container concierge__grid">
+			<form class="inquiry-form" id="inquiry-form">
+				<h2>Submit an Inquiry</h2>
+
+				<div class="form-group">
+					<label for="c-name">Full Name</label>
+					<input type="text" id="c-name" name="name" placeholder="Your name" autocomplete="name" required />
+				</div>
+
+				<div class="form-row">
+					<div class="form-group">
+						<label for="c-email">Email Address</label>
+						<input type="email" id="c-email" name="email" placeholder="email@example.com" autocomplete="email" required />
+					</div>
+					<div class="form-group">
+						<label for="c-phone">Phone Number</label>
+						<input type="tel" id="c-phone" name="phone" placeholder="+91 00000 00000" autocomplete="tel" required />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="c-location">Preferred Location</label>
+					<select id="c-location" name="location" required>
+						<option value="" disabled selected hidden>Select a destination</option>
+						<option value="mangalore">Mangalore</option>
+						<option value="kalaburagi">Kalaburagi</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="c-message">Message</label>
+					<textarea id="c-message" name="message" rows="4" placeholder="How may we assist your journey?"></textarea>
+				</div>
+
+				<button type="submit" class="btn-primary">Send Inquiry <span>&rarr;</span></button>
+				<p class="form-note" id="form-note" hidden>Thank you — our concierge team will be in touch shortly.</p>
+			</form>
+
+			<div class="locations">
+				{
+					locations.map((loc) => (
+						<div class="location-card">
+							<h3>{loc.name}</h3>
+							<p class="location-card__address">{loc.address}</p>
+							<a class="location-card__phone" href={`tel:${loc.tel}`}>
+								{loc.phone}
+							</a>
+							<p class="location-card__hours">{loc.hours}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="concierge-quote">
+		<div class="container concierge-quote__row">
+			<blockquote>"In silence, we find the true essence of luxury and the rhythm of the self."</blockquote>
+			<div class="socials">
+				<a href="https://www.instagram.com/the_ira_spa/" target="_blank" rel="noopener noreferrer">Instagram</a>
+				<a href="https://www.facebook.com/share/1BW2YTGEVW/" target="_blank" rel="noopener noreferrer">Facebook</a>
+				<a href="https://www.youtube.com/@IraSpa-n5f" target="_blank" rel="noopener noreferrer">YouTube</a>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
+
+<style>
+	.concierge {
+		padding-block: var(--space-2xl);
+	}
+
+	.concierge__grid {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: start;
+	}
+
+	.inquiry-form {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: clamp(1.75rem, 4vw, 2.75rem);
+	}
+
+	.inquiry-form h2 {
+		font-size: var(--font-size-xl);
+		margin-bottom: var(--space-md);
+	}
+
+	.form-group {
+		margin-bottom: var(--space-md);
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-sm);
+	}
+
+	.inquiry-form .btn-primary {
+		width: 100%;
+		gap: 0.75rem;
+	}
+
+	.form-note {
+		margin-top: var(--space-sm);
+		text-align: center;
+		color: var(--color-accent-soft);
+		font-size: 0.9rem;
+	}
+
+	.locations {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
+	.location-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		padding: var(--space-md) var(--space-lg);
+	}
+
+	.location-card h3 {
+		font-size: var(--font-size-lg);
+		margin-bottom: var(--space-sm);
+		color: var(--color-accent-soft);
+	}
+
+	.location-card__address {
+		font-size: 0.9rem;
+		margin-bottom: var(--space-sm);
+	}
+
+	.location-card__phone {
+		display: block;
+		font-weight: 600;
+		color: var(--color-text);
+		margin-bottom: 0.5rem;
+	}
+
+	.location-card__phone:hover {
+		color: var(--color-accent);
+	}
+
+	.location-card__hours {
+		font-size: 0.8rem;
+		color: var(--color-text-faint);
+		margin: 0;
+	}
+
+	.concierge-quote {
+		padding-block: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.concierge-quote__row {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		align-items: flex-start;
+	}
+
+	.concierge-quote blockquote {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+		max-width: 560px;
+		color: var(--color-text);
+	}
+
+	.socials {
+		display: flex;
+		gap: var(--space-md);
+	}
+
+	.socials a {
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-text-muted);
+	}
+
+	.socials a:hover {
+		color: var(--color-accent);
+	}
+
+	@media (min-width: 768px) {
+		.concierge-quote__row {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.concierge__grid {
+			grid-template-columns: 1fr;
+		}
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	function initInquiryForm() {
+		const form = document.getElementById("inquiry-form") as HTMLFormElement | null;
+		const note = document.getElementById("form-note");
+		if (!form) return;
+
+		form.addEventListener("submit", (e) => {
+			e.preventDefault();
+			note?.removeAttribute("hidden");
+			form.reset();
+		});
+	}
+	initInquiryForm();
+	document.addEventListener("astro:page-load", initInquiryForm);
+</script>

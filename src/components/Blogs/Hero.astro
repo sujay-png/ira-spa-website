@@ -1,146 +1,70 @@
-<!-- Step 1: Structural Section -->
-<section class="hero-section">
-  <!-- The background element containing your image -->
-  <div class="hero-bg">
-    
-    <!-- Step 2: Content Boundary Container -->
-    <div class="hero-container">
-      
-      <span class="hero-subtitle">Feature Story</span>
-      <h1 class="hero-title">The Alchemy of Silence: Navigating Modern Stillness</h1>
-         
-      <!-- Step 3: Two-Column split row structure -->
-      <div class="bottom-layout-block">
-        
-        <!-- Left Side Room: Contains paragraph description and link action -->
-        <div class="text-column">
-          <p class="hero-description"> 
-            Discover how ancient meditation practices are being redefined for the contemporary soul in our latest exploration of mindfulness and sensory deprivation.
-          </p>
-          
-          <div class="read-article-link">
-            READ THE ARTICLE <span class="arrow-icon">→</span>
-          </div>
-        </div>
-        
-        <!-- Right Side Room: Kept empty for visual balance -->
-        <div class="preview-column"></div>
-         
-      </div> <!-- End of bottom-layout-block --> 
-    </div> <!-- End hero-container -->
-    
-  </div> <!-- End of hero-bg -->
+---
+---
+
+<section class="journal-hero">
+	<div class="journal-hero__bg"></div>
+
+	<div class="container journal-hero__container">
+		<span class="eyebrow">Feature Story</span>
+		<h1>The Alchemy of Silence: Navigating Modern Stillness</h1>
+
+		<div class="journal-hero__row">
+			<p>
+				Discover how ancient meditation practices are being redefined for the
+				contemporary soul in our latest exploration of mindfulness and
+				sensory rest.
+			</p>
+
+			<a href="#feed" class="link-arrow">Read The Article <span>&rarr;</span></a>
+		</div>
+	</div>
 </section>
 
 <style>
-  /* Layout Dimensions to build screen presence */
-  .hero-section {
-    position: relative;
-    width: 100%;
-    min-height: 95vh; /* Stretches the section down the page */
-    overflow: hidden;
-    background-color: #0b0b0b;
-  }
+	.journal-hero {
+		position: relative;
+		width: 100%;
+		min-height: 70vh;
+		display: flex;
+		align-items: flex-end;
+		overflow: hidden;
+	}
 
-  /* Fixed Background Layer Setup */
-  .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background: 
-      linear-gradient(to bottom, rgba(11, 11, 11, 0.2) 0%, rgba(11, 11, 11, 0.4) 50%, rgba(11, 11, 11, 0.9) 100%),
-      url('src/images/spa-treatment.jpg') no-repeat center center/cover;
-    
-    /* Using Flexbox here ensures that child containers sit at the absolute bottom */
-    display: flex;
-    align-items: flex-end; 
-    width: 100%;
-  }
+	.journal-hero__bg {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(to bottom, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.45) 50%, rgba(11, 11, 10, 0.94) 100%),
+			url("/images/spa-treatment.jpg") no-repeat center center/cover;
+	}
 
-  .hero-container {
-    max-width: 1300px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 90px 48px 200px 48px; /* Balanced bottom padding */
-    box-sizing: border-box;
-  }
+	.journal-hero__container {
+		position: relative;
+		z-index: 1;
+		padding-block: clamp(3rem, 8vw, 5rem) clamp(3rem, 6vw, 4.5rem);
+	}
 
-  /* Category Tag styling */
-  .hero-subtitle {
-    font-family: system-ui, sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: #d4a63a;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    display: block;
-    margin: 0 0 20px 0; /* Fixed: Removed wide random margin layouts */
-  }
+	.journal-hero h1 {
+		max-width: 900px;
+		color: #fff;
+		margin: var(--space-sm) 0 var(--space-lg);
+	}
 
-  /* Headline Typography styling */
-  .hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(36px, 5.2vw, 68px); /* Responsive fluid font scaling */
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.15;
-    margin: 0 0 50px 0;
-    max-width: 1000px; /* Allows text block to expand widely across the canvas */
-    letter-spacing: -0.5px;
-  }
+	.journal-hero__row {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--space-md);
+		align-items: flex-end;
+	}
 
-  /* Split row layout definition */
-  .bottom-layout-block {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    width: 100%;
-    align-items: flex-end;
-  }
+	.journal-hero__row p {
+		max-width: 460px;
+		color: rgba(255, 255, 255, 0.7);
+	}
 
-  @media (min-width: 768px) {
-    .bottom-layout-block {
-      /* Fixed: Shifted weighting so text space expands beautifully */
-      grid-template-columns: 8fr 4fr; 
-    }
-  }
-
-  /* Clean Flex Column for natural element flow */
-  .text-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Controls the exact space between paragraph text and the link */
-  }
-
-  .hero-description {
-    font-family: system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    color: #ffffffb3;
-    margin: 0; /* Fixed: Reset margins to rely entirely on layout gap rules */
-    max-width: 460px; /* Keeps standard paragraph line width clean */
-  }
-
-  /* Link buttons formatting styling */
-  .read-article-link {
-    font-family: system-ui, sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: #d4a63a;
-    letter-spacing: 2px;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 5px; /* Fixed: Swapped 250px margin out for a small micro-adjustment */
-    width: fit-content;
-  }
-  
-  .arrow:hover .read-article-link{
-     color: #d4a63a;
-  }
+	@media (min-width: 768px) {
+		.journal-hero__row {
+			grid-template-columns: 2fr 1fr;
+		}
+	}
 </style>

@@ -1,270 +1,146 @@
-<section class="rituals-section">
-  <div class="rituals-container">
-    <div class="section-heading">
-      <h2 class="section-title">Popular Rituals</h2>
-      <div class="title-ornament" aria-hidden="true">
-        <span class="ornament-line"></span>
-        <span class="ornament-dot"></span>
-        <span class="ornament-line"></span>
-      </div>
-    </div>
+---
+const rituals = [
+	{
+		name: "Swedish Serenity Massage",
+		duration: "60 min",
+		price: "3,500",
+		icon: "M4 13c0-3.5 2.5-6 5-8 .5 1.5-.5 3-1 4 2-1 4-1 5 1 1.5-1 3 0 3.5 1.5.8 2.3-1 5-4.5 6.5-4 1.7-8-1-8-5z",
+	},
+	{
+		name: "Traditional Ayurvedic Abhyanga",
+		duration: "90 min",
+		price: "4,800",
+		icon: "M12 3c3 3 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-7 5-10z",
+	},
+	{
+		name: "Deep Tissue Muscle Release",
+		duration: "60 min",
+		price: "4,200",
+		icon: "M9 12h6M12 9v6",
+		circle: true,
+	},
+	{
+		name: "Signature Gold Botanical Facial",
+		duration: "",
+		price: "5,500",
+		icon: "M12 4c1.8 2 2.8 4 2.8 6a2.8 2.8 0 1 1-5.6 0c0-2 1-4 2.8-6z",
+	},
+];
+---
 
-    <div class="rituals-list">
+<section class="popular-rituals">
+	<div class="container container--narrow">
+		<div class="section-heading">
+			<span class="eyebrow">The Ledger</span>
+			<h2>Popular Rituals</h2>
+			<div class="ornament" aria-hidden="true"><span></span></div>
+		</div>
 
-      <!-- Ritual 1 -->
-      <div class="ritual-item">
-        <span class="ritual-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M4 13c0-3.5 2.5-6 5-8 .5 1.5-.5 3-1 4 2-1 4-1 5 1 1.5-1 3 0 3.5 1.5.8 2.3-1 5-4.5 6.5-4 1.7-8-1-8-5z"/>
-            <path d="M8 17c2 1.5 5 1.8 7.5.5"/>
-          </svg>
-        </span>
-        <span class="ritual-name">
-          Swedish Serenity Massage <span class="ritual-duration">(60 min)</span>
-        </span>
-        <div class="leader-line"></div>
-        <span class="ritual-price">
-          <span class="rupee-icon">&#8377;</span>3,500
-        </span>
-      </div>
+		<div class="popular-rituals__list">
+			{
+				rituals.map((r) => (
+					<div class="ritual-row">
+						<span class="ritual-row__icon" aria-hidden="true">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+								{r.circle && <circle cx="12" cy="12" r="7.5" />}
+								<path d={r.icon} />
+							</svg>
+						</span>
+						<span class="ritual-row__name">
+							{r.name} {r.duration && <span class="ritual-row__duration">({r.duration})</span>}
+						</span>
+						<span class="ritual-row__leader" aria-hidden="true" />
+						<span class="ritual-row__price">₹{r.price}</span>
+					</div>
+				))
+			}
+		</div>
 
-      <!-- Ritual 2 -->
-      <div class="ritual-item">
-        <span class="ritual-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M12 3c3 3 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-7 5-10z"/>
-            <path d="M12 8v11"/>
-          </svg>
-        </span>
-        <span class="ritual-name">
-          Traditional Ayurvedic Abhyanga <span class="ritual-duration">(90 min)</span>
-        </span>
-        <div class="leader-line"></div>
-        <span class="ritual-price">
-          <span class="rupee-icon">&#8377;</span>4,800
-        </span>
-      </div>
-
-      <!-- Ritual 3 -->
-      <div class="ritual-item">
-        <span class="ritual-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <circle cx="12" cy="12" r="7.5"/>
-            <path d="M9 12h6M12 9v6"/>
-          </svg>
-        </span>
-        <span class="ritual-name">
-          Deep Tissue Muscle Release <span class="ritual-duration">(60 min)</span>
-        </span>
-        <div class="leader-line"></div>
-        <span class="ritual-price">
-          <span class="rupee-icon">&#8377;</span>4,200
-        </span>
-      </div>
-
-      <!-- Ritual 4 -->
-      <div class="ritual-item">
-        <span class="ritual-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
-            <path d="M12 4c1.8 2 2.8 4 2.8 6a2.8 2.8 0 1 1-5.6 0c0-2 1-4 2.8-6z"/>
-            <path d="M6 20c1.5-3 4-4.5 6-4.5s4.5 1.5 6 4.5"/>
-          </svg>
-        </span>
-        <span class="ritual-name">
-          Signature Gold Botanical Facial
-        </span>
-        <div class="leader-line"></div>
-        <span class="ritual-price">
-          <span class="rupee-icon">&#8377;</span>5,500
-        </span>
-      </div>
-
-    </div>
-
-    <div class="action-wrapper">
-      <a href="/menu" class="menu-link">VIEW FULL TREATMENT MENU</a>
-    </div>
-  </div>
+		<div class="popular-rituals__action">
+			<a href="/ourservice" class="link-arrow">View Full Treatment Menu <span>&rarr;</span></a>
+		</div>
+	</div>
 </section>
 
 <style>
-  .rituals-section {
-    background: linear-gradient(180deg, #FBF8F3 0%, #F6F1E8 100%);
-    padding: 110px 0;
-    width: 100%;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+	.popular-rituals {
+		padding-block: var(--space-2xl);
+	}
 
-  .rituals-container {
-    max-width: 800px;
-    margin: 0 auto;
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+	.popular-rituals__list {
+		margin-top: var(--space-xl);
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
 
-  .section-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 56px;
-  }
+	.ritual-row {
+		display: flex;
+		align-items: baseline;
+		gap: var(--space-sm);
+		padding: 0.85rem 0.75rem;
+		border-radius: var(--radius-sm);
+		transition: background-color 0.3s ease;
+	}
 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    font-weight: 400;
-    color: #2B2A26;
-    text-align: center;
-    letter-spacing: 0.5px;
-    margin: 0;
-  }
+	.ritual-row:hover {
+		background-color: rgba(207, 162, 60, 0.06);
+	}
 
-  .title-ornament {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 18px;
-  }
+	.ritual-row__icon {
+		align-self: center;
+		flex-shrink: 0;
+		width: 32px;
+		height: 32px;
+		display: grid;
+		place-items: center;
+		border-radius: 50%;
+		background: rgba(207, 162, 60, 0.12);
+		color: var(--color-accent);
 
-  .ornament-line {
-    width: 36px;
-    height: 1px;
-    background: rgba(212, 166, 58, 0.5);
-  }
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
 
-  .ornament-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #D4A63A;
-  }
+	.ritual-row__name {
+		font-size: 1.05rem;
+		color: var(--color-text);
+		white-space: nowrap;
+	}
 
-  .rituals-list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 64px;
-  }
+	.ritual-row__duration {
+		color: var(--color-text-faint);
+		font-size: 0.85rem;
+	}
 
-  .ritual-item {
-    display: flex;
-    align-items: baseline;
-    width: 100%;
-    gap: 16px;
-    padding: 14px 12px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
-  }
+	.ritual-row__leader {
+		flex-grow: 1;
+		border-bottom: 1px dotted var(--color-border-strong);
+		align-self: center;
+	}
 
-  .ritual-item:hover {
-    background-color: rgba(212, 166, 58, 0.06);
-  }
+	.ritual-row__price {
+		font-size: 1.05rem;
+		font-weight: 600;
+		color: var(--color-accent-soft);
+		white-space: nowrap;
+	}
 
-  .ritual-icon {
-    align-self: center;
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(212, 166, 58, 0.1);
-    color: #C08A2A;
-  }
+	.popular-rituals__action {
+		margin-top: var(--space-md);
+		text-align: center;
+	}
 
-  .ritual-icon svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .ritual-name {
-    font-size: 18px;
-    color: #4d4c48;
-    font-weight: 400;
-    white-space: nowrap;
-  }
-
-  .ritual-duration {
-    color: #9a978c;
-    font-size: 15px;
-  }
-
-  .leader-line {
-    flex-grow: 1;
-    border-bottom: 1px dotted rgba(212, 166, 58, 0.45);
-    align-self: center;
-  }
-
-  .ritual-price {
-    font-size: 18px;
-    color: #C08A2A;
-    font-weight: 600;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-  }
-
-  .rupee-icon {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    font-weight: 500;
-    margin-right: 2px;
-  }
-
-  .action-wrapper {
-    margin-top: 4px;
-  }
-
-  .menu-link {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    color: #D4A63A;
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #D4A63A;
-    transition: color 0.3s ease, border-color 0.3s ease;
-  }
-
-  .menu-link:hover {
-    color: #a97d24;
-    border-color: #a97d24;
-  }
-
-  @media (max-width: 640px) {
-    .section-title {
-      font-size: 32px;
-    }
-
-    .section-heading {
-      margin-bottom: 40px;
-    }
-
-    .ritual-item {
-      gap: 10px;
-      padding: 10px 6px;
-    }
-
-    .ritual-icon {
-      width: 26px;
-      height: 26px;
-    }
-
-    .ritual-icon svg {
-      width: 13px;
-      height: 13px;
-    }
-
-    .ritual-name, .ritual-price {
-      font-size: 14px;
-    }
-
-    .ritual-duration {
-      font-size: 12px;
-    }
-  }
+	@media (max-width: 600px) {
+		.ritual-row {
+			gap: 0.6rem;
+			padding: 0.6rem 0.3rem;
+		}
+		.ritual-row__name,
+		.ritual-row__price {
+			font-size: 0.85rem;
+		}
+	}
 </style>

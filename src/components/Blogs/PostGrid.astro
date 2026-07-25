@@ -1,0 +1,153 @@
+---
+import type { WPPost, WPTerm } from "../../lib/wordpress";
+import PostCard from "./PostCard.astro";
+
+interface Props {
+	posts: WPPost[];
+	categories: WPTerm[];
+	activeCategorySlug?: string;
+	currentPage: number;
+	totalPages: number;
+	basePath: string; // e.g. "/blogs" or "/blogs/category/wellness"
+}
+
+const { posts, categories, activeCategorySlug, currentPage, totalPages, basePath } = Astro.props;
+
+function pageHref(path: string, page: number) {
+	return page <= 1 ? `${path}/` : `${path}/page/${page}/`;
+}
+---
+
+<section class="feed" id="feed">
+	<div class="container">
+		<div class="feed__header">
+			<h2>The Serenity Feed</h2>
+			<nav class="feed__categories" aria-label="Blog categories">
+				<a href="/blogs/" class={`feed__category ${!activeCategorySlug ? "active" : ""}`}>All Posts</a>
+				{
+					categories.map((c) => (
+						<a
+							href={`/blogs/category/${c.slug}/`}
+							class={`feed__category ${activeCategorySlug === c.slug ? "active" : ""}`}
+						>
+							{c.name}
+						</a>
+					))
+				}
+			</nav>
+		</div>
+
+		{
+			posts.length === 0 ? (
+				<p class="feed__empty">No posts yet — check back soon.</p>
+			) : (
+				<div class="feed__grid">
+					{posts.map((post) => <PostCard post={post} />)}
+				</div>
+			)
+		}
+
+		{
+			totalPages > 1 && (
+				<nav class="pagination" aria-label="Blog pagination">
+					{currentPage > 1 && (
+						<a href={pageHref(basePath, currentPage - 1)} class="pagination__link">&larr; Newer</a>
+					)}
+					<span class="pagination__status">Page {currentPage} of {totalPages}</span>
+					{currentPage < totalPages && (
+						<a href={pageHref(basePath, currentPage + 1)} class="pagination__link">Older &rarr;</a>
+					)}
+				</nav>
+			)
+		}
+	</div>
+</section>
+
+<style>
+	.feed {
+		padding-block: var(--space-2xl);
+	}
+
+	.feed__header {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		border-bottom: 1px solid var(--color-border);
+		padding-bottom: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+
+	@media (min-width: 768px) {
+		.feed__header {
+			flex-direction: row;
+			align-items: flex-end;
+			justify-content: space-between;
+		}
+	}
+
+	.feed__categories {
+		display: flex;
+		gap: var(--space-md);
+		flex-wrap: wrap;
+	}
+
+	.feed__category {
+		font-size: 0.7rem;
+		font-weight: 600;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--color-text-faint);
+	}
+
+	.feed__category.active,
+	.feed__category:hover {
+		color: var(--color-accent);
+	}
+
+	.feed__empty {
+		text-align: center;
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: 1.2rem;
+		padding: var(--space-xl) 0;
+	}
+
+	.feed__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-lg) var(--space-md);
+	}
+
+	@media (max-width: 960px) {
+		.feed__grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 620px) {
+		.feed__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-md);
+		margin-top: var(--space-2xl);
+	}
+
+	.pagination__link {
+		font-size: 0.8rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+	}
+
+	.pagination__status {
+		font-size: 0.75rem;
+		color: var(--color-text-faint);
+	}
+</style>

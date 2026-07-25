@@ -1,0 +1,49 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import Footer from "../../../../components/Footer.astro";
+import PostGrid from "../../../../components/Blogs/PostGrid.astro";
+import { getAllPosts, getCategories, getPostCategories, POSTS_PER_PAGE } from "../../../../lib/wordpress";
+
+export async function getStaticPaths() {
+	const categories = await getCategories();
+	const allPosts = await getAllPosts();
+
+	return categories.map((category) => ({
+		params: { category: category.slug },
+		props: {
+			categoryName: category.name,
+			posts: allPosts.filter((p) => getPostCategories(p).some((c) => c.slug === category.slug)),
+		},
+	}));
+}
+
+const { category } = Astro.params;
+const { categoryName, posts } = Astro.props;
+const categories = await getCategories();
+const pagePosts = posts.slice(0, POSTS_PER_PAGE);
+const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+---
+
+<Layout
+	title={`${categoryName} Articles | Ira Spa Journal`}
+	description={`Browse Ira Spa journal articles on ${categoryName}.`}
+>
+	<section class="page-banner" style="background-image: url('/images/spa-treatment.jpg');">
+		<div class="container">
+			<span class="eyebrow">Journal Category</span>
+			<h1>{categoryName}</h1>
+			<p>Articles filed under {categoryName.toLowerCase()}.</p>
+		</div>
+	</section>
+
+	<PostGrid
+		posts={pagePosts}
+		categories={categories}
+		activeCategorySlug={category}
+		currentPage={1}
+		totalPages={totalPages}
+		basePath={`/blogs/category/${category}`}
+	/>
+
+	<Footer />
+</Layout>

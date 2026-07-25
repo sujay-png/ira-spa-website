@@ -1,0 +1,163 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import PostCard from "../../components/Blogs/PostCard.astro";
+import {
+	getAllPosts,
+	getFeaturedImage,
+	getAuthorName,
+	getPostCategories,
+	formatDate,
+	estimateReadTime,
+	stripHtml,
+} from "../../lib/wordpress";
+
+export async function getStaticPaths() {
+	const posts = await getAllPosts();
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post, allPosts: posts },
+	}));
+}
+
+const { post, allPosts } = Astro.props;
+
+const image = getFeaturedImage(post);
+const categories = getPostCategories(post);
+const author = getAuthorName(post);
+const readTime = estimateReadTime(post.content.rendered);
+const description = stripHtml(post.excerpt.rendered).slice(0, 160);
+const title = stripHtml(post.title.rendered);
+
+const related = allPosts
+	.filter((p) => p.id !== post.id && getPostCategories(p).some((c) => categories.some((pc) => pc.slug === c.slug)))
+	.slice(0, 3);
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Article",
+	headline: title,
+	image: image.src,
+	datePublished: post.date,
+	dateModified: post.modified,
+	author: { "@type": "Organization", name: author },
+	publisher: { "@type": "Organization", name: "Ira Spa" },
+	mainEntityOfPage: `https://iraspa.in/blogs/${post.slug}/`,
+};
+---
+
+<Layout title={`${title} | Ira Spa Journal`} description={description} image={image.src}>
+	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+	<article class="post">
+		<header class="post-header page-banner" style={`background-image: url('${image.src}')`}>
+			<div class="container">
+				{categories[0] && <span class="eyebrow">{categories[0].name}</span>}
+				<h1>{title}</h1>
+				<div class="post-header__meta">
+					<span>{author}</span>
+					<span class="dot">&bull;</span>
+					<span>{formatDate(post.date)}</span>
+					<span class="dot">&bull;</span>
+					<span>{readTime}</span>
+				</div>
+			</div>
+		</header>
+
+		<div class="container container--narrow post__body">
+			<div class="prose" set:html={post.content.rendered} />
+
+			<div class="post__cta">
+				<h2>Ready to feel the difference?</h2>
+				<p>Bring this ritual to life at Ira Spa, Mangalore or Kalaburagi.</p>
+				<a href="/BookAnAppointment" class="btn-primary">Book an Appointment</a>
+			</div>
+
+			<a href="/blogs/" class="link-arrow post__back"><span>&larr;</span> Back to The Serenity Feed</a>
+		</div>
+
+		{
+			related.length > 0 && (
+				<section class="related">
+					<div class="container">
+						<h2>Related Reading</h2>
+						<div class="related__grid">
+							{related.map((p) => <PostCard post={p} />)}
+						</div>
+					</div>
+				</section>
+			)
+		}
+	</article>
+
+	<Footer />
+</Layout>
+
+<style>
+	.post-header {
+		min-height: 42vh;
+	}
+
+	.post-header__meta {
+		display: flex;
+		align-items: center;
+		gap: 0.6rem;
+		font-size: 0.78rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: rgba(243, 239, 231, 0.65);
+	}
+
+	.dot {
+		opacity: 0.5;
+	}
+
+	.post__body {
+		padding-block: var(--space-2xl);
+	}
+
+	.post__cta {
+		margin-top: var(--space-2xl);
+		padding: var(--space-lg);
+		text-align: center;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+	}
+
+	.post__cta h2 {
+		font-size: var(--font-size-xl);
+		margin-bottom: 0.5rem;
+	}
+
+	.post__cta p {
+		margin-bottom: var(--space-md);
+	}
+
+	.post__back {
+		display: inline-flex;
+		margin-top: var(--space-lg);
+	}
+
+	.related {
+		padding-bottom: var(--space-2xl);
+	}
+
+	.related h2 {
+		font-size: var(--font-size-xl);
+		margin-bottom: var(--space-md);
+	}
+
+	.related__grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--space-md);
+	}
+
+	@media (max-width: 900px) {
+		.related__grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

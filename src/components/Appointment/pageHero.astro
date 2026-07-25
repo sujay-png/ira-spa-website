@@ -1,282 +1,183 @@
 ---
-// You can change this path to point to your background image
-// e.g., import heroBg from '../../assets/images/ira-spa.jpg';
 ---
 
 <section class="hero-section">
-  <!-- Background Image Overlay with dark vignette -->
-  <div class="hero-bg"></div>
+	<div class="hero-bg"></div>
 
-  <div class="hero-container">
-    <!-- Subtitle -->
-    <span class="hero-subtitle">RESERVATION</span>
+	<div class="hero-container">
+		<span class="eyebrow">Reservation</span>
+		<h1 class="hero-title">Your Sanctuary Awaits</h1>
+		<p class="hero-description">
+			Step into a world of curated tranquility. Experience restorative rituals designed to
+			harmonize mind, body and spirit.
+		</p>
 
-    <!-- Main Elegant Title -->
-    <h1 class="hero-title">Your Sanctuary Awaits</h1>
+		<div class="stats-banner">
+			<div class="stat-item">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+						<path d="M12 22C12 22 17 17.5 17 13C17 9.5 14.5 9 12 5C9.5 9 7 9.5 7 13C7 17.5 12 22 12 22Z" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M12 22C12 22 21 18.5 20 12.5C19 6.5 15.5 8.5 12 5M12 22C12 22 3 18.5 4 12.5C5 6.5 8.5 8.5 12 5" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</div>
+				<h2 class="stat-number">12+</h2>
+				<span class="stat-label">Years Experience</span>
+			</div>
 
-    <!-- Description -->
-    <p class="hero-description">
-      Step into a world of curated tranquility. Experience restorative rituals designed to harmonize mind, body, and spirit.
-    </p>
-   
-    
-     <!-- Here we creating the statistic banner inside the hero container -->
-    <!-- Glassmorphism Stats Banner -->
-    <div class="stats-banner">   <!-- here need to create first div class of stats banner -->
-      
-      <!-- Stat 1 -->
-      <div class="stat-item">
-        <div class="stat-icon">
-          <!-- Lotus SVG Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 22C12 22 17 17.5 17 13C17 9.5 14.5 9 12 5C9.5 9 7 9.5 7 13C7 17.5 12 22 12 22Z" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 22C12 22 21 18.5 20 12.5C19 6.5 15.5 8.5 12 5M12 22C12 22 3 18.5 4 12.5C5 6.5 8.5 8.5 12 5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <h2 class="stat-number">24</h2>
-        <span class="stat-label">YEARS EXPERIENCE</span>
-      </div>
+			<div class="stat-item">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+						<path d="M12 21V10M12 10C10.5 10 7.5 11 6 13M12 10C13.5 10 16.5 11 18 13" stroke-linecap="round" />
+						<path d="M3 21C3 13 7.02944 6 12 6C16.9706 6 21 13 21 21" stroke-linecap="round" />
+					</svg>
+				</div>
+				<h2 class="stat-number">2</h2>
+				<span class="stat-label">Locations</span>
+			</div>
 
-      <!-- Stat 2 -->
-      <div class="stat-item">
-        <div class="stat-icon">
-          <!-- Wellness/Arch SVG Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 21V10M12 10C10.5 10 7.5 11 6 13M12 10C13.5 10 16.5 11 18 13" stroke-linecap="round"/>
-            <path d="M3 21C3 13 7.02944 6 12 6C16.9706 6 21 13 21 21" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h2 class="stat-number">3+</h2>
-        <span class="stat-label">WELLNESS & SPA</span>
-      </div>
+			<div class="stat-item">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+						<path d="M12 2v20M8 5h8M6 10h12M9 15h6" stroke-linecap="round" stroke-linejoin="round" />
+						<circle cx="12" cy="5" r="1.5" />
+						<circle cx="12" cy="10" r="1.5" />
+						<circle cx="12" cy="15" r="1.5" />
+					</svg>
+				</div>
+				<h2 class="stat-number">40+</h2>
+				<span class="stat-label">Herbal Treatments</span>
+			</div>
 
-      <!-- Stat 3 -->
-      <div class="stat-item">
-        <div class="stat-icon">
-          <!-- Herbal Treatment SVG Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 2v20M8 5h8M6 10h12M9 15h6" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="12" cy="5" r="1.5" />
-            <circle cx="12" cy="10" r="1.5" />
-            <circle cx="12" cy="15" r="1.5" />
-          </svg>
-        </div>
-        <h2 class="stat-number">40+</h2>
-        <span class="stat-label">HERBAL TREATMENT</span>
-      </div>
-
-      <!-- Stat 4 -->
-      <div class="stat-item">
-        <div class="stat-icon">
-          <!-- Happy Clients SVG Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 20v-1a7 7 0 0 1 14 0v1" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M12 2v2M4.22 4.22l1.42 1.42M19.78 4.22l-1.42 1.42" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <h2 class="stat-number">10,000+</h2>
-        <span class="stat-label">HAPPY CLIENTS</span>
-      </div>
-
-    </div>
-  </div>
+			<div class="stat-item">
+				<div class="stat-icon">
+					<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+						<path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 20v-1a7 7 0 0 1 14 0v1" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M12 2v2M4.22 4.22l1.42 1.42M19.78 4.22l-1.42 1.42" stroke-linecap="round" />
+					</svg>
+				</div>
+				<h2 class="stat-number">10,000+</h2>
+				<span class="stat-label">Happy Clients</span>
+			</div>
+		</div>
+	</div>
 </section>
 
 <style>
-  /* Base Hero Setup */
-  .hero-section {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding-top: 80px; /* Accounts for the fixed height of your header */
-  }
+	.hero-section {
+		position: relative;
+		width: 100%;
+		min-height: 90vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+	}
 
-  /* Background Image styling with Overlay Tint */
-  .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    /* Using your local background image (falls back to placeholder if missing) */
-    background: 
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.8) 100%),
-      url('/src/images/ira-spa.png') no-repeat center center/cover;
-    background-color:--var(color:black)
-  }
+	.hero-bg {
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background:
+			linear-gradient(to bottom, rgba(11, 11, 10, 0.6) 0%, rgba(11, 11, 10, 0.5) 50%, rgba(11, 11, 10, 0.92) 100%),
+			url("/images/ira-spa.png") no-repeat center center/cover;
+	}
 
-  /* Core container */
-  .hero-container {
-    position: relative;
-    z-index: 2;
-    max-width: 1400px;
-    width: 100%;
-    margin: auto;
-    padding: 60px 48px 40px 48px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-    justify-content: space-between;
-  }
+	.hero-container {
+		position: relative;
+		z-index: 1;
+		max-width: 1300px;
+		width: 100%;
+		margin: auto;
+		padding: clamp(3rem, 8vw, 5rem) clamp(1.25rem, 5vw, 3rem) clamp(2rem, 5vw, 2.5rem);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
 
-  /* Subtitle "RESERVATION" */
-  .hero-subtitle {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    color: #D4A63A;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
+	.hero-title {
+		font-size: clamp(2.4rem, 6vw, 4.6rem);
+		color: #fff;
+		max-width: 900px;
+		margin: var(--space-sm) 0 var(--space-md);
+	}
 
-  /* Main elegant serif Title */
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 6vw, 76px);
-    font-weight: 400;
-    color: #ffffff;
-    line-height: 1.15;
-    max-width: 900px;
-    margin-bottom: 24px;
-    letter-spacing: -0.5px;
-  }
+	.hero-description {
+		font-size: var(--font-size-lg);
+		color: rgba(255, 255, 255, 0.72);
+		max-width: 560px;
+		margin-bottom: var(--space-2xl);
+	}
 
-  /* Paragraph Description */
-  .hero-description {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: clamp(14px, 1.2vw, 17px);
-    font-weight: 400;
-    color: #b3b3b3;
-    max-width: 620px;
-    line-height: 1.7;
-    margin-bottom: 70px;
-  }
+	.stats-banner {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		width: 100%;
+		max-width: 1100px;
+		background: rgba(255, 255, 255, 0.04);
+		backdrop-filter: blur(14px);
+		-webkit-backdrop-filter: blur(14px);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		padding: var(--space-md) var(--space-sm);
+	}
 
-  /* Glassmorphism bottom stats bar */
-  .stats-banner {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 35px 20px;
-    border-radius: 4px;
-    max-width: 1200px;
-  }
+	.stat-item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0 0.5rem;
+	}
 
-  .stat-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 0 10px;
-  }
+	.stat-item:not(:last-child)::after {
+		content: "";
+		position: absolute;
+		right: 0;
+		top: 15%;
+		height: 70%;
+		width: 1px;
+		background: var(--color-border);
+	}
 
-  /* Dividing borders between items */
-  .stat-item:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 15%;
-    height: 70%;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.08);
-  }
+	.stat-icon {
+		width: 28px;
+		height: 28px;
+		color: var(--color-accent);
+		margin-bottom: var(--space-sm);
+	}
 
-  /* Elegant SVGs */
-  .stat-icon {
-    width: 32px;
-    height: 32px;
-    color: #D4A63A;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+	.stat-number {
+		font-size: clamp(1.6rem, 3vw, 2.2rem);
+		color: #fff;
+		margin-bottom: 0.4rem;
+	}
 
-  .stat-icon svg {
-    width: 100%;
-    height: 100%;
-  }
+	.stat-label {
+		font-size: 0.68rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-text-faint);
+	}
 
-  /* Elegant numbers */
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 3vw, 42px);
-    font-weight: 500;
-    color: #ffffff;
-    margin-bottom: 8px;
-    line-height: 1;
-  }
-
-  /* Small Labels */
-  .stat-label {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    color: #a3a3a3;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  /* Responsive styling */
-  @media (max-width: 1024px) {
-    .hero-container {
-      padding: 60px 24px 30px 24px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .hero-section {
-      padding-top: 70px;
-    }
-    
-    .hero-description {
-      margin-bottom: 45px;
-    }
-
-    .stats-banner {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px 0;
-      padding: 30px 10px;
-    }
-
-    /* Adjust dividers for mobile (2x2 Grid) */
-    .stat-item:nth-child(odd)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 10%;
-      height: 80%;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .stat-item:nth-child(even)::after {
-      display: none;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .stats-banner {
-      grid-template-columns: 1fr;
-      gap: 35px 0;
-    }
-
-    .stat-item::after {
-      display: none !important;
-    }
-  }
+	@media (max-width: 768px) {
+		.stats-banner {
+			grid-template-columns: repeat(2, 1fr);
+			gap: var(--space-md) 0;
+		}
+		.stat-item:nth-child(odd)::after {
+			content: "";
+			position: absolute;
+			right: 0;
+			top: 10%;
+			height: 80%;
+			width: 1px;
+			background: var(--color-border);
+		}
+		.stat-item:nth-child(even)::after {
+			display: none;
+		}
+	}
 </style>

@@ -1,183 +1,108 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+
+const benefitsLeft = [
+	{ icon: "mdi:brain", label: "Relieves Stress and Anxiety" },
+	{ icon: "mdi:water-check", label: "Improves Blood Circulation" },
+	{ icon: "mdi:shield-account", label: "Boosts Immunity" },
+	{ icon: "mdi:arrow-expand-all", label: "Reduces Muscle Tension and Pain" },
+	{ icon: "mdi:sleep", label: "Improves Sleep Quality" },
+	{ icon: "mdi:face-woman-shimmer", label: "Enhances Skin Texture and Glow" },
+];
+
+const benefitsRight = [
+	{ icon: "mdi:water-outline", label: "Flushes Out Toxins" },
+	{ icon: "mdi:emoticon-happy-outline", label: "Boosts Mood and Mental Clarity" },
+	{ icon: "mdi:human-handsup", label: "Increases Flexibility and Joint Mobility" },
+	{ icon: "mdi:meditation", label: "Reduces Signs of Fatigue and Burnout" },
+	{ icon: "mdi:weather-sunny", label: "Improves Skin Tone and Brightness" },
+	{ icon: "mdi:account-heart", label: "Promotes Overall Well-being and Self-care" },
+];
 ---
 
-<div class="imagecontent" id="benefits-section">
-	<div class="benefits-wrapper">
-		<div class="benefits-column left">
-			<div class="benefit-item">
-				<Icon name="mdi:brain" width="32" height="32" />
-				<p>Relieves Stress and Anxiety</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:water-check" width="32" height="32" />
-				<p>Improves Blood Circulation</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:shield-account" width="32" height="32" />
-				<p>Boosts Immunity</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:arrow-expand-all" width="32" height="32" />
-				<p>Reduces Muscle Tension and Pain</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:sleep" width="32" height="32" />
-				<p>Improves Sleep Quality</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:face-woman-shimmer" width="32" height="32" />
-				<p>Enhances Skin Texture and Glow</p>
-			</div>
+<section class="benefits">
+	<div class="container">
+		<div class="section-heading">
+			<span class="eyebrow">Why Ira Spa</span>
+			<h2 class="benefits__title">The Benefits of Ritual</h2>
 		</div>
 
-		<div class="benefits-column right">
-			<div class="benefit-item">
-				<Icon name="mdi:water-outline" width="32" height="32" />
-				<p>Flushes Out Toxins</p>
+		<div class="benefits__wrapper">
+			<div class="benefits__column">
+				{
+					benefitsLeft.map((b) => (
+						<div class="benefit-item">
+							<Icon name={b.icon} width="26" height="26" />
+							<p>{b.label}</p>
+						</div>
+					))
+				}
 			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:emoticon-happy-outline" width="32" height="32" />
-				<p>Boosts Mood and Mental Clarity</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:human-handsup" width="32" height="32" />
-				<p>Increases Flexibility and Joint Mobility</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:meditation" width="32" height="32" />
-				<p>Reduces Signs of Fatigue and Burnout</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:weather-sunny" width="32" height="32" />
-				<p>Improves Skin Tone and Brightness</p>
-			</div>
-			<div class="benefit-item">
-				<Icon name="mdi:account-heart" width="32" height="32" />
-				<p>Promotes Overall Well-being and Self-care</p>
+
+			<div class="benefits__column">
+				{
+					benefitsRight.map((b) => (
+						<div class="benefit-item">
+							<Icon name={b.icon} width="26" height="26" />
+							<p>{b.label}</p>
+						</div>
+					))
+				}
 			</div>
 		</div>
 	</div>
-</div>
+</section>
 
 <style>
-	.imagecontent {
+	.benefits {
 		position: relative;
-		width: 100%;
-		height: 580px;
-		background-image: url(https://iraspa.in/wp-content/uploads/2025/04/image-home01-9F4N68H.jpg);
+		padding-block: var(--space-2xl);
+		background-image:
+			linear-gradient(rgba(11, 11, 10, 0.82), rgba(11, 11, 10, 0.9)),
+			url(https://iraspa.in/wp-content/uploads/2025/04/image-home01-9F4N68H.jpg);
 		background-size: cover;
 		background-position: center;
-		background-repeat: no-repeat;
-		overflow: hidden;
-		transition: opacity 0.1s linear, height 0.1s linear;
 	}
 
-	.imagecontent::before {
-		content: "";
-		position: absolute;
-		inset: 0;
-		background: rgba(0, 0, 0, 0.35);
+	.benefits__title {
+		color: #fff;
 	}
 
-	.benefits-wrapper {
-		position: relative;
-		z-index: 1;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		height: 100%;
-		max-width: 1300px;
-		margin: 0 auto;
-		padding: 0 40px;
-		box-sizing: border-box;
+	.benefits__wrapper {
+		margin-top: var(--space-xl);
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(1.5rem, 4vw, 3.5rem);
+		max-width: 1000px;
+		margin-inline: auto;
 	}
 
-	.benefits-column {
+	.benefits__column {
 		display: flex;
 		flex-direction: column;
-		gap: 32px;
-		width: 40%;
+		gap: var(--space-sm);
 	}
 
 	.benefit-item {
 		display: flex;
 		align-items: center;
-		gap: 16px;
+		gap: var(--space-sm);
 	}
 
 	.benefit-item :global(svg) {
-		color: #cfa23c;
+		color: var(--color-accent);
 		flex-shrink: 0;
 	}
 
 	.benefit-item p {
-		font-family: "Poppins", sans-serif;
-		font-size: 1em;
-		font-weight: 500;
-		color: #ffffff;
+		color: #f3efe7;
+		font-size: 0.98rem;
 		margin: 0;
 	}
 
-	@media (max-width: 900px) {
-		.imagecontent {
-			height: auto;
-			padding: 40px 0;
-		}
-		.benefits-wrapper {
-			flex-direction: column;
-			height: auto;
-			gap: 32px;
-		}
-		.benefits-column {
-			width: 100%;
+	@media (max-width: 760px) {
+		.benefits__wrapper {
+			grid-template-columns: 1fr;
 		}
 	}
 </style>
-
-<script>
-	const section = document.getElementById('benefits-section');
-
-	if (section) {
-		const maxHeight = 580; // must match .imagecontent height in CSS
-		const fadeDistance = 400; // how much scroll distance the fade takes to complete
-		let ticking = false;
-		let sectionTop = 0;
-
-		function getSectionTop() {
-			if (section) {
-				sectionTop = section.offsetTop;
-			}
-		}
-
-		function updateSection() {
-			if (!section) return;
-			const scrollY = window.scrollY;
-			const scrolledPast = scrollY - sectionTop;
-
-			if (scrolledPast > 0 && scrolledPast < fadeDistance) {
-				const progress = scrolledPast / fadeDistance;
-				const newHeight = maxHeight * (1 - progress);
-				section.style.height = newHeight + 'px';
-				section.style.opacity = String(1 - progress);
-			} else if (scrolledPast >= fadeDistance) {
-				section.style.height = '0px';
-				section.style.opacity = '0';
-			} else {
-				section.style.height = maxHeight + 'px';
-				section.style.opacity = '1';
-			}
-			ticking = false;
-		}
-
-		getSectionTop();
-		window.addEventListener('resize', getSectionTop);
-
-		window.addEventListener('scroll', () => {
-			if (!ticking && section) {
-				requestAnimationFrame(updateSection);
-				ticking = true;
-			}
-		});
-	}
-</script>
