@@ -39,21 +39,42 @@ import Footer from "../components/Footer.astro"
 	.hero {
 		position: relative;
 		width: 100%;
-		height: 500px;
+		min-height: 600px;
+		height: 100vh;
+		max-height: 900px;
 		background-image: url("https://iraspa.in/wp-content/uploads/2026/06/attractive-african-woman-enjoying-face-massage-spa-salon.jpg-1-scaled.jpeg");
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
+		background-attachment: fixed;
 		overflow: hidden;
 		transition: opacity 0.1s linear, height 0.1s linear;
+		margin-top: 60px;
+		
+		@media (max-width: 768px) {
+			background-attachment: scroll;
+			height: 500px;
+			min-height: 500px;
+			max-height: 600px;
+			margin-top: 50px;
+		}
+		
+		@media (max-width: 480px) {
+			height: 400px;
+			min-height: 400px;
+			max-height: 500px;
+			margin-top: 45px;
+		}
 	}
 
 	.hero::before {
 		content: "";
 		position: absolute;
 		inset: 0;
-		background: rgba(0, 0, 0, 0.25);
+		background: rgba(0, 0, 0, 0.35);
+		z-index: 1;
 	}
+	
 	.hero::after {
 		content: "";
 		position: absolute;
@@ -61,36 +82,58 @@ import Footer from "../components/Footer.astro"
 		background: linear-gradient(
 			to bottom,
 			rgba(0, 0, 0, 0) 0%,
-			rgba(0, 0, 0, 0.85) 100%
+			rgba(0, 0, 0, 0.5) 60%,
+			rgba(0, 0, 0, 0.9) 100%
 		);
 		pointer-events: none;
+		z-index: 2;
 	}
 
 	.hero-text {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		transform: translate(-50%, -70%);
-		z-index: 1;
+		transform: translate(-50%, -50%);
+		z-index: 3;
 		text-align: center;
 		color: white;
 		width: 100%;
-		padding: 0 20px;
+		max-width: 800px;
+		padding: 0 2rem;
 		box-sizing: border-box;
-		white-space: nowrap;
 	}
 
 	.tagline {
-		font-family: "Manrope", Sans-serif;
-		font-size: 20px;
+		font-family: "Poppins", sans-serif;
+		font-size: clamp(14px, 3vw, 20px);
 		text-transform: uppercase;
 		color: #ffffff;
+		letter-spacing: 2px;
+		font-weight: 500;
+		margin-bottom: 1rem;
+		animation: fadeInUp 0.8s ease 0.3s both;
 	}
 
 	.hero-text h1 {
-		font-family: "Petit Formal Script", Sans-serif;
-		font-size: 90px;
+		font-family: "Georgia", serif;
+		font-size: clamp(48px, 8vw, 90px);
 		color: #ffffff;
+		margin-bottom: 1.5rem;
+		letter-spacing: -2px;
+		line-height: 1.1;
+		animation: fadeInUp 0.8s ease 0.5s both;
+		font-weight: 700;
+	}
+	
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.book-btn {

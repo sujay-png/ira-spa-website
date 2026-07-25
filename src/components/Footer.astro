@@ -80,73 +80,110 @@ import { Icon } from 'astro-icon/components';
 
 <style>
 	.site-footer {
-		background-color: #1c1c1c;
-		padding: 60px 40px 0 40px;
+		background: linear-gradient(135deg, #1c1c1c, #0f0f0f);
+		padding: clamp(2.5rem, 6vw, 3.75rem) clamp(1rem, 5vw, 2.5rem) 0 clamp(1rem, 5vw, 2.5rem);
+		margin-top: 3rem;
 	}
 
 	.footer-container {
 		display: grid;
 		grid-template-columns: 1fr 1.3fr 1.3fr 1.3fr;
-		gap: 40px;
+		gap: 2.5rem;
 		max-width: 1400px;
 		margin: 0 auto;
-		padding-bottom: 40px;
+		padding-bottom: 2.5rem;
+	}
+
+	@media (max-width: 1100px) {
+		.footer-container {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.footer-container {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+	}
+
+	.footer-logo {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	@media (max-width: 1100px) {
+		.footer-logo {
+			grid-column: 1 / -1;
+			margin-bottom: 1rem;
+		}
 	}
 
 	.footer-logo img {
-		width: 160px;
+		width: clamp(120px, 15vw, 160px);
 		height: auto;
+		object-fit: contain;
+	}
+
+	.footer-column {
+		display: flex;
+		flex-direction: column;
 	}
 
 	.footer-column h4 {
-		font-family: "Poppins", sans-serif;
-		font-size: 1.1em;
+		font-family: "Georgia", serif;
+		font-size: clamp(1rem, 2vw, 1.2rem);
 		font-weight: 700;
 		color: #ffffff;
-		margin: 0 0 20px 0;
+		margin: 0 0 1.5rem 0;
+		letter-spacing: -0.5px;
 	}
 
 	.footer-column h5 {
 		font-family: "Poppins", sans-serif;
-		font-size: 1em;
+		font-size: clamp(0.95rem, 1.5vw, 1.05rem);
 		font-weight: 700;
 		color: #ffffff;
-		margin: 20px 0 10px 0;
+		margin: 1.5rem 0 0.75rem 0;
 	}
 
 	.footer-column p {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.9em;
+		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
 		color: #cfcfcf;
 		line-height: 1.7;
-		margin: 0 0 12px 0;
+		margin: 0 0 1rem 0;
 	}
 
 	.footer-column .timing {
 		color: #999;
+		font-size: 0.85rem;
 	}
 
 	.footer-column .phone {
-		color: #ffffff;
+		color: #cfa23c;
+		font-weight: 600;
 	}
 
 	.footer-column ul {
 		list-style: none;
 		padding: 0;
-		margin: 0 0 24px 0;
+		margin: 0 0 1.5rem 0;
 	}
 
 	.footer-column ul li {
-		margin-bottom: 12px;
+		margin-bottom: 0.75rem;
 	}
 
 	.footer-column ul li a {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.9em;
-		font-weight: 600;
+		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+		font-weight: 500;
 		color: #e5e5e5;
 		text-decoration: none;
 		letter-spacing: 0.3px;
+		transition: color 0.3s ease;
 	}
 
 	.footer-column ul li a:hover {
@@ -154,66 +191,70 @@ import { Icon } from 'astro-icon/components';
 	}
 
 	.brochure-btn {
-		display: inline-block;
-		background-color: #cfa23c;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: linear-gradient(135deg, #cfa23c, #e8b950);
 		color: #ffffff;
 		font-family: "Poppins", sans-serif;
-		font-size: 0.9em;
+		font-size: clamp(0.85rem, 1.5vw, 0.95rem);
 		font-weight: 700;
 		text-decoration: none;
-		padding: 12px 24px;
-		border-radius: 6px;
-		transition: background-color 0.2s ease;
+		padding: 0.75rem 1.5rem;
+		border-radius: 4px;
+		transition: all 0.3s ease;
+		box-shadow: 0 4px 12px rgba(207, 162, 60, 0.2);
+		width: fit-content;
+		letter-spacing: 0.5px;
 	}
 
 	.brochure-btn:hover {
-		background-color: #b88f32;
+		background: linear-gradient(135deg, #e8b950, #cfa23c);
+		box-shadow: 0 6px 16px rgba(207, 162, 60, 0.3);
+		transform: translateY(-2px);
 	}
 
 	.social-icons {
 		display: flex;
-		gap: 12px;
-		margin-top: 20px;
+		gap: 1rem;
+		margin-top: 1.5rem;
 	}
 
 	.social-icons a {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 36px;
-		height: 36px;
+		width: 40px;
+		height: 40px;
 		background-color: #cfa23c;
-		border-radius: 8px;
+		border-radius: 6px;
 		color: #1c1c1c;
-		transition: background-color 0.2s ease;
+		transition: all 0.3s ease;
 	}
 
 	.social-icons a:hover {
-		background-color: #b88f32;
+		background-color: #e8b950;
+		transform: translateY(-3px);
+		box-shadow: 0 4px 12px rgba(207, 162, 60, 0.3);
 	}
 
 	.footer-bottom {
 		border-top: 1px solid #333;
-		padding: 20px 0;
+		padding: 1.5rem clamp(1rem, 5vw, 2.5rem);
 		text-align: center;
 	}
 
 	.footer-bottom p {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.9em;
-		color: #cfcfcf;
+		font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+		color: #999;
 		margin: 0;
+		letter-spacing: 0.3px;
 	}
 
-	@media (max-width: 1100px) {
-		.footer-container {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	@media (max-width: 600px) {
-		.footer-container {
-			grid-template-columns: 1fr;
+	@media (max-width: 768px) {
+		.site-footer {
+			padding: 2rem 1rem 0 1rem;
 		}
 	}
 </style>

@@ -38,53 +38,49 @@
 </section>
 
 <style>
-	/*
-	  The badge sits on top of the photo, not the page background, so it
-	  keeps its own fixed gold/dark palette in both themes on purpose —
-	  don't swap these for --bg-color/--text-color or it'll blend into
-	  the image or disappear depending on theme.
-	*/
 	.badge {
 		position: absolute;
-		bottom: -20px;
-		right: -20px;
-		background-color: #f0c96b;
-		padding: 24px 32px;
-		border-radius: 4px;
+		bottom: clamp(-15px, -2vw, -25px);
+		right: clamp(-15px, -2vw, -25px);
+		background: linear-gradient(135deg, #f0c96b, #e8b950);
+		padding: clamp(1.5rem, 3vw, 2rem) clamp(2rem, 4vw, 2rem);
+		border-radius: 6px;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		line-height: 1;
-		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+		box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+		z-index: 10;
 	}
 
 	.badge-number {
-		font-family: "Georgia", "Times New Roman", serif;
-		font-size: 3.2em;
+		font-family: "Georgia", serif;
+		font-size: clamp(2.2rem, 5vw, 3.2rem);
 		font-weight: 700;
 		color: #1a1a1a;
+		line-height: 1;
 	}
 
 	.badge-caption {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.8em;
-		font-weight: 600;
+		font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 1.5px;
 		color: #1a1a1a;
-		margin-top: 4px;
+		margin-top: 0.5rem;
 	}
 
 	.about-image {
 		position: relative;
 		overflow: hidden;
-		border-radius: 13px;
+		border-radius: 8px;
 	}
 
 	.container {
 		max-width: none;
-		padding: 40px 40px 0 40px;
-		border-radius: 4px;
+		padding: clamp(2rem, 5vw, 2.5rem);
+		border-radius: 6px;
 		position: relative;
 	}
 
@@ -101,56 +97,66 @@
 	.about-section {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 48px;
+		gap: clamp(2rem, 6vw, 3rem);
 		align-items: center;
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 60px 20px;
+		padding: clamp(2.5rem, 6vw, 3.75rem) clamp(1rem, 5vw, 1.25rem);
 		background-color: var(--bg-color, transparent);
+		
+		@media (max-width: 1024px) {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		
+		@media (max-width: 768px) {
+			padding: 2rem 1rem;
+			gap: 1.5rem;
+		}
 	}
 
 	.about-image img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-radius: 4px;
+		border-radius: 8px;
 		display: block;
-		border: 3px solid gold;
-		border-radius: 13px;
-		padding: 14px;
-		object-fit: cover;
-		transition: transform 0.8s ease-in-out, border-color 0.8s ease-in-out;
+		border: 3px solid var(--accent-color, #cfa23c);
+		padding: 12px;
+		transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 
 	.about-image:hover img {
-		transform: scale(1.15);
-		border-color: transparent;
+		transform: scale(1.1);
+		border-color: var(--accent-hover, #f0c96b);
+		box-shadow: 0 12px 32px rgba(207, 162, 60, 0.2);
 	}
 
 	.about-content h3 {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.95em;
+		font-size: clamp(0.8rem, 1.5vw, 0.95rem);
 		font-weight: 700;
 		text-transform: uppercase;
-		letter-spacing: 1px;
+		letter-spacing: 2px;
 		color: var(--accent-color, #cfa23c);
-		margin: 0 0 8px 0;
+		margin: 0 0 0.75rem 0;
 	}
 
 	.about-content h1 {
-		font-family: "Poppins", sans-serif;
-		font-size: 2.2em;
+		font-family: "Georgia", serif;
+		font-size: clamp(1.8rem, 4vw, 2.6rem);
 		font-weight: 700;
 		color: var(--text-color, #1a1a1a);
-		margin: 0 0 20px 0;
+		margin: 0 0 1.5rem 0;
+		line-height: 1.2;
 	}
 
 	.about-content p {
 		font-family: "Poppins", sans-serif;
-		font-size: 1em;
+		font-size: clamp(0.9rem, 1.5vw, 1rem);
 		line-height: 1.7;
 		color: var(--text-muted, #555);
-		margin: 0 0 20px 0;
+		margin: 0 0 1.25rem 0;
 	}
 
 	.form-group {
@@ -160,25 +166,25 @@
 
 	.form-group label {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.85em;
+		font-size: clamp(0.8rem, 1.5vw, 0.85rem);
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.5px;
 		color: var(--text-muted, #444);
-		margin-bottom: 8px;
+		margin-bottom: 0.75rem;
 	}
 
 	.form-group input,
 	.form-group select {
 		font-family: "Poppins", sans-serif;
-		font-size: 0.95em;
+		font-size: clamp(0.9rem, 1.5vw, 0.95rem);
 		color: var(--text-color, #333);
 		background-color: var(--surface-color, #faf6f2);
 		border: 1.5px solid var(--border-color, #eee0d3);
 		border-radius: 6px;
-		padding: 12px 14px;
+		padding: 0.9rem 1rem;
 		outline: none;
-		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		transition: all 0.3s ease;
 	}
 
 	.form-group input:focus,
@@ -193,31 +199,49 @@
 
 	.button-group {
 		align-items: flex-start;
+		margin-top: 0.5rem;
 	}
 
 	.discover-btn {
-		background-color: var(--accent-color, #cfa23c);
+		background: linear-gradient(135deg, var(--accent-color, #cfa23c), #e8b950);
 		color: white;
 		font-family: "Poppins", sans-serif;
-		font-size: 0.95em;
+		font-size: clamp(0.9rem, 1.5vw, 0.95rem);
 		font-weight: 700;
-		letter-spacing: 1px;
+		letter-spacing: 1.5px;
 		text-transform: uppercase;
 		border: none;
 		border-radius: 6px;
-		padding: 14px 32px;
+		padding: clamp(0.9rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2rem);
 		cursor: pointer;
-		transition: background-color 0.2s ease, transform 0.15s ease;
+		transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+		box-shadow: 0 6px 16px rgba(207, 162, 60, 0.2);
+		min-height: 44px;
+		
+		&:hover {
+			background: linear-gradient(135deg, #e8b950, var(--accent-color, #cfa23c));
+			box-shadow: 0 10px 24px rgba(207, 162, 60, 0.3);
+			transform: translateY(-2px);
+		}
+		
+		&:active {
+			transform: translateY(0);
+		}
 	}
 
-	.discover-btn:hover {
-		background-color: #b88f32;
-		transform: translateY(-1px);
-	}
-
-	@media (max-width: 800px) {
+	@media (max-width: 1024px) {
 		.about-section {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.about-image {
+			grid-row: 2;
+		}
+		
+		.discover-btn {
+			width: 100%;
 		}
 	}
 </style>
