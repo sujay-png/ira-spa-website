@@ -21,16 +21,16 @@ const locations = [
 ---
 
 <Layout
-	title="Contact Us | Ira Spa Concierge"
+	title="Contact Us | Ira Spa Contact"
 	description="Reach the Ira Spa concierge team for bookings, inquiries or feedback. Two locations in Mangalore and Kalaburagi, Karnataka."
 >
 	<section class="page-banner" style="background-image: url('/images/spa-reception.jpg');">
 		<div class="container">
 			<span class="eyebrow">Private Service</span>
-			<h1>The Concierge</h1>
+			<h1>Contact Us</h1>
 			<p>
 				Step into a world of curated tranquility. Whether you seek to
-				rejuvenate in Mangalore or find balance in Kalaburagi, our concierge
+				rejuvenate in Mangalore or find balance in Kalaburagi, our 
 				team is ready to tailor your wellness journey.
 			</p>
 		</div>
@@ -84,7 +84,21 @@ const locations = [
 							<a class="location-card__phone" href={`tel:${loc.tel}`}>
 								{loc.phone}
 							</a>
-							<p class="location-card__hours">{loc.hours}</p>
+							<p class="location-card__hours">
+								<span>{loc.hours} </span>
+								
+									<a type="submit" class="directionbutton"
+									  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(loc.address)}`}
+          target="_blank"
+          rel="noopener noreferrer">Get Direction </a>
+
+								<span>
+									
+									 </span>
+
+						
+							</p>
+
 						</div>
 					))
 				}
@@ -107,6 +121,28 @@ const locations = [
 </Layout>
 
 <style>
+
+	.directionbutton{
+		display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: -2.4rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+    color: var(--color-on-accent);
+    font-family: var(--font-body);
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 4px 0.1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid #0000;
+    touch-action: manipulation;
+    transition: transform .3s var(--ease), box-shadow .3s ease, background .3s ease;
+    box-shadow: 0 8px 24px #cfa23c38;
+    margin: 3px;
+    width: 160px;
+	}
 	.concierge {
 		padding-block: var(--space-2xl);
 	}
@@ -177,7 +213,7 @@ const locations = [
 	}
 
 	.location-card__phone {
-		display: block;
+		display: flex;
 		font-weight: 600;
 		color: var(--color-text);
 		margin-bottom: 0.5rem;
@@ -191,6 +227,10 @@ const locations = [
 		font-size: 0.8rem;
 		color: var(--color-text-faint);
 		margin: 0;
+		display: flex;
+		flex-direction: row;
+		gap: 4.25rem;
+
 	}
 
 	.concierge-quote {
