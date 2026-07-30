@@ -1,196 +1,341 @@
 ---
-const bodyMassage = [
-	{ name: "Classic Swedish Therapy", price: "₹2,200 / 3,300 / 4,000", sessions: "60 / 90 / 120 minute sessions" },
-	{ name: "Deep Tissue Therapy", price: "₹2,750 / 4,000 / 5,500", sessions: "60 / 90 / 120 minute sessions" },
-	{ name: "Aroma Therapy", price: "₹2,400 / 3,600 / 4,800", sessions: "60 / 90 / 120 minute sessions" },
-	{ name: "Balinese Therapy", price: "₹2,750 / 4,000 / 5,500", sessions: "60 / 90 / 120 minute sessions" },
-];
-
-const pedicure = [
-	{ name: "Classic Paraffin Wax Pedicure", price: "₹800", sessions: "45 minute session" },
-	{ name: "Anti-Oxidant Pedicure", price: "₹800", sessions: "60 minute session" },
-	{ name: "Moisturizing Exotic Pedicure", price: "₹800", sessions: "60 minute session" },
-	{ name: "Brightening De-Tan Pedicure", price: "₹1,200", sessions: "60 minute session" },
-	{ name: "De-Stress Refreshment", price: "₹1,000", sessions: "60 minute session" },
+const categories = [
+    {
+        title: "Body Massage",
+        items: [
+            { name: "CLASSIC SWEDISH THERAPY", price: "₹2,200 / 3,300 / 4,000", sessions: "60 / 90 / 120 minute sessions" },
+            { name: "DEEP TISSUE THERAPY", price: "₹2,750 / 4,000 / 5,500", sessions: "60 / 90 / 120 minute sessions" },
+            { name: "AROMA THERAPY", price: "₹2,400 / 3,600 / 4,800", sessions: "60 / 90 / 120 minute sessions" },
+            { name: "BALINESE THERAPY", price: "₹2,750 / 4,000 / 5,500", sessions: "60 / 90 / 120 minute sessions" },
+            { name: "IRA SIGNATURE THERAPY", price: "₹3,000 / 4,500", sessions: "60 / 90 minute sessions" },
+            { name: "TANDEM (FOUR HANDS) THERAPY", price: "₹4,000 / 5,500", sessions: "60 / 90 minute sessions" }
+        ]
+    },
+    {
+        title: "Herbal Therapy",
+        items: [
+            { name: "HERBAL POTLI", price: "₹3,000 / 4,000", sessions: "60 / 90 minute sessions" },
+            { name: "HOT STONE THERAPY", price: "₹3,200 / 4,800", sessions: "60 / 90 minute sessions" }
+        ]
+    },
+    {
+        title: "Thai Therapy",
+        items: [
+            { name: "TRADITIONAL THAI THERAPY", price: "₹2,400 / 3,600 / 4,800", sessions: "60 / 90 / 120 minute sessions" },
+            { name: "BAMBOO THERAPY", price: "₹4,000 / 5,500", sessions: "60 / 90 minute sessions" }
+        ]
+    },
+    {
+        title: "Body Polishing",
+        items: [
+            { name: "FULL BODY - Black Currant (Dry Skin)", price: "₹3,500", sessions: "60 minute session" },
+            { name: "FULL BODY - Chocolate (Brightening and Nourishing)", price: "₹3,500", sessions: "60 minute session" },
+            { name: "FULL BODY - Orange (De-tan)", price: "₹3,500", sessions: "60 minute session" }
+        ]
+    },
+    {
+        title: "Clean-Ups & Facial-Essential",
+        items: [
+            { name: "Watermelon Clean-Up", price: "₹700", sessions: "30 minute session" },
+            { name: "Strawberry Clean-Up", price: "₹800", sessions: "30 minute session" },
+            { name: "Hydra Dew (Dry & Dehydrated)", price: "₹1,000", sessions: "45 minute session" },
+            { name: "Rejuvenating (All skin type)", price: "₹1,200", sessions: "45 minute session" },
+            { name: "Herbal Pearl", price: "₹2,000", sessions: "45 minute session" }
+        ]
+    },
+    {
+        title: "Facial-Premium & Signature",
+        items: [
+            { name: "Deep Pore Cleansing (Oily Skin)", price: "₹2,400", sessions: "60 minute session" },
+            { name: "Whitening Facial (Dull & Uneven Skin Tone)", price: "₹2,500", sessions: "60 minute session" },
+            { name: "Herbal Gold Signature", price: "₹3,500", sessions: "60 minute session" }
+        ]
+    },
+    {
+        title: "Quick Massage",
+        items: [
+            { name: "Foot Reflexology", price: "₹1,200", sessions: "30 minute session" },
+            { name: "Back (without shower)", price: "₹1,600", sessions: "30 minute session" },
+            { name: "Head, Neck & Shoulder", price: "₹1,300", sessions: "30 minute session" }
+        ]
+    },
+    {
+        title: "Foot Spa / Pedicure",
+        items: [
+            { name: "Classic Paraffin Wax Pedicure (Melon & Litchi)", price: "₹800", sessions: "45 minute session" },
+            { name: "Anti-Oxidant Pedicure (Lemon)", price: "₹800", sessions: "60 minute session" },
+            { name: "Moisturizing Exotic Pedicure (Berry)", price: "₹800", sessions: "60 minute session" },
+            { name: "Brightening De-Tan Pedicure (Sheen Tangy)", price: "₹1,200", sessions: "60 minute session" },
+            { name: "De-Stress Refreshment (Mint)", price: "₹1,000", sessions: "60 minute session" }
+        ]
+    }
 ];
 ---
 
 <section class="menu">
-	<div class="container">
-		<div class="section-heading">
-			<span class="eyebrow">Invest in Yourself</span>
-			<h2>The Wellness Menu</h2>
-		</div>
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Invest in Yourself</span>
+            <h2>The Wellness Menu</h2>
+        </div>
 
-		<div class="menu__card">
-			<div class="menu__columns">
-				<div class="menu__column">
-					<p class="menu__category">Body Massage</p>
-					<ul class="menu__list">
-						{
-							bodyMassage.map((item, i) => (
-								<li class="menu__item" style={`--i: ${i}`}>
-									<div class="menu__item-top">
-										<span class="menu__item-name">{item.name}</span>
-										<span class="menu__item-line" />
-										<span class="menu__item-price">{item.price}</span>
-									</div>
-									<p class="menu__item-sessions">{item.sessions}</p>
-								</li>
-							))
-						}
-					</ul>
-				</div>
+        <div class="menu__card">
+            <div class="carousel" data-carousel>
+                <div class="carousel__track" data-carousel-track>
+                    {
+                        categories.map((category, index) => (
+                            <div class="carousel__slide" data-carousel-slide>
+                                <p class="menu__category">{category.title}</p>
+                                <ul class="menu__list">
+                                    {category.items.map((item, i) => (
+                                        <li class="menu__item" style={`--i: ${i}`}>
+                                            <div class="menu__item-top">
+                                                <span class="menu__item-name">{item.name}</span>
+                                                <span class="menu__item-line" />
+                                                <span class="menu__item-price">{item.price}</span>
+                                            </div>
+                                            <p class="menu__item-sessions">{item.sessions}</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))
+                    }
+                </div>
 
-				<div class="menu__column">
-					<p class="menu__category">Pedicure</p>
-					<ul class="menu__list">
-						{
-							pedicure.map((item, i) => (
-								<li class="menu__item" style={`--i: ${i}`}>
-									<div class="menu__item-top">
-										<span class="menu__item-name">{item.name}</span>
-										<span class="menu__item-line" />
-										<span class="menu__item-price">{item.price}</span>
-									</div>
-									<p class="menu__item-sessions">{item.sessions}</p>
-								</li>
-							))
-						}
-					</ul>
-				</div>
-			</div>
+                <!-- Carousel Controls -->
+                <div class="carousel__controls">
+                    <button class="carousel__btn carousel__btn--prev" data-carousel-prev aria-label="Previous Slide">
+                        &#10094;
+                    </button>
+                    <div class="carousel__dots" data-carousel-dots>
+                        {categories.map((_, i) => (
+                            <button class={`carousel__dot ${i === 0 ? 'is-active' : ''}`} data-dot-index={i} aria-label={`Go to slide ${i + 1}`} />
+                        ))}
+                    </div>
+                    <button class="carousel__btn carousel__btn--next" data-carousel-next aria-label="Next Slide">
+                        &#10095;
+                    </button>
+                </div>
+            </div>
 
-			<div class="menu__cta">
-				<a href="/ourservice" class="btn-secondary">View Full Menu</a>
-			</div>
-		</div>
-	</div>
+            <div class="menu__cta">
+                <a href="/ourservice" class="btn-secondary">View Full Menu</a>
+            </div>
+        </div>
+    </div>
 </section>
 
 <style>
-	.menu {
-		padding-block: var(--space-2xl);
-		background: var(--color-bg-alt);
-	}
+    .menu {
+        padding-block: var(--space-2xl);
+        background: var(--color-bg-alt);
+    }
 
-	.menu__card {
-		margin-top: var(--space-xl);
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-lg);
-		padding: clamp(2rem, 5vw, 3.5rem);
-	}
+    .menu__card {
+        margin-top: var(--space-xl);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        padding: clamp(2rem, 5vw, 3.5rem);
+    }
 
-	.menu__columns {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(2rem, 5vw, 4rem);
-	}
+    /* Carousel Layout */
+    .carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
 
-	.menu__category {
-		font-size: 0.85rem;
-		font-weight: 600;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: var(--color-text-muted);
-		margin: 0 0 var(--space-md);
-		text-align: center;
-	}
+    .carousel__track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    }
 
-	.menu__list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
+    .carousel__track::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+    }
 
-	.menu__item {
-		margin-bottom: var(--space-sm);
-		opacity: 0;
-		transform: translateY(24px);
-		transition: opacity 0.6s ease, transform 0.6s ease;
-		transition-delay: calc(var(--i, 0) * 0.1s);
-	}
+    .carousel__slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+        scroll-snap-align: start;
+        padding-inline: 1rem;
+        box-sizing: border-box;
+    }
 
-	.menu__item.in-view {
-		opacity: 1;
-		transform: translateY(0);
-	}
+    .menu__category {
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+        margin: 0 0 var(--space-md);
+        text-align: center;
+    }
 
-	@media (prefers-reduced-motion: reduce) {
-		.menu__item {
-			opacity: 1;
-			transform: none;
-		}
-	}
+    .menu__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: 600px;
+        margin-inline: auto;
+    }
 
-	.menu__item-top {
-		display: flex;
-		align-items: baseline;
-		justify-content: center;
-		gap: 0.85rem;
-	}
+    .menu__item {
+        margin-bottom: var(--space-md);
+    }
 
-	.menu__item-name {
-		font-size: 1rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.02em;
-		white-space: nowrap;
-	}
+    .menu__item-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.85rem;
+    }
 
-	.menu__item-line {
-		flex: 1;
-		height: 1px;
-		background: var(--color-border-strong);
-		min-width: 16px;
-		max-width: 50px;
-	}
+    .menu__item-name {
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
 
-	.menu__item-price {
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--color-accent-soft);
-		white-space: nowrap;
-	}
+    .menu__item-line {
+        flex: 1;
+        height: 1px;
+        background: var(--color-border-strong);
+        min-width: 16px;
+    }
 
-	.menu__item-sessions {
-		font-size: 0.82rem;
-		color: var(--color-text-faint);
-		text-align: center;
-		margin: 0.5rem 0 0;
-	}
+    .menu__item-price {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--color-accent-soft);
+        white-space: nowrap;
+    }
 
-	.menu__cta {
-		display: flex;
-		justify-content: center;
-		margin-top: var(--space-lg);
-	}
+    .menu__item-sessions {
+        font-size: 0.82rem;
+        color: var(--color-text-faint);
+        margin: 0.25rem 0 0;
+    }
 
-	@media (max-width: 700px) {
-		.menu__columns {
-			grid-template-columns: 1fr;
-			gap: var(--space-lg);
-		}
-	}
+    /* Controls Styling */
+    .carousel__controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: var(--space-lg);
+    }
+
+    .carousel__btn {
+        background: transparent;
+        border: 1px solid var(--color-border);
+        color: var(--color-text);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .carousel__btn:hover {
+        background: var(--color-border);
+    }
+
+    .carousel__dots {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .carousel__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: none;
+        background: var(--color-border-strong);
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .carousel__dot.is-active {
+        background: var(--color-accent-soft);
+        transform: scale(1.2);
+    }
+
+    .menu__cta {
+        display: flex;
+        justify-content: center;
+        margin-top: var(--space-lg);
+    }
 </style>
 
 <script>
-	function initMenuScrollAnimation() {
-		const columns = document.querySelectorAll(".menu__column");
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.querySelectorAll(".menu__item").forEach((item) => item.classList.add("in-view"));
-						observer.unobserve(entry.target);
-					}
-				});
-			},
-			{ threshold: 0.2, rootMargin: "0px 0px -60px 0px" },
-		);
-		columns.forEach((column) => observer.observe(column));
-	}
-	initMenuScrollAnimation();
-	document.addEventListener("astro:page-load", initMenuScrollAnimation);
+    function initMenuCarousel() {
+        const carousel = document.querySelector("[data-carousel]");
+        if (!carousel) return;
+
+        const track = carousel.querySelector("[data-carousel-track]");
+        const slides = carousel.querySelectorAll("[data-carousel-slide]");
+        const prevBtn = carousel.querySelector("[data-carousel-prev]");
+        const nextBtn = carousel.querySelector("[data-carousel-next]");
+        const dots = carousel.querySelectorAll("[data-dot-index]");
+
+        let currentIndex = 0;
+
+        function updateCarousel(index) {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            track.scrollTo({
+                left: slideWidth * index,
+                behavior: "smooth"
+            });
+            updateDots(index);
+            currentIndex = index;
+        }
+
+        function updateDots(index) {
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("is-active", i === index);
+            });
+        }
+
+        prevBtn?.addEventListener("click", () => {
+            const newIndex = currentIndex === 0 ? slides.length - 1 : currentIndex - 1;
+            updateCarousel(newIndex);
+        });
+
+        nextBtn?.addEventListener("click", () => {
+            const newIndex = currentIndex === slides.length - 1 ? 0 : currentIndex + 1;
+            updateCarousel(newIndex);
+        });
+
+        dots.forEach((dot) => {
+            dot.addEventListener("click", (e) => {
+                const target = e.target as HTMLElement;
+                const index = parseInt(target.getAttribute("data-dot-index") || "0");
+                updateCarousel(index);
+            });
+        });
+
+        // Sync active state when user scrolls manually (swipe)
+        track?.addEventListener("scroll", () => {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            const newIndex = Math.round(track.scrollLeft / slideWidth);
+            if (newIndex !== currentIndex) {
+                currentIndex = newIndex;
+                updateDots(currentIndex);
+            }
+        });
+    }
+
+    initMenuCarousel();
+    document.addEventListener("astro:page-load", initMenuCarousel);
 </script>

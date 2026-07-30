@@ -5,30 +5,34 @@ import Footer from "../../components/Footer.astro";
 import { serviceData } from "../../data/services";
 
 export function getStaticPaths() {
-	return Object.keys(serviceData).map((slug) => ({ params: { slug } }));
+    // Optional safety check to prevent passing undefined to Object.keys
+    if (!serviceData || typeof serviceData !== "object") {
+        return [];
+    }
+    return Object.keys(serviceData).map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
-const service = serviceData[slug as keyof typeof serviceData];
+const service = slug ? serviceData[slug as keyof typeof serviceData] : null;
 
 if (!service) {
-	return Astro.redirect("/ourservice");
+    return Astro.redirect("/ourservice");
 }
 ---
 
 <Layout
-	title={`${service.title} | Ira Spa Rituals`}
-	description={service.description}
-	image={service.image}
+    title={`${service.title} | Ira Spa Rituals`}
+    description={service.description}
+    image={service.image}
 >
-	<section class="page-banner" style={`background-image: url('${service.image}');`}>
-		<div class="container">
-			<span class="eyebrow">{service.category}</span>
-			<h1>{service.title}</h1>
-			<p>{service.description}</p>
-		</div>
-	</section>
+    <section class="page-banner" style={`background-image: url('${service.image}');`}>
+        <div class="container">
+            <span class="eyebrow">{service.category}</span>
+            <h1>{service.title}</h1>
+            <p>{service.description}</p>
+        </div>
+    </section>
 
-	<ServiceDescription {...service} />
-	<Footer />
+    <ServiceDescription {...service} />
+    <Footer />
 </Layout>

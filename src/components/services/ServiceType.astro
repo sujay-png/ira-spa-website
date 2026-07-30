@@ -3,123 +3,125 @@ import { serviceData } from "../../data/services";
 ---
 
 <section class="browse">
-	<div class="container">
-		<div class="section-heading">
-			<span class="eyebrow">Browse By Category</span>
-			<h2>Find Your Ritual</h2>
-		</div>
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Browse By Category</span>
+            <h2>Find Your Ritual</h2>
+        </div>
 
-		<div class="browse__search">
-			<input type="text" id="service-search" placeholder="Search services…" autocomplete="off" />
-		</div>
+        <div class="browse__search">
+            <input type="text" id="service-search" placeholder="Search services…" autocomplete="off" />
+        </div>
 
-		<div class="browse__grid">
-			{
-				Object.entries(serviceData).map(([slug, service]) => (
-					<a class="browse__card" href={`/services/${slug}`} data-name={service.name.toLowerCase()}>
-						<img src={service.image} alt={service.name} width="320" height="220" loading="lazy" />
-						<div class="browse__card-body">
-							<span class="eyebrow">{service.category}</span>
-							<h3>{service.name}</h3>
-							<span class="browse__price">{service.price60} / 60 min</span>
-						</div>
-					</a>
-				))
-			}
-		</div>
+        <div class="browse__grid">
+            {
+                Object.entries(serviceData || {}).map(([slug, service]) => (
+                    <a class="browse__card" href={`/ourservice/${slug}`} data-name={service.name.toLowerCase()}>
+                        <img src={service.image} alt={service.name} width="320" height="220" loading="lazy" />
+                        <div class="browse__card-body">
+                            <span class="eyebrow">{service.category}</span>
+                            <h3>{service.name}</h3>
+                            {/* <span class="browse__price">
+                                {service.price60.includes("min") ? service.price60 : `${service.price60} / 60 min`}
+                            </span> */}
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
 
-		<p id="no-results" class="browse__no-results" hidden>No services matched your search.</p>
-	</div>
+        <p id="no-results" class="browse__no-results" hidden>No services matched your search.</p>
+    </div>
 </section>
 
 <style>
-	.browse {
-		padding-block: var(--space-2xl);
-	}
+    .browse {
+        padding-block: var(--space-2xl);
+    }
 
-	.browse__search {
-		display: flex;
-		justify-content: center;
-		margin: var(--space-lg) 0;
-	}
+    .browse__search {
+        display: flex;
+        justify-content: center;
+        margin: var(--space-lg) 0;
+    }
 
-	.browse__search input {
-		max-width: 420px;
-	}
+    .browse__search input {
+        max-width: 420px;
+    }
 
-	.browse__grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-		gap: var(--space-md);
-	}
+    .browse__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: var(--space-md);
+    }
 
-	.browse__card {
-		display: block;
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-md);
-		overflow: hidden;
-		transition: transform 0.35s var(--ease-soft), border-color 0.35s ease;
-	}
+    .browse__card {
+        display: block;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        transition: transform 0.35s var(--ease-soft), border-color 0.35s ease;
+    }
 
-	.browse__card:hover {
-		transform: translateY(-6px);
-		border-color: var(--color-border-strong);
-	}
+    .browse__card:hover {
+        transform: translateY(-6px);
+        border-color: var(--color-border-strong);
+    }
 
-	.browse__card img {
-		width: 100%;
-		height: 180px;
-		object-fit: cover;
-	}
+    .browse__card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+    }
 
-	.browse__card-body {
-		padding: var(--space-sm) var(--space-md) var(--space-md);
-	}
+    .browse__card-body {
+        padding: var(--space-sm) var(--space-md) var(--space-md);
+    }
 
-	.browse__card-body h3 {
-		font-size: var(--font-size-lg);
-		margin: 0.4rem 0 0.6rem;
-	}
+    .browse__card-body h3 {
+        font-size: var(--font-size-lg);
+        margin: 0.4rem 0 0.6rem;
+    }
 
-	.browse__price {
-		font-size: 0.85rem;
-		font-weight: 600;
-		color: var(--color-accent-soft);
-	}
+    .browse__price {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-accent-soft);
+    }
 
-	.browse__no-results {
-		text-align: center;
-		margin-top: var(--space-md);
-		font-family: var(--font-display);
-		font-style: italic;
-		color: var(--color-text-muted);
-	}
+    .browse__no-results {
+        text-align: center;
+        margin-top: var(--space-md);
+        font-family: var(--font-display);
+        font-style: italic;
+        color: var(--color-text-muted);
+    }
 
-	.browse__card[hidden] {
-		display: none;
-	}
+    .browse__card[hidden] {
+        display: none;
+    }
 </style>
 
 <script>
-	function initServiceSearch() {
-		const input = document.getElementById("service-search") as HTMLInputElement | null;
-		const cards = document.querySelectorAll<HTMLElement>(".browse__card");
-		const noResults = document.getElementById("no-results");
-		if (!input) return;
+    function initServiceSearch() {
+        const input = document.getElementById("service-search") as HTMLInputElement | null;
+        const cards = document.querySelectorAll<HTMLElement>(".browse__card");
+        const noResults = document.getElementById("no-results");
+        if (!input) return;
 
-		input.addEventListener("input", () => {
-			const query = input.value.toLowerCase().trim();
-			let matches = 0;
-			cards.forEach((card) => {
-				const name = card.dataset.name ?? "";
-				const isMatch = name.includes(query);
-				card.toggleAttribute("hidden", !isMatch);
-				if (isMatch) matches++;
-			});
-			noResults?.toggleAttribute("hidden", !(matches === 0 && query !== ""));
-		});
-	}
-	initServiceSearch();
-	document.addEventListener("astro:page-load", initServiceSearch);
+        input.addEventListener("input", () => {
+            const query = input.value.toLowerCase().trim();
+            let matches = 0;
+            cards.forEach((card) => {
+                const name = card.dataset.name ?? "";
+                const isMatch = name.includes(query);
+                card.toggleAttribute("hidden", !isMatch);
+                if (isMatch) matches++;
+            });
+            noResults?.toggleAttribute("hidden", !(matches === 0 && query !== ""));
+        });
+    }
+    initServiceSearch();
+    document.addEventListener("astro:page-load", initServiceSearch);
 </script>

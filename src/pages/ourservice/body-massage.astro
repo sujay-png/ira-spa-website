@@ -1,0 +1,232 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import { bodyMassageTreatments } from "../../data/bodymassage";
+
+const treatments = bodyMassageTreatments;
+---
+
+<Layout
+    title="Body Massage | Ira Spa Rituals"
+    description="Explore our full range of body massage therapies — Swedish, Deep Tissue, Aroma, Balinese, Ira Signature and Tandem."
+    image="/images/spa-salon.jpg"
+>
+    <section class="page-banner" style={`background-image: url('/images/spa-salon.jpg');`}>
+        <div class="container">
+            <span class="eyebrow">Relaxation &amp; Wellness</span>
+            <h1>Body Massage</h1>
+            <p>
+                A relaxing full-body massage designed to release tension, ease sore
+                muscles and restore balance to a tired body.
+            </p>
+        </div>
+    </section>
+
+    <section class="treatments">
+        <div class="container">
+            {treatments.map((treatment, i) => (
+                <div class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`} id={treatment.slug}>
+                    <div class="treatment-image">
+                        <img src={treatment.image} alt={treatment.name} loading="lazy" />
+                    </div>
+                    <div class="treatment-content">
+                        <span class="eyebrow">{treatment.category}</span>
+                        <h2>{treatment.name}</h2>
+                        <p class="description">{treatment.description}</p>
+
+                        <div class="divider"></div>
+
+                        <div class="price-row">
+                            {treatment.prices.map((p) => (
+                                <div class="price-col">
+                                    <span class="price-label">{p.label}</span>
+                                    <span class="price-value">{p.price}</span>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <a class="book-btn" href={`/book?service=${treatment.slug}`}>
+                            Book This Ritual
+                        </a>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <Footer />
+</Layout>
+
+<style define:vars={{}}>
+    :root {
+        --bm-bg: #0a0a0a;
+        --bm-gold: #d4af5a;
+        --bm-text: #f5f1e8;
+        --bm-text-muted: rgba(245, 241, 232, 0.65);
+    }
+
+    .page-banner {
+        background-color: var(--bm-bg);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding: 100px 0;
+    }
+
+    .page-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.75);
+    }
+
+    .page-banner .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .page-banner h1 {
+        color: var(--bm-text);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 3rem;
+        margin: 12px 0;
+    }
+
+    .page-banner p {
+        color: var(--bm-text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .treatments {
+        background: var(--bm-bg);
+        padding: 80px 0;
+    }
+
+    .treatment-row {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        padding: 60px 0;
+        border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+    }
+
+    .treatment-row:last-child {
+        border-bottom: none;
+    }
+
+    .treatment-row.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .treatment-image {
+        flex: 0 0 42%;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .treatment-image img {
+        width: 100%;
+        height: 420px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .treatment-content {
+        flex: 1;
+    }
+
+    .eyebrow {
+        display: block;
+        color: var(--bm-gold);
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+    }
+
+    .treatment-content h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        color: var(--bm-text);
+        font-size: 2.4rem;
+        margin: 0 0 20px;
+    }
+
+    .description {
+        color: var(--bm-text-muted);
+        line-height: 1.7;
+        margin-bottom: 24px;
+        max-width: 520px;
+    }
+
+    .divider {
+        height: 1px;
+        background: rgba(245, 241, 232, 0.15);
+        margin: 24px 0;
+        max-width: 520px;
+    }
+
+    .price-row {
+        display: flex;
+        gap: 48px;
+    }
+
+    .price-col {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .price-label {
+        color: var(--bm-gold);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .price-value {
+        color: var(--bm-text);
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.5rem;
+    }
+
+    .book-btn {
+        display: inline-block;
+        background: var(--bm-gold);
+        color: #1a1a1a;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 16px 32px;
+        border-radius: 4px;
+        transition: opacity 0.2s ease;
+    }
+
+    .book-btn:hover {
+        opacity: 0.9;
+    }
+
+    @media (max-width: 900px) {
+        .treatment-row,
+        .treatment-row.reverse {
+            flex-direction: column;
+        }
+
+        .treatment-image {
+            flex: none;
+            width: 100%;
+        }
+
+        .price-row {
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+    }
+</style>

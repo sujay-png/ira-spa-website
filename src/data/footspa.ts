@@ -1,0 +1,42 @@
+export const footSpaTreatments = [
+    {
+        slug: "classic-paraffin-wax-pedicure",
+        name: "Classic Paraffin Wax Pedicure",
+        subtitle: "Melon & Litchi",
+        category: "Foot Care",
+        image: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSgy9eS8MQDXTT4ob-M8I2e_Qi8nRGXqOlPd4DiFgkNLAGiF6uULBO91XYdfZPVthyk-E-0JBrZH3dJHvc",
+        prices: [{ label: "45 min", price: "₹800" }],
+    },
+    {
+        slug: "anti-oxidant-pedicure",
+        name: "Anti-Oxidant Pedicure",
+        subtitle: "Tangy Lemon",
+        category: "Foot Care",
+        image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSvg-9pbGjSn_X2-wq9fYg4UjO5PMXox_YxDMRO_9PpJMlFicA-VwRPap4PpgKt7oHeJ3Sv57kx9sVzVz8",
+        prices: [{ label: "60 min", price: "₹800" }],
+    },
+    {
+        slug: "moisturizing-exotic-pedicure",
+        name: "Moisturizing Exotic Pedicure",
+        subtitle: "Berry",
+        category: "Foot Care",
+        image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRClPzvJ4Fa3wbaLlAJMS0lniFW5UK7lqb0kheylYvS9UHjzTPK151UVXmfpEFcsa-YWlStxw5ARWumUAw",
+        prices: [{ label: "60 min", price: "₹800" }],
+    },
+    {
+        slug: "brightening-de-tan-pedicure",
+        name: "Brightening De-Tan Pedicure",
+        subtitle: "Sheen",
+        category: "Foot Care",
+        image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQj80WU9zEbeqn2gVsF1klzBEU0ZyjaArIf7328H2kLnh69BZ7PHU_10rU_8sCNJ7PwfB8UWj99hKvBZQQ",
+        prices: [{ label: "60 min", price: "₹1,200" }],
+    },
+    {
+        slug: "de-stress-refreshment",
+        name: "De-Stress Refreshment",
+        subtitle: "Mint",
+        category: "Foot Care",
+        image: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTMTtOEyFEn64p1Dm5WzYwAOy0hKxgQd9js0upDoLl5J97ITfaf3miYjYHV-zebxlixgQziPdhcND-lq88",
+        prices: [{ label: "60 min", price: "₹1,000" }],
+    },
+];
