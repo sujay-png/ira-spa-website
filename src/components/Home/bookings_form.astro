@@ -4,7 +4,7 @@
 
 <section class="booking-bar">
 	<div class="container">
-		<form class="booking-pill">
+		<form class="booking-pill" id="home-booking-form">
 			
 			<div class="pill-section">
 				<label for="pill-name">Full Name</label>
@@ -56,11 +56,29 @@
 				<input type="date" id="pill-date" name="date" required />
 			</div>
 
-			<button type="button" class="pill-btn" onclick="window.location.href='/BookAnAppointment'">
+			<div class="pill-divider"></div>
+
+			<div class="pill-section">
+				<label for="pill-time">Time</label>
+				<div class="select-wrapper">
+					<select id="pill-time" name="time" required>
+						<option value="" disabled selected>Select time</option>
+						<option value="10:00">10:00 AM</option>
+						<option value="11:00">11:00 AM</option>
+						<option value="12:00">12:00 PM</option>
+						<option value="14:00">2:00 PM</option>
+						<option value="16:00">4:00 PM</option>
+					</select>
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+				</div>
+			</div>
+
+			<button type="submit" class="pill-btn" id="home-submit-btn">
 				Reserve
 			</button>
 			
 		</form>
+		<p id="home-form-message" style="display: none; text-align: center; width: 100%; margin-top: 1rem; color: #dfb14a; font-weight: bold; font-size: 0.9rem;"></p>
 	</div>
 </section>
 
@@ -209,3 +227,54 @@
 		}
 	}
 </style>
+
+<script>
+    const form = document.getElementById('home-booking-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('home-submit-btn') as HTMLButtonElement;
+    const formMessage = document.getElementById('home-form-message') as HTMLParagraphElement;
+    
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Set loading state
+            submitBtn.textContent = 'Reserving...';
+            submitBtn.disabled = true;
+            formMessage.style.display = 'none';
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            try {
+                const response = await fetch('/api/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.error || 'Failed to submit booking');
+                }
+
+                // Success State
+                form.reset();
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#dfb14a';
+                formMessage.textContent = 'Booking Successful! We will contact you shortly.';
+
+            } catch (error: any) {
+                // Error State
+                console.error('Submission Error:', error.message);
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#ff6b6b';
+                formMessage.textContent = 'Something went wrong. Please try again.';
+            } finally {
+                // Reset Button UI
+                submitBtn.textContent = 'Reserve';
+                submitBtn.disabled = false;
+            }
+        });
+    }
+</script>

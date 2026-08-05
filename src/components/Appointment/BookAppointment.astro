@@ -159,8 +159,6 @@
 </style>
 
 <script>
-    import { supabase } from '../../lib/supabase';
-
     const form = document.getElementById('appointment-form') as HTMLFormElement;
     const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
     const formError = document.getElementById('form-error') as HTMLParagraphElement;
@@ -181,53 +179,25 @@
             e.preventDefault();
             
             // Set loading state
-            submitBtn.textContent = 'Booking...';
+            submitBtn.textContent = 'Reserving...';
             submitBtn.disabled = true;
             formError.style.display = 'none';
 
             const formData = new FormData(form);
-            
-            const name = formData.get('name') as string;
-            const phone = formData.get('phone') as string;
-            const location = formData.get('location') as string;
-            const date = formData.get('date') as string;
-            const time = formData.get('time') as string;
-            const services = formData.get('services') as string;
-
-            const start_time = new Date(`${date}T${time}:00`).toISOString();
-            const STORE_ID = 1;
+            const data = Object.fromEntries(formData.entries());
 
             try {
-                // 1. Upsert Customer Data
-                const { error: customerError } = await supabase
-                    .from('Customers')
-                    .upsert(
-                        { 
-                            customer_name: name, 
-                            customer_phone: phone,
-                            business_ref: STORE_ID
-                        }, 
-                        { onConflict: 'customer_phone' }
-                    );
+                const response = await fetch('/api/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
 
-                if (customerError) throw new Error('Failed to save customer data.');
+                const result = await response.json();
 
-                // 2. Insert Booking Data
-                const { error: bookingError } = await supabase
-                    .from('Booking')
-                    .insert([{
-                        customer_ref: phone, 
-                        location: location,  
-                        services: services,
-                        start_time: start_time,
-                        available_slot: start_time,
-                        confirmed_time: time,
-                        booking_status: 'Pending',
-                        duration: 60,
-                        business_ref: STORE_ID
-                    }]);
-
-                if (bookingError) throw new Error('Failed to create booking.');
+                if (!response.ok || !result.success) {
+                    throw new Error(result.error || 'Failed to submit booking');
+                }
 
                 // Success State: Show Modal & Reset Form
                 form.reset();

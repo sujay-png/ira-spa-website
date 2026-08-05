@@ -66,12 +66,41 @@ const locations = [
 					</select>
 				</div>
 
+				<div class="form-row">
+					<div class="form-group">
+						<label for="c-date">Appointment Date</label>
+						<input type="date" id="c-date" name="date" required />
+					</div>
+					<div class="form-group">
+						<label for="c-time">Preferred Time</label>
+						<select id="c-time" name="time" required>
+							<option value="" disabled selected hidden>Select a time slot</option>
+							<option value="10:00">10:00 AM</option>
+							<option value="11:00">11:00 AM</option>
+							<option value="12:00">12:00 PM</option>
+							<option value="14:00">2:00 PM</option>
+							<option value="16:00">4:00 PM</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="c-service">Select Service</label>
+					<select id="c-service" name="service" required>
+						<option value="" disabled selected hidden>Choose your experience</option>
+						<option value="body-massage">Body Massage</option>
+						<option value="herbal-therapy">Herbal Therapy</option>
+						<option value="body-polishing">Body Polishing</option>
+						<option value="foot-spa">Foot Spa</option>
+					</select>
+				</div>
+
 				<div class="form-group">
 					<label for="c-message">Message</label>
 					<textarea id="c-message" name="message" rows="4" placeholder="How may we assist your journey?"></textarea>
 				</div>
 
-				<button type="submit" class="btn-primary">Send Inquiry <span>&rarr;</span></button>
+				<button type="submit" class="btn-primary" id="contact-submit-btn">Send Inquiry <span>&rarr;</span></button>
 				<p class="form-note" id="form-note" hidden>Thank you — our concierge team will be in touch shortly.</p>
 			</form>
 
@@ -294,10 +323,51 @@ const locations = [
 		const note = document.getElementById("form-note");
 		if (!form) return;
 
-		form.addEventListener("submit", (e) => {
+		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
-			note?.removeAttribute("hidden");
-			form.reset();
+			
+			const submitBtn = document.getElementById("contact-submit-btn") as HTMLButtonElement;
+			if (submitBtn) {
+			    submitBtn.innerHTML = 'Reserving...';
+			    submitBtn.disabled = true;
+			}
+			if (note) note.hidden = true;
+
+			const formData = new FormData(form);
+			const data = Object.fromEntries(formData.entries());
+
+			try {
+				const response = await fetch('/api/book', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(data)
+				});
+
+				const result = await response.json();
+
+				if (!response.ok || !result.success) {
+					throw new Error(result.error || 'Failed to submit inquiry');
+				}
+
+				form.reset();
+				if (note) {
+					note.removeAttribute("hidden");
+					note.style.color = "var(--color-accent-soft)";
+					note.textContent = "Thank you — our concierge team will be in touch shortly.";
+				}
+			} catch (error: any) {
+				console.error('Submission Error:', error.message);
+				if (note) {
+					note.removeAttribute("hidden");
+					note.style.color = "#ff6b6b";
+					note.textContent = "Something went wrong. Please try again.";
+				}
+			} finally {
+				if (submitBtn) {
+					submitBtn.innerHTML = 'Send Inquiry <span>&rarr;</span>';
+					submitBtn.disabled = false;
+				}
+			}
 		});
 	}
 	initInquiryForm();
