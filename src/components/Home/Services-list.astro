@@ -1,34 +1,36 @@
 ---
 const services = [
 	{
-		title: "Deep Tissue Reset",
+		title: "DEEP TISSUE THERAPY",
 		description:
 			"Intense therapy designed to release chronic muscle tension and promote long-term recovery.",
-		price: "₹4,000 / 90 min",
-		image:
-			"/src/images/homepage_image.jpg",
+		price: "2750/4000/5500",
+		minutes: "60/90/120 min",
+		image:"/images/deep-tissue.jpg",
 		featured: true,
 	},
 	{
 		title: "Aromatherapy Ritual",
 		description: "",
-		price: "₹3,700 / 60 min",
+		price: "2400/3600/4800",
+		minutes: "60/90/120",
 		image: "/images/serviceimg2.jpg",
 		featured: false,
 	},
 	{
-		title: "Reflexology",
+		title: "Foot Reflexology",
 		description: "",
-		price: "₹2,400 / 45 min",
+		price: "1200",
+		minutes: "30 min",
 		image: "/images/image1.jpg",
 		featured: false,
 	},
 	{
-		title: "Facial Glow",
+		title: "Herbal Gold",
 		description: "",
-		price: "₹2,750 / 50 min",
-		image:
-			"/src/images/homepage_image1.jpg",
+		price: "₹3500",
+		minutes: "60 min",
+		image:"/images/herbal-gold.jpg",
 		featured: false,
 	},
 ];
@@ -52,6 +54,7 @@ const services = [
 					<h3>{services[0].title}</h3>
 					<p class="description">{services[0].description}</p>
 					<p class="price">{services[0].price}</p>
+					<p class="minutes">{services[0].minutes}</p>
 				</div>
 			</div>
 
@@ -61,6 +64,7 @@ const services = [
 				<div class="card-info">
 					<h3>{services[1].title}</h3>
 					<p class="price">{services[1].price}</p>
+					<p class="minutes">{services[1].minutes}</p>
 				</div>
 			</div>
 
@@ -71,6 +75,7 @@ const services = [
 					<div class="card-info">
 						<h3>{services[2].title}</h3>
 						<p class="price">{services[2].price}</p>
+						<p class="minutes">{services[2].minutes}</p>
 					</div>
 				</div>
 
@@ -80,6 +85,7 @@ const services = [
 					<div class="card-info">
 						<h3>{services[3].title}</h3>
 						<p class="price">{services[3].price}</p>
+						<p class="minutes">{services[3].minutes}</p>
 					</div>
 				</div>
 			</div>

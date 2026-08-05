@@ -186,6 +186,21 @@
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
 
+            // -------------------------------------------------------------
+            // PRINT STATEMENT / LOGGING
+            // -------------------------------------------------------------
+            console.log('📌 Form Submission Data:', {
+                name,
+                phone,
+                location,
+                date,
+                time,
+                services,
+                start_time,
+                STORE_ID
+            });
+            // -------------------------------------------------------------
+
             try {
                 const response = await fetch('/api/book', {
                     method: 'POST',
@@ -205,9 +220,9 @@
 
             } catch (error: any) {
                 // Error State: Show inline error message
-                console.error('Submission Error:', error.message);
+                console.error('❌ Submission Error Details:', error);
                 formError.style.display = 'block';
-                formError.textContent = 'Something went wrong. Please try again.';
+                formError.textContent = error.message || 'Something went wrong. Please try again.';
             } finally {
                 // Reset Button UI
                 submitBtn.textContent = 'Reserve My Session';
