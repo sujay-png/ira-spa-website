@@ -197,6 +197,21 @@
             const start_time = new Date(`${date}T${time}:00`).toISOString();
             const STORE_ID = 1;
 
+            // -------------------------------------------------------------
+            // PRINT STATEMENT / LOGGING
+            // -------------------------------------------------------------
+            console.log('📌 Form Submission Data:', {
+                name,
+                phone,
+                location,
+                date,
+                time,
+                services,
+                start_time,
+                STORE_ID
+            });
+            // -------------------------------------------------------------
+
             try {
                 // 1. Upsert Customer Data
                 const { error: customerError } = await supabase
@@ -210,13 +225,13 @@
                         { onConflict: 'customer_phone' }
                     );
 
-                if (customerError) throw new Error('Failed to save customer data.');
+                if (customerError) throw new Error(`Customer Error: ${customerError.message}`);
 
                 // 2. Insert Booking Data
                 const { error: bookingError } = await supabase
                     .from('Booking')
                     .insert([{
-                        customer_ref: phone, 
+                        cust_phno: phone, 
                         location: location,  
                         services: services,
                         start_time: start_time,
@@ -227,7 +242,7 @@
                         business_ref: STORE_ID
                     }]);
 
-                if (bookingError) throw new Error('Failed to create booking.');
+                if (bookingError) throw new Error(`Booking Error: ${bookingError.message}`);
 
                 // Success State: Show Modal & Reset Form
                 form.reset();
@@ -235,9 +250,9 @@
 
             } catch (error: any) {
                 // Error State: Show inline error message
-                console.error('Submission Error:', error.message);
+                console.error('❌ Submission Error Details:', error);
                 formError.style.display = 'block';
-                formError.textContent = 'Something went wrong. Please try again.';
+                formError.textContent = error.message || 'Something went wrong. Please try again.';
             } finally {
                 // Reset Button UI
                 submitBtn.textContent = 'Reserve My Session';
