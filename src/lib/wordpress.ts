@@ -110,8 +110,53 @@ export async function getAllPosts(): Promise<WPPost[]> {
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-	const allPosts = await getAllPosts();
-	return allPosts.find(post => post.slug === slug) || null;
+	const query = `
+		query SinglePost($slug: ID!) {
+			post(id: $slug, idType: SLUG) {
+				databaseId
+				slug
+				date
+				modified
+				title
+				excerpt
+				content
+				author { node { name } }
+				featuredImage { node { sourceUrl altText } }
+				categories { nodes { databaseId name slug } }
+			}
+		}
+	`;
+
+	const data = await fetchGraphQL(query, { slug });
+	if (!data?.post) return null;
+
+	const node = data.post;
+	
+	// Map the single GraphQL response back to your REST shape
+	return {
+		id: node.databaseId,
+		slug: node.slug,
+		date: node.date,
+		modified: node.modified,
+		title: { rendered: node.title },
+		excerpt: { rendered: node.excerpt },
+		content: { rendered: node.content },
+		_embedded: {
+			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
+			"wp:featuredmedia": [{
+				source_url: node.featuredImage?.node?.sourceUrl || FALLBACK_IMAGE,
+				alt_text: node.featuredImage?.node?.altText || node.title
+			}],
+			"wp:term": [
+				node.categories?.nodes?.map((cat: any) => ({
+					id: cat.databaseId,
+					name: cat.name,
+					slug: cat.slug,
+					taxonomy: "category"
+				})) || []
+			]
+		}
+	};
 }
 
 export async function getCategories(): Promise<WPTerm[]> {
