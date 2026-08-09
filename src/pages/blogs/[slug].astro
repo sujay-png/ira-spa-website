@@ -12,6 +12,8 @@ import {
 	stripHtml,
 } from "../../lib/wordpress";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 	const posts = await getAllPosts();
 	return posts.map((post) => ({

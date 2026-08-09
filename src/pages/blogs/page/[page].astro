@@ -10,6 +10,8 @@ import {
 	stripHtml
 } from "../../../lib/wordpress";
 
+export const prerender = true;
+
 export async function getStaticPaths() {
 	const allPosts = await getAllPosts();
 	const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
