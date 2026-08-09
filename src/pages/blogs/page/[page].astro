@@ -10,6 +10,8 @@ import {
 	stripHtml
 } from "../../../lib/wordpress";
 
+export const prerender = true;
+
 // 1. Grab the page number dynamically from the URL
 const { page } = Astro.params;
 const pageNum = Number(page);

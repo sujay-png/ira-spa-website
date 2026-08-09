@@ -13,6 +13,8 @@ import {
 	stripHtml,
 } from "../../lib/wordpress";
 
+export const prerender = true;
+
 // 1. Grab the slug directly from the URL (No getStaticPaths needed in SSR)
 const { slug } = Astro.params;
 
