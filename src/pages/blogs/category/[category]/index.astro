@@ -1,8 +1,10 @@
 ---
 import Layout from "../../../../layouts/Layout.astro";
 import Footer from "../../../../components/Footer.astro";
-import PostGrid from "../../../../components/Blogs/PostGrid.astro";
+import PostGrid from "../../../../components/blogs/PostGrid.astro";
 import { getAllPosts, getCategories, getPostCategories, POSTS_PER_PAGE } from "../../../../lib/wordpress";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
 	const categories = await getCategories();
