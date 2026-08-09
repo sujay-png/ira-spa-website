@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import ServiceDescription from "../../components/services/service_description.astro";
 import Footer from "../../components/Footer.astro";
 import { serviceData } from "../../data/services";
-
+export const prerender = true;
 export function getStaticPaths() {
     // Optional safety check to prevent passing undefined to Object.keys
     if (!serviceData || typeof serviceData !== "object") {
