@@ -5,6 +5,8 @@ import JournalHero from "../../components/blogs/JournalHero.astro";
 import PostGrid from "../../components/blogs/PostGrid.astro";
 import { getAllPosts, getCategories, POSTS_PER_PAGE } from "../../lib/wordpress";
 
+Astro.response.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
+
 const allPosts = await getAllPosts();
 const categories = await getCategories();
 
