@@ -10,24 +10,27 @@ import {
 	stripHtml
 } from "../../../lib/wordpress";
 
-export const prerender = true;
-
-export async function getStaticPaths() {
-	const allPosts = await getAllPosts();
-	const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
-
-	// Page 1 is served by /blogs/index.astro — only generate 2..N here.
-	return Array.from({ length: Math.max(0, totalPages - 1) }, (_, i) => ({
-		params: { page: String(i + 2) },
-	}));
-}
-
+// 1. Grab the page number dynamically from the URL
 const { page } = Astro.params;
 const pageNum = Number(page);
+
+// 2. Handle invalid page numbers gracefully
+if (isNaN(pageNum) || pageNum < 2) {
+	return Astro.redirect('/blogs');
+}
 
 const allPosts = await getAllPosts();
 const categories = await getCategories();
 const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
+
+// 3. If they try to go to a page that doesn't exist (like page 99), 404 them
+if (pageNum > totalPages) {
+	return new Response(null, {
+		status: 404,
+		statusText: 'Not found'
+	});
+}
+
 const pagePosts = allPosts.slice((pageNum - 1) * POSTS_PER_PAGE, pageNum * POSTS_PER_PAGE);
 
 // Helper for clean excerpts

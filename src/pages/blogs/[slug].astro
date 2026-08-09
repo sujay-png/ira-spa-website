@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import PostCard from "../../components/Blogs/PostCard.astro";
 import {
+	getPostBySlug,
 	getAllPosts,
 	getFeaturedImage,
 	getAuthorName,
@@ -12,17 +13,22 @@ import {
 	stripHtml,
 } from "../../lib/wordpress";
 
-export const prerender = true;
+// 1. Grab the slug directly from the URL (No getStaticPaths needed in SSR)
+const { slug } = Astro.params;
 
-export async function getStaticPaths() {
-	const posts = await getAllPosts();
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: { post, allPosts: posts },
-	}));
+// 2. Fetch the exact post dynamically
+const post = slug ? await getPostBySlug(slug) : null;
+
+// 3. If the post doesn't exist, safely trigger a 404
+if (!post) {
+	return new Response(null, {
+		status: 404,
+		statusText: 'Not found'
+	});
 }
 
-const { post, allPosts } = Astro.props;
+// 4. Fetch all posts to generate the "Related Reading" section
+const allPosts = await getAllPosts();
 
 const image = getFeaturedImage(post);
 const categories = getPostCategories(post);
