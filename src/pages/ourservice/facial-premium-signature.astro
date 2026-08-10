@@ -15,7 +15,7 @@ const groups = facialPremiumSignatureGroups;
 >
     <section class="page-banner" style={`background-image: url('/images/serviceimage1.webp');`}>
         <div class="container">
-            <span class="eyebrow">Skin Care</span>
+        
             <h1>Facial-Premium And Signature</h1>
             <p>
                 Let our well trained aestheticians take over and grant you a
@@ -40,9 +40,7 @@ const groups = facialPremiumSignatureGroups;
                             <div class="treatment-content">
                                 <span class="eyebrow">{treatment.category}</span>
                                 <h2>{treatment.name}</h2>
-                                {treatment.subtitle && (
-                                    <p class="treatment-subtitle">{treatment.subtitle}</p>
-                                )}
+                               
                                 {treatment.description && (
                                     <p class="description">{treatment.description}</p>
                                 )}
@@ -61,7 +59,7 @@ const groups = facialPremiumSignatureGroups;
                                 <div class="divider"></div>
 
                                 <a class="book-btn" href={`/book?service=${treatment.slug}`}>
-                                    Book This Ritual
+                                    Book This Service
                                 </a>
                             </div>
                         </div>

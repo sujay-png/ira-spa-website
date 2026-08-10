@@ -6,7 +6,7 @@ import { serviceData } from "../../data/services";
     <div class="container">
         <div class="section-heading">
             <span class="eyebrow">Browse By Category</span>
-            <h2>Find Your Ritual</h2>
+            <h2>Explore Ira Spa Services</h2>
         </div>
 
         <div class="browse__search">
@@ -19,7 +19,7 @@ import { serviceData } from "../../data/services";
                     <a class="browse__card" href={`/ourservice/${slug}`} data-name={service.name.toLowerCase()}>
                         <img src={service.image} alt={service.name} width="320" height="220" loading="lazy" />
                         <div class="browse__card-body">
-                            <span class="eyebrow">{service.category}</span>
+                            
                             <h3>{service.name}</h3>
                             {/* <span class="browse__price">
                                 {service.price60.includes("min") ? service.price60 : `${service.price60} / 60 min`}

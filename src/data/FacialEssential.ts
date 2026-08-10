@@ -5,14 +5,14 @@ export const facialEssentialGroups = [
             {
                 slug: "watermelon-cleanup",
                 name: "Watermelon",
-                category: "Clean-Ups",
+               
                 image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcTNgMhrtGghE_pvGjgDOiHjsh1ooQdbcaoHyJQT7ratgFs2VWgF5q_nmTY2CeE-d7-5lOghdnT6XtutecA",
                 prices: [{ label: "30 min", price: "₹700" }],
             },
             {
                 slug: "strawberry-cleanup",
                 name: "Strawberry",
-                category: "Clean-Ups",
+               
                 image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSZLtePnsjhiue19az_cfzeJKGpZouLMMkTZgOczDta4LIaroP7S_uoqDaxMt9Qp2BnGjRMwPlZGhBzzNc",
                 prices: [{ label: "30 min", price: "₹800" }],
             },

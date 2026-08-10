@@ -6,39 +6,141 @@ const locations = [
 	{
 		name: "Mangalore",
 		address: "#301, 3rd Floor, Lotus Paradise Elite, Opp AJ Grand Hotel, Kodialbail, Mangalore 575003",
+		locality: "Mangalore",
+		region: "Karnataka",
+		postalCode: "575003",
 		phone: "+91 89716 67199",
 		tel: "+918971667199",
 		hours: "Mon – Sun: 9:00 AM – 9:30 PM",
+		mapUrl: "https://www.google.com/maps/dir/?api=1&destination=" ,
+		latitude: "12.8698",
+		longitude: "74.8420",
 	},
 	{
 		name: "Kalaburagi",
 		address: "1st Floor, Tulips Inn by Vkg Hotel, Sedam Rd, Opp. ESIC Hospital, Kalaburagi, Karnataka 585106",
+		locality: "Kalaburagi",
+		region: "Karnataka",
+		postalCode: "585106",
 		phone: "+91 7022865999",
 		tel: "+917022865999",
 		hours: "Mon – Sun: 9:00 AM – 9:30 PM",
+		mapUrl: "https://www.google.com/maps/dir/?api=1&destination=",
+		latitude: "17.3297",
+		longitude: "76.8343",
 	},
 ];
+
+const pageTitle = "Contact Us | Book a Spa Appointment in Mangalore & Kalaburagi – Ira Spa";
+const pageDescription =
+	"Contact Ira Spa to book massages, facials, and wellness therapies at our Mangalore or Kalaburagi locations. Call, message, or reserve your appointment online today.";
+const canonicalUrl = "https://www.theiraspa.com/contact"; // update to the real production URL
+
+// JSON-LD structured data for local SEO (two DaySpa locations)
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": locations.map((loc) => ({
+		"@type": "DaySpa",
+		"name": `Ira Spa – ${loc.name}`,
+		"image": "https://www.theiraspa.com/images/spa-reception.jpg",
+		"telephone": loc.tel,
+		"priceRange": "₹₹",
+		"address": {
+			"@type": "PostalAddress",
+			"streetAddress": loc.address,
+			"addressLocality": loc.locality,
+			"addressRegion": loc.region,
+			"postalCode": loc.postalCode,
+			"addressCountry": "IN",
+		},
+		"geo": {
+			"@type": "GeoCoordinates",
+			"latitude": loc.latitude,
+			"longitude": loc.longitude,
+		},
+		"openingHoursSpecification": {
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": [
+				"Monday",
+				"Tuesday",
+				"Wednesday",
+				"Thursday",
+				"Friday",
+				"Saturday",
+				"Sunday",
+			],
+			"opens": "09:00",
+			"closes": "21:30",
+		},
+		"url": canonicalUrl,
+		"sameAs": [
+			"https://www.instagram.com/the_ira_spa/",
+			"https://www.facebook.com/share/1BW2YTGEVW/",
+			"https://www.youtube.com/@IraSpa-n5f",
+		],
+	})),
+};
+
+// Breadcrumb structured data
+const breadcrumbData = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://www.theiraspa.com/",
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Contact Us",
+			"item": canonicalUrl,
+		},
+	],
+};
 ---
 
-<Layout
-	title="Contact Us | Ira Spa Contact"
-	description="Reach the Ira Spa concierge team for bookings, inquiries or feedback. Two locations in Mangalore and Kalaburagi, Karnataka."
->
-	<section class="page-banner" style="background-image: url('/images/spa-reception.jpg');">
+<Layout title={pageTitle} description={pageDescription}>
+	<Fragment slot="head">
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={pageDescription} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content="https://www.theiraspa.com/images/spa-reception.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={pageDescription} />
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+	</Fragment>
+
+	<section
+		class="page-banner"
+		style="background-image: url('/images/spa-reception.jpg');"
+		role="img"
+		aria-label="Ira Spa reception and relaxation area"
+	>
 		<div class="container">
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				
+			</nav>
 			<span class="eyebrow">Private Service</span>
-			<h1>Contact Us</h1>
+			<h1>Contact Ira Spa – Mangalore &amp; Kalaburagi</h1>
 			<p>
 				Step into a world of curated tranquility. Whether you seek to
-				rejuvenate in Mangalore or find balance in Kalaburagi, our 
-				team is ready to tailor your wellness journey.
+				rejuvenate in Mangalore or find balance in Kalaburagi, our
+				team is ready to tailor your wellness journey. Reach out below
+				to book a massage, facial, or spa therapy appointment.
 			</p>
 		</div>
 	</section>
 
 	<section class="concierge">
 		<div class="container concierge__grid">
-			<form class="inquiry-form" id="inquiry-form">
+			<form class="inquiry-form" id="inquiry-form" aria-label="Spa appointment inquiry form">
 				<h2>Submit an Inquiry</h2>
 
 				<div class="form-group">
@@ -75,11 +177,14 @@ const locations = [
 						<label for="c-time">Preferred Time</label>
 						<select id="c-time" name="time" required>
 							<option value="" disabled selected hidden>Select a time slot</option>
-							<option value="10:00">10:00 AM</option>
-							<option value="11:00">11:00 AM</option>
-							<option value="12:00">12:00 PM</option>
-							<option value="14:00">2:00 PM</option>
-							<option value="16:00">4:00 PM</option>
+							<option value="10:00">10:00 AM - 11:00 AM</option>
+							<option value="11:00">11:00 AM - 12:00 PM</option>
+							<option value="12:00">12:00 PM - 1:00 PM</option>
+							<option value="1:00">1:00 PM - 2:00 PM</option>
+							<option value="2:00">2:00 PM - 3:00 PM</option>
+							<option value="3:00">3:00 PM - 4:00 PM</option>
+							<option value="4:00">4:00 PM - 5:00 PM</option>
+							<option value="5:00">5:00 PM - 6:00 PM</option>
 						</select>
 					</div>
 				</div>
@@ -87,11 +192,15 @@ const locations = [
 				<div class="form-group">
 					<label for="c-service">Select Service</label>
 					<select id="c-service" name="service" required>
-						<option value="" disabled selected hidden>Choose your experience</option>
-						<option value="body-massage">Body Massage</option>
-						<option value="herbal-therapy">Herbal Therapy</option>
-						<option value="body-polishing">Body Polishing</option>
-						<option value="foot-spa">Foot Spa</option>
+						<option value="" disabled selected>Select therapy</option>
+						<option value="massage">Body Massage</option>
+						<option value="herbal">Herbal Therapy</option>
+						<option value="polishing">Body Polishing</option>
+						<option value="facial-essentials">Clean-Ups And Facial-Essential</option>
+						<option value="thai">Thai Therapy</option>
+						<option value="quick-massage">Quick Massage</option>
+						<option value="facial-premium">Facial Premium</option>
+						<option value="foot-spa">Foot-Spa</option>
 					</select>
 				</div>
 
@@ -107,27 +216,27 @@ const locations = [
 			<div class="locations">
 				{
 					locations.map((loc) => (
-						<div class="location-card">
-							<h3>{loc.name}</h3>
-							<p class="location-card__address">{loc.address}</p>
-							<a class="location-card__phone" href={`tel:${loc.tel}`}>
+						<div class="location-card" itemscope itemtype="https://schema.org/DaySpa">
+							<h3 itemprop="name">Ira Spa – {loc.name}</h3>
+							<address class="location-card__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<span itemprop="streetAddress">{loc.address}</span>
+							</address>
+							<a class="location-card__phone" href={`tel:${loc.tel}`} itemprop="telephone">
 								{loc.phone}
 							</a>
 							<p class="location-card__hours">
-								<span>{loc.hours} </span>
-								
-									<a type="submit" class="directionbutton"
-									  href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(loc.address)}`}
-          target="_blank"
-          rel="noopener noreferrer">Get Direction </a>
+								<span itemprop="openingHours" content="Mo-Su 09:00-21:30">{loc.hours}</span>
 
-								<span>
-									
-									 </span>
-
-						
+								<a
+									class="directionbutton"
+									href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(loc.address)}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`Get directions to Ira Spa ${loc.name}`}
+								>
+									Get Direction
+								</a>
 							</p>
-
 						</div>
 					))
 				}
@@ -139,9 +248,9 @@ const locations = [
 		<div class="container concierge-quote__row">
 			<blockquote>"In silence, we find the true essence of luxury and the rhythm of the self."</blockquote>
 			<div class="socials">
-				<a href="https://www.instagram.com/the_ira_spa/" target="_blank" rel="noopener noreferrer">Instagram</a>
-				<a href="https://www.facebook.com/share/1BW2YTGEVW/" target="_blank" rel="noopener noreferrer">Facebook</a>
-				<a href="https://www.youtube.com/@IraSpa-n5f" target="_blank" rel="noopener noreferrer">YouTube</a>
+				<a href="https://www.instagram.com/the_ira_spa/" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on Instagram">Instagram</a>
+				<a href="https://www.facebook.com/share/1BW2YTGEVW/" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on Facebook">Facebook</a>
+				<a href="https://www.youtube.com/@IraSpa-n5f" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on YouTube">YouTube</a>
 			</div>
 		</div>
 	</section>
@@ -150,6 +259,19 @@ const locations = [
 </Layout>
 
 <style>
+
+	.breadcrumb {
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: var(--space-sm);
+		opacity: 0.85;
+	}
+
+	.breadcrumb a {
+		color: inherit;
+		text-decoration: underline;
+	}
 
 	.directionbutton{
 		display: inline-flex;
@@ -239,6 +361,7 @@ const locations = [
 	.location-card__address {
 		font-size: 0.9rem;
 		margin-bottom: var(--space-sm);
+		font-style: normal;
 	}
 
 	.location-card__phone {
@@ -325,7 +448,7 @@ const locations = [
 
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
-			
+
 			const submitBtn = document.getElementById("contact-submit-btn") as HTMLButtonElement;
 			if (submitBtn) {
 			    submitBtn.innerHTML = 'Reserving...';

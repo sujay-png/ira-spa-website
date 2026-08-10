@@ -15,7 +15,7 @@ const groups = facialEssentialGroups;
 >
     <section class="page-banner" style={`background-image: url('/images/serviceimage2.webp');`}>
         <div class="container">
-            <span class="eyebrow">Skin Care</span>
+          
             <h1>Clean-Ups And Facial-Essential</h1>
             <p>
                 Let our well trained aestheticians take over and grant you a
@@ -38,14 +38,10 @@ const groups = facialEssentialGroups;
                                 <img src={treatment.image} alt={treatment.name} loading="lazy" />
                             </div>
                             <div class="treatment-content">
-                                <span class="eyebrow">{treatment.category}</span>
+                             
                                 <h2>{treatment.name}</h2>
-                                {treatment.subtitle && (
-                                    <p class="treatment-subtitle">{treatment.subtitle}</p>
-                                )}
-                                {treatment.description && (
-                                    <p class="description">{treatment.description}</p>
-                                )}
+                               
+                              
 
                                 <div class="divider"></div>
 
@@ -61,7 +57,7 @@ const groups = facialEssentialGroups;
                                 <div class="divider"></div>
 
                                 <a class="book-btn" href={`/book?service=${treatment.slug}`}>
-                                    Book This Ritual
+                                    Book This Service
                                 </a>
                             </div>
                         </div>

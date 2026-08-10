@@ -33,10 +33,14 @@
 				<label for="services">Select Service</label>
 				<select id="services" name="services" required>
 					<option value="" disabled selected hidden>Choose your experience</option>
-					<option value="body-massage">Body Massage</option>
-					<option value="herbal-therapy">Herbal Therapy</option>
-					<option value="body-polishing">Body Polishing</option>
-					<option value="foot-spa">Foot Spa</option>
+						<option value="massage">Body Massage</option>
+						<option value="herbal">Herbal Therapy</option>
+						<option value="polishing">Body Polishing</option>
+						<option value="facial-essentials">Clean-Ups And Facial-Essential</option>
+						<option value="thai">Thai Therapy</option>
+						<option value="quick-massage">Quick Massage</option>
+						<option value="facial-premium">Facial Premium </option>
+						<option value="foot-spa">Foot-Spa</option>
 				</select>
 			</div>
 
@@ -44,11 +48,14 @@
 				<label for="time">Preferred Time</label>
 				<select id="time" name="time" required>
 					<option value="" disabled selected hidden>Select a time slot</option>
-					<option value="10:00">10:00 AM</option>
-					<option value="11:00">11:00 AM</option>
-					<option value="12:00">12:00 PM</option>
-					<option value="14:00">2:00 PM</option>
-					<option value="16:00">4:00 PM</option>
+					<option value="10:00">10:00 AM - 11:00 AM</option>
+						<option value="11:00">11:00 AM - 12:00 PM</option>
+						<option value="12:00">12:00 PM - 1:00 PM</option>
+						<option value="1:00">1:00 PM - 2:00 PM</option>
+						<option value="2:00">2:00 PM - 3:00 PM</option>
+						<option value="3:00">3:00 PM - 4:00 PM</option>
+						<option value="4:00">4:00 PM - 5:00 PM</option>
+						<option value="5:00">5:00 PM - 6:00 PM</option>
 				</select>
 			</div>
 
@@ -158,76 +165,3 @@
 	}
 </style>
 
-<script>
-    const form = document.getElementById('appointment-form') as HTMLFormElement;
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const formError = document.getElementById('form-error') as HTMLParagraphElement;
-    
-    // Modal Elements
-    const successModal = document.getElementById('success-modal') as HTMLDivElement;
-    const closeModalBtn = document.getElementById('close-modal') as HTMLButtonElement;
-
-    // Close modal logic
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', () => {
-            successModal.style.display = 'none';
-        });
-    }
-
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Set loading state
-            submitBtn.textContent = 'Reserving...';
-            submitBtn.disabled = true;
-            formError.style.display = 'none';
-
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            // -------------------------------------------------------------
-            // PRINT STATEMENT / LOGGING
-            // -------------------------------------------------------------
-            console.log('📌 Form Submission Data:', {
-                name,
-                phone,
-                location,
-                date,
-                time,
-                services,
-                start_time,
-                STORE_ID
-            });
-            // -------------------------------------------------------------
-
-            try {
-                const response = await fetch('/api/book', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-
-                if (!response.ok || !result.success) {
-                    throw new Error(result.error || 'Failed to submit booking');
-                }
-
-                // Success State: Show Modal & Reset Form
-                form.reset();
-                successModal.style.display = 'flex';
-
-            } catch (error: any) {
-                // Error State: Show inline error message
-                console.error('❌ Submission Error Details:', error);
-                formError.style.display = 'block';
-                formError.textContent = error.message || 'Something went wrong. Please try again.';
-            } finally {
-                // Reset Button UI
-                submitBtn.textContent = 'Reserve My Session';
-                submitBtn.disabled = false;
-            }
-        });
-    }
-</script>

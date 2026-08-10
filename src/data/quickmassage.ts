@@ -21,7 +21,7 @@ export const quickMassageTreatments = [
         name: "Head, Neck & Shoulder",
         category: "Express Rituals",
         description:
-            "Relax, de-stress, revive, and renew the body with perfect massage strokes.",
+            "Relax, de-stress, revive, and renew the body with perfect massage strokes",
         image: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcSAgARiggqL8k_nvr9V48ojSCMYE92cbNT0K12gg-KDrHT_KNU2lb3T7HDbnKJzBYfy-4rlrjUOxNivfaI",
         prices: [{ label: "30 min", price: "₹1,300" }],
     },

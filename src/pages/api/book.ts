@@ -40,7 +40,7 @@ export const POST: APIRoute = async ({ request }) => {
           const { error: bookingError } = await supabase
               .from('Booking')
               .insert([{
-                  customer_ref: phone, 
+                  customer_ref: name, 
                   location: location || '',  
                   services: service || '',
                   start_time: start_time,

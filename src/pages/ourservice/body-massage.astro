@@ -13,7 +13,7 @@ const treatments = bodyMassageTreatments;
 >
     <section class="page-banner" style={`background-image: url('/images/spa-salon.jpg');`}>
         <div class="container">
-            <span class="eyebrow">Relaxation &amp; Wellness</span>
+          
             <h1>Body Massage</h1>
             <p>
                 A relaxing full-body massage designed to release tension, ease sore
@@ -30,7 +30,7 @@ const treatments = bodyMassageTreatments;
                         <img src={treatment.image} alt={treatment.name} loading="lazy" />
                     </div>
                     <div class="treatment-content">
-                        <span class="eyebrow">{treatment.category}</span>
+                     
                         <h2>{treatment.name}</h2>
                         <p class="description">{treatment.description}</p>
 
@@ -48,7 +48,7 @@ const treatments = bodyMassageTreatments;
                         <div class="divider"></div>
 
                         <a class="book-btn" href={`/book?service=${treatment.slug}`}>
-                            Book This Ritual
+                            Book This Service
                         </a>
                     </div>
                 </div>
@@ -99,6 +99,7 @@ const treatments = bodyMassageTreatments;
         color: var(--bm-text-muted);
         max-width: 600px;
         margin: 0 auto;
+        text-align: justify;
     }
 
     .treatments {
