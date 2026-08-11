@@ -16,47 +16,61 @@ const treatments = herbalTherapyTreatments;
         style={`background-image: url('/images/Signature-Herbal-Gold-Facial-Instant-Glow-Naturally.webp');`}
     >
         <div class="container">
-          
             <h1>Herbal Therapy</h1>
             <p>
-                To provide deep relaxation while relieving stress and fatigue, and
-                improving health by using the medieval 'poultices' and 'hot stones
-                with herbal oil'.
+                To provide deep relaxation while relieving stress and fatigue,
+                and improving health by using the medieval 'poultices' and 'hot
+                stones with herbal oil'.
             </p>
         </div>
     </section>
 
     <section class="treatments">
         <div class="container">
-            {treatments.map((treatment, i) => (
-                <div class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`} id={treatment.slug}>
-                    <div class="treatment-image">
-                        <img src={treatment.image} alt={treatment.name} loading="lazy" />
-                    </div>
-                    <div class="treatment-content">
-                       
-                        <h2>{treatment.name}</h2>
-                        <p class="description">{treatment.description}</p>
-
-                        <div class="divider"></div>
-
-                        <div class="price-row">
-                            {treatment.prices.map((p) => (
-                                <div class="price-col">
-                                    <span class="price-label">{p.label}</span>
-                                    <span class="price-value">{p.price}</span>
-                                </div>
-                            ))}
+            {
+                treatments.map((treatment, i) => (
+                    <div
+                        class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`}
+                        id={treatment.slug}
+                    >
+                        <div class="treatment-image">
+                            <img
+                                src={treatment.image}
+                                alt={treatment.name}
+                                loading="lazy"
+                            />
                         </div>
+                        <div class="treatment-content">
+                            <h2>{treatment.name}</h2>
+                            <p class="description">{treatment.description}</p>
 
-                        <div class="divider"></div>
+                            <div class="divider" />
 
-                        <a class="book-btn" href={`/book?service=${treatment.slug}`}>
-                            Book This Ritual
-                        </a>
+                            <div class="price-row">
+                                {treatment.prices.map((p) => (
+                                    <div class="price-col">
+                                        <span class="price-label">
+                                            {p.label}
+                                        </span>
+                                        <span class="price-value">
+                                            {p.price}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div class="divider" />
+
+                            <a
+                                class="book-btn"
+                                href={`/BookAnAppointment?service=${treatment.slug}`}
+                            >
+                                Book This Ritual
+                            </a>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     </section>
 

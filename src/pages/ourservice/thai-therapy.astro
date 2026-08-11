@@ -12,7 +12,10 @@ const treatments = thaiTherapyTreatments;
     description="An ancient healing system combining acupressure, energy line work and assisted yoga postures — Traditional Thai Therapy and Bamboo Therapy."
     image="/images/spa-salon.jpg"
 >
-    <section class="page-banner" style={`background-image: url('/images/spa-salon.jpg');`}>
+    <section
+        class="page-banner"
+        style={`background-image: url('/images/spa-salon.jpg');`}
+    >
         <div class="container">
             <span class="eyebrow">Signature Therapies</span>
             <h1>Thai Therapy</h1>
@@ -26,35 +29,50 @@ const treatments = thaiTherapyTreatments;
 
     <section class="treatments">
         <div class="container">
-            {treatments.map((treatment, i) => (
-                <div class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`} id={treatment.slug}>
-                    <div class="treatment-image">
-                        <img src={treatment.image} alt={treatment.name} loading="lazy" />
-                    </div>
-                    <div class="treatment-content">
-                     
-                        <h2>{treatment.name}</h2>
-                        <p class="description">{treatment.description}</p>
-
-                        <div class="divider"></div>
-
-                        <div class="price-row">
-                            {treatment.prices.map((p) => (
-                                <div class="price-col">
-                                    <span class="price-label">{p.label}</span>
-                                    <span class="price-value">{p.price}</span>
-                                </div>
-                            ))}
+            {
+                treatments.map((treatment, i) => (
+                    <div
+                        class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`}
+                        id={treatment.slug}
+                    >
+                        <div class="treatment-image">
+                            <img
+                                src={treatment.image}
+                                alt={treatment.name}
+                                loading="lazy"
+                            />
                         </div>
+                        <div class="treatment-content">
+                            <h2>{treatment.name}</h2>
+                            <p class="description">{treatment.description}</p>
 
-                        <div class="divider"></div>
+                            <div class="divider" />
 
-                        <a class="book-btn" href={`/book?service=${treatment.slug}`}>
-                            Book This Service
-                        </a>
+                            <div class="price-row">
+                                {treatment.prices.map((p) => (
+                                    <div class="price-col">
+                                        <span class="price-label">
+                                            {p.label}
+                                        </span>
+                                        <span class="price-value">
+                                            {p.price}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div class="divider" />
+
+                            <a
+                                class="book-btn"
+                                href={`/BookAnAppointment?service=${treatment.slug}`}
+                            >
+                                Book This Service
+                            </a>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     </section>
 

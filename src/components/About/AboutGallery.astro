@@ -1,105 +1,166 @@
 ---
 import { Image } from "astro:assets";
-import "@fancyapps/ui/dist/fancybox/fancybox.css";
-const images = import.meta.glob<{ default: ImageMetadata }>(
-  "../../images/*.{jpg,jpeg,png,webp}",
+
+// Load images dynamically
+const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
+  "../../images/*.{jpg,jpeg,png,webp}"
 );
+
+const images = await Promise.all(
+  Object.values(imageFiles).map((img) => img())
+);
+
+// Split images into two different sets for row 1 and row 2
+const row1Images = images.slice(0, Math.ceil(images.length / 2));
+const row2Images = images.slice(Math.ceil(images.length / 2));
 ---
 
-<section class="justified-gallery" id="photoswipe">
-  {
-    Object.entries(images).map(async ([_path, image], index) => {
-      const { default: imageData } = await image();
-      return (
-        <a
-          style={`--width: ${imageData.width}; --height: ${imageData.height};`}
-          href={imageData.src}
-          target="_blank"
-          data-fancybox="gallery"
-        >
-          <Image
-            format="webp"
-            src={imageData}
-            alt=""
-            height={400}
-            loading={index < 20 ? "eager" : "lazy"}
-          />
-        </a>
-      );
-    })
-  }
+<section class="dual-carousel-section">
+  <!-- ROW 1: MOVES LEFT -->
+  <div class="marquee-wrapper">
+    <div class="marquee-track move-left">
+      <!-- Original Set -->
+      {
+        row1Images.map((img) => (
+          <div class="image-card">
+            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+          </div>
+        ))
+      }
+      <!-- Duplicated Set for Seamless Infinite Loop -->
+      {
+        row1Images.map((img) => (
+          <div class="image-card" aria-hidden="true">
+            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- ROW 2: MOVES RIGHT -->
+  <div class="marquee-wrapper">
+    <div class="marquee-track move-right">
+      <!-- Original Set -->
+      {
+        row2Images.map((img) => (
+          <div class="image-card">
+            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+          </div>
+        ))
+      }
+      <!-- Duplicated Set for Seamless Infinite Loop -->
+      {
+        row2Images.map((img) => (
+          <div class="image-card" aria-hidden="true">
+            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>
 
-<script>
-  import { Fancybox } from "@fancyapps/ui/dist/fancybox";
-
-  Fancybox.bind("[data-fancybox]", {
-    theme: "auto",
-    mainStyle: {
-      "--f-button-width": "44px",
-      "--f-button-height": "44px",
-      "--f-button-border-radius": "50%",
-      "--f-toolbar-padding": "16px",
-    },
-    Carousel: {
-      Arrows: false,
-      Toolbar: {
-        display: {
-          left: [],
-          middle: [],
-          right: ["close"],
-        },
-      },
-      transition: "slide",
-    },
-  });
-</script>
-
 <style>
-  .justified-gallery {
-    --padding: max(2.5vw, 12px);
-    --space: max(0.5vw, 12px);
-    --min-height: clamp(200px, 20vw, 400px);
+  .dual-carousel-section {
+    --card-width: 300px;
+    --card-height: 200px;
+    --gap: 1.25rem;
+    --speed: 60s; /* Adjust duration to speed up/slow down */
 
-    padding: var(--padding);
+    background-color: #1a1c1e;
+    padding: 4rem 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space);
-    background-color: var(--bg-color, #ffffff);
+    flex-direction: column;
+    gap: var(--gap);
+    overflow: hidden;
+  }
 
-    a {
-      flex-grow: calc(var(--width) * (100000 / var(--height)));
-      flex-basis: calc(var(--min-height) * (var(--width) / var(--height)));
-      aspect-ratio: var(--width) / var(--height);
-      overflow: hidden;
-      opacity: 1;
-      transition: all 0.05s ease-in-out;
+  /* Container wrapper with gradient edge masks */
+  .marquee-wrapper {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    /* Soft gradient fade on left and right edges */
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: var(--gap);
+    width: max-content;
+    flex-shrink: 0;
+  }
+
+  /* Pause scrolling when user hovers over the track */
+  .marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Row 1 Animation: Move Left */
+  .move-left {
+    animation: scrollLeft var(--speed) linear infinite;
+  }
+
+  /* Row 2 Animation: Move Right */
+  .move-right {
+    animation: scrollRight var(--speed) linear infinite;
+  }
+
+  /* Card styling */
+  .image-card {
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: 12px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #000;
+    transition: transform 0.3s ease;
+  }
+
+  .image-card:hover {
+    transform: scale(1.03);
+  }
+
+  .image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Keyframe Animations */
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
     }
-
-    a img {
-      display: block;
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
+    100% {
+      transform: translateX(calc(-50% - (var(--gap) / 2)));
     }
+  }
 
-    a:focus-visible {
-      outline: 3px solid var(--accent-color, #cfa23c);
-      outline-offset: 2px;
-      transform: scale(1.05);
-      z-index: 1;
-      border-radius: 2px;
-      box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+  @keyframes scrollRight {
+    0% {
+      transform: translateX(calc(-50% - (var(--gap) / 2)));
     }
-
-    a.hidden {
-      transition: opacity 0.4s ease-in-out;
-      opacity: 0;
+    100% {
+      transform: translateX(0);
     }
+  }
 
-    &::after {
-      content: " ";
-      flex-grow: 1000000000;
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .dual-carousel-section {
+      --card-width: 220px;
+      --card-height: 150px;
+      --speed: 20s;
     }
   }
 </style>

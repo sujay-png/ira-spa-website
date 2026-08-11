@@ -55,7 +55,7 @@ function pageHref(path: string, page: number) {
 					)}
 					<span class="pagination__status">Page {currentPage} of {totalPages}</span>
 					{currentPage < totalPages && (
-						<a href={pageHref(basePath, currentPage + 1)} class="pagination__link">Older &rarr;</a>
+						<a href={pageHref(basePath, currentPage + 1)} class="pagination__link">Next &rarr;</a>
 					)}
 				</nav>
 			)
