@@ -5,9 +5,9 @@ import { appendToGoogleSheet } from '../../lib/googleSheets';
 export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
-    
-    // Extract fields
-    const { name, phone, location, date, time, service, message } = data;
+
+    // Extract fields — note: "services" matches the form's <select name="services">
+    const { name, phone, location, date, time, services } = data;
 
     if (!name || !phone) {
       return new Response(JSON.stringify({ success: false, error: 'Name and phone are required' }), {
@@ -19,30 +19,31 @@ export const POST: APIRoute = async ({ request }) => {
     // Prepare Supabase operations
     const runSupabaseOperations = async () => {
       const STORE_ID = 1;
-      
+
       // 1. Upsert Customer Data
       const { error: customerError } = await supabase
           .from('Customers')
           .upsert(
-              { 
-                  customer_name: name, 
+              {
+                  customer_name: name,
                   customer_phone: phone,
                   business_ref: STORE_ID
-              }, 
+              },
               { onConflict: 'customer_phone' }
           );
 
       if (customerError) throw new Error(`Customer Error: ${customerError.message}`);
 
-      // 2. Insert Booking Data (only if date/time exist, for example from Contact form they might not initially)
-      if (date && time && service) {
+      // 2. Insert Booking Data
+      if (date && time && services) {
           const start_time = new Date(`${date}T${time}:00`).toISOString();
           const { error: bookingError } = await supabase
               .from('Booking')
               .insert([{
-                  customer_ref: name, 
-                  location: location || '',  
-                  services: service || '',
+                  customer_ref: name,
+                  cust_phno: phone,
+                  location: location || '',
+                  services: services || '',
                   start_time: start_time,
                   available_slot: start_time,
                   confirmed_time: time,
@@ -50,8 +51,11 @@ export const POST: APIRoute = async ({ request }) => {
                   duration: 60,
                   business_ref: STORE_ID
               }]);
-          
+
           if (bookingError) throw new Error(`Booking Error: ${bookingError.message}`);
+      } else {
+          // Log so a missing field doesn't fail silently again in future
+          console.warn('Skipped Booking insert — missing field(s):', { date, time, services });
       }
       return { success: true };
     };
@@ -62,15 +66,16 @@ export const POST: APIRoute = async ({ request }) => {
       appendToGoogleSheet(data)
     ]);
 
-    // If both failed, return a 500 error
-    if (!supabaseResult.success && !sheetResult.success) {
+    // If Supabase failed, surface it even if Sheets succeeded —
+    // don't mask a real DB error behind a partial success
+    if (!supabaseResult.success) {
       return new Response(
-        JSON.stringify({ 
-          success: false, 
-          error: 'Both Supabase and Google Sheets failed', 
-          details: { 
-            supabase: 'error' in supabaseResult ? supabaseResult.error : null, 
-            sheets: 'error' in sheetResult ? sheetResult.error : null 
+        JSON.stringify({
+          success: false,
+          error: 'error' in supabaseResult ? supabaseResult.error : 'Supabase operation failed',
+          details: {
+            supabase: 'error' in supabaseResult ? supabaseResult.error : null,
+            sheets: 'error' in sheetResult ? sheetResult.error : null
           }
         }), {
           status: 500,
