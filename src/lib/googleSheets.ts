@@ -22,6 +22,15 @@ export async function appendToGoogleSheet(payload: any) {
 
     const sheets = google.sheets({ version: 'v4', auth });
 
+    const format12Hour = (timeStr: string) => {
+      if (!timeStr || !timeStr.includes(':')) return timeStr;
+      const [h, m] = timeStr.split(':');
+      let hour = parseInt(h, 10);
+      const ampm = hour >= 12 ? 'PM' : 'AM';
+      hour = hour % 12 || 12;
+      return `'${hour}:${m} ${ampm}`;
+    };
+
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
       range: 'Sheet1!A:H', // Adjust range if your sheet name is different
@@ -34,8 +43,8 @@ export async function appendToGoogleSheet(payload: any) {
             `'${payload.phone || ''}`, // Prefix with apostrophe to prevent +91 from being treated as a formula
             payload.location || '',
             payload.date || '',
-            payload.time || '',
-            payload.service || '',
+            format12Hour(payload.time || ''),
+            payload.services || payload.service || '',
             payload.message || '' // For the Contact Us form
           ]
         ],

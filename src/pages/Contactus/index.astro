@@ -180,11 +180,11 @@ const breadcrumbData = {
 							<option value="10:00">10:00 AM - 11:00 AM</option>
 							<option value="11:00">11:00 AM - 12:00 PM</option>
 							<option value="12:00">12:00 PM - 1:00 PM</option>
-							<option value="1:00">1:00 PM - 2:00 PM</option>
-							<option value="2:00">2:00 PM - 3:00 PM</option>
-							<option value="3:00">3:00 PM - 4:00 PM</option>
-							<option value="4:00">4:00 PM - 5:00 PM</option>
-							<option value="5:00">5:00 PM - 6:00 PM</option>
+							<option value="13:00">1:00 PM - 2:00 PM</option>
+							<option value="14:00">2:00 PM - 3:00 PM</option>
+							<option value="15:00">3:00 PM - 4:00 PM</option>
+							<option value="16:00">4:00 PM - 5:00 PM</option>
+							<option value="17:00">5:00 PM - 6:00 PM</option>
 						</select>
 					</div>
 				</div>
@@ -225,7 +225,8 @@ const breadcrumbData = {
 								{loc.phone}
 							</a>
 							<p class="location-card__hours">
-								<span itemprop="openingHours" content="Mo-Su 09:00-21:30">{loc.hours}</span>
+								<meta itemprop="openingHours" content="Mo-Su 09:00-21:30" />
+								<span>{loc.hours}</span>
 
 								<a
 									class="directionbutton"

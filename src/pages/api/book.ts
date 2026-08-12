@@ -7,7 +7,9 @@ export const POST: APIRoute = async ({ request }) => {
     const data = await request.json();
 
     // Extract fields — note: "services" matches the form's <select name="services">
-    const { name, phone, location, date, time, services } = data;
+    // Some forms might use "service" instead of "services"
+    let { name, phone, location, date, time, services, service } = data;
+    services = services || service;
 
     if (!name || !phone) {
       return new Response(JSON.stringify({ success: false, error: 'Name and phone are required' }), {
