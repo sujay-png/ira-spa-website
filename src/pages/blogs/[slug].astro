@@ -152,25 +152,6 @@ const jsonLd = {
 		padding-block: var(--space-2xl);
 	}
 
-	/* Completely nuke any WordPress inline underlines or colors */
-	.prose :global(a), .prose :global(a *) {
-		color: var(--color-accent) !important;
-		text-decoration: none !important; 
-		box-shadow: none !important;
-	}
-
-	/* Rebuild the link style safely using border-bottom */
-	.prose :global(a) {
-		border-bottom: 1px solid rgba(207, 162, 60, 0.4) !important;
-		padding-bottom: 1px;
-		transition: all 0.3s ease;
-	}
-
-	.prose :global(a:hover), .prose :global(a:hover *) {
-		color: var(--color-accent-strong) !important;
-		border-bottom-color: var(--color-accent-strong) !important;
-	}
-
 	.post__cta {
 		margin-top: var(--space-2xl);
 		padding: var(--space-lg);
