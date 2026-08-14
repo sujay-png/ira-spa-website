@@ -79,10 +79,12 @@ const truncate = (text: string, length: number) => {
 			</div>
 
 			<nav class="pagination" aria-label="Blog pagination">
-				{pageNum > 2 ? (
-					<a href={`/blogs/page/${pageNum - 1}`} class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
-				) : (
-					<a href="/blogs" class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+				{pageNum > 1 && (
+					pageNum === 2 ? (
+						<a href="/blogs" class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+					) : (
+						<a href={`/blogs/page/${pageNum - 1}`} class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+					)
 				)}
 				
 				<span class="pagination__status">PAGE {pageNum} OF {totalPages}</span>

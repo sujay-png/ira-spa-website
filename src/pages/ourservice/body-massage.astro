@@ -16,7 +16,7 @@ const treatments = bodyMassageTreatments;
         style={`background-image: url('/images/spa-salon.jpg');`}
     >
         <div class="container">
-            <h1>Body Massage</h1>
+<h1>Body Massage in Mangalore & Kalaburagi</h1>
             <p>
                 A relaxing full-body massage designed to release tension, ease
                 sore muscles and restore balance to a tired body.
@@ -74,6 +74,19 @@ const treatments = bodyMassageTreatments;
     </section>
 
     <Footer />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Service",
+      "serviceType": "Body Massage",
+      "provider": {
+        "@type": "DaySpa",
+        "name": "Ira Spa"
+      },
+      "areaServed": ["Mangalore", "Kalaburagi"]
+    }
+    </script>
 </Layout>
 
 <style define:vars={{}}>

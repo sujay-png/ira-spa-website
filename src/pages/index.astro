@@ -2,12 +2,16 @@
 import Layout from "../layouts/Layout.astro";
 import BookingsForm from "../components/Home/bookings_form.astro";
 import Aboutspa from "../components/Home/Aboutspa.astro";
+import TrustIndicators from "../components/Home/TrustIndicators.astro";
 import HowItWorks from "../components/Home/HowItWorks.astro";
 import Benefits from "../components/Home/list.astro";
 import Services from "../components/Home/Services-list.astro";
 import MenuList from "../components/Home/MenuList.astro";
 import Customerreview from "../components/Home/Customerreview.astro";
+import InstagramFeed from "../components/Home/InstagramFeed.astro";
+import HomeBlogs from "../components/Home/HomeBlogs.astro";
 import Footer from "../components/Footer.astro";
+import heroImg from "../images/serviceimage1.webp";
 ---
 
 <Layout
@@ -16,11 +20,12 @@ image="src/images/logo.webp"
 	description="Relax, rejuvenate and restore at Ira Spa — premium massage therapy, herbal treatments and body rituals in Mangalore and Kalaburagi. Book your session online."
 >
 	<section class="hero" id="hero-section">
+		<img src={heroImg.src} alt="Luxury Spa and Massage Treatment in Mangalore" fetchpriority="high" loading="eager" class="hero__bg-image" />
 		<div class="hero__scrim" aria-hidden="true"></div>
 		<div class="hero__content">
 			<span class="eyebrow hero__eyebrow">Mangalore &amp; Kalaburagi</span>
 			<h1 class="hero__title">
-				Relax, Rejuvenate<br /><em>&amp; Restore</em>
+				Luxury Spa &amp; Massage Therapies<br /><em>in Mangalore</em>
 			</h1>
 			<p class="hero__tagline">
 				Ira Spa Beauty
@@ -31,11 +36,14 @@ image="src/images/logo.webp"
 
 	<BookingsForm />
 	<Aboutspa />
+	<TrustIndicators />
 	<HowItWorks />
 	<Benefits />
 	<Services />
 	<MenuList />
 	<Customerreview />
+	<InstagramFeed />
+	<HomeBlogs />
 	<Footer />
 </Layout>
 
@@ -46,13 +54,19 @@ image="src/images/logo.webp"
 		height: 92vh;
 		min-height: 560px;
 		max-height: 920px;
-		background-image: url("/src/images/serviceimage1.webp");
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero__bg-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
 	}
 
 	.hero__scrim {

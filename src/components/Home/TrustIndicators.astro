@@ -1,0 +1,226 @@
+---
+// TrustIndicators.astro
+---
+
+<section class="trust-indicators">
+  <div class="container">
+    <div class="trust-grid">
+      
+      <!-- Card 1 -->
+      <div class="trust-card">
+        <div class="card-inner">
+          <div class="icon">
+            <img src="/icons/expertise.png" alt="Experience Icon" loading="lazy" />
+          </div>
+          <div class="stat">
+            <span class="counter" data-target="24">0</span>
+          </div>
+          <div class="label">Years Experience</div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="trust-card">
+        <div class="card-inner">
+          <div class="icon">
+            <img src="/icons/wellness.png" alt="Wellness Icon" loading="lazy" />
+          </div>
+          <div class="stat">
+            <span class="counter" data-target="3">0</span>+
+          </div>
+          <div class="label">Wellness & Spa</div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="trust-card">
+        <div class="card-inner">
+          <div class="icon">
+            <img src="/icons/herbal-treatment.png" alt="Herbal Treatment Icon" loading="lazy" />
+          </div>
+          <div class="stat">
+            <span class="counter" data-target="40">0</span>+
+          </div>
+          <div class="label">Herbal Treatment</div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="trust-card">
+        <div class="card-inner">
+          <div class="icon">
+            <img src="/icons/costumer.png" alt="Happy Clients Icon" loading="lazy" />
+          </div>
+          <div class="stat">
+            <span class="counter" data-target="10000">0</span>+
+          </div>
+          <div class="label">Happy Clients</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust-indicators {
+    padding-block: var(--space-xl);
+    position: relative;
+    z-index: 2;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+
+  .trust-card {
+    perspective: 1000px;
+    height: 100%;
+  }
+
+  .card-inner {
+    background: linear-gradient(135deg, var(--color-accent-soft), var(--color-accent-strong));
+    border-radius: var(--radius-md);
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    color: var(--color-on-accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-shadow: 0 10px 24px rgba(207, 162, 60, 0.1);
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.25rem;
+    transform: translateZ(30px);
+  }
+  
+  .icon img,
+  .icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .stat {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    transform: translateZ(40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    transform: translateZ(20px);
+  }
+
+  @media (max-width: 1024px) {
+    .trust-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function initTrustIndicators() {
+    // 1. Number Increment Logic
+    const counters = document.querySelectorAll('.counter');
+    let hasAnimated = false;
+
+    const animateCounters = () => {
+      if (hasAnimated) return;
+      hasAnimated = true;
+
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        // calculate increment to finish around the same time (~2 seconds)
+        const duration = 2000;
+        const frameRate = 16; // ~60fps
+        const totalFrames = duration / frameRate;
+        let currentCount = 0;
+        const inc = target / totalFrames;
+
+        const updateCount = () => {
+          currentCount += inc;
+          if (currentCount < target) {
+            counter.innerText = Math.ceil(currentCount).toLocaleString();
+            requestAnimationFrame(updateCount);
+          } else {
+            counter.innerText = target.toLocaleString();
+          }
+        };
+        requestAnimationFrame(updateCount);
+      });
+    };
+
+    const grid = document.querySelector('.trust-grid');
+    if (grid) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      }, { threshold: 0.3 });
+      
+      observer.observe(grid);
+    }
+
+    // 2. 3D Tilt Bending Hover Effect
+    const cards = document.querySelectorAll('.trust-card');
+    
+    cards.forEach(card => {
+      const inner = card.querySelector('.card-inner');
+      
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        // max rotation is 12 degrees
+        const rotateX = ((y - centerY) / centerY) * -12; 
+        const rotateY = ((x - centerX) / centerX) * 12;
+        
+        inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        inner.style.transform = `rotateX(0deg) rotateY(0deg)`;
+        inner.style.transition = `transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+      });
+      
+      card.addEventListener('mouseenter', () => {
+        inner.style.transition = `transform 0.1s ease-out`;
+      });
+    });
+  }
+
+  initTrustIndicators();
+  document.addEventListener('astro:page-load', initTrustIndicators);
+</script>

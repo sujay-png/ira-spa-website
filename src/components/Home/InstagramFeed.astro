@@ -1,0 +1,111 @@
+---
+const instagramLink = "https://www.instagram.com/the_ira_spa";
+
+const posts = [
+  "/insta-post/imgi_62_WhatsApp-Image-2026-06-15-at-2.43.04-PM-819x1024.jpg",
+  "/insta-post/imgi_63_WhatsApp-Image-2026-06-15-at-1.16.26-PM-819x1024.jpg",
+  "/insta-post/imgi_64_720408192_17941609788232822_6146910874462510615_n-819x1024.jpg",
+  "/insta-post/imgi_65_713563222_17940549111232822_7584340239445424097_n-819x1024.jpg",
+  "/insta-post/imgi_66_707561540_17939421015232822_95968831005194178_n-819x1024.jpg",
+  "/insta-post/imgi_67_700955472_17938645245232822_3396926590912006148_n-819x1024.jpg"
+];
+---
+
+<section class="instagram-section">
+  <div class="instagram-header">
+    <div class="line"></div>
+    <h2>FOLLOW US ON INSTAGRAM</h2>
+    <div class="line"></div>
+  </div>
+  
+  <div class="instagram-grid">
+    {posts.map((post) => (
+      <a href={instagramLink} target="_blank" rel="noopener noreferrer" class="instagram-item">
+        <img src={post} alt="Ira Spa Instagram Post" loading="lazy" />
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .instagram-section {
+    padding: 5rem 2%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .instagram-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 3.5rem;
+  }
+
+  .instagram-header h2 {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--color-text-muted);
+    margin: 0 1.5rem;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .instagram-header .line {
+    height: 1px;
+    background-color: #d8d8d8;
+    flex-grow: 1;
+  }
+
+  .instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 1rem;
+  }
+
+  .instagram-item {
+    display: block;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-radius: 4px;
+  }
+
+  .instagram-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .instagram-item:hover img {
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 1200px) {
+    .instagram-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .instagram-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .instagram-header h2 {
+      font-size: 0.8rem;
+      margin: 0 1rem;
+    }
+  }
+</style>

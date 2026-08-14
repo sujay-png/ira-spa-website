@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Page Not Found | Ira Spa" noindex={true}>
+	<section class="not-found">
+		<div class="container">
+			<h1>404</h1>
+			<h2>Page Not Found</h2>
+			<p>We're sorry, the page you're looking for doesn't exist or has been moved.</p>
+			<div class="actions">
+				<a href="/" class="btn-primary">Return Home</a>
+				<a href="/BookAnAppointment" class="btn-secondary">Book an Appointment</a>
+			</div>
+		</div>
+	</section>
+	<Footer />
+</Layout>
+
+<style>
+	.not-found {
+		min-height: 70vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding-top: calc(var(--header-height) + var(--space-2xl));
+		padding-bottom: var(--space-2xl);
+	}
+
+	.not-found h1 {
+		font-size: clamp(6rem, 15vw, 10rem);
+		color: var(--color-accent);
+		line-height: 1;
+		margin-bottom: var(--space-sm);
+	}
+
+	.not-found h2 {
+		font-size: clamp(2rem, 5vw, 3rem);
+		margin-bottom: var(--space-md);
+	}
+
+	.not-found p {
+		font-size: 1.1rem;
+		color: var(--color-text-muted);
+		max-width: 500px;
+		margin: 0 auto var(--space-lg);
+	}
+
+	.actions {
+		display: flex;
+		gap: var(--space-md);
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	@media (max-width: 600px) {
+		.actions {
+			flex-direction: column;
+		}
+	}
+</style>
