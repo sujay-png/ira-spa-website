@@ -10,7 +10,9 @@
    instead of hard-coding its own colors/fonts.
    ========================================================= */
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
@@ -54,7 +56,7 @@
   --font-size-lg: clamp(1.1rem, 0.4vw + 1rem, 1.3rem);
   --font-size-xl: clamp(1.4rem, 1vw + 1.15rem, 1.85rem);
   --font-size-2xl: clamp(1.9rem, 2vw + 1.4rem, 2.6rem);
-  --font-size-3xl:clamp(0.4rem, 1.2vw + 1.5rem, 2.6rem);
+  --font-size-3xl: clamp(0.4rem, 1.2vw + 1.5rem, 2.6rem);
   --font-size-4xl: clamp(2.8rem, 5vw + 1.5rem, 5rem);
 
   --eyebrow-tracking: 0.28em;
@@ -67,7 +69,7 @@
   --space-md: 2.25rem;
   --space-lg: 1.5rem;
   --space-xl: 5.5rem;
-  --space-2xl: 1rem;
+  --space-2xl: 3rem;
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -88,7 +90,8 @@
   }
 }
 
-html, body {
+html,
+body {
   width: 100%;
   min-height: 100%;
 }
@@ -111,7 +114,11 @@ body {
   padding-top: var(--header-height);
 }
 
-img, picture, video, canvas, svg {
+img,
+picture,
+video,
+canvas,
+svg {
   display: block;
   max-width: 100%;
   height: auto;
@@ -134,7 +141,12 @@ a {
 
 /* Typography ------------------------------------------------ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   color: var(--color-text);
   font-weight: 500;
@@ -142,10 +154,21 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: var(--font-size-4xl); }
-h2 { font-size: var(--font-size-3xl); }
-h3 { font-size: var(--font-size-2xl); }
-h4 { font-size: var(--font-size-xl); }
+h1 {
+  font-size: var(--font-size-4xl);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
 
 p {
   color: var(--color-text-muted);
@@ -173,8 +196,13 @@ p {
   max-width: var(--container-narrow);
   margin-inline: auto;
 
-  .eyebrow { margin-bottom: var(--space-sm); }
-  h2 { margin-bottom: 0; }
+  .eyebrow {
+    margin-bottom: var(--space-sm);
+  }
+
+  h2 {
+    margin-bottom: 0;
+  }
 }
 
 .ornament {
@@ -390,6 +418,7 @@ label {
     transform: none;
     transition: none;
   }
+
   html {
     scroll-behavior: auto;
   }
@@ -420,7 +449,10 @@ label {
     padding-bottom: var(--space-xl);
   }
 
-  .eyebrow { color: var(--color-accent-soft); margin-bottom: var(--space-sm); }
+  .eyebrow {
+    color: var(--color-accent-soft);
+    margin-bottom: var(--space-sm);
+  }
 
   h1 {
     max-width: 900px;
@@ -436,7 +468,9 @@ label {
   @media (max-width: 768px) {
     min-height: 40vh;
 
-    .container { padding-bottom: var(--space-lg); }
+    .container {
+      padding-bottom: var(--space-lg);
+    }
   }
 }
 
@@ -448,21 +482,31 @@ label {
   font-size: 1.05rem;
   line-height: 1.85;
 
-  > * + * {
+  >*+* {
     margin-top: var(--space-md);
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     color: var(--color-text);
     margin-top: var(--space-xl);
     margin-bottom: 0;
     font-weight: 500;
   }
 
-  h2 { font-size: var(--font-size-2xl); }
-  h3 { font-size: var(--font-size-xl); }
+  h2 {
+    font-size: var(--font-size-2xl);
+  }
 
-  p, ul, ol {
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  p,
+  ul,
+  ol {
     margin-top: var(--space-sm);
   }
 
@@ -478,12 +522,17 @@ label {
     }
   }
 
-  strong { color: var(--color-text); }
+  strong {
+    color: var(--color-text);
+  }
 
-  ul, ol {
+  ul,
+  ol {
     padding-left: 1.4rem;
 
-    li + li { margin-top: 0.5rem; }
+    li+li {
+      margin-top: 0.5rem;
+    }
   }
 
   blockquote {

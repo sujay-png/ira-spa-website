@@ -1,0 +1,261 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+import { serviceData } from "../../data/services";
+
+// Use hardcoded lists from the reference image
+---
+
+<Layout
+	title="Sitemap | Ira Spa"
+	description="Sitemap for Ira Spa Mangalore and Kalaburagi."
+>
+	<section class="sitemap-banner">
+		<div class="container">
+			<h1>Site Map</h1>
+		</div>
+	</section>
+
+	<section class="sitemap-content">
+		<div class="container">
+			<div class="sitemap-grid">
+				<div class="sitemap-column">
+					<h2><a href="/blogs" class="heading-link">Blogs</a></h2>
+					<ul>
+						<li>
+							<a
+								href="/blogs/how-herbal-therapy-can-improve-overall-health"
+								>How Herbal Therapy Can Improve Overall Health</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/discover-how-spa-therapy-transforms-your-sleep"
+								>Discover How Spa Therapy Transforms Your Sleep</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/what-is-body-polishing-and-why-do-you-need-it"
+								>What Is Body Polishing and Why Do You Need It?</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/health-benefits-of-regular-foot-spa-treatments"
+								>Health Benefits of Regular Foot Spa Treatments</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/what-are-the-benefits-of-head-massage"
+								>What Are the Benefits of Head Massage</a
+							>
+						</li>
+						<li>
+							<a href="/blogs/health-benefits-of-thai-massage"
+								>Health Benefits Of Thai Massage</a
+							>
+						</li>
+						<li>
+							<a href="/blogs/best-spa-treatments-for-relaxation"
+								>Best Spa Treatments for Relaxation</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/how-spa-treatments-can-improve-your-skin-health"
+								>How Spa Treatments Can Improve Your Skin Health</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/discover-the-benefits-of-bamboo-therapy-a-natural-path-to-wellness"
+								>Discover the benefits of Bamboo therapy: A
+								natural path to wellness</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness"
+								>Traditional Thai therapy: Ancient Healing for
+								Modern wellness</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/deep-pore-cleansing-reveal-your-skins-natural-glow"
+								>Deep Pore cleansing: Reveal your skin's Natural
+								Glow</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/herbal-potli-massage-traditional-healing-technique"
+								>Herbal Potli Massage: Traditional Healing
+								technique</a
+							>
+						</li>
+						<li>
+							<a
+								href="/blogs/hot-stone-massage-what-it-is-and-how-it-benefits-your-body-and-mind"
+								>Hot stone massage: what it is and how it
+								benefits your body and mind</a
+							>
+						</li>
+					</ul>
+
+					<h2 class="mt-large">Other Pages</h2>
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="/about">About us</a></li>
+						<li><a href="/ourservice">Our services</a></li>
+						<li>
+							<a href="/book-an-appointment"
+								>Book an Appointment</a
+							>
+						</li>
+						<li><a href="/Contactus">Contact</a></li>
+					</ul>
+				</div>
+				<div class="sitemap-column">
+					<h2>
+						<a href="/ourservice" class="heading-link"
+							>Services Page</a
+						>
+					</h2>
+					<ul>
+						{
+							Object.entries(serviceData).map(
+								([slug, service]) => (
+									<li>
+										<a href={`/services/${slug}`}>
+											{service.title}
+										</a>
+									</li>
+								),
+							)
+						}
+					</ul>
+				</div>
+			</div>
+			<hr class="sitemap-divider" />
+			<div class="sitemap-footer">
+				<a href="https://www.dashboard.iraspa.in/sitemap_index.xml"
+					>XML Sitemap</a
+				>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
+
+<style>
+	.sitemap-banner {
+		min-height: 20vh;
+		background: var(--color-bg-alt);
+		display: flex;
+		align-items: center;
+		padding-top: var(--space-2xl);
+		padding-bottom: var(--space-xl);
+		text-align: left;
+	}
+
+	.sitemap-banner h1 {
+		font-family: var(--font-display);
+		font-weight: 400;
+		margin: 0;
+	}
+
+	.sitemap-content {
+		padding-block: var(--space-xl);
+	}
+
+	.sitemap-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-2xl);
+		align-items: start;
+	}
+
+	.sitemap-column h2 {
+		font-family: var(--font-body);
+		font-size: 1.5rem;
+		font-weight: 400;
+		margin-bottom: var(--space-md);
+		color: var(--color-text);
+		border-bottom: 1px solid var(--color-border);
+		padding-bottom: 0.5rem;
+	}
+
+	.sitemap-column h2 a.heading-link {
+		color: inherit;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.sitemap-column h2 a.heading-link:hover {
+		color: var(--color-accent);
+	}
+
+	.sitemap-column ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.sitemap-column li {
+		margin-bottom: 0.6rem;
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.sitemap-column li::before {
+		content: "•";
+		color: var(--color-text-muted);
+		margin-right: 0.5rem;
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+
+	.sitemap-column a {
+		color: var(--color-text-muted);
+		text-decoration: none;
+		transition: color 0.2s ease;
+		line-height: 1.5;
+		font-size: 0.95rem;
+	}
+
+	.sitemap-column a:hover {
+		color: var(--color-accent);
+	}
+
+	.mt-large {
+		margin-top: var(--space-xl);
+	}
+
+	.sitemap-divider {
+		margin-top: var(--space-2xl);
+		margin-bottom: var(--space-md);
+		border: none;
+		border-top: 1px solid var(--color-border);
+	}
+
+	.sitemap-footer a {
+		color: var(--color-text-muted);
+		text-decoration: none;
+		font-size: 0.9rem;
+	}
+
+	.sitemap-footer a:hover {
+		color: var(--color-accent);
+	}
+
+	@media (max-width: 768px) {
+		.sitemap-grid {
+			grid-template-columns: 1fr;
+			gap: var(--space-xl);
+		}
+	}
+</style>

@@ -1,0 +1,159 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<Layout
+	title="Download Brochure | Ira Spa"
+	description="Download the Ira Spa brochure to explore our holistic massage and wellness rituals."
+>
+	<section class="terms-banner">
+		<div class="container">
+			<h1>Download Brochure</h1>
+		</div>
+	</section>
+
+	<section class="brochure-content">
+		<div class="container container--narrow">
+			<div class="form-wrapper">
+				<form id="brochure-form" class="brochure-form">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" placeholder="Name" required />
+					</div>
+					
+					<div class="form-group">
+						<label for="phone">Phone Number</label>
+						<input type="tel" id="phone" name="phone" placeholder="Phone no:" required />
+					</div>
+
+					<button type="submit" class="btn-submit">DOWNLOAD BROCHURE</button>
+				</form>
+				
+				<div id="success-message" class="success-message hidden">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<polyline points="20 6 9 17 4 12"></polyline>
+					</svg>
+					Your submission was successful.
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
+
+<style>
+	.terms-banner {
+		background: var(--color-bg-alt);
+		display: flex;
+		align-items: center;
+		padding-top: var(--space-2xl);
+		padding-bottom: var(--space-xs);
+		text-align: left;
+	}
+
+	.terms-banner h1 {
+		font-family: var(--font-display);
+		font-weight: 400;
+		margin: 0;
+	}
+
+	.brochure-content {
+		padding-top: var(--space-xs);
+		padding-bottom: var(--space-2xl);
+	}
+
+	.container--narrow {
+		max-width: 600px;
+		margin: 5rem auto;
+	}
+
+	.form-wrapper {
+		background: var(--color-bg-alt);
+		padding: var(--space-lg);
+		border-radius: var(--radius-md);
+		border: 1px solid var(--color-border);
+	}
+
+	.form-group {
+		margin-bottom: var(--space-md);
+	}
+
+	.form-group label {
+		display: block;
+		margin-bottom: 0.5rem;
+		color: var(--color-text-muted);
+		font-size: 0.9rem;
+	}
+
+	.form-group input {
+		width: 100%;
+		padding: 0.85rem 1rem;
+		background: transparent;
+		border: 1px solid var(--color-border-strong, #333);
+		color: var(--color-text);
+		border-radius: var(--radius-sm);
+		font-family: var(--font-body);
+		font-size: 1rem;
+		transition: border-color 0.3s ease;
+	}
+
+	.form-group input:focus {
+		outline: none;
+		border-color: var(--color-accent);
+	}
+
+	.btn-submit {
+		width: 100%;
+		padding: 1rem;
+		background: #d49a8f; /* Matching the peach/salmon color from the user's screenshot, but you can change to var(--color-accent) if strictly preferred */
+		color: #fff;
+		border: none;
+		border-radius: var(--radius-sm);
+		font-family: var(--font-body);
+		font-size: 0.95rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: opacity 0.3s ease;
+		margin-bottom: 1rem;
+	}
+
+	.btn-submit:hover {
+		opacity: 0.9;
+	}
+
+	.success-message {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: #4caf50;
+		font-size: 0.9rem;
+	}
+
+	.success-message.hidden {
+		display: none;
+	}
+</style>
+
+<script>
+	const form = document.getElementById('brochure-form');
+	const successMessage = document.getElementById('success-message');
+
+	if (form && successMessage) {
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			
+			// Simulate an API call or submission process
+			setTimeout(() => {
+				form.style.display = 'none';
+				successMessage.classList.remove('hidden');
+				
+				// Open the brochure PDF in a new tab
+				window.open('https://www.dashboard.iraspa.in/wp-content/uploads/2025/12/exp.pdf', '_blank');
+			}, 300);
+		});
+	}
+</script>

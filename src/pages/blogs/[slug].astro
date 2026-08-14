@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
-import PostCard from "../../components/Blogs/PostCard.astro";
+import PostCard from "../../components/blogs/PostCard.astro";
+
 import {
 	getPostBySlug,
 	getAllPosts,
@@ -13,8 +14,6 @@ import {
 	stripHtml,
 } from "../../lib/wordpress";
 
-
-
 // 1. Grab the slug directly from the URL (No getStaticPaths needed in SSR)
 const { slug } = Astro.params;
 
@@ -25,7 +24,7 @@ const post = slug ? await getPostBySlug(slug) : null;
 if (!post) {
 	return new Response(null, {
 		status: 404,
-		statusText: 'Not found'
+		statusText: "Not found",
 	});
 }
 
@@ -40,7 +39,13 @@ const description = stripHtml(post.excerpt.rendered).slice(0, 160);
 const title = stripHtml(post.title.rendered);
 
 const related = allPosts
-	.filter((p) => p.id !== post.id && getPostCategories(p).some((c) => categories.some((pc) => pc.slug === c.slug)))
+	.filter(
+		(p) =>
+			p.id !== post.id &&
+			getPostCategories(p).some((c) =>
+				categories.some((pc) => pc.slug === c.slug),
+			),
+	)
 	.slice(0, 3);
 
 const jsonLd = {
@@ -56,13 +61,24 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${title} | Ira Spa Journal`} description={description} image={image.src}>
+<Layout
+	title={`${title} | Ira Spa Journal`}
+	description={description}
+	image={image.src}
+>
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 	<article class="post">
-		<header class="post-header page-banner" style={`background-image: url('${image.src}')`}>
+		<header
+			class="post-header page-banner"
+			style={`background-image: url('${image.src}')`}
+		>
 			<div class="container">
-				{categories[0] && <span class="eyebrow">{categories[0].name}</span>}
+				{
+					categories[0] && (
+						<span class="eyebrow">{categories[0].name}</span>
+					)
+				}
 				<h1>{title}</h1>
 				<div class="post-header__meta">
 					<span>{author}</span>
@@ -79,11 +95,18 @@ const jsonLd = {
 
 			<div class="post__cta">
 				<h2>Ready to feel the difference?</h2>
-				<p>Bring this ritual to life at Ira Spa, Mangalore or Kalaburagi.</p>
-				<a href="/BookAnAppointment" class="btn-primary">Book an Appointment</a>
+				<p>
+					Bring this ritual to life at Ira Spa, Mangalore or
+					Kalaburagi.
+				</p>
+				<a href="/book-an-appointment" class="btn-primary"
+					>Book an Appointment</a
+				>
 			</div>
 
-			<a href="/blogs/" class="link-arrow post__back"><span>&larr;</span> Back to The Serenity Feed</a>
+			<a href="/blogs/" class="link-arrow post__back"
+				><span>&larr;</span> Back to The Serenity Feed</a
+			>
 		</div>
 
 		{
@@ -92,7 +115,9 @@ const jsonLd = {
 					<div class="container">
 						<h2>Related Reading</h2>
 						<div class="related__grid">
-							{related.map((p) => <PostCard post={p} />)}
+							{related.map((p) => (
+								<PostCard post={p} />
+							))}
 						</div>
 					</div>
 				</section>

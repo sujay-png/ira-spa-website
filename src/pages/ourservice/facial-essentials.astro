@@ -4,7 +4,6 @@ import Footer from "../../components/Footer.astro";
 import { facialEssentialGroups } from "../../data/FacialEssential";
 import "../../style/servicedetail.css";
 
-
 const groups = facialEssentialGroups;
 ---
 
@@ -13,9 +12,11 @@ const groups = facialEssentialGroups;
     description="Let our well trained aestheticians take over and grant you a nourished, smooth, and radiant skin."
     image="/images/serviceimage2.webp"
 >
-    <section class="page-banner" style={`background-image: url('/images/serviceimage2.webp');`}>
+    <section
+        class="page-banner"
+        style={`background-image: url('/images/serviceimage2.webp');`}
+    >
         <div class="container">
-          
             <h1>Clean-Ups And Facial-Essential</h1>
             <p>
                 Let our well trained aestheticians take over and grant you a
@@ -26,45 +27,54 @@ const groups = facialEssentialGroups;
 
     <section class="treatments">
         <div class="container">
-            {groups.map((group) => (
-                <div class="treatment-group">
-                    <h2 class="group-heading">{group.heading}</h2>
-                    {group.treatments.map((treatment, i) => (
-                        <div
-                            class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`}
-                            id={treatment.slug}
-                        >
-                            <div class="treatment-image">
-                                <img src={treatment.image} alt={treatment.name} loading="lazy" />
-                            </div>
-                            <div class="treatment-content">
-                             
-                                <h2>{treatment.name}</h2>
-                               
-                              
-
-                                <div class="divider"></div>
-
-                                <div class="price-row">
-                                    {treatment.prices.map((p) => (
-                                        <div class="price-col">
-                                            <span class="price-label">{p.label}</span>
-                                            <span class="price-value">{p.price}</span>
-                                        </div>
-                                    ))}
+            {
+                groups.map((group) => (
+                    <div class="treatment-group">
+                        <h2 class="group-heading">{group.heading}</h2>
+                        {group.treatments.map((treatment, i) => (
+                            <div
+                                class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`}
+                                id={treatment.slug}
+                            >
+                                <div class="treatment-image">
+                                    <img
+                                        src={treatment.image}
+                                        alt={treatment.name}
+                                        loading="lazy"
+                                    />
                                 </div>
+                                <div class="treatment-content">
+                                    <h2>{treatment.name}</h2>
 
-                                <div class="divider"></div>
+                                    <div class="divider" />
 
-                                                        <a class="book-btn" href={`/BookAnAppointment?service=${treatment.slug}`}>
+                                    <div class="price-row">
+                                        {treatment.prices.map((p) => (
+                                            <div class="price-col">
+                                                <span class="price-label">
+                                                    {p.label}
+                                                </span>
+                                                <span class="price-value">
+                                                    {p.price}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
 
-                                    Book This Service
-                                </a>
+                                    <div class="divider" />
+
+                                    <a
+                                        class="book-btn"
+                                        href={`/book-an-appointment?service=${treatment.slug}`}
+                                    >
+                                        Book This Service
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
-            ))}
+                        ))}
+                    </div>
+                ))
+            }
         </div>
     </section>
 

@@ -1,7 +1,7 @@
 ---
 interface Props {
 	slug?: string;
-	
+
 	title: string;
 	description: string;
 	price60: string;
@@ -10,17 +10,30 @@ interface Props {
 	reverse?: boolean;
 }
 
-const { slug,title, description, price60, price90, image, reverse = false } = Astro.props;
+const {
+	slug,
+	title,
+	description,
+	price60,
+	price90,
+	image,
+	reverse = false,
+} = Astro.props;
 ---
 
 <section class={`ritual ${reverse ? "ritual--reverse" : ""}`} id={slug}>
 	<div class="container ritual__grid">
 		<div class="ritual__media">
-			<img src={image} alt={title} width="560" height="420" loading="lazy" />
+			<img
+				src={image}
+				alt={title}
+				width="560"
+				height="420"
+				loading="lazy"
+			/>
 		</div>
 
 		<div class="ritual__content">
-		
 			<h2>{title}</h2>
 			<p>{description}</p>
 
@@ -35,7 +48,9 @@ const { slug,title, description, price60, price90, image, reverse = false } = As
 				</div>
 			</div>
 
-			<a href="/BookAnAppointment" class="btn-primary">Book This Service</a>
+			<a href="/book-an-appointment" class="btn-primary"
+				>Book This Service</a
+			>
 		</div>
 	</div>
 </section>

@@ -4,7 +4,6 @@ import Footer from "../../components/Footer.astro";
 import { footSpaTreatments } from "../../data/footspa";
 import "../../style/servicedetail.css";
 
-
 const treatments = footSpaTreatments;
 ---
 
@@ -13,7 +12,10 @@ const treatments = footSpaTreatments;
     description="A soothing pedicure ritual using different essential oils for relaxing and de-stressing tired feet."
     image="/images/serviceimage2.webp"
 >
-    <section class="page-banner" style={`background-image: url('/images/serviceimage2.webp');`}>
+    <section
+        class="page-banner"
+        style={`background-image: url('/images/serviceimage2.webp');`}
+    >
         <div class="container">
             <span class="eyebrow">Foot Care</span>
             <h1>Foot Spa</h1>
@@ -26,38 +28,55 @@ const treatments = footSpaTreatments;
 
     <section class="treatments">
         <div class="container">
-            {treatments.map((treatment, i) => (
-                <div class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`} id={treatment.slug}>
-                    <div class="treatment-image">
-                        <img src={treatment.image} alt={treatment.name} loading="lazy" />
-                    </div>
-                    <div class="treatment-content">
-                        <span class="eyebrow">{treatment.category}</span>
-                        <h2>{treatment.name}</h2>
-                        {treatment.subtitle && (
-                            <p class="treatment-subtitle">{treatment.subtitle}</p>
-                        )}
-
-                        <div class="divider"></div>
-
-                        <div class="price-row">
-                            {treatment.prices.map((p) => (
-                                <div class="price-col">
-                                    <span class="price-label">{p.label}</span>
-                                    <span class="price-value">{p.price}</span>
-                                </div>
-                            ))}
+            {
+                treatments.map((treatment, i) => (
+                    <div
+                        class={`treatment-row ${i % 2 === 1 ? "reverse" : ""}`}
+                        id={treatment.slug}
+                    >
+                        <div class="treatment-image">
+                            <img
+                                src={treatment.image}
+                                alt={treatment.name}
+                                loading="lazy"
+                            />
                         </div>
+                        <div class="treatment-content">
+                            <span class="eyebrow">{treatment.category}</span>
+                            <h2>{treatment.name}</h2>
+                            {treatment.subtitle && (
+                                <p class="treatment-subtitle">
+                                    {treatment.subtitle}
+                                </p>
+                            )}
 
-                        <div class="divider"></div>
+                            <div class="divider" />
 
-                                               <a class="book-btn" href={`/BookAnAppointment?service=${treatment.slug}`}>
+                            <div class="price-row">
+                                {treatment.prices.map((p) => (
+                                    <div class="price-col">
+                                        <span class="price-label">
+                                            {p.label}
+                                        </span>
+                                        <span class="price-value">
+                                            {p.price}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
 
-                            Book This Ritual
-                        </a>
+                            <div class="divider" />
+
+                            <a
+                                class="book-btn"
+                                href={`/book-an-appointment?service=${treatment.slug}`}
+                            >
+                                Book This Ritual
+                            </a>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))
+            }
         </div>
     </section>
 
