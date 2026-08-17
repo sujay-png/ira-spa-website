@@ -15,19 +15,25 @@ import heroImg from "../images/serviceimage1.webp";
 ---
 
 <Layout
-image="src/images/logo.webp"
-	title="Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburagi"
+	image="src/images/logo.webp"
+	title="Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburgi"
 	description="Relax, rejuvenate and restore at Ira Spa — premium massage therapy, herbal treatments and body rituals in Mangalore and Kalaburagi. Book your session online."
 >
 	<section class="hero" id="hero-section">
-		<img src={heroImg.src} alt="Luxury Spa and Massage Treatment in Mangalore" fetchpriority="high" loading="eager" class="hero__bg-image" />
+		<img
+			src={heroImg.src}
+			alt="Luxury Spa and Massage Treatment in Mangalore"
+			fetchpriority="high"
+			loading="eager"
+			class="hero__bg-image"
+		/>
 		<div class="hero__scrim" aria-hidden="true"></div>
 		<div class="hero__content">
-			<span class="eyebrow hero__eyebrow">Mangalore &amp; Kalaburagi</span>
-			<h1 class="hero__title">Luxury Spa Massage Therapies <br/><em>in Mangalore</em></h1>
-			<p class="hero__tagline">
-				Ira Spa Beauty
-			</p>
+			<span class="eyebrow hero__eyebrow">Mangalore &amp; Kalaburgi</span>
+			<h1 class="hero__title">
+				Luxury Spa Massage Therapies <br /><em>in Mangalore</em>
+			</h1>
+			<p class="hero__tagline">Ira Spa Beauty</p>
 			<a href="/ourservice" class="btn-primary">Explore Services</a>
 		</div>
 	</section>
@@ -70,8 +76,12 @@ image="src/images/logo.webp"
 	.hero__scrim {
 		position: absolute;
 		inset: 0;
-		background:
-			linear-gradient(to bottom, rgba(11, 11, 10, 0.55) 0%, rgba(11, 11, 10, 0.35) 35%, rgba(11, 11, 10, 0.92) 100%);
+		background: linear-gradient(
+			to bottom,
+			rgba(11, 11, 10, 0.55) 0%,
+			rgba(11, 11, 10, 0.35) 35%,
+			rgba(11, 11, 10, 0.92) 100%
+		);
 	}
 
 	.hero__content {

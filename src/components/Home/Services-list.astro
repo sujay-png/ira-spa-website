@@ -6,7 +6,7 @@ const services = [
 			"Intense therapy designed to release chronic muscle tension and promote long-term recovery.",
 		price: "2750/4000/5500",
 		minutes: "60/90/120 min",
-		image:"/images/deep-tissue.jpg",
+		image: "/images/deep-tissue.jpg",
 		featured: true,
 	},
 	{
@@ -30,7 +30,7 @@ const services = [
 		description: "",
 		price: "₹3500",
 		minutes: "60 min",
-		image:"/images/herbal-gold.jpg",
+		image: "/images/herbal-gold.jpg",
 		featured: false,
 	},
 ];
@@ -41,14 +41,20 @@ const services = [
 		<div class="services__header">
 			<div>
 				<span class="eyebrow">Exclusive Treatments</span>
-				<h2>Signature Rituals</h2>
+				<h2>Services</h2>
 			</div>
-			<a href="/ourservice" class="link-arrow">View All Services <span>&rarr;</span></a>
+			<a href="/ourservice" class="link-arrow"
+				>View All Services <span>&rarr;</span></a
+			>
 		</div>
 
 		<div class="services__grid">
 			<div class="service-card service-card--featured reveal">
-				<img src={services[0].image} alt={services[0].title} loading="lazy" />
+				<img
+					src={services[0].image}
+					alt={services[0].title}
+					loading="lazy"
+				/>
 				<div class="card-overlay"></div>
 				<div class="card-info">
 					<h3>{services[0].title}</h3>
@@ -59,7 +65,11 @@ const services = [
 			</div>
 
 			<div class="service-card reveal">
-				<img src={services[1].image} alt={services[1].title} loading="lazy" />
+				<img
+					src={services[1].image}
+					alt={services[1].title}
+					loading="lazy"
+				/>
 				<div class="card-overlay"></div>
 				<div class="card-info">
 					<h3>{services[1].title}</h3>
@@ -70,7 +80,11 @@ const services = [
 
 			<div class="service-pair">
 				<div class="service-card reveal">
-					<img src={services[2].image} alt={services[2].title} loading="lazy" />
+					<img
+						src={services[2].image}
+						alt={services[2].title}
+						loading="lazy"
+					/>
 					<div class="card-overlay"></div>
 					<div class="card-info">
 						<h3>{services[2].title}</h3>
@@ -80,7 +94,11 @@ const services = [
 				</div>
 
 				<div class="service-card reveal">
-					<img src={services[3].image} alt={services[3].title} loading="lazy" />
+					<img
+						src={services[3].image}
+						alt={services[3].title}
+						loading="lazy"
+					/>
 					<div class="card-overlay"></div>
 					<div class="card-info">
 						<h3>{services[3].title}</h3>
@@ -143,7 +161,12 @@ const services = [
 	.card-overlay {
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(to top, rgba(11, 11, 10, 0.92) 0%, rgba(11, 11, 10, 0.35) 45%, rgba(11, 11, 10, 0) 100%);
+		background: linear-gradient(
+			to top,
+			rgba(11, 11, 10, 0.92) 0%,
+			rgba(11, 11, 10, 0.35) 45%,
+			rgba(11, 11, 10, 0) 100%
+		);
 	}
 
 	.card-info {
