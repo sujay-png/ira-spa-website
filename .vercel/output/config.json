@@ -1,0 +1,124 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/404/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/about/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/api/book/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/blogs/page/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/blogs/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/blogs/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/book-an-appointment/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/Contactus/Kalaburgi/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/Contactus/Mangalore/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/download-brochure/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/body-massage/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/body-polishing/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/facial-essentials/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/facial-premium-signature/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/foot-spa/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/herbal-therapy/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/quick-massage/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/thai-therapy/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/ourservice/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/privacy-policy/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/refund-and-return-policy/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/sitemap/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms-and-conditions/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/.*$",
+			"dest": "_render",
+			"status": 404
+		}
+	]
+}

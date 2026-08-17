@@ -5,21 +5,22 @@ import Footer from "../../../components/Footer.astro";
 const locations = [
 	{
 		name: "Mangalore",
-		address: "#301, 3rd Floor, Lotus Paradise Elite, Opp AJ Grand Hotel, Kodialbail, Mangalore 575003",
+		address:
+			"#301, 3rd Floor, Lotus Paradise Elite, Opp AJ Grand Hotel, Kodialbail, Mangalore 575003",
 		locality: "Mangalore",
 		region: "Karnataka",
 		postalCode: "575003",
 		phone: "+91 89716 67199",
 		tel: "+918971667199",
 		hours: "Mon – Sun: 9:00 AM – 9:30 PM",
-		mapUrl: "https://www.google.com/maps/dir/?api=1&destination=" ,
+		mapUrl: "https://www.google.com/maps/dir/?api=1&destination=",
 		latitude: "12.8698",
 		longitude: "74.8420",
 	},
-	
 ];
 
-const pageTitle = "Contact Us | Book a Spa Appointment in Mangalore & Kalaburagi – Ira Spa";
+const pageTitle =
+	"Contact Us | Book a Spa Appointment in Mangalore & Kalaburagi – Ira Spa";
 const pageDescription =
 	"Contact Ira Spa to book massages, facials, and wellness therapies at our Mangalore or Kalaburagi locations. Call, message, or reserve your appointment online today.";
 const canonicalUrl = "https://www.theiraspa.com/contact"; // update to the real production URL
@@ -29,26 +30,26 @@ const structuredData = {
 	"@context": "https://schema.org",
 	"@graph": locations.map((loc) => ({
 		"@type": "DaySpa",
-		"name": `Ira Spa – ${loc.name}`,
-		"image": "https://www.theiraspa.com/images/spa-reception.jpg",
-		"telephone": loc.tel,
-		"priceRange": "₹₹",
-		"address": {
+		name: `Ira Spa – ${loc.name}`,
+		image: "https://www.theiraspa.com/images/spa-reception.jpg",
+		telephone: loc.tel,
+		priceRange: "₹₹",
+		address: {
 			"@type": "PostalAddress",
-			"streetAddress": loc.address,
-			"addressLocality": loc.locality,
-			"addressRegion": loc.region,
-			"postalCode": loc.postalCode,
-			"addressCountry": "IN",
+			streetAddress: loc.address,
+			addressLocality: loc.locality,
+			addressRegion: loc.region,
+			postalCode: loc.postalCode,
+			addressCountry: "IN",
 		},
-		"geo": {
+		geo: {
 			"@type": "GeoCoordinates",
-			"latitude": loc.latitude,
-			"longitude": loc.longitude,
+			latitude: loc.latitude,
+			longitude: loc.longitude,
 		},
-		"openingHoursSpecification": {
+		openingHoursSpecification: {
 			"@type": "OpeningHoursSpecification",
-			"dayOfWeek": [
+			dayOfWeek: [
 				"Monday",
 				"Tuesday",
 				"Wednesday",
@@ -57,11 +58,11 @@ const structuredData = {
 				"Saturday",
 				"Sunday",
 			],
-			"opens": "09:00",
-			"closes": "21:30",
+			opens: "09:00",
+			closes: "21:30",
 		},
-		"url": canonicalUrl,
-		"sameAs": [
+		url: canonicalUrl,
+		sameAs: [
 			"https://www.instagram.com/the_ira_spa/",
 			"https://www.facebook.com/share/1BW2YTGEVW/",
 			"https://www.youtube.com/@IraSpa-n5f",
@@ -73,18 +74,18 @@ const structuredData = {
 const breadcrumbData = {
 	"@context": "https://schema.org",
 	"@type": "BreadcrumbList",
-	"itemListElement": [
+	itemListElement: [
 		{
 			"@type": "ListItem",
-			"position": 1,
-			"name": "Home",
-			"item": "https://www.theiraspa.com/",
+			position: 1,
+			name: "Home",
+			item: "https://www.theiraspa.com/",
 		},
 		{
 			"@type": "ListItem",
-			"position": 2,
-			"name": "Contact Us",
-			"item": canonicalUrl,
+			position: 2,
+			name: "Contact Us",
+			item: canonicalUrl,
 		},
 	],
 };
@@ -97,12 +98,21 @@ const breadcrumbData = {
 		<meta property="og:title" content={pageTitle} />
 		<meta property="og:description" content={pageDescription} />
 		<meta property="og:url" content={canonicalUrl} />
-		<meta property="og:image" content="https://www.theiraspa.com/images/spa-reception.jpg" />
+		<meta
+			property="og:image"
+			content="https://www.theiraspa.com/images/spa-reception.jpg"
+		/>
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={pageTitle} />
 		<meta name="twitter:description" content={pageDescription} />
-		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(structuredData)}
+		/>
+		<script
+			type="application/ld+json"
+			set:html={JSON.stringify(breadcrumbData)}
+		/>
 	</Fragment>
 
 	<section
@@ -112,49 +122,65 @@ const breadcrumbData = {
 		aria-label="Ira Spa reception and relaxation area"
 	>
 		<div class="container">
-			<nav aria-label="Breadcrumb" class="breadcrumb">
-				
-			</nav>
+			<nav aria-label="Breadcrumb" class="breadcrumb"></nav>
 			<span class="eyebrow">Private Service</span>
 			<h1>Contact Ira Spa – Mangalore</h1>
 			<p>
 				Step into a world of curated tranquility. Whether you seek to
-				rejuvenate in Mangalore, our
-				team is ready to tailor your wellness journey. Reach out below
-				to book a massage, facial, or spa therapy appointment.
+				rejuvenate in Mangalore, our team is ready to tailor your
+				wellness journey. Reach out below to book a massage, facial, or
+				spa therapy appointment.
 			</p>
 		</div>
 	</section>
 
 	<section class="concierge">
 		<div class="container concierge__grid">
-			<form class="inquiry-form" id="inquiry-form" aria-label="Spa appointment inquiry form">
+			<form
+				class="inquiry-form"
+				id="inquiry-form"
+				aria-label="Spa appointment inquiry form"
+			>
 				<h2>Submit an Inquiry</h2>
 
 				<div class="form-group">
 					<label for="c-name">Full Name</label>
-					<input type="text" id="c-name" name="name" placeholder="Your name" autocomplete="name" required />
+					<input
+						type="text"
+						id="c-name"
+						name="name"
+						placeholder="Your name"
+						autocomplete="name"
+						required
+					/>
 				</div>
 
 				<div class="form-row">
 					<div class="form-group">
 						<label for="c-email">Email Address</label>
-						<input type="email" id="c-email" name="email" placeholder="email@example.com" autocomplete="email" required />
+						<input
+							type="email"
+							id="c-email"
+							name="email"
+							placeholder="email@example.com"
+							autocomplete="email"
+							required
+						/>
 					</div>
 					<div class="form-group">
 						<label for="c-phone">Phone Number</label>
-						<input type="tel" id="c-phone" name="phone" placeholder="+91 00000 00000" autocomplete="tel" required />
+						<input
+							type="tel"
+							id="c-phone"
+							name="phone"
+							placeholder="+91 00000 00000"
+							autocomplete="tel"
+							required
+						/>
 					</div>
 				</div>
 
-				<!-- <div class="form-group">
-					<label for="c-location">Preferred Location</label>
-					<select id="c-location" name="location" required>
-						<option value="" disabled selected hidden>Select a destination</option>
-						<option value="mangalore">Mangalore</option>
-						<option value="kalaburagi">Kalaburagi</option>
-					</select>
-				</div> -->
+				<input type="hidden" name="location" value="mangalore" />
 
 				<div class="form-row">
 					<div class="form-group">
@@ -164,7 +190,9 @@ const breadcrumbData = {
 					<div class="form-group">
 						<label for="c-time">Preferred Time</label>
 						<select id="c-time" name="time" required>
-							<option value="" disabled selected hidden>Select a time slot</option>
+							<option value="" disabled selected hidden
+								>Select a time slot</option
+							>
 							<option value="10:00">10:00 AM - 11:00 AM</option>
 							<option value="11:00">11:00 AM - 12:00 PM</option>
 							<option value="12:00">12:00 PM - 1:00 PM</option>
@@ -180,11 +208,15 @@ const breadcrumbData = {
 				<div class="form-group">
 					<label for="c-service">Select Service</label>
 					<select id="c-service" name="service" required>
-						<option value="" disabled selected>Select therapy</option>
+						<option value="" disabled selected
+							>Select therapy</option
+						>
 						<option value="massage">Body Massage</option>
 						<option value="herbal">Herbal Therapy</option>
 						<option value="polishing">Body Polishing</option>
-						<option value="facial-essentials">Clean-Ups And Facial-Essential</option>
+						<option value="facial-essentials"
+							>Clean-Ups And Facial-Essential</option
+						>
 						<option value="thai">Thai Therapy</option>
 						<option value="quick-massage">Quick Massage</option>
 						<option value="facial-premium">Facial Premium</option>
@@ -194,53 +226,72 @@ const breadcrumbData = {
 
 				<div class="form-group">
 					<label for="c-message">Message</label>
-					<textarea id="c-message" name="message" rows="4" placeholder="How may we assist your journey?"></textarea>
+					<textarea
+						id="c-message"
+						name="message"
+						rows="4"
+						placeholder="How may we assist your journey?"
+					></textarea>
 				</div>
 
-				<button type="submit" class="btn-primary" id="contact-submit-btn">Send Inquiry <span>&rarr;</span></button>
-				<p class="form-note" id="form-note" hidden>Thank you — our concierge team will be in touch shortly.</p>
+				<button
+					type="submit"
+					class="btn-primary"
+					id="contact-submit-btn"
+					>Send Inquiry <span>&rarr;</span></button
+				>
+				<p class="form-note" id="form-note" hidden>
+					Thank you — our concierge team will be in touch shortly.
+				</p>
 			</form>
 
 			<div class="locations">
 				{
 					locations.map((loc) => (
-						<div class="location-card" itemscope itemtype="https://schema.org/DaySpa">
+						<div
+							class="location-card"
+							itemscope
+							itemtype="https://schema.org/DaySpa"
+						>
 							<h3 itemprop="name">Ira Spa – {loc.name}</h3>
-							<address class="location-card__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-								<span itemprop="streetAddress">{loc.address}</span>
+							<address
+								class="location-card__address"
+								itemprop="address"
+								itemscope
+								itemtype="https://schema.org/PostalAddress"
+							>
+								<span itemprop="streetAddress">
+									{loc.address}
+								</span>
 							</address>
-							<a class="location-card__phone" href={`tel:${loc.tel}`} itemprop="telephone">
+							<a
+								class="location-card__phone"
+								href={`tel:${loc.tel}`}
+								itemprop="telephone"
+							>
 								{loc.phone}
 							</a>
 							<p class="location-card__hours">
-								<meta itemprop="openingHours" content="Mo-Su 09:00-21:30" />
+								<meta
+									itemprop="openingHours"
+									content="Mo-Su 09:00-21:30"
+								/>
 								<span>{loc.hours}</span>
-
-								<a
-									class="directionbutton"
-									href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(loc.address)}`}
-									target="_blank"
-									rel="noopener noreferrer"
-									aria-label={`Get directions to Ira Spa ${loc.name}`}
-								>
-									Get Direction
-								</a>
 							</p>
 						</div>
 					))
 				}
 
 				<div class="map-container">
-					<iframe 
-						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.3734005885233!2d74.8407421!3d12.8837136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b91b8d5a1f5%3A0xcafdbd3a391515f4!2sLotus%20Paradise%20Elite!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-						width="100%" 
-						height="300" 
-						style="border:0; border-radius: var(--radius-md); margin-top: var(--space-md);" 
-						allowfullscreen="" 
-						loading="lazy" 
-						referrerpolicy="no-referrer-when-downgrade"
-						title="Ira Spa Mangalore Location">
-					</iframe>
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.492115920679!2d74.84125703573227!3d12.876046427077238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b004164a273%3A0x1b5b064b037dcbb2!2sLotus%20Paradise%20Elite!5e0!3m2!1sen!2sin!4v1786958553474!5m2!1sen!2sin"
+						width="600"
+						height="450"
+						style="border:0;"
+						allowfullscreen=""
+						loading="lazy"
+						referrerpolicy="strict-origin-when-cross-origin"
+					></iframe>
 				</div>
 			</div>
 		</div>
@@ -248,11 +299,29 @@ const breadcrumbData = {
 
 	<section class="concierge-quote">
 		<div class="container concierge-quote__row">
-			<blockquote>"In silence, we find the true essence of luxury and the rhythm of the self."</blockquote>
+			<blockquote>
+				"In silence, we find the true essence of luxury and the rhythm
+				of the self."
+			</blockquote>
 			<div class="socials">
-				<a href="https://www.instagram.com/the_ira_spa/" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on Instagram">Instagram</a>
-				<a href="https://www.facebook.com/share/1BW2YTGEVW/" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on Facebook">Facebook</a>
-				<a href="https://www.youtube.com/@IraSpa-n5f" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on YouTube">YouTube</a>
+				<a
+					href="https://www.instagram.com/the_ira_spa/"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Ira Spa on Instagram">Instagram</a
+				>
+				<a
+					href="https://www.facebook.com/share/1BW2YTGEVW/"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Ira Spa on Facebook">Facebook</a
+				>
+				<a
+					href="https://www.youtube.com/@IraSpa-n5f"
+					target="_blank"
+					rel="noopener noreferrer"
+					aria-label="Ira Spa on YouTube">YouTube</a
+				>
 			</div>
 		</div>
 	</section>
@@ -261,7 +330,6 @@ const breadcrumbData = {
 </Layout>
 
 <style>
-
 	.breadcrumb {
 		font-size: 0.75rem;
 		letter-spacing: 0.08em;
@@ -275,26 +343,33 @@ const breadcrumbData = {
 		text-decoration: underline;
 	}
 
-	.directionbutton{
+	.directionbutton {
 		display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: -2.4rem;
-    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
-    color: var(--color-on-accent);
-    font-family: var(--font-body);
-    font-size: .85rem;
-    font-weight: 700;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    padding: 4px 0.1rem;
-    border-radius: var(--radius-sm);
-    border: 1px solid #0000;
-    touch-action: manipulation;
-    transition: transform .3s var(--ease), box-shadow .3s ease, background .3s ease;
-    box-shadow: 0 8px 24px #cfa23c38;
-    margin: 3px;
-    width: 160px;
+		align-items: center;
+		justify-content: center;
+		gap: -2.4rem;
+		background: linear-gradient(
+			135deg,
+			var(--color-accent),
+			var(--color-accent-strong)
+		);
+		color: var(--color-on-accent);
+		font-family: var(--font-body);
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		padding: 4px 0.1rem;
+		border-radius: var(--radius-sm);
+		border: 1px solid #0000;
+		touch-action: manipulation;
+		transition:
+			transform 0.3s var(--ease),
+			box-shadow 0.3s ease,
+			background 0.3s ease;
+		box-shadow: 0 8px 24px #cfa23c38;
+		margin: 3px;
+		width: 160px;
 	}
 	.concierge {
 		padding-block: var(--space-2xl);
@@ -384,7 +459,6 @@ const breadcrumbData = {
 		display: flex;
 		flex-direction: row;
 		gap: 4.25rem;
-
 	}
 
 	.concierge-quote {
@@ -444,17 +518,21 @@ const breadcrumbData = {
 
 <script>
 	function initInquiryForm() {
-		const form = document.getElementById("inquiry-form") as HTMLFormElement | null;
+		const form = document.getElementById(
+			"inquiry-form",
+		) as HTMLFormElement | null;
 		const note = document.getElementById("form-note");
 		if (!form) return;
 
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
 
-			const submitBtn = document.getElementById("contact-submit-btn") as HTMLButtonElement;
+			const submitBtn = document.getElementById(
+				"contact-submit-btn",
+			) as HTMLButtonElement;
 			if (submitBtn) {
-			    submitBtn.innerHTML = 'Reserving...';
-			    submitBtn.disabled = true;
+				submitBtn.innerHTML = "Reserving...";
+				submitBtn.disabled = true;
 			}
 			if (note) note.hidden = true;
 
@@ -462,39 +540,40 @@ const breadcrumbData = {
 			const data = Object.fromEntries(formData.entries());
 
 			try {
-				const response = await fetch('/api/book', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(data)
+				const response = await fetch("/api/book", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data),
 				});
 
 				const result = await response.json();
 
 				if (!response.ok || !result.success) {
-					throw new Error(result.error || 'Failed to submit inquiry');
+					throw new Error(result.error || "Failed to submit inquiry");
 				}
 
 				form.reset();
 				if (note) {
 					note.removeAttribute("hidden");
 					note.style.color = "var(--color-accent-soft)";
-					note.textContent = "Thank you — our concierge team will be in touch shortly.";
+					note.textContent =
+						"Thank you — our concierge team will be in touch shortly.";
 				}
 			} catch (error: any) {
-				console.error('Submission Error:', error.message);
+				console.error("Submission Error:", error.message);
 				if (note) {
 					note.removeAttribute("hidden");
 					note.style.color = "#ff6b6b";
-					note.textContent = "Something went wrong. Please try again.";
+					note.textContent =
+						"Something went wrong. Please try again.";
 				}
 			} finally {
 				if (submitBtn) {
-					submitBtn.innerHTML = 'Send Inquiry <span>&rarr;</span>';
+					submitBtn.innerHTML = "Send Inquiry <span>&rarr;</span>";
 					submitBtn.disabled = false;
 				}
 			}
 		});
 	}
-	initInquiryForm();
 	document.addEventListener("astro:page-load", initInquiryForm);
 </script>
