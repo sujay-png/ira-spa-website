@@ -136,7 +136,19 @@ const jsonLd = {
 						<li><a href="/about">About Us</a></li>
 						<li><a href="/ourservice">Services</a></li>
 						<li><a href="/blogs">Blogs</a></li>
-						<li><a href="/Contactus">Contact</a></li>
+						<li class="nav__dropdown">
+							<a  class="dropdown__toggle">
+								Contact Us <span class="caret">&#9662;</span>
+							</a>
+							<ul class="dropdown__menu">
+								<li>
+									<a href="/Contactus/Mangalore">Mangalore</a>
+								</li>
+								<li>
+									<a href="/Contactus/Kalaburgi">Kalaburgi</a>
+								</li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 
@@ -222,6 +234,8 @@ const jsonLd = {
 		align-items: center;
 		gap: clamp(1.5rem, 2.5vw, 2.75rem);
 		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 
 	.nav__list a {
@@ -355,6 +369,87 @@ const jsonLd = {
 		.nav__list a::after {
 			display: none;
 		}
+	}
+	.nav__dropdown {
+		position: relative;
+	}
+
+	.dropdown__toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.caret {
+		font-size: 0.8em;
+	}
+
+	/* Dropdown Card */
+	.dropdown__menu {
+		display: none;
+		position: absolute;
+		top: calc(100% + 12px);
+		left: 0;
+		background-color: #ffffff;
+		min-width: 170px;
+		border-radius: 4px;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+		list-style: none;
+		margin: 0;
+		padding: 4px 0;
+		z-index: 9999;
+	}
+
+	/* Top Pointer Arrow */
+	.dropdown__menu::before {
+		content: "";
+		position: absolute;
+		top: -5px;
+		left: 20px;
+		width: 10px;
+		height: 10px;
+		background-color: #ffffff;
+		transform: rotate(45deg);
+		z-index: 1;
+	}
+	.dropdown__menu::after {
+		content: "";
+		position: absolute;
+		top: -10px;
+		left: 0;
+		width: 100%;
+		height: 10px;
+	}
+
+	/* Dropdown Items */
+	.dropdown__menu li {
+		position: relative;
+	}
+
+	.dropdown__menu li:not(:last-child) {
+		border-bottom: 1px solid #f0f0f0;
+	}
+
+	.dropdown__menu li a {
+		display: block;
+		padding: 12px 18px;
+		color: #222222;
+		font-size: 14px;
+		font-weight: 600;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.dropdown__menu li a:hover {
+		background-color: #f8f8f8;
+		color: #ffa500;
+	}
+
+	/* Hover Trigger */
+	.nav__dropdown:hover .dropdown__menu,
+	.nav__dropdown:focus-within .dropdown__menu {
+		display: block;
 	}
 </style>
 

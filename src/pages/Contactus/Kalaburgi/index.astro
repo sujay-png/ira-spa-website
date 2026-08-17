@@ -1,0 +1,500 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Footer from "../../../components/Footer.astro";
+
+const locations = [
+
+	{
+		name: "Kalaburagi",
+		address: "1st Floor, Tulips Inn by Vkg Hotel, Sedam Rd, Opp. ESIC Hospital, Kalaburagi, Karnataka 585106",
+		locality: "Kalaburagi",
+		region: "Karnataka",
+		postalCode: "585106",
+		phone: "+91 7022865999",
+		tel: "+917022865999",
+		hours: "Mon – Sun: 9:00 AM – 9:30 PM",
+		mapUrl: "https://www.google.com/maps/dir/?api=1&destination=",
+		latitude: "17.3297",
+		longitude: "76.8343",
+	},
+];
+
+const pageTitle = "Contact Us | Book a Spa Appointment in Mangalore & Kalaburagi – Ira Spa";
+const pageDescription =
+	"Contact Ira Spa to book massages, facials, and wellness therapies at our Mangalore or Kalaburagi locations. Call, message, or reserve your appointment online today.";
+const canonicalUrl = "https://www.theiraspa.com/contact"; // update to the real production URL
+
+// JSON-LD structured data for local SEO (two DaySpa locations)
+const structuredData = {
+	"@context": "https://schema.org",
+	"@graph": locations.map((loc) => ({
+		"@type": "DaySpa",
+		"name": `Ira Spa – ${loc.name}`,
+		"image": "https://www.theiraspa.com/images/spa-reception.jpg",
+		"telephone": loc.tel,
+		"priceRange": "₹₹",
+		"address": {
+			"@type": "PostalAddress",
+			"streetAddress": loc.address,
+			"addressLocality": loc.locality,
+			"addressRegion": loc.region,
+			"postalCode": loc.postalCode,
+			"addressCountry": "IN",
+		},
+		"geo": {
+			"@type": "GeoCoordinates",
+			"latitude": loc.latitude,
+			"longitude": loc.longitude,
+		},
+		"openingHoursSpecification": {
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": [
+				"Monday",
+				"Tuesday",
+				"Wednesday",
+				"Thursday",
+				"Friday",
+				"Saturday",
+				"Sunday",
+			],
+			"opens": "09:00",
+			"closes": "21:30",
+		},
+		"url": canonicalUrl,
+		"sameAs": [
+			"https://www.instagram.com/the_ira_spa/",
+			"https://www.facebook.com/share/1BW2YTGEVW/",
+			"https://www.youtube.com/@IraSpa-n5f",
+		],
+	})),
+};
+
+// Breadcrumb structured data
+const breadcrumbData = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Home",
+			"item": "https://www.theiraspa.com/",
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Contact Us",
+			"item": canonicalUrl,
+		},
+	],
+};
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+	<Fragment slot="head">
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={pageDescription} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content="https://www.theiraspa.com/images/spa-reception.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={pageDescription} />
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		<script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+	</Fragment>
+
+	<section
+		class="page-banner"
+		style="background-image: url('/images/spa-reception.jpg');"
+		role="img"
+		aria-label="Ira Spa reception and relaxation area"
+	>
+		<div class="container">
+			<nav aria-label="Breadcrumb" class="breadcrumb">
+				
+			</nav>
+			<span class="eyebrow">Private Service</span>
+			<h1>Contact Ira Spa  Kalaburagi</h1>
+			<p>
+				Step into a world of curated tranquility. Whether you seek to
+				rejuvenate in Kalaburagi , our
+				team is ready to tailor your wellness journey. Reach out below
+				to book a massage, facial, or spa therapy appointment.
+			</p>
+		</div>
+	</section>
+
+	<section class="concierge">
+		<div class="container concierge__grid">
+			<form class="inquiry-form" id="inquiry-form" aria-label="Spa appointment inquiry form">
+				<h2>Submit an Inquiry</h2>
+
+				<div class="form-group">
+					<label for="c-name">Full Name</label>
+					<input type="text" id="c-name" name="name" placeholder="Your name" autocomplete="name" required />
+				</div>
+
+				<div class="form-row">
+					<div class="form-group">
+						<label for="c-email">Email Address</label>
+						<input type="email" id="c-email" name="email" placeholder="email@example.com" autocomplete="email" required />
+					</div>
+					<div class="form-group">
+						<label for="c-phone">Phone Number</label>
+						<input type="tel" id="c-phone" name="phone" placeholder="+91 00000 00000" autocomplete="tel" required />
+					</div>
+				</div>
+
+				<!-- <div class="form-group">
+					<label for="c-location">Preferred Location</label>
+					<select id="c-location" name="location" required>
+						<option value="" disabled selected hidden>Select a destination</option>
+						<option value="mangalore">Mangalore</option>
+						<option value="kalaburagi">Kalaburagi</option>
+					</select>
+				</div> -->
+
+				<div class="form-row">
+					<div class="form-group">
+						<label for="c-date">Appointment Date</label>
+						<input type="date" id="c-date" name="date" required />
+					</div>
+					<div class="form-group">
+						<label for="c-time">Preferred Time</label>
+						<select id="c-time" name="time" required>
+							<option value="" disabled selected hidden>Select a time slot</option>
+							<option value="10:00">10:00 AM - 11:00 AM</option>
+							<option value="11:00">11:00 AM - 12:00 PM</option>
+							<option value="12:00">12:00 PM - 1:00 PM</option>
+							<option value="13:00">1:00 PM - 2:00 PM</option>
+							<option value="14:00">2:00 PM - 3:00 PM</option>
+							<option value="15:00">3:00 PM - 4:00 PM</option>
+							<option value="16:00">4:00 PM - 5:00 PM</option>
+							<option value="17:00">5:00 PM - 6:00 PM</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="c-service">Select Service</label>
+					<select id="c-service" name="service" required>
+						<option value="" disabled selected>Select therapy</option>
+						<option value="massage">Body Massage</option>
+						<option value="herbal">Herbal Therapy</option>
+						<option value="polishing">Body Polishing</option>
+						<option value="facial-essentials">Clean-Ups And Facial-Essential</option>
+						<option value="thai">Thai Therapy</option>
+						<option value="quick-massage">Quick Massage</option>
+						<option value="facial-premium">Facial Premium</option>
+						<option value="foot-spa">Foot-Spa</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="c-message">Message</label>
+					<textarea id="c-message" name="message" rows="4" placeholder="How may we assist your journey?"></textarea>
+				</div>
+
+				<button type="submit" class="btn-primary" id="contact-submit-btn">Send Inquiry <span>&rarr;</span></button>
+				<p class="form-note" id="form-note" hidden>Thank you — our concierge team will be in touch shortly.</p>
+			</form>
+
+			<div class="locations">
+				{
+					locations.map((loc) => (
+						<div class="location-card" itemscope itemtype="https://schema.org/DaySpa">
+							<h3 itemprop="name">Ira Spa – {loc.name}</h3>
+							<address class="location-card__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<span itemprop="streetAddress">{loc.address}</span>
+							</address>
+							<a class="location-card__phone" href={`tel:${loc.tel}`} itemprop="telephone">
+								{loc.phone}
+							</a>
+							<p class="location-card__hours">
+								<meta itemprop="openingHours" content="Mo-Su 09:00-21:30" />
+								<span>{loc.hours}</span>
+
+								<a
+									class="directionbutton"
+									href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(loc.address)}`}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={`Get directions to Ira Spa ${loc.name}`}
+								>
+									Get Direction
+								</a>
+							</p>
+						</div>
+					))
+				}
+
+				<div class="map-container">
+					<iframe 
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.3734005885233!2d74.8407421!3d12.8837136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35b91b8d5a1f5%3A0xcafdbd3a391515f4!2sLotus%20Paradise%20Elite!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+						width="100%" 
+						height="300" 
+						style="border:0; border-radius: var(--radius-md); margin-top: var(--space-md);" 
+						allowfullscreen="" 
+						loading="lazy" 
+						referrerpolicy="no-referrer-when-downgrade"
+						title="Ira Spa Mangalore Location">
+					</iframe>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="concierge-quote">
+		<div class="container concierge-quote__row">
+			<blockquote>"In silence, we find the true essence of luxury and the rhythm of the self."</blockquote>
+			<div class="socials">
+				<a href="https://www.instagram.com/the_ira_spa/" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on Instagram">Instagram</a>
+				<a href="https://www.facebook.com/share/1BW2YTGEVW/" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on Facebook">Facebook</a>
+				<a href="https://www.youtube.com/@IraSpa-n5f" target="_blank" rel="noopener noreferrer" aria-label="Ira Spa on YouTube">YouTube</a>
+			</div>
+		</div>
+	</section>
+
+	<Footer />
+</Layout>
+
+<style>
+
+	.breadcrumb {
+		font-size: 0.75rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: var(--space-sm);
+		opacity: 0.85;
+	}
+
+	.breadcrumb a {
+		color: inherit;
+		text-decoration: underline;
+	}
+
+	.directionbutton{
+		display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: -2.4rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+    color: var(--color-on-accent);
+    font-family: var(--font-body);
+    font-size: .85rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 4px 0.1rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid #0000;
+    touch-action: manipulation;
+    transition: transform .3s var(--ease), box-shadow .3s ease, background .3s ease;
+    box-shadow: 0 8px 24px #cfa23c38;
+    margin: 3px;
+    width: 160px;
+	}
+	.concierge {
+		padding-block: var(--space-2xl);
+	}
+
+	.concierge__grid {
+		display: grid;
+		grid-template-columns: 1.1fr 0.9fr;
+		gap: clamp(2rem, 5vw, 4rem);
+		align-items: start;
+	}
+
+	.inquiry-form {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		padding: clamp(1.75rem, 4vw, 2.75rem);
+	}
+
+	.inquiry-form h2 {
+		font-size: var(--font-size-xl);
+		margin-bottom: var(--space-md);
+	}
+
+	.form-group {
+		margin-bottom: var(--space-md);
+	}
+
+	.form-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: var(--space-sm);
+	}
+
+	.inquiry-form .btn-primary {
+		width: 100%;
+		gap: 0.75rem;
+	}
+
+	.form-note {
+		margin-top: var(--space-sm);
+		text-align: center;
+		color: var(--color-accent-soft);
+		font-size: 0.9rem;
+	}
+
+	.locations {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
+	.location-card {
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		padding: var(--space-md) var(--space-lg);
+	}
+
+	.location-card h3 {
+		font-size: var(--font-size-lg);
+		margin-bottom: var(--space-sm);
+		color: var(--color-accent-soft);
+	}
+
+	.location-card__address {
+		font-size: 0.9rem;
+		margin-bottom: var(--space-sm);
+		font-style: normal;
+	}
+
+	.location-card__phone {
+		display: flex;
+		font-weight: 600;
+		color: var(--color-text);
+		margin-bottom: 0.5rem;
+	}
+
+	.location-card__phone:hover {
+		color: var(--color-accent);
+	}
+
+	.location-card__hours {
+		font-size: 0.8rem;
+		color: var(--color-text-faint);
+		margin: 0;
+		display: flex;
+		flex-direction: row;
+		gap: 4.25rem;
+
+	}
+
+	.concierge-quote {
+		padding-block: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.concierge-quote__row {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+		align-items: flex-start;
+	}
+
+	.concierge-quote blockquote {
+		font-family: var(--font-display);
+		font-style: italic;
+		font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+		max-width: 560px;
+		color: var(--color-text);
+	}
+
+	.socials {
+		display: flex;
+		gap: var(--space-md);
+	}
+
+	.socials a {
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--color-text-muted);
+	}
+
+	.socials a:hover {
+		color: var(--color-accent);
+	}
+
+	@media (min-width: 768px) {
+		.concierge-quote__row {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+	@media (max-width: 900px) {
+		.concierge__grid {
+			grid-template-columns: 1fr;
+		}
+		.form-row {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	function initInquiryForm() {
+		const form = document.getElementById("inquiry-form") as HTMLFormElement | null;
+		const note = document.getElementById("form-note");
+		if (!form) return;
+
+		form.addEventListener("submit", async (e) => {
+			e.preventDefault();
+
+			const submitBtn = document.getElementById("contact-submit-btn") as HTMLButtonElement;
+			if (submitBtn) {
+			    submitBtn.innerHTML = 'Reserving...';
+			    submitBtn.disabled = true;
+			}
+			if (note) note.hidden = true;
+
+			const formData = new FormData(form);
+			const data = Object.fromEntries(formData.entries());
+
+			try {
+				const response = await fetch('/api/book', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(data)
+				});
+
+				const result = await response.json();
+
+				if (!response.ok || !result.success) {
+					throw new Error(result.error || 'Failed to submit inquiry');
+				}
+
+				form.reset();
+				if (note) {
+					note.removeAttribute("hidden");
+					note.style.color = "var(--color-accent-soft)";
+					note.textContent = "Thank you — our concierge team will be in touch shortly.";
+				}
+			} catch (error: any) {
+				console.error('Submission Error:', error.message);
+				if (note) {
+					note.removeAttribute("hidden");
+					note.style.color = "#ff6b6b";
+					note.textContent = "Something went wrong. Please try again.";
+				}
+			} finally {
+				if (submitBtn) {
+					submitBtn.innerHTML = 'Send Inquiry <span>&rarr;</span>';
+					submitBtn.disabled = false;
+				}
+			}
+		});
+	}
+	initInquiryForm();
+	document.addEventListener("astro:page-load", initInquiryForm);
+</script>
