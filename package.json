@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/node": "^11.0.3",
     "@astrojs/sitemap": "^3.7.3",
-    "@astrojs/vercel": "^11.0.4",
+    "@astrojs/vercel": "^11.0.5",
     "@fancyapps/ui": "^6.1.14",
     "@iconify-json/mdi": "^1.2.3",
     "@supabase/supabase-js": "^2.111.0",
