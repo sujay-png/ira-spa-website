@@ -52,76 +52,83 @@ import heroImg from "../images/serviceimage1.webp";
 </Layout>
 
 <style>
-	.hero {
-		position: relative;
-		width: 100%;
-		height: 92vh;
-		min-height: 560px;
-		max-height: 920px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-	}
+    .hero {
+        position: relative;
+        width: 100%;
+        height: 92vh;
+        min-height: 560px;
+        max-height: 920px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
 
-	.hero__bg-image {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		z-index: 0;
-	}
+    .hero__bg-image {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+    }
 
-	.hero__scrim {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			to bottom,
-			rgba(11, 11, 10, 0.55) 0%,
-			rgba(11, 11, 10, 0.35) 35%,
-			rgba(11, 11, 10, 0.92) 100%
-		);
-	}
+    .hero__scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(11, 11, 10, 0.55) 0%,
+            rgba(11, 11, 10, 0.35) 35%,
+            rgba(11, 11, 10, 0.92) 100%
+        );
+    }
 
-	.hero__content {
-		position: relative;
-		z-index: 1;
-		text-align: center;
-		max-width: 760px;
-		padding: 0 1.5rem;
-	}
+    .hero__content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 760px;
+        padding: 0 1.5rem;
+    }
 
-	.hero__eyebrow {
-		color: var(--color-accent-soft);
-		margin-bottom: var(--space-sm);
-	}
+    .hero__eyebrow {
+        color: var(--color-accent-soft);
+        margin-bottom: var(--space-sm);
+    }
 
-	.hero__title {
-		font-size: clamp(2.6rem, 3vw, 5.5rem);
-		color: #fff;
-		margin-bottom: var(--space-md);
-		white-space: nowrap;
+    .hero__title {
+        /* Allow normal wrapping on mobile */
+        white-space: normal;
+        /* Lower base min-size and responsive scaling */
+        font-size: clamp(1.85rem, 5vw + 1rem, 4.5rem);
+        line-height: 1.2;
+        color: #fff;
+        margin-bottom: var(--space-md);
 
-		em {
-			font-style: italic;
-			color: var(--color-accent-soft);
-		}
-	}
+        em {
+            font-style: italic;
+            color: var(--color-accent-soft);
+        }
+    }
 
-	.hero__tagline {
-		font-family: var(--font-body);
-		font-size: var(--font-size-lg);
-		color: rgba(255, 255, 255, 0.82);
-		max-width: 520px;
-		margin: 0 auto var(--space-lg);
-		line-height: 1.7;
-	}
+    .hero__tagline {
+        font-family: var(--font-body);
+        font-size: var(--font-size-lg);
+        color: rgba(255, 255, 255, 0.82);
+        max-width: 520px;
+        margin: 0 auto var(--space-lg);
+        line-height: 1.7;
+    }
 
-	@media (max-width: 768px) {
-		.hero {
-			height: 82vh;
-			min-height: 460px;
-		}
-	}
+    @media (max-width: 768px) {
+        .hero {
+            height: 82vh;
+            min-height: 460px;
+        }
+
+        .hero__title {
+            font-size: clamp(1.75rem, 6vw, 2.5rem);
+        }
+    }
 </style>

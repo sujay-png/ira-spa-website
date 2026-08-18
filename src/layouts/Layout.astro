@@ -136,19 +136,24 @@ const jsonLd = {
 						<li><a href="/about">About Us</a></li>
 						<li><a href="/ourservice">Services</a></li>
 						<li><a href="/blogs">Blogs</a></li>
-						<li class="nav__dropdown">
-							<a  class="dropdown__toggle">
-								Contact Us <span class="caret">&#9662;</span>
-							</a>
-							<ul class="dropdown__menu">
-								<li>
-									<a href="/Contactus/Mangalore">Mangalore</a>
-								</li>
-								<li>
-									<a href="/Contactus/Kalaburgi">Kalaburgi</a>
-								</li>
-							</ul>
-						</li>
+				<li class="nav__dropdown">
+    <button
+        type="button"
+        class="dropdown__toggle"
+        aria-expanded="false"
+        aria-haspopup="true"
+    >
+        Contact Us <span class="caret">&#9662;</span>
+    </button>
+    <ul class="dropdown__menu">
+        <li>
+            <a href="/Contactus/Mangalore">Mangalore</a>
+        </li>
+        <li>
+            <a href="/Contactus/Kalaburgi">Kalaburgi</a>
+        </li>
+    </ul>
+</li>
 					</ul>
 				</nav>
 
@@ -371,47 +376,57 @@ const jsonLd = {
 		}
 	}
 	.nav__dropdown {
-		position: relative;
-	}
+        position: relative;
+    }
 
-	.dropdown__toggle {
-		display: inline-flex;
-		align-items: center;
-		gap: 4px;
-	}
+    .dropdown__toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-text);
+        padding: 0.35rem 0;
+    }
 
-	.caret {
-		font-size: 0.8em;
-	}
+    .caret {
+        font-size: 0.8em;
+        transition: transform 0.2s ease;
+    }
 
-	/* Dropdown Card */
-	.dropdown__menu {
-		display: none;
-		position: absolute;
-		top: calc(100% + 12px);
-		left: 0;
-		background-color: #ffffff;
-		min-width: 170px;
-		border-radius: 4px;
-		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-		list-style: none;
-		margin: 0;
-		padding: 4px 0;
-		z-index: 9999;
-	}
+    /* Desktop Dropdown Card */
+    .dropdown__menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 12px);
+        left: 0;
+        background-color: #ffffff;
+        min-width: 170px;
+        border-radius: 4px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        list-style: none;
+        margin: 0;
+        padding: 4px 0;
+        z-index: 9999;
+    }
 
-	/* Top Pointer Arrow */
-	.dropdown__menu::before {
-		content: "";
-		position: absolute;
-		top: -5px;
-		left: 20px;
-		width: 10px;
-		height: 10px;
-		background-color: #ffffff;
-		transform: rotate(45deg);
-		z-index: 1;
-	}
+    .dropdown__menu::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 20px;
+        width: 10px;
+        height: 10px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+        z-index: 1;
+    }
 	.dropdown__menu::after {
 		content: "";
 		position: absolute;
@@ -426,26 +441,108 @@ const jsonLd = {
 		position: relative;
 	}
 
-	.dropdown__menu li:not(:last-child) {
-		border-bottom: 1px solid #f0f0f0;
-	}
+.dropdown__menu li:not(:last-child) {
+        border-bottom: 1px solid #f0f0f0;
+    }
 
 	.dropdown__menu li a {
-		display: block;
-		padding: 12px 18px;
-		color: #222222;
-		font-size: 14px;
-		font-weight: 600;
-		transition:
-			background-color 0.2s ease,
-			color 0.2s ease;
-	}
+        display: block;
+        padding: 12px 18px;
+        color: #222222;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
 
-	.dropdown__menu li a:hover {
-		background-color: #f8f8f8;
-		color: #ffa500;
-	}
+    .dropdown__menu li a:hover {
+        background-color: #f8f8f8;
+        color: #ffa500;
+    }
 
+	@media (max-width: 860px) {
+        .header-cta {
+            display: none;
+        }
+
+        .nav-toggle {
+            display: flex;
+        }
+
+        .nav {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            background: rgba(11, 11, 10, 0.98);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--color-border);
+            max-height: 0;
+            overflow-y: auto; /* Allow scrolling if menu is long */
+            transition: max-height 0.35s ease;
+        }
+
+        .nav.is-open {
+            max-height: 80vh;
+        }
+
+        .nav__list {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            padding: 0.5rem clamp(1.25rem, 4vw, 2.5rem) 1.5rem;
+        }
+
+        .nav__list li {
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .nav__list li:last-child {
+            border-bottom: none;
+        }
+
+        .nav__list a,
+        .dropdown__toggle {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1rem 0;
+        }
+
+        /* Mobile Accordion Menu */
+        .dropdown__menu {
+            position: static;
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            box-shadow: none;
+            padding: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .dropdown__menu::before {
+            display: none;
+        }
+
+        .dropdown__menu li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .dropdown__menu li a {
+            padding: 0.75rem 1rem;
+            color: #ffffff;
+            font-size: 0.85rem;
+        }
+
+        /* Open state on mobile */
+        .nav__dropdown.is-active .dropdown__menu {
+            display: block;
+        }
+
+        .nav__dropdown.is-active .caret {
+            transform: rotate(180deg);
+        }
+    }
 	/* Hover Trigger */
 	.nav__dropdown:hover .dropdown__menu,
 	.nav__dropdown:focus-within .dropdown__menu {
@@ -454,33 +551,45 @@ const jsonLd = {
 </style>
 
 <script>
-	function initNav() {
-		const toggle = document.getElementById("nav-toggle");
-		const nav = document.getElementById("nav");
-		if (!toggle || !nav) return;
+    function initNav() {
+        const toggle = document.getElementById("nav-toggle");
+        const nav = document.getElementById("nav");
+        if (!toggle || !nav) return;
 
-		// Prevent duplicate listeners if script runs multiple times
-		const newToggle = toggle.cloneNode(true);
-		toggle.parentNode?.replaceChild(newToggle, toggle);
+        // Clone to clear previous listeners on View Transitions
+        const newToggle = toggle.cloneNode(true);
+        toggle.parentNode?.replaceChild(newToggle, toggle);
 
-		const freshToggle = document.getElementById("nav-toggle");
-		const freshNav = document.getElementById("nav");
+        const freshToggle = document.getElementById("nav-toggle");
+        const freshNav = document.getElementById("nav");
 
-		freshToggle?.addEventListener("click", () => {
-			const isOpen = freshNav?.classList.toggle("is-open");
-			freshToggle.setAttribute("aria-expanded", String(isOpen));
-		});
+        // Mobile Hamburger Toggle
+        freshToggle?.addEventListener("click", () => {
+            const isOpen = freshNav?.classList.toggle("is-open");
+            freshToggle.setAttribute("aria-expanded", String(isOpen));
+        });
 
-		freshNav?.querySelectorAll("a").forEach((link) => {
-			link.addEventListener("click", () => {
-				freshNav.classList.remove("is-open");
-				freshToggle?.setAttribute("aria-expanded", "false");
-			});
-		});
-	}
+        // Dropdown toggle click (Mobile Accordion)
+        const dropdownToggles = freshNav?.querySelectorAll(".dropdown__toggle");
+        dropdownToggles?.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const parent = btn.closest(".nav__dropdown");
+                const isExpanded = parent?.classList.toggle("is-active");
+                btn.setAttribute("aria-expanded", String(isExpanded));
+            });
+        });
 
-	// Runs on initial load
-	initNav();
-	// Re-runs safely every time Astro transitions to a new page
-	document.addEventListener("astro:after-swap", initNav);
+        // Close drawer when an actual navigation link is tapped
+        freshNav?.querySelectorAll(".nav__list a").forEach((link) => {
+            link.addEventListener("click", () => {
+                freshNav.classList.remove("is-open");
+                freshToggle?.setAttribute("aria-expanded", "false");
+                freshNav.querySelectorAll(".nav__dropdown").forEach((d) => d.classList.remove("is-active"));
+            });
+        });
+    }
+
+    initNav();
+    document.addEventListener("astro:after-swap", initNav);
 </script>
