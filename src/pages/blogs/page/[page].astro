@@ -18,7 +18,7 @@ const pageNum = Number(page);
 
 // 2. Handle invalid page numbers gracefully
 if (isNaN(pageNum) || pageNum < 2) {
-	return Astro.redirect('/blogs');
+	return Astro.redirect('/blogs/');
 }
 
 const allPosts = await getAllPosts();
@@ -52,9 +52,9 @@ const truncate = (text: string, length: number) => {
 			<div class="feed__header">
 				<h2>The Serenity Feed <span class="page-count">— Page {pageNum}</span></h2>
 				<nav class="feed__nav">
-					<a href="/blogs" class="active">ALL POSTS</a>
+					<a href="/blogs/" class="active">ALL POSTS</a>
 					{categories.slice(0, 3).map((cat) => (
-						<a href={`/blogs/category/${cat.slug}`}>{cat.name.toUpperCase()}</a>
+						<a href={`/blogs/category/${cat.slug}/`}>{cat.name.toUpperCase()}</a>
 					))}
 				</nav>
 			</div>
@@ -66,7 +66,7 @@ const truncate = (text: string, length: number) => {
 			<div class="bottom-grid">
 				{pagePosts.map((post) => (
 					<article class="post post--text-badge">
-						<a href={`/blogs/${post.slug}`}>
+						<a href={`/blogs/${post.slug}/`}>
 							<div class="post__image-wrap">
 								<img src={getFeaturedImage(post).src} alt={getFeaturedImage(post).alt} />
 							</div>
@@ -81,16 +81,16 @@ const truncate = (text: string, length: number) => {
 			<nav class="pagination" aria-label="Blog pagination">
 				{pageNum > 1 && (
 					pageNum === 2 ? (
-						<a href="/blogs" class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+						<a href="/blogs/" class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
 					) : (
-						<a href={`/blogs/page/${pageNum - 1}`} class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
+						<a href={`/blogs/page/${pageNum - 1}/`} class="link-arrow"><span class="arrow">&larr;</span> NEWER</a>
 					)
 				)}
 				
 				<span class="pagination__status">PAGE {pageNum} OF {totalPages}</span>
 				
 				{pageNum < totalPages && (
-					<a href={`/blogs/page/${pageNum + 1}`} class="link-arrow">Next <span class="arrow">&rarr;</span></a>
+					<a href={`/blogs/page/${pageNum + 1}/`} class="link-arrow">Next <span class="arrow">&rarr;</span></a>
 				)}
 			</nav>
 		</div>
