@@ -18,7 +18,7 @@ const {
 
 const canonicalURL = new URL(
 	Astro.url.pathname,
-	Astro.site ?? "https://iraspa.in",
+	Astro.site ?? "https://www.iraspa.in",
 );
 const siteName = "Ira Spa";
 
@@ -133,8 +133,8 @@ const jsonLd = {
 				<nav class="nav" id="nav" aria-label="Primary">
 					<ul class="nav__list">
 						<li><a href="/">Home</a></li>
-						<li><a href="/about">About Us</a></li>
-						<li><a href="/ourservice">Services</a></li>
+						<li><a href="/about/">About Us</a></li>
+						<li><a href="/ourservice/">Services</a></li>
 						<li><a href="/blogs/">Blogs</a></li>
 				<li class="nav__dropdown">
     <button
@@ -147,10 +147,10 @@ const jsonLd = {
     </button>
     <ul class="dropdown__menu">
         <li>
-            <a href="/Contactus/Mangalore">Mangalore</a>
+            <a href="/Contactus/Mangalore/">Mangalore</a>
         </li>
         <li>
-            <a href="/Contactus/Kalaburgi">Kalaburgi</a>
+            <a href="/Contactus/Kalaburgi/">Kalaburgi</a>
         </li>
     </ul>
 </li>
@@ -159,7 +159,7 @@ const jsonLd = {
 
 				<div class="header-actions">
 					<a
-						href="/book-an-appointment"
+						href="/book-an-appointment/"
 						class="btn-primary header-cta">Book Now</a
 					>
 					<button

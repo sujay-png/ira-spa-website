@@ -108,10 +108,10 @@ import { serviceData } from "../../data/services";
 					<h2 class="mt-large">Other Pages</h2>
 					<ul>
 						<li><a href="/">Home</a></li>
-						<li><a href="/about">About us</a></li>
-						<li><a href="/ourservice">Our services</a></li>
+						<li><a href="/about/">About us</a></li>
+						<li><a href="/ourservice/">Our services</a></li>
 						<li>
-							<a href="/book-an-appointment"
+							<a href="/book-an-appointment/"
 								>Book an Appointment</a
 							>
 						</li>
@@ -120,7 +120,7 @@ import { serviceData } from "../../data/services";
 				</div>
 				<div class="sitemap-column">
 					<h2>
-						<a href="/ourservice" class="heading-link"
+						<a href="/ourservice/" class="heading-link"
 							>Services Page</a
 						>
 					</h2>
@@ -129,7 +129,7 @@ import { serviceData } from "../../data/services";
 							Object.entries(serviceData).map(
 								([slug, service]) => (
 									<li>
-										<a href={`/services/${slug}`}>
+										<a href={`/services/${slug}/`}>
 											{service.title}
 										</a>
 									</li>
