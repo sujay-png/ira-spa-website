@@ -30,6 +30,7 @@ async function getBlogUrls() {
 
 export default defineConfig({
   site: 'https://www.iraspa.in',
+  trailingSlash: 'always',
   output: 'server',
   adapter: vercel(), 
   integrations: [
