@@ -1,0 +1,142 @@
+---
+import type { WPPost } from "../../lib/wordpress";
+import {
+	getFeaturedImage,
+	getPostCategories,
+	formatDate,
+	estimateReadTime,
+	stripHtml,
+} from "../../lib/wordpress";
+
+interface Props {
+	post: WPPost;
+}
+
+const { post } = Astro.props;
+const image = getFeaturedImage(post);
+const categories = getPostCategories(post);
+const readTime = estimateReadTime(post.content.rendered);
+const title = stripHtml(post.title.rendered);
+---
+
+<article class="read-next-card">
+	<a href={`/blogs/${post.slug}/`} class="read-next-card__link">
+		<div class="read-next-card__thumb">
+			<img
+				src={image.src}
+				alt={image.alt || title}
+				loading="lazy"
+				width="160"
+				height="120"
+			/>
+		</div>
+		<div class="read-next-card__content">
+			{
+				categories[0] && (
+					<span class="read-next-card__badge">
+						{categories[0].name}
+					</span>
+				)
+			}
+			<h4 class="read-next-card__title">{title}</h4>
+			<div class="read-next-card__meta">
+				<span>{formatDate(post.date)}</span>
+				<span class="dot">&bull;</span>
+				<span>{readTime}</span>
+			</div>
+		</div>
+	</a>
+</article>
+
+<style>
+	.read-next-card {
+		padding: 0.95rem 1.05rem;
+		border-radius: var(--radius-md, 12px);
+		background: rgba(255, 255, 255, 0.025);
+		border: 1px solid rgba(255, 255, 255, 0.07);
+		transition: all 0.3s ease;
+	}
+
+	.read-next-card:hover {
+		background: rgba(207, 162, 60, 0.06);
+		border-color: rgba(207, 162, 60, 0.3);
+		transform: translateY(-2px);
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+	}
+
+	.read-next-card__link {
+		display: flex;
+		gap: 1.15rem;
+		align-items: center;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.read-next-card__thumb {
+		flex-shrink: 0;
+		width: 105px;
+		height: 90px;
+		border-radius: var(--radius-sm, 8px);
+		overflow: hidden;
+		background: var(--color-surface, #1a1a1a);
+	}
+
+	.read-next-card__thumb img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.5s ease;
+	}
+
+	.read-next-card:hover .read-next-card__thumb img {
+		transform: scale(1.08);
+	}
+
+	.read-next-card__content {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
+
+	.read-next-card__badge {
+		font-size: 0.68rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--color-accent, #cfa23c);
+		margin-bottom: 0.1rem;
+	}
+
+	.read-next-card__title {
+		font-family: var(--font-display, serif);
+		font-size: 0.98rem;
+		font-weight: 500;
+		line-height: 1.4;
+		color: var(--color-text, #f3efe7);
+		margin: 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		transition: color 0.3s ease;
+	}
+
+	.read-next-card:hover .read-next-card__title {
+		color: var(--color-accent-soft, #dfb75c);
+	}
+
+	.read-next-card__meta {
+		display: flex;
+		align-items: center;
+		gap: 0.45rem;
+		font-size: 0.72rem;
+		color: var(--color-text-faint, rgba(243, 239, 231, 0.55));
+		margin-top: 0.25rem;
+	}
+
+	.dot {
+		opacity: 0.5;
+	}
+</style>

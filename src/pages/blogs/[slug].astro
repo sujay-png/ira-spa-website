@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
-import PostCard from "../../components/blogs/PostCard.astro";
+import BlogReadNextCard from "../../components/blogs/BlogReadNextCard.astro";
+import BlogBookingForm from "../../components/blogs/BlogBookingForm.astro";
 
 import {
 	getPostBySlug,
@@ -28,7 +29,7 @@ if (!post) {
 	});
 }
 
-// 4. Fetch all posts to generate the "Related Reading" section
+// 4. Fetch all posts to generate the "Read Next" section
 const allPosts = await getAllPosts();
 
 const image = getFeaturedImage(post);
@@ -38,15 +39,23 @@ const readTime = estimateReadTime(post.content.rendered);
 const description = stripHtml(post.excerpt.rendered).slice(0, 160);
 const title = stripHtml(post.title.rendered);
 
-const related = allPosts
-	.filter(
-		(p) =>
-			p.id !== post.id &&
-			getPostCategories(p).some((c) =>
-				categories.some((pc) => pc.slug === c.slug),
-			),
-	)
-	.slice(0, 3);
+let related = allPosts.filter(
+	(p) =>
+		p.id !== post.id &&
+		getPostCategories(p).some((c) =>
+			categories.some((pc) => pc.slug === c.slug),
+		),
+);
+
+// Fallback to latest posts if fewer than 3 related category posts exist
+if (related.length < 3) {
+	const otherPosts = allPosts.filter(
+		(p) => p.id !== post.id && !related.some((r) => r.id === p.id),
+	);
+	related = [...related, ...otherPosts].slice(0, 3);
+} else {
+	related = related.slice(0, 3);
+}
 
 const jsonLd = {
 	"@context": "https://schema.org",
@@ -90,39 +99,41 @@ const jsonLd = {
 			</div>
 		</header>
 
-		<div class="container container--narrow post__body">
-			<div class="prose" set:html={post.content.rendered} />
+		<div class="container post__layout">
+			<div class="post__grid">
+				<div class="post__main">
+					<div class="prose" set:html={post.content.rendered} />
 
-			<div class="post__cta">
-				<h2>Ready to feel the difference?</h2>
-				<p>
-					Bring this ritual to life at Ira Spa, Mangalore or
-					Kalaburagi.
-				</p>
-				<a href="/book-an-appointment/" class="btn-primary"
-					>Book an Appointment</a
-				>
-			</div>
-
-			<a href="/blogs/" class="link-arrow post__back"
-				><span>&larr;</span> Back to The Serenity Feed</a
-			>
-		</div>
-
-		{
-			related.length > 0 && (
-				<section class="related">
-					<div class="container">
-						<h2>Related Reading</h2>
-						<div class="related__grid">
-							{related.map((p) => (
-								<PostCard post={p} />
-							))}
-						</div>
+					<div class="post__nav-back">
+						<a href="/blogs/" class="link-arrow post__back">
+							<span>&larr;</span> Back to The Serenity Feed
+						</a>
 					</div>
-				</section>
-			)
-		}
+				</div>
+
+				<aside class="post__sidebar" aria-label="Article Sidebar">
+					{
+						related.length > 0 && (
+							<section class="post__read-next">
+								<div class="read-next__header">
+									<span class="sidebar-eyebrow">Explore More</span>
+									<h3 class="sidebar-heading">Read Next</h3>
+								</div>
+								<div class="read-next__list">
+									{related.map((p) => (
+										<BlogReadNextCard post={p} />
+									))}
+								</div>
+							</section>
+						)
+					}
+
+					<div class="post__sidebar-form">
+						<BlogBookingForm />
+					</div>
+				</aside>
+			</div>
+		</div>
 	</article>
 
 	<Footer />
@@ -148,50 +159,136 @@ const jsonLd = {
 		opacity: 0.5;
 	}
 
-	.post__body {
-		padding-block: var(--space-2xl);
+	/* Main Layout Container: Aligned with header container */
+	.post__layout {
+		padding-block: var(--space-2xl) var(--space-3xl);
 	}
 
-	.post__cta {
+	.post__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 400px;
+		gap: clamp(2rem, 4vw, 3.5rem);
+		align-items: stretch;
+	}
+
+	/* Main Article Column */
+	.post__main {
+		min-width: 0;
+	}
+
+	/* Make sure blog content & photos fill their column beautifully */
+	.post__main :global(.prose) {
+		max-width: 100%;
+	}
+
+	.post__main :global(.prose img),
+	.post__main :global(.prose figure),
+	.post__main :global(.prose .elementor-widget-image img) {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		border-radius: var(--radius-md, 12px);
+		margin-block: var(--space-md);
+		display: block;
+	}
+
+	.post__main :global(.prose .elementor-widget-container) {
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Hide any stray unstyled elementor CTAs in prose */
+	.post__main :global(.prose .elementor-widget-call-to-action),
+	.post__main :global(.prose .elementor-cta),
+	.post__main :global(.prose .elementor-button-wrapper) {
+		display: none !important;
+	}
+
+	.post__nav-back {
 		margin-top: var(--space-2xl);
-		padding: var(--space-lg);
-		text-align: center;
-		background: var(--color-surface);
-		border: 1px solid var(--color-border);
-		border-radius: var(--radius-lg);
-	}
-
-	.post__cta h2 {
-		font-size: var(--font-size-xl);
-		margin-bottom: 0.5rem;
-	}
-
-	.post__cta p {
-		margin-bottom: var(--space-md);
+		padding-top: var(--space-lg);
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
 	}
 
 	.post__back {
 		display: inline-flex;
-		margin-top: var(--space-lg);
 	}
 
-	.related {
-		padding-bottom: var(--space-2xl);
+	/* Right Sidebar */
+	.post__sidebar {
+		display: flex;
+		flex-direction: column;
+		gap: 2.75rem;
+		height: 100%;
+		position: relative;
 	}
 
-	.related h2 {
-		font-size: var(--font-size-xl);
-		margin-bottom: var(--space-md);
+	.read-next__header {
+		margin-bottom: 1.25rem;
+		padding-bottom: 0.65rem;
+		border-bottom: 1px solid rgba(207, 162, 60, 0.2);
 	}
 
-	.related__grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: var(--space-md);
+	.sidebar-eyebrow {
+		display: block;
+		font-size: 0.7rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		color: var(--color-accent, #cfa23c);
+		margin-bottom: 0.3rem;
 	}
 
-	@media (max-width: 900px) {
-		.related__grid {
+	.sidebar-heading {
+		font-family: var(--font-display, serif);
+		font-size: 1.4rem;
+		font-weight: 500;
+		color: var(--color-text, #f3efe7);
+		margin: 0;
+	}
+
+	.read-next__list {
+		display: flex;
+		flex-direction: column;
+		gap: 1.15rem;
+	}
+
+	/* Sticky booking form container */
+	.post__sidebar-form {
+		position: -webkit-sticky;
+		position: sticky;
+		top: calc(var(--header-height, 84px) + 1.25rem);
+		z-index: 20;
+		align-self: start;
+		width: 100%;
+	}
+
+	/* Responsive Breakpoints */
+	@media (max-width: 1024px) {
+		.post__grid {
+			grid-template-columns: 1fr;
+			gap: 3rem;
+		}
+
+		.post__sidebar {
+			margin-top: 1rem;
+		}
+
+		.post__sidebar-form {
+			position: static;
+			max-height: none;
+			overflow-y: visible;
+		}
+
+		.read-next__list {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 1rem;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.read-next__list {
 			grid-template-columns: 1fr;
 		}
 	}
