@@ -68,7 +68,13 @@ const truncate = (text: string, length: number) => {
 					<article class="post post--text-badge">
 						<a href={`/blogs/${post.slug}/`}>
 							<div class="post__image-wrap">
-								<img src={getFeaturedImage(post).src} alt={getFeaturedImage(post).alt} />
+								<img
+									src={getFeaturedImage(post).src}
+									alt={getFeaturedImage(post).alt}
+									width="600"
+									height="600"
+									loading="lazy"
+								/>
 							</div>
 							<span class="eyebrow eyebrow--small">{getPostCategories(post)[0]?.name.toUpperCase() || 'WELLNESS'}</span>
 							<h3>{stripHtml(post.title.rendered)}</h3>

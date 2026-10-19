@@ -189,11 +189,13 @@ export async function getCategories(): Promise<WPTerm[]> {
 
 // --- HELPER UTILITIES (Unchanged to maintain compatibility) ---
 
-export function getFeaturedImage(post: WPPost): { src: string; alt: string } {
+export function getFeaturedImage(post: WPPost): { src: string; alt: string; width?: number; height?: number } {
 	const media = post._embedded?.["wp:featuredmedia"]?.[0];
 	return {
 		src: media?.source_url || FALLBACK_IMAGE,
 		alt: media?.alt_text || stripHtml(post.title.rendered),
+		width: media?.media_details?.width || 600,
+		height: media?.media_details?.height || 400,
 	};
 }
 
