@@ -33,6 +33,9 @@ export default defineConfig({
   trailingSlash: 'always',
   output: 'server',
   adapter: vercel(), 
+  redirects: {
+    '/Contactus/': '/Contactus/Mangalore/'
+  },
   integrations: [
     icon(), 
     sitemap({

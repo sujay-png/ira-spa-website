@@ -186,8 +186,8 @@ const testimonials = [
 		background: var(--color-surface);
 		border: 1px solid var(--color-border-strong);
 		color: var(--color-accent);
-		width: 40px;
-		height: 40px;
+		width: 44px;
+		height: 44px;
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
@@ -207,29 +207,42 @@ const testimonials = [
 	.carousel__dots {
 		display: flex;
 		justify-content: center;
-		gap: 8px;
+		align-items: center;
+		gap: 6px;
 		margin-top: var(--space-sm);
 	}
 
 	.dot {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		background: transparent;
+		border: none;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.dot::before {
+		content: "";
+		display: block;
 		width: 8px;
 		height: 8px;
 		border-radius: 50%;
 		background: var(--color-border-strong);
-		border: none;
-		padding: 0;
-		cursor: pointer;
-		transition: background-color 0.2s ease, transform 0.2s ease;
+		transition: background-color 0.2s ease, width 0.2s ease, border-radius 0.2s ease;
 	}
 
-	.dot.active {
+	.dot.active::before {
 		background: var(--color-accent);
-		transform: scale(1.2);
+		width: 24px;
+		border-radius: 4px;
 	}
 
 	@media (max-width: 600px) {
 		.slide { padding: 0 2.75rem; }
-		.carousel__arrow { width: 32px; height: 32px; }
+		.carousel__arrow { width: 40px; height: 40px; }
 	}
 </style>
 
