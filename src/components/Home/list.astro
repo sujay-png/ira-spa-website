@@ -1,23 +1,26 @@
 ---
 import { Icon } from "astro-icon/components";
 
-const benefitsLeft = [
+const benefits = [
 	{ icon: "mdi:brain", label: "Relieves Stress and Anxiety" },
 	{ icon: "mdi:water-check", label: "Improves Blood Circulation" },
 	{ icon: "mdi:shield-account", label: "Boosts Immunity" },
 	{ icon: "mdi:arrow-expand-all", label: "Reduces Muscle Tension and Pain" },
 	{ icon: "mdi:sleep", label: "Improves Sleep Quality" },
 	{ icon: "mdi:face-woman-shimmer", label: "Enhances Skin Texture and Glow" },
-];
-
-const benefitsRight = [
 	{ icon: "mdi:water-outline", label: "Flushes Out Toxins" },
 	{ icon: "mdi:emoticon-happy-outline", label: "Boosts Mood and Mental Clarity" },
 	{ icon: "mdi:human-handsup", label: "Increases Flexibility and Joint Mobility" },
 	{ icon: "mdi:meditation", label: "Reduces Signs of Fatigue and Burnout" },
 	{ icon: "mdi:weather-sunny", label: "Improves Skin Tone and Brightness" },
 	{ icon: "mdi:account-heart", label: "Promotes Overall Well-being and Self-care" },
+	{ icon: "mdi:scale-bathroom", label: "Promotes Weight Loss" },
+	{ icon: "mdi:arm-flex", label: "Reduces Muscle Knots and Cramps" },
+	{ icon: "mdi:dumbbell", label: "Relieves Workout Body Pain" },
 ];
+
+const benefitsLeft = benefits.slice(0, 8);
+const benefitsRight = benefits.slice(8);
 ---
 
 <section class="benefits">

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#e8b950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Head -->
+  <circle cx="24" cy="14" r="6.5" />
+  <!-- Neck -->
+  <path d="M21 20.5v3.5" />
+  <path d="M27 20.5v3.5" />
+  <!-- Shoulders -->
+  <path d="M9 38c1-6 5.5-10 12-10.5h6c6.5.5 11 4.5 12 10.5" />
+  <!-- Massage hands at neck and shoulders -->
+  <path d="M9 16c2.5 0 5 1.5 6 4" />
+  <path d="M39 16c-2.5 0-5 1.5-6 4" />
+  <path d="M8 23c3 0 6 2 7 5" />
+  <path d="M40 23c-3 0-6 2-7 5" />
+  <!-- Relaxation arc -->
+  <path d="M20 7c1.2-.7 2.5-1 4-1s2.8.3 4 1" />
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#e8b950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Toes -->
+  <ellipse cx="17" cy="10" rx="3.2" ry="3.8" />
+  <circle cx="24" cy="9.5" r="2.3" />
+  <circle cx="29.5" cy="11" r="2" />
+  <circle cx="34.5" cy="13.5" r="1.8" />
+  <circle cx="38.5" cy="17" r="1.5" />
+  <!-- Foot sole with inner arch and heel -->
+  <path d="M16 17c6-2 15 0 20 5 3 3 2 9 0 13-2 4-3 7-6 7h-5c-4 0-6-3-6-7 0-4 2-7 2-11 0-3-3-5-5-7z" />
+  <!-- Reflexology acupressure points -->
+  <circle cx="24" cy="24" r="1.2" fill="#e8b950" />
+  <circle cx="23" cy="30" r="1.2" fill="#e8b950" />
+  <circle cx="24" cy="36" r="1.2" fill="#e8b950" />
+  <!-- Gentle massage zone line -->
+  <path d="M21 21c2.5-1 4.5-1 7 0" />
+</svg>

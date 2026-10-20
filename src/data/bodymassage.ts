@@ -75,4 +75,28 @@ export const bodyMassageTreatments = [
             { label: "90 min", price: "₹5,500" },
         ],
     },
+    {
+        slug: "herbal-potli-massage",
+        name: "Herbal Potli Massage",
+        alt: "Herbal Potli massage at Ira Spa",
+        description:
+            "A traditional Ayurvedic massage using warm potlis filled with herbs, pressed and rolled over the body to ease muscle stiffness, relieve joint pain and improve circulation.",
+        image: "/images/herbal-gold.jpg",
+        prices: [
+            { label: "60 min", price: "₹3,000" },
+            { label: "90 min", price: "₹4,000" },
+        ],
+    },
+    {
+        slug: "hot-stone-therapy",
+        name: "Hot Stone Therapy",
+        alt: "Hot Stone therapy at Ira Spa",
+        description:
+            "Smooth heated stones are placed and glided over key points of the body to melt deep muscle tension, improve blood flow and bring lasting calm.",
+        image: "/images/hot-stonetherapy.jpg",
+        prices: [
+            { label: "60 min", price: "₹3,200" },
+            { label: "90 min", price: "₹4,800" },
+        ],
+    },
 ];

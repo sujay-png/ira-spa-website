@@ -33,7 +33,7 @@ const treatments = bodyMassageTreatments;
                         <div class="treatment-image">
                             <img
                                 src={treatment.image}
-                                alt={treatment.name}
+                                alt={treatment.alt || treatment.name}
                                 width="600"
                                 height="420"
                                 loading="lazy"

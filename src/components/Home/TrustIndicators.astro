@@ -26,7 +26,7 @@
             <img src="/icons/wellness.png" alt="Wellness Icon" width="48" height="48" loading="lazy" />
           </div>
           <div class="stat">
-            <span class="counter" data-target="3">0</span>+
+            <span class="counter" data-target="25">0</span>+
           </div>
           <div class="label">Wellness & Spa</div>
         </div>
@@ -39,7 +39,7 @@
             <img src="/icons/herbal-treatment.png" alt="Herbal Treatment Icon" width="48" height="48" loading="lazy" />
           </div>
           <div class="stat">
-            <span class="counter" data-target="40">0</span>+
+            <span class="counter" data-target="13">0</span>+
           </div>
           <div class="label">Herbal Treatment</div>
         </div>
@@ -148,7 +148,7 @@
 <script>
   function initTrustIndicators() {
     // 1. Number Increment Logic
-    const counters = document.querySelectorAll('.counter');
+    const counters = document.querySelectorAll<HTMLElement>('.counter');
     let hasAnimated = false;
 
     const animateCounters = () => {
@@ -156,7 +156,9 @@
       hasAnimated = true;
 
       counters.forEach(counter => {
-        const target = +counter.getAttribute('data-target');
+        const targetAttr = counter.getAttribute('data-target');
+        if (!targetAttr) return;
+        const target = +targetAttr;
         // calculate increment to finish around the same time (~2 seconds)
         const duration = 2000;
         const frameRate = 16; // ~60fps
@@ -190,12 +192,13 @@
     }
 
     // 2. 3D Tilt Bending Hover Effect
-    const cards = document.querySelectorAll('.trust-card');
+    const cards = document.querySelectorAll<HTMLElement>('.trust-card');
     
     cards.forEach(card => {
-      const inner = card.querySelector('.card-inner');
+      const inner = card.querySelector<HTMLElement>('.card-inner');
+      if (!inner) return;
       
-      card.addEventListener('mousemove', e => {
+      card.addEventListener('mousemove', (e: MouseEvent) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;

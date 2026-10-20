@@ -78,4 +78,14 @@ export const serviceData = {
         price90: "₹1,200",
         image: "/images/footspa1.jpg",
     },
+    "lomi-lomi-massage": {
+        name: "Lomi Lomi Massage",
+        title: "Lomi Lomi Massage",
+        description:
+            "A traditional Hawaiian massage using long, flowing strokes to release deep muscle tension, improve circulation and bring calm to body and mind.",
+        price60: "₹3,000",
+        price90: "₹4,500",
+        image: "/images/deep-tissue.jpg",
+        alt: "Lomi Lomi massage therapy at Ira Spa",
+    },
 };

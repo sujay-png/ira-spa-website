@@ -18,7 +18,7 @@ const { slug } = Astro.params;
 const service = slug ? serviceData[slug as keyof typeof serviceData] : null;
 
 if (!service) {
-    return Astro.redirect("/ourservice");
+    return Astro.redirect("/ourservice/");
 }
 
 const seo = getServiceSEO(slug, service);

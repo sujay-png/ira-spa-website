@@ -1,0 +1,148 @@
+---
+import {
+  momCareData,
+  type MomCareData,
+  type MomCareItem,
+} from "../../data/momCare";
+
+const { title, subtitle, items }: MomCareData = momCareData;
+---
+
+<div class="mom-col" id="mom-care">
+  <div class="mom-col__header">
+    <h2 class="mom-col__title">{title}</h2>
+    <h3 class="mom-col__subtitle">{subtitle}</h3>
+  </div>
+
+  <ul class="mom-col__list">
+    {items.map((item: MomCareItem) => (
+      <li class="mom-col__card">
+        <div class="mom-col__icon-box">
+          <img
+            src={item.icon.src}
+            alt=""
+            aria-hidden="true"
+            width={item.icon.width || 42}
+            height={item.icon.height || 42}
+            loading="lazy"
+          />
+        </div>
+        <p class="mom-col__card-title">{item.title}</p>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .mom-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 440px;
+    margin-inline: auto;
+  }
+
+  .mom-col__header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    width: 100%;
+  }
+
+  .mom-col__title {
+    font-family: var(--font-display);
+    color: var(--color-text);
+    margin-bottom: var(--space-xs);
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  .mom-col__subtitle {
+    font-family: var(--font-body);
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--color-accent);
+    letter-spacing: 0.04em;
+    margin: 0;
+    text-align: center;
+  }
+
+  .mom-col__list {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+  }
+
+  .mom-col__card {
+    list-style: none !important;
+    list-style-type: none !important;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 1.35rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 1.5rem;
+    width: 100%;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .mom-col__card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-border-strong);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  .mom-col__icon-box {
+    width: 72px;
+    height: 72px;
+    border-radius: var(--radius-md);
+    background: rgba(232, 185, 80, 0.1);
+    border: 1px solid rgba(232, 185, 80, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .mom-col__card:hover .mom-col__icon-box {
+    transform: scale(1.05);
+    background: rgba(232, 185, 80, 0.18);
+    border-color: rgba(232, 185, 80, 0.45);
+  }
+
+  .mom-col__icon-box img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: brightness(1.22) drop-shadow(0 2px 6px rgba(232, 185, 80, 0.25));
+  }
+
+  .mom-col__card-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 0.4vw + 1.1rem, 1.25rem);
+    font-weight: 500;
+    color: var(--color-text);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .mom-col__card {
+      padding: 1.15rem 1.25rem;
+      gap: 1.25rem;
+    }
+
+    .mom-col__card-title {
+      font-size: 1.15rem;
+    }
+  }
+</style>
