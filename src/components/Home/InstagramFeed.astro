@@ -1,4 +1,6 @@
 ---
+import { getGalleryImageAlt } from "../../data/seo";
+
 const instagramLink = "https://www.instagram.com/the_ira_spa";
 
 const posts = [
@@ -23,7 +25,7 @@ const posts = [
       <a href={instagramLink} target="_blank" rel="noopener noreferrer" class="instagram-item">
         <img
           src={post}
-          alt="Ira Spa Instagram Post"
+          alt={getGalleryImageAlt(post)}
           width="819"
           height="1024"
           loading="lazy"

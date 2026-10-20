@@ -3,15 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { quickMassageTreatments } from "../../data/quickmassage";
 import "../../style/servicedetail.css";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/quick-massage/");
 const treatments = quickMassageTreatments;
 ---
 
-<Layout
-    title="Quick Massage Service in Mangalore"
-    description="Need a quick break? Experience express quick massage services in Mangalore at Ira Spa. Enjoy 30-min foot reflexology, back, head, neck & shoulder relief today!"
-    image="/images/spa-salon.jpg"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/spa-salon.jpg');`}

@@ -2,22 +2,57 @@
 import "../style/global.scss";
 import { ClientRouter } from "astro:transitions";
 
+import type { PageSEO } from "../data/seo";
+
 interface Props {
+	seo?: Partial<PageSEO>;
 	title?: string;
+	seoTitle?: string;
 	description?: string;
+	seoDescription?: string;
+	pageTitle?: string;
+	keywords?: string[] | string;
 	image?: string;
+	imageAlt?: string;
 	noindex?: boolean;
+	canonical?: string;
+	ogType?: "website" | "article";
 }
 
-const {
-	title = "Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburagi",
-	description = "Ira Spa is a premium wellness sanctuary in Mangalore and Kalaburagi offering signature massage therapy, herbal treatments, body polishing and facial rituals. Book your restorative escape today.",
-	image = "/images/spa-treatment.jpg",
-	noindex = false,
-} = Astro.props;
+const props = Astro.props;
+const incomingSEO = props.seo || {};
 
+const title =
+	incomingSEO.seoTitle ??
+	incomingSEO.title ??
+	props.seoTitle ??
+	props.title ??
+	"Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburagi";
+
+const description =
+	incomingSEO.seoDescription ??
+	incomingSEO.description ??
+	props.seoDescription ??
+	props.description ??
+	"Ira Spa is a premium wellness sanctuary in Mangalore and Kalaburagi offering signature massage therapy, herbal treatments, body polishing and facial rituals. Book your restorative escape today.";
+
+const image = incomingSEO.image ?? props.image ?? "/images/spa-treatment.jpg";
+const imageAlt =
+	incomingSEO.imageAlt ??
+	props.imageAlt ??
+	"Ira Spa - Luxury Massage & Wellness Spa in Mangalore & Kalaburagi";
+
+const rawKeywords = incomingSEO.keywords ?? props.keywords;
+const keywords = Array.isArray(rawKeywords)
+	? rawKeywords.join(", ")
+	: (rawKeywords ?? "");
+
+const noindex = incomingSEO.noindex ?? props.noindex ?? false;
+const ogType = incomingSEO.ogType ?? props.ogType ?? "website";
+
+const canonicalPath = incomingSEO.canonical ?? props.canonical ?? Astro.url.pathname;
 const canonicalURL = new URL(
-	Astro.url.pathname,
+	canonicalPath,
 	Astro.site ?? "https://www.iraspa.in",
 );
 const siteName = "Ira Spa";
@@ -83,11 +118,12 @@ const jsonLd = {
 
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		{keywords && <meta name="keywords" content={keywords} />}
 		<link rel="canonical" href={canonicalURL} />
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
 		<!-- Open Graph / social -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={ogType} />
 		<meta property="og:site_name" content={siteName} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -96,6 +132,7 @@ const jsonLd = {
 			property="og:image"
 			content={new URL(image, Astro.site ?? "https://iraspa.in")}
 		/>
+		{imageAlt && <meta property="og:image:alt" content={imageAlt} />}
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
@@ -103,6 +140,7 @@ const jsonLd = {
 			name="twitter:image"
 			content={new URL(image, Astro.site ?? "https://iraspa.in")}
 		/>
+		{imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

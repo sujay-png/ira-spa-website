@@ -3,15 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { thaiTherapyTreatments } from "../../data/ThaiTheraphy";
 import "../../style/servicedetail.css";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/thai-therapy/");
 const treatments = thaiTherapyTreatments;
 ---
 
-<Layout
-    title="Ira Spa | Thai Therapy Spa in Mangalore"
-    description="Relieve daily stress and muscle tension at Ira Spa in Mangalore. Discover traditional Thai massage and holistic bamboo therapies for total wellness. Book today."
-    image="/images/spa-salon.jpg"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/spa-salon.jpg');`}

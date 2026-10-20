@@ -12,13 +12,12 @@ import InstagramFeed from "../components/Home/InstagramFeed.astro";
 import HomeBlogs from "../components/Home/HomeBlogs.astro";
 import Footer from "../components/Footer.astro";
 import heroImg from "../images/serviceimage1.webp";
+import { getSEO } from "../data/seo";
+
+const seo = getSEO("/");
 ---
 
-<Layout
-	image="src/images/logo.webp"
-	title="Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburgi"
-	description="Relax, rejuvenate and restore at Ira Spa — premium massage therapy, herbal treatments and body rituals in Mangalore and Kalaburagi. Book your session online."
->
+<Layout seo={seo}>
 	<section class="hero" id="hero-section">
 		<img
 			src={heroImg.src}

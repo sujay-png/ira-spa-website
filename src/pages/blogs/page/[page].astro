@@ -9,6 +9,7 @@ import {
 	getPostCategories,
 	stripHtml
 } from "../../../lib/wordpress";
+import { getBlogPaginationSEO } from "../../../data/seo";
 
 
 
@@ -40,13 +41,11 @@ const truncate = (text: string, length: number) => {
 	if (!text) return "";
 	return text.length > length ? text.substring(0, length) + "..." : text;
 };
+
+const seo = getBlogPaginationSEO(pageNum, totalPages);
 ---
 
-<Layout
-	title={`The Serenity Feed — Page ${pageNum} | Ira Spa Journal`}
-	description="Wellness notes from Ira Spa — mindfulness, treatment guides and rituals for a calmer, more restorative life."
-	noindex={true}
->
+<Layout seo={seo}>
 	<section class="feed-header-section">
 		<div class="container">
 			<div class="feed__header">

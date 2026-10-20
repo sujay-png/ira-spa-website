@@ -3,15 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { facialEssentialGroups } from "../../data/FacialEssential";
 import "../../style/servicedetail.css";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/facial-essentials/");
 const groups = facialEssentialGroups;
 ---
 
-<Layout
-    title="Spa Facial Service Mangalore"
-    description="Get radiant, nourished skin with expert facial services and clean-ups in Mangalore at Ira Spa. Experience Hydra Dew, Rejuvenating & Herbal Pearl facials. Book now!."
-    image="/images/serviceimage2.webp"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/serviceimage2.webp');`}

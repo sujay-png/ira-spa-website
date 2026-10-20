@@ -1,13 +1,28 @@
 ---
 import { Image } from "astro:assets";
+import { getGalleryImageAlt } from "../../data/seo";
 
 // Load images dynamically
 const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
   "../../images/*.{jpg,jpeg,png,webp}"
 );
 
+// Filter out logo.webp so only actual treatment and spa ambiance photos appear in the gallery
+const galleryEntries = Object.entries(imageFiles).filter(
+  ([path]) => !path.includes("logo.webp")
+);
+
 const images = await Promise.all(
-  Object.values(imageFiles).map((img) => img())
+  galleryEntries.map(async ([path, loader]) => {
+    const mod = await loader();
+    const filename = path.split("/").pop() || "";
+    return {
+      metadata: mod.default,
+      path,
+      filename,
+      alt: getGalleryImageAlt(filename),
+    };
+  })
 );
 
 // Split images into two different sets for row 1 and row 2
@@ -23,7 +38,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row1Images.map((img) => (
           <div class="image-card">
-            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
           </div>
         ))
       }
@@ -31,7 +46,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row1Images.map((img) => (
           <div class="image-card" aria-hidden="true">
-            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt="" width={400} height={300} format="webp" />
           </div>
         ))
       }
@@ -45,7 +60,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row2Images.map((img) => (
           <div class="image-card">
-            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
           </div>
         ))
       }
@@ -53,7 +68,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row2Images.map((img) => (
           <div class="image-card" aria-hidden="true">
-            <Image src={img.default} alt="" width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt="" width={400} height={300} format="webp" />
           </div>
         ))
       }

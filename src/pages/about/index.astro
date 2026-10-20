@@ -5,16 +5,15 @@ import VisionMission from "../../components/About/vision_mission.astro";
 import AboutContent from "../../components/About/AboutContent.astro";
 import AboutGallery from "../../components/About/AboutGallery.astro";
 import Footer from "../../components/Footer.astro";
+import { getSEO } from "../../data/seo";
+
+const seo = getSEO("/about/");
 ---
 
-<Layout
-	title="About Ira Spa Mangalore | Expert Spa Service"
-	description="Discover the story of Ira Spa in Mangalore and Kalaburagi. We have offered expert massage therapies, organic treatments, and holistic wellness.
-"
->
-	<section class="page-banner" style="background-image: url('/images/Aboutus_story.webp');">
+<Layout seo={seo}>
+	<section class="page-banner" style={`background-image: url('${seo.image}');`}>
 		<div class="container">
-			<span class="eyebrow">About Us</span>
+			<span class="eyebrow">{seo.eyebrow}</span>
 		<h1>The Story of <em class="italic-serif">Ira</em> Spa</h1>
 <p>
   For over a decade, Ira Spa has brought restorative massage, natural healing

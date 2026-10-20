@@ -5,12 +5,12 @@ import BookAppointment from "../../components/Appointment/BookAppointment.astro"
 import WhatToExpect from "../../components/Appointment/whatToExpect.astro";
 import Properritual from "../../components/Appointment/properritual.astro";
 import Footer from "../../components/Footer.astro";
+import { getSEO } from "../../data/seo";
+
+const seo = getSEO("/book-an-appointment/");
 ---
 
-<Layout
-	title="Book Spa Service Online Appointment In Mangalore"
-	description="Easily book a relaxing spa session online at Ira Spa, Mangalore. Choose your preferred luxury massage or wellness therapy and schedule your appointment instantly."
->
+<Layout seo={seo}>
 	<PageHero />
 	<BookAppointment />
 	<WhatToExpect />

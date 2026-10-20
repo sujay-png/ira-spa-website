@@ -3,15 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { bodyPolishingTreatments } from "../../data/BodyPolishing";
 import "../../style/servicedetail.css";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/body-polishing/");
 const treatments = bodyPolishingTreatments;
 ---
 
-<Layout
-    title="Ira Spa | Body Polishing in Mangalore "
-    description="Get glowing, smooth skin with professional body polishing services in Mangalore at Ira Spa. Choose from Black Currant, Chocolate & Orange treatments. Book now!"
-    image="/images/serviceimage1.webp"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/serviceimage1.webp');`}

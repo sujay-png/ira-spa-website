@@ -14,6 +14,7 @@ import {
 	estimateReadTime,
 	stripHtml,
 } from "../../lib/wordpress";
+import { getBlogSEO } from "../../data/seo";
 
 // 1. Grab the slug directly from the URL (No getStaticPaths needed in SSR)
 const { slug } = Astro.params;
@@ -68,13 +69,17 @@ const jsonLd = {
 	publisher: { "@type": "Organization", name: "Ira Spa" },
 	mainEntityOfPage: `https://iraspa.in/blogs/${post.slug}/`,
 };
+
+const seo = getBlogSEO({
+	title,
+	excerpt: description,
+	slug: post.slug,
+	featuredImage: { src: image.src, alt: title },
+	categories,
+});
 ---
 
-<Layout
-	title={`${title} | Ira Spa Journal`}
-	description={description}
-	image={image.src}
->
+<Layout seo={seo}>
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 	<article class="post">

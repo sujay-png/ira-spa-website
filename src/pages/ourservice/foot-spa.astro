@@ -3,15 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { footSpaTreatments } from "../../data/footspa";
 import "../../style/servicedetail.css";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/foot-spa/");
 const treatments = footSpaTreatments;
 ---
 
-<Layout
-    title="Ira Spa | Foot Spa in Mangalore"
-    description="Relieve stress and soothe tired feet with professional foot spa and luxury pedicure services in Mangalore at Ira Spa. Book your relaxing session today!"
-    image="/images/serviceimage2.webp"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/serviceimage2.webp');`}

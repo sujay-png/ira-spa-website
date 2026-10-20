@@ -1,12 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
+import { getSEO } from "../../data/seo";
+
+const seo = getSEO("/download-brochure/");
 ---
 
-<Layout
-	title="Download Brochure | Ira Spa"
-	description="Download the Ira Spa brochure to explore our holistic massage and wellness rituals."
->
+<Layout seo={seo}>
 	<section class="terms-banner">
 		<div class="container">
 			<h1>Download Brochure</h1>

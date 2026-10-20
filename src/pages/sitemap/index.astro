@@ -2,14 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { serviceData } from "../../data/services";
+import { getSEO } from "../../data/seo";
 
 // Use hardcoded lists from the reference image
+const seo = getSEO("/sitemap/");
 ---
 
-<Layout
-	title="Sitemap | Ira Spa"
-	description="Sitemap for Ira Spa Mangalore and Kalaburagi."
->
+<Layout seo={seo}>
 	<section class="sitemap-banner">
 		<div class="container">
 			<h1>Site Map</h1>

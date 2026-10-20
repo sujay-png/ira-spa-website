@@ -3,15 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { facialPremiumSignatureGroups } from "../../data/facialpremiumsignature";
 import "../../style/servicedetail.css";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/facial-premium-signature/");
 const groups = facialPremiumSignatureGroups;
 ---
 
-<Layout
-    title="Facial-Premium And Signature | Ira Spa Rituals"
-    description="Revitalize your skin with advanced premium and signature facials at Ira Spa. Enjoy deep pore cleansing, skin lightening, and luminous herbal gold rituals."
-    image="/images/serviceimage1.webp"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/serviceimage1.webp');`}

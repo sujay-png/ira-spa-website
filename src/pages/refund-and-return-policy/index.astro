@@ -1,12 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
+import { getSEO } from "../../data/seo";
+
+const seo = getSEO("/refund-and-return-policy/");
 ---
 
-<Layout
-	title="Refund & Returns Policy | Ira Spa"
-	description="Refund and Returns Policy for Ira Spa."
->
+<Layout seo={seo}>
 	<section class="terms-banner">
 		<div class="container">
 			<h1>Refund & Returns Policy</h1>

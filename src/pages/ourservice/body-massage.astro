@@ -2,15 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { bodyMassageTreatments } from "../../data/bodymassage";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/body-massage/");
 const treatments = bodyMassageTreatments;
 ---
 
-<Layout
-    title="Body Massage Service In Mangalore"
-    description="Experience ultimate relaxation with professional body massage services in Mangalore at Ira Spa. Choose from Swedish, Deep Tissue, Balinese & more. Book now!"
-    image="/images/spa-salon.jpg"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/spa-salon.jpg');`}

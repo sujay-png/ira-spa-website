@@ -4,6 +4,7 @@ import Footer from "../../components/Footer.astro";
 import JournalHero from "../../components/blogs/JournalHero.astro";
 import PostGrid from "../../components/blogs/PostGrid.astro";
 import { getAllPosts, getCategories, POSTS_PER_PAGE } from "../../lib/wordpress";
+import { getSEO } from "../../data/seo";
 
 Astro.response.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
 
@@ -15,10 +16,10 @@ const featured = allPosts[0];
 const pagePosts = allPosts.slice(0, POSTS_PER_PAGE);
 ---
 
-<Layout
-	title="Ira Spa | Blogs and Articles"
-	description="Read the latest wellness articles and spa tips from Ira Spa in Mangalore. Stay informed on massage benefits, self-care routines, skin treatments, and more."
->
+const seo = getSEO("/blogs/");
+---
+
+<Layout seo={seo}>
 	{featured && <JournalHero post={featured} />}
 
 	<PostGrid

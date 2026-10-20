@@ -2,15 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { herbalTherapyTreatments } from "../../data/herbaltherapy";
+import { getSEO } from "../../data/seo";
 
+const seo = getSEO("/ourservice/herbal-therapy/");
 const treatments = herbalTherapyTreatments;
 ---
 
-<Layout
-    title="Herbal Massage Spa in Mangalore"
-    description="Experience deep relaxation with professional herbal massage therapy in Mangalore at Ira Spa. Discover healing Herbal Potli and Hot Stone therapies. Book now!"
-    image="/images/Signature-Herbal-Gold-Facial-Instant-Glow-Naturally.webp"
->
+<Layout seo={seo}>
     <section
         class="page-banner"
         style={`background-image: url('/images/Signature-Herbal-Gold-Facial-Instant-Glow-Naturally.webp');`}

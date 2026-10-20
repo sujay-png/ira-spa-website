@@ -5,16 +5,16 @@ import ServiceDescription from "../../components/services/service_description.as
 import MenuList from "../../components/Home/MenuList.astro";
 import Footer from "../../components/Footer.astro";
 import { serviceData } from "../../data/services";
+import { getSEO } from "../../data/seo";
+
+const seo = getSEO("/ourservice/");
 ---
 
-<Layout
-	title="Ira Spa | Spa Therapy Service in Mangalore"
-	description="Discover a complete range of relaxation rituals at Ira Spa. From expert body massages and Thai therapies to refreshing facials and foot spas. Book your session."
->
-	<section class="page-banner" style="background-image: url('/images/spa-treatment.jpg');">
+<Layout seo={seo}>
+	<section class="page-banner" style={`background-image: url('${seo.image}');`}>
 		<div class="container">
 			
-			<h1>Best Spa Services</h1>
+			<h1>{seo.pageTitle}</h1>
 			<p>Ira Spa offers a range of massage and beauty spa therapy</p>
 		</div>
 	</section>

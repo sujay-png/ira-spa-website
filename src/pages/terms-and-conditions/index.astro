@@ -1,12 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
+import { getSEO } from "../../data/seo";
+
+const seo = getSEO("/terms-and-conditions/");
 ---
 
-<Layout
-	title="Terms & Conditions | Ira Spa"
-	description="Terms and conditions for using the Ira Spa website and services."
->
+<Layout seo={seo}>
 	<section class="terms-banner">
 		<div class="container">
 			<h1>Terms & Conditions</h1>
