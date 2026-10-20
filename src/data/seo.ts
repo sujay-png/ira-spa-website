@@ -706,7 +706,12 @@ export const galleryAltTexts: Record<string, string> = {
 	"imgi_64_720408192_17941609788232822_6146910874462510615_n-819x1024.jpg": "Client wellness and rejuvenation journey at Ira Spa",
 	"imgi_65_713563222_17940549111232822_7584340239445424097_n-819x1024.jpg": "Organic facial and skincare treatment session at Ira Spa",
 	"imgi_66_707561540_17939421015232822_95968831005194178_n-819x1024.jpg": "Therapeutic body scrub and skin polishing session at Ira Spa",
-	"imgi_67_700955472_17938645245232822_3396926590912006148_n-819x1024.jpg": "Ayurvedic herbal massage oils and therapies at Ira Spa"
+	"imgi_67_700955472_17938645245232822_3396926590912006148_n-819x1024.jpg": "Ayurvedic herbal massage oils and therapies at Ira Spa",
+	// --- WordPress Blog Uploads & Articles ---
+	"Spa_Body_Polishing_Guide": "Comprehensive Spa Body Polishing and Exfoliation Guide at Ira Spa",
+	"african-american-woman": "Client enjoying a rejuvenating head and facial massage at Ira Spa",
+	"Massage_Therapy": "Professional therapeutic massage therapy for muscle relief at Ira Spa",
+	"Hot_Stone_Massage": "Heated volcanic basalt hot stone massage for stress relief at Ira Spa",
 };
 
 /**
@@ -737,6 +742,65 @@ export function getGalleryImageAlt(imagePathOrName: string, fallback?: string): 
 	}
 
 	return fallback || `Ira Spa Wellness and Massage Treatment Gallery - ${nameWithoutExt.replace(/[-_]/g, " ")}`;
+}
+
+
+/**
+ * Automatically inspects any rendered HTML string (such as WordPress post content)
+ * and ensures every <img> tag has a meaningful, non-empty alt attribute.
+ */
+export function sanitizeContentImagesAlt(htmlContent: string, fallbackTitle: string = "Ira Spa Wellness"): string {
+	if (!htmlContent) return "";
+
+	return htmlContent.replace(/<img\b([^>]*?)>/gi, (match, attributes) => {
+		// Check if alt attribute already exists with non-empty content
+		const altMatch = attributes.match(/\balt=(["'])(.*?)\1/i);
+		const hasNonEmptyAlt = altMatch && altMatch[2].trim().length > 0;
+
+		if (hasNonEmptyAlt) {
+			return match;
+		}
+
+		// Extract src to derive a meaningful alt text
+		const srcMatch = attributes.match(/\bsrc=(["'])(.*?)\1/i);
+		const src = srcMatch ? srcMatch[2] : "";
+		
+		let derivedAlt = "";
+		if (src) {
+			const filename = src.split("/").pop()?.split("?")[0] || "";
+			const nameWithoutExt = filename.substring(0, filename.lastIndexOf(".")) || filename;
+			
+			// Check if any registered key is contained in filename
+			for (const [key, alt] of Object.entries(galleryAltTexts)) {
+				if (filename.toLowerCase().includes(key.toLowerCase())) {
+					derivedAlt = alt;
+					break;
+				}
+			}
+
+			if (!derivedAlt) {
+				const cleanName = nameWithoutExt
+					.replace(/[-_]/g, " ")
+					.replace(/\b\d{6,}\b/g, "")
+					.replace(/\s+/g, " ")
+					.trim();
+				if (cleanName && cleanName.length > 3 && !cleanName.toLowerCase().startsWith("chatgpt")) {
+					derivedAlt = `${cleanName} - Ira Spa`;
+				}
+			}
+		}
+
+		if (!derivedAlt) {
+			derivedAlt = `${fallbackTitle} - Ira Spa`;
+		}
+
+		if (altMatch) {
+			const newAttributes = attributes.replace(/\balt=(["']).*?\1/i, `alt="${derivedAlt}"`);
+			return `<img${newAttributes}>`;
+		} else {
+			return `<img alt="${derivedAlt}"${attributes}>`;
+		}
+	});
 }
 
 export default getSEO;

@@ -46,7 +46,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row1Images.map((img) => (
           <div class="image-card" aria-hidden="true">
-            <Image src={img.metadata} alt="" width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
           </div>
         ))
       }
@@ -68,7 +68,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row2Images.map((img) => (
           <div class="image-card" aria-hidden="true">
-            <Image src={img.metadata} alt="" width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
           </div>
         ))
       }
