@@ -7,6 +7,12 @@ import Properritual from "../../components/Appointment/properritual.astro";
 import Footer from "../../components/Footer.astro";
 import { getSEO } from "../../data/seo";
 
+const rawService = Astro.url.searchParams.get("service");
+if (rawService && (rawService.includes(" ") || rawService.trim() !== rawService || rawService !== rawService.toLowerCase())) {
+	const cleaned = rawService.trim().toLowerCase().replace(/\s+/g, "-");
+	return Astro.redirect(`/book-an-appointment/?service=${encodeURIComponent(cleaned)}`, 301);
+}
+
 const seo = getSEO("/book-an-appointment/");
 ---
 

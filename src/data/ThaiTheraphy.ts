@@ -1,6 +1,6 @@
 export const thaiTherapyTreatments = [
 	{
-		slug: "TRADITIONAL THAI THERAPY ",
+		slug: "traditional-thai-therapy",
 		name: "Traditional Thai Therapy",
 	
 		description:"Thai aroma massage blends East and West techniques. Thai-style deep massage with stretching is combined with sophisticated western-style. This Therapy slowly takes away the strain of the daily grind, revitalizes your energy and leaves you feeling totally relaxed and peaceful. ",

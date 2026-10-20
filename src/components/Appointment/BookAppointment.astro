@@ -227,6 +227,56 @@
 		});
 	}
 
+	// Auto-select service from URL query param
+	const urlParams = new URLSearchParams(window.location.search);
+	const serviceQuery = urlParams.get("service")?.toLowerCase().trim();
+	const servicesSelect = document.getElementById("services") as HTMLSelectElement | null;
+	if (serviceQuery && servicesSelect) {
+		const treatmentCategoryMap: Record<string, string> = {
+			"traditional-thai-therapy": "thai",
+			"bamboo-therapy": "thai",
+			"classic-swedish-therapy": "massage",
+			"deep-tissue-therapy": "massage",
+			"aroma-therapy": "massage",
+			"balinese-therapy": "massage",
+			"ira-signature-therapy": "massage",
+			"tandem-fourhands-therapy": "massage",
+			"herbal-potli": "herbal",
+			"hot-stone-therapy": "herbal",
+			"full-body-black-currant": "polishing",
+			"full-body-chocolate": "polishing",
+			"full-body-orange": "polishing",
+			"watermelon-cleanup": "facial-essentials",
+			"strawberry-cleanup": "facial-essentials",
+			"hydra-dew": "facial-essentials",
+			"rejuvenating-facial": "facial-essentials",
+			"herbal-pearl": "facial-essentials",
+			"deep-pore-cleansing": "facial-premium",
+			"whitening-facial": "facial-premium",
+			"herbal-gold": "facial-premium",
+			"classic-paraffin-wax-pedicure": "foot-spa",
+			"anti-oxidant-pedicure": "foot-spa",
+			"moisturizing-exotic-pedicure": "foot-spa",
+			"brightening-de-tan-pedicure": "foot-spa",
+			"de-stress-refreshment": "foot-spa",
+			"foot-reflexology": "quick-massage",
+			"back-massage": "quick-massage",
+			"head-neck-shoulder": "quick-massage",
+			"massage": "massage",
+			"herbal": "herbal",
+			"polishing": "polishing",
+			"thai": "thai",
+			"facial-essentials": "facial-essentials",
+			"facial-premium": "facial-premium",
+			"foot-spa": "foot-spa",
+			"quick-massage": "quick-massage",
+		};
+		const targetCategory = treatmentCategoryMap[serviceQuery];
+		if (targetCategory && Array.from(servicesSelect.options).some(o => o.value === targetCategory)) {
+			servicesSelect.value = targetCategory;
+		}
+	}
+
 	if (form) {
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
