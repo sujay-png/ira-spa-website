@@ -14,8 +14,6 @@ const categories = await getCategories();
 const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
 const featured = allPosts[0];
 const pagePosts = allPosts.slice(0, POSTS_PER_PAGE);
----
-
 const seo = getSEO("/blogs/");
 ---
 

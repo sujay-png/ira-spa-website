@@ -41,7 +41,7 @@ export default defineConfig({
     '/kalaburgi-gulbarga/': '/Contactus/Kalaburgi/',
     '/contact/': '/Contactus/Mangalore/',
     '/body-massage-at-ira-spa/': '/ourservice/body-massage/',
-    '/deep-tissue-massage-at-ira-spa/': '/services/body-massage/',
+    '/deep-tissue-massage-at-ira-spa/': '/ourservice/body-massage/',
     '/head-massage-benifits/': '/blogs/5-benefits-of-head-massage-therapy/',
 
     // Legacy Blog URLs
