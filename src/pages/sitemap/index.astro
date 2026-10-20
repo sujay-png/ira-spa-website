@@ -3,9 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 import Footer from "../../components/Footer.astro";
 import { serviceData } from "../../data/services";
 import { getSEO } from "../../data/seo";
+import { getAllPosts } from "../../lib/wordpress";
 
-// Use hardcoded lists from the reference image
 const seo = getSEO("/sitemap/");
+const allPosts = await getAllPosts();
+const livePosts = allPosts.slice(0, 15);
 ---
 
 <Layout seo={seo}>
@@ -21,87 +23,15 @@ const seo = getSEO("/sitemap/");
 				<div class="sitemap-column">
 					<h2><a href="/blogs/" class="heading-link">Blogs</a></h2>
 					<ul>
-						<li>
-							<a
-								href="/blogs/how-herbal-therapy-can-improve-overall-health/"
-								>How Herbal Therapy Can Improve Overall Health</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/discover-how-spa-therapy-transforms-your-sleep/"
-								>Discover How Spa Therapy Transforms Your Sleep</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/what-is-body-polishing-and-why-do-you-need-it/"
-								>What Is Body Polishing and Why Do You Need It?</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/health-benefits-of-regular-foot-spa-treatments/"
-								>Health Benefits of Regular Foot Spa Treatments</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/what-are-the-benefits-of-head-massage/"
-								>What Are the Benefits of Head Massage</a
-							>
-						</li>
-						<li>
-							<a href="/blogs/health-benefits-of-thai-massage/"
-								>Health Benefits Of Thai Massage</a
-							>
-						</li>
-						<li>
-							<a href="/blogs/best-spa-treatments-for-relaxation/"
-								>Best Spa Treatments for Relaxation</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/how-spa-treatments-can-improve-your-skin-health/"
-								>How Spa Treatments Can Improve Your Skin Health</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/discover-the-benefits-of-bamboo-therapy-a-natural-path-to-wellness/"
-								>Discover the benefits of Bamboo therapy: A
-								natural path to wellness</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness/"
-								>Traditional Thai therapy: Ancient Healing for
-								Modern wellness</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/deep-pore-cleansing-reveal-your-skins-natural-glow/"
-								>Deep Pore cleansing: Reveal your skin's Natural
-								Glow</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/herbal-potli-massage-traditional-healing-technique/"
-								>Herbal Potli Massage: Traditional Healing
-								technique</a
-							>
-						</li>
-						<li>
-							<a
-								href="/blogs/hot-stone-massage-what-it-is-and-how-it-benefits-your-body-and-mind/"
-								>Hot stone massage: what it is and how it
-								benefits your body and mind</a
-							>
-						</li>
+						{
+							livePosts.map((post) => (
+								<li>
+									<a href={`/blogs/${post.slug}/`}>
+										{post.title.rendered}
+									</a>
+								</li>
+							))
+						}
 					</ul>
 
 					<h2 class="mt-large">Other Pages</h2>
@@ -140,9 +70,7 @@ const seo = getSEO("/sitemap/");
 			</div>
 			<hr class="sitemap-divider" />
 			<div class="sitemap-footer">
-				<a href="https://www.dashboard.iraspa.in/sitemap_index.xml"
-					>XML Sitemap</a
-				>
+				<a href="/sitemap-index.xml">XML Sitemap</a>
 			</div>
 		</div>
 	</section>

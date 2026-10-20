@@ -34,7 +34,47 @@ export default defineConfig({
   output: 'server',
   adapter: vercel(), 
   redirects: {
-    '/Contactus/': '/Contactus/Mangalore/'
+    '/Contactus/': '/Contactus/Mangalore/',
+    // Legacy Page URLs
+    '/about-us/': '/about/',
+    '/our-services/': '/ourservice/',
+    '/kalaburgi-gulbarga/': '/Contactus/Kalaburgi/',
+    '/contact/': '/Contactus/Mangalore/',
+    '/body-massage-at-ira-spa/': '/ourservice/body-massage/',
+    '/deep-tissue-massage-at-ira-spa/': '/services/body-massage/',
+    '/head-massage-benifits/': '/blogs/5-benefits-of-head-massage-therapy/',
+
+    // Legacy Blog URLs
+    '/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness/':
+      '/blogs/traditional-thai-massage-the-ancient-healing-technique-for-energy-flow/',
+    '/blogs/how-spa-treatments-can-improve-your-skin-health/':
+      '/blogs/how-spa-treatments-improve-skin-health/',
+    '/blogs/best-spa-treatments-for-relaxation/':
+      '/blogs/best-spa-treatments-services-you-must-try/',
+    '/blogs/herbal-potli-massage-traditional-healing-technique/':
+      '/blogs/herbal-potli-therapy-traditional-healing/',
+    '/blogs/health-benefits-of-thai-massage/':
+      '/blogs/health-benefits-of-thai-massage-therapy/',
+    '/blogs/what-are-the-benefits-of-head-massage/':
+      '/blogs/5-benefits-of-head-massage-therapy/',
+    '/blogs/how-herbal-therapy-can-improve-overall-health/':
+      '/blogs/how-herbal-therapy-improves-health-wellness/',
+    '/blogs/how-herbal-therapy-improve-overall-health-wellness/':
+      '/blogs/how-herbal-therapy-improves-health-wellness/',
+    '/blogs/discover-how-spa-therapy-transforms-your-sleep/':
+      '/blogs/how-spa-therapy-improves-sleep-quality/',
+    '/blogs/deep-pore-cleansing-reveal-your-skins-natural-glow/':
+      '/blogs/how-deep-pore-cleansing-facial-helps-prevent-acne-and-oil-build-up/',
+    '/blogs/discover-the-benefits-of-bamboo-therapy-a-natural-path-to-wellness/':
+      '/blogs/benefits-of-bamboo-therapy/',
+    '/blogs/hot-stone-massage-what-it-is-and-how-it-benefits-your-body-and-mind/':
+      '/blogs/hot-stone-massage-benefits-for-muscle-pain-and-stress-relief/',
+    '/blogs/health-benefits-of-regular-foot-spa-treatments/':
+      '/blogs/health-benefits-of-foot-massage-treatments/',
+    '/blogs/what-is-body-polishing-and-why-do-you-need-it/':
+      '/blogs/what-is-body-polish-treatment-and-why-do-you-need-it/',
+    '/blogs/benefits-of-visiting-a-spa-once-a-month/':
+      '/blogs/benefits-of-visiting-a-spa/'
   },
   integrations: [
     icon(), 

@@ -14,7 +14,7 @@ import {
 	estimateReadTime,
 	stripHtml,
 } from "../../lib/wordpress";
-import { getBlogSEO, sanitizeContentImagesAlt } from "../../data/seo";
+import { getBlogSEO, sanitizePostContent } from "../../data/seo";
 
 // 1. Grab the slug directly from the URL (No getStaticPaths needed in SSR)
 const { slug } = Astro.params;
@@ -107,7 +107,7 @@ const seo = getBlogSEO({
 		<div class="container post__layout">
 			<div class="post__grid">
 				<div class="post__main">
-					<div class="prose" set:html={sanitizeContentImagesAlt(post.content.rendered, title)} />
+					<div class="prose" set:html={sanitizePostContent(post.content.rendered, title)} />
 
 					<div class="post__nav-back">
 						<a href="/blogs/" class="link-arrow post__back">

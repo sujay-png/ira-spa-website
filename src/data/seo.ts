@@ -803,5 +803,85 @@ export function sanitizeContentImagesAlt(htmlContent: string, fallbackTitle: str
 	});
 }
 
+
+/**
+ * 301 Permanent Redirects Map for Legacy Pages & Old WordPress Slugs.
+ * Used for server-level routing in astro.config.mjs and in-content URL rewriting.
+ */
+export const legacyRedirects: Record<string, string> = {
+	// --- Legacy Page URLs ---
+	"/about-us/": "/about/",
+	"/our-services/": "/ourservice/",
+	"/kalaburgi-gulbarga/": "/Contactus/Kalaburgi/",
+	"/contact/": "/Contactus/Mangalore/",
+	"/body-massage-at-ira-spa/": "/ourservice/body-massage/",
+	"/deep-tissue-massage-at-ira-spa/": "/services/body-massage/",
+	"/head-massage-benifits/": "/blogs/5-benefits-of-head-massage-therapy/",
+
+	// --- Legacy Blog Slugs ---
+	"/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness/":
+		"/blogs/traditional-thai-massage-the-ancient-healing-technique-for-energy-flow/",
+	"/blogs/how-spa-treatments-can-improve-your-skin-health/":
+		"/blogs/how-spa-treatments-improve-skin-health/",
+	"/blogs/best-spa-treatments-for-relaxation/":
+		"/blogs/best-spa-treatments-services-you-must-try/",
+	"/blogs/herbal-potli-massage-traditional-healing-technique/":
+		"/blogs/herbal-potli-therapy-traditional-healing/",
+	"/blogs/health-benefits-of-thai-massage/":
+		"/blogs/health-benefits-of-thai-massage-therapy/",
+	"/blogs/what-are-the-benefits-of-head-massage/":
+		"/blogs/5-benefits-of-head-massage-therapy/",
+	"/blogs/how-herbal-therapy-can-improve-overall-health/":
+		"/blogs/how-herbal-therapy-improves-health-wellness/",
+	"/blogs/how-herbal-therapy-improve-overall-health-wellness/":
+		"/blogs/how-herbal-therapy-improves-health-wellness/",
+	"/blogs/discover-how-spa-therapy-transforms-your-sleep/":
+		"/blogs/how-spa-therapy-improves-sleep-quality/",
+	"/blogs/deep-pore-cleansing-reveal-your-skins-natural-glow/":
+		"/blogs/how-deep-pore-cleansing-facial-helps-prevent-acne-and-oil-build-up/",
+	"/blogs/discover-the-benefits-of-bamboo-therapy-a-natural-path-to-wellness/":
+		"/blogs/benefits-of-bamboo-therapy/",
+	"/blogs/hot-stone-massage-what-it-is-and-how-it-benefits-your-body-and-mind/":
+		"/blogs/hot-stone-massage-benefits-for-muscle-pain-and-stress-relief/",
+	"/blogs/health-benefits-of-regular-foot-spa-treatments/":
+		"/blogs/health-benefits-of-foot-massage-treatments/",
+	"/blogs/what-is-body-polishing-and-why-do-you-need-it/":
+		"/blogs/what-is-body-polish-treatment-and-why-do-you-need-it/",
+	"/blogs/benefits-of-visiting-a-spa-once-a-month/":
+		"/blogs/benefits-of-visiting-a-spa/"
+};
+
+/**
+ * Sanitizes blog post HTML:
+ * 1. Rewrites legacy/broken URLs to active modern routes with trailing slashes.
+ * 2. Strips legacy Elementor font stylesheet links.
+ * 3. Ensures all images have descriptive, non-empty alt attributes.
+ */
+export function sanitizePostContent(htmlContent: string, fallbackTitle: string = "Ira Spa"): string {
+	if (!htmlContent) return "";
+
+	let cleaned = htmlContent;
+
+	// 1. Remove any legacy Elementor stylesheet tags
+	cleaned = cleaned.replace(/<link\b[^>]*?elementor[^>]*?>/gi, "");
+
+	// 2. Rewrite legacy href URLs
+	for (const [oldPath, newPath] of Object.entries(legacyRedirects)) {
+		const oldClean = oldPath.replace(/^\/|\/$/g, "");
+		// Matches href="https://(www.)?iraspa.in/old-path(/)?" or href="/old-path(/)?"
+		const regex = new RegExp(`(href=["'])(?:https?:\\/\\/(?:www\\.)?iraspa\\.in)?\\/?${oldClean}\\/?(["'])`, "gi");
+		cleaned = cleaned.replace(regex, `$1${newPath}$2`);
+	}
+
+	// 3. Fix un-slashed common paths inside post content
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/ourservice(["'])/gi, '$1/ourservice/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/book-an-appointment(["'])/gi, '$1/book-an-appointment/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Mangalore(["'])/gi, '$1/Contactus/Mangalore/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Kalaburgi(["'])/gi, '$1/Contactus/Kalaburgi/$2');
+
+	// 4. Ensure all images have proper alt text
+	return sanitizeContentImagesAlt(cleaned, fallbackTitle);
+}
+
 export default getSEO;
 
