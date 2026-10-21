@@ -78,6 +78,36 @@
 					<option value="17:00">5:00 PM - 6:00 PM</option>
 				</select>
 			</div>
+
+			<div class="form-group">
+				<label for="duration">DURATION</label>
+				<select id="duration" name="duration" required>
+					<option value="" disabled selected hidden
+						>Select duration</option
+					>
+					<option value="60 min">60 min</option>
+					<option value="90 min">90 min</option>
+					<option value="120 min">120 min</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="reason">SELECT REASON</label>
+				<select id="reason" name="reason" required>
+					<option value="" disabled selected hidden
+						>Select your reason</option
+					>
+					<option value="Back pain">Back pain</option>
+					<option value="Decompress muscle tension"
+						>Decompress muscle tension</option
+					>
+					<option value="Promote deeper sleep"
+						>Promote deeper sleep</option
+					>
+					<option value="Pain relief">Pain relief</option>
+				</select>
+			</div>
+
 			<button
 				type="submit"
 				class="btn-primary reserve-btn"
@@ -299,6 +329,8 @@
 				date: data.date,
 				time: data.time,
 				services: data.services,
+				duration: data.duration,
+				reason: data.reason,
 				start_time: data.start_time,
 				STORE_ID: data.STORE_ID,
 			});
