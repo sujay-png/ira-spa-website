@@ -4,7 +4,7 @@ export const footSpaTreatments = [
         name: "Classic Paraffin Wax Pedicure",
         subtitle: "Melon & Litchi",
         category: "Foot Care",
-        image: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSgy9eS8MQDXTT4ob-M8I2e_Qi8nRGXqOlPd4DiFgkNLAGiF6uULBO91XYdfZPVthyk-E-0JBrZH3dJHvc",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/man-woman-holding-hands-bathtub-close-up-1024x683.jpg",
         prices: [{ label: "45 min", price: "₹800" }],
     },
     {
@@ -12,7 +12,7 @@ export const footSpaTreatments = [
         name: "Anti-Oxidant Pedicure",
         subtitle: "Tangy Lemon",
         category: "Foot Care",
-        image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcSvg-9pbGjSn_X2-wq9fYg4UjO5PMXox_YxDMRO_9PpJMlFicA-VwRPap4PpgKt7oHeJ3Sv57kx9sVzVz8",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/foot-washing-spa-before-treatment-spa-treatment-product-female-feet-hand-spa-1024x683.jpg",
         prices: [{ label: "60 min", price: "₹800" }],
     },
     {
@@ -20,7 +20,7 @@ export const footSpaTreatments = [
         name: "Moisturizing Exotic Pedicure",
         subtitle: "Berry",
         category: "Foot Care",
-        image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRClPzvJ4Fa3wbaLlAJMS0lniFW5UK7lqb0kheylYvS9UHjzTPK151UVXmfpEFcsa-YWlStxw5ARWumUAw",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/woman-s-feet-bowl-with-water-petal-1024x688.jpg",
         prices: [{ label: "60 min", price: "₹800" }],
     },
     {
@@ -28,7 +28,7 @@ export const footSpaTreatments = [
         name: "Brightening De-Tan Pedicure",
         subtitle: "Sheen",
         category: "Foot Care",
-        image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQj80WU9zEbeqn2gVsF1klzBEU0ZyjaArIf7328H2kLnh69BZ7PHU_10rU_8sCNJ7PwfB8UWj99hKvBZQQ",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/06/foot-spa.avif",
         prices: [{ label: "60 min", price: "₹1,200" }],
     },
     {
@@ -36,7 +36,7 @@ export const footSpaTreatments = [
         name: "De-Stress Refreshment",
         subtitle: "Mint",
         category: "Foot Care",
-        image: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcTMTtOEyFEn64p1Dm5WzYwAOy0hKxgQd9js0upDoLl5J97ITfaf3miYjYHV-zebxlixgQziPdhcND-lq88",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/high-angle-woman-getting-massaged-spa-1-1024x683.jpg",
         prices: [{ label: "60 min", price: "₹1,000" }],
     },
 ];

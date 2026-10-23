@@ -192,6 +192,9 @@ const jsonLd = {
         </li>
     </ul>
 </li>
+						<li class="nav__mobile-cta">
+							<a href="/book-an-appointment/" class="btn-primary nav__mobile-book">Book An Appointment</a>
+						</li>
 					</ul>
 				</nav>
 
@@ -366,55 +369,8 @@ const jsonLd = {
 		transform: translateY(-6.5px) rotate(-45deg);
 	}
 
-	@media (max-width: 860px) {
-		.header-cta {
-			display: none;
-		}
-
-		.nav-toggle {
-			display: flex;
-		}
-
-		.nav {
-			position: fixed;
-			top: var(--header-height);
-			left: 0;
-			right: 0;
-			background: rgba(11, 11, 10, 0.98);
-			backdrop-filter: blur(14px);
-			border-bottom: 1px solid var(--color-border);
-			max-height: 0;
-			overflow: hidden;
-			transition: max-height 0.35s var(--ease-soft);
-		}
-
-		.nav.is-open {
-			max-height: 480px;
-		}
-
-		.nav__list {
-			flex-direction: column;
-			align-items: stretch;
-			gap: 0;
-			padding: 0.5rem clamp(1.25rem, 4vw, 2.5rem) 1.5rem;
-		}
-
-		.nav__list li {
-			border-bottom: 1px solid var(--color-border);
-		}
-
-		.nav__list li:last-child {
-			border-bottom: none;
-		}
-
-		.nav__list a {
-			display: block;
-			padding: 1rem 0;
-		}
-
-		.nav__list a::after {
-			display: none;
-		}
+	.nav__mobile-cta {
+		display: none;
 	}
 	.nav__dropdown {
         position: relative;
@@ -501,93 +457,131 @@ const jsonLd = {
         color: #ffa500;
     }
 
+	@media (min-width: 861px) {
+		.nav__dropdown:hover .dropdown__menu,
+		.nav__dropdown:focus-within .dropdown__menu {
+			display: block;
+		}
+	}
+
 	@media (max-width: 860px) {
-        .header-cta {
-            display: none;
-        }
+		.header-cta {
+			padding: 0.45rem 0.95rem;
+			font-size: 0.72rem;
+			letter-spacing: 0.08em;
+			min-height: 36px;
+		}
 
-        .nav-toggle {
-            display: flex;
-        }
+		.nav-toggle {
+			display: flex;
+		}
 
-        .nav {
-            position: fixed;
-            top: var(--header-height);
-            left: 0;
-            right: 0;
-            background: rgba(11, 11, 10, 0.98);
-            backdrop-filter: blur(14px);
-            border-bottom: 1px solid var(--color-border);
-            max-height: 0;
-            overflow-y: auto; /* Allow scrolling if menu is long */
-            transition: max-height 0.35s ease;
-        }
+		.nav {
+			position: fixed;
+			top: var(--header-height);
+			left: 0;
+			right: 0;
+			background: rgba(11, 11, 10, 0.98);
+			backdrop-filter: blur(14px);
+			-webkit-backdrop-filter: blur(14px);
+			border-bottom: 1px solid var(--color-border);
+			max-height: 0;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			transition: max-height 0.35s ease;
+		}
 
-        .nav.is-open {
-            max-height: 80vh;
-        }
+		.nav.is-open {
+			max-height: calc(100vh - var(--header-height));
+		}
 
-        .nav__list {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0;
-            padding: 0.5rem clamp(1.25rem, 4vw, 2.5rem) 1.5rem;
-        }
+		.nav__list {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0;
+			padding: 0.5rem clamp(1rem, 4vw, 2.5rem) 2rem;
+		}
 
-        .nav__list li {
-            border-bottom: 1px solid var(--color-border);
-        }
+		.nav__list li {
+			border-bottom: 1px solid var(--color-border);
+		}
 
-        .nav__list li:last-child {
-            border-bottom: none;
-        }
+		.nav__list li:last-child {
+			border-bottom: none;
+		}
 
-        .nav__list a,
-        .dropdown__toggle {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 1rem 0;
-        }
+		.nav__list a,
+		.dropdown__toggle {
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			padding: 0.9rem 0;
+		}
 
-        /* Mobile Accordion Menu */
-        .dropdown__menu {
-            position: static;
-            display: none;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-            box-shadow: none;
-            padding: 0;
-            margin-bottom: 0.5rem;
-        }
+		.nav__list a::after {
+			display: none;
+		}
 
-        .dropdown__menu::before {
-            display: none;
-        }
+		.nav__mobile-cta {
+			display: block;
+			border-bottom: none !important;
+			padding-top: 1rem;
+		}
 
-        .dropdown__menu li {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
+		.nav__mobile-book {
+			width: 100%;
+			justify-content: center;
+			text-align: center;
+			padding: 0.85rem 1.5rem !important;
+		}
 
-        .dropdown__menu li a {
-            padding: 0.75rem 1rem;
-            color: #ffffff;
-            font-size: 0.85rem;
-        }
+		/* Mobile Accordion Menu */
+		.dropdown__menu {
+			position: static;
+			display: none;
+			background: rgba(255, 255, 255, 0.05);
+			border-radius: 4px;
+			box-shadow: none;
+			padding: 0;
+			margin-bottom: 0.5rem;
+		}
 
-        /* Open state on mobile */
-        .nav__dropdown.is-active .dropdown__menu {
-            display: block;
-        }
+		.dropdown__menu::before,
+		.dropdown__menu::after {
+			display: none;
+		}
 
-        .nav__dropdown.is-active .caret {
-            transform: rotate(180deg);
-        }
-    }
-	/* Hover Trigger */
-	.nav__dropdown:hover .dropdown__menu,
-	.nav__dropdown:focus-within .dropdown__menu {
-		display: block;
+		.dropdown__menu li {
+			border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		.dropdown__menu li a {
+			padding: 0.75rem 1rem;
+			color: #ffffff;
+			font-size: 0.85rem;
+		}
+
+		/* Open state on mobile */
+		.nav__dropdown.is-active .dropdown__menu {
+			display: block;
+		}
+
+		.nav__dropdown.is-active .caret {
+			transform: rotate(180deg);
+		}
+	}
+
+	@media (max-width: 400px) {
+		.site-header__inner {
+			gap: 0.75rem;
+			padding-inline: 0.85rem;
+		}
+
+		.header-cta {
+			padding: 0.4rem 0.7rem;
+			font-size: 0.68rem;
+			letter-spacing: 0.05em;
+		}
 	}
 </style>
 

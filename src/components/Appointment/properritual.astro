@@ -135,12 +135,21 @@ const rituals = [
 
 	@media (max-width: 600px) {
 		.ritual-row {
-			gap: 0.6rem;
-			padding: 0.6rem 0.3rem;
+			flex-wrap: wrap;
+			gap: 0.35rem 0.6rem;
+			padding: 0.65rem 0.35rem;
 		}
-		.ritual-row__name,
+		.ritual-row__name {
+			white-space: normal;
+			flex: 1 1 65%;
+			font-size: 0.88rem;
+		}
+		.ritual-row__leader {
+			display: none;
+		}
 		.ritual-row__price {
-			font-size: 0.85rem;
+			font-size: 0.88rem;
+			margin-left: auto;
 		}
 	}
 </style>

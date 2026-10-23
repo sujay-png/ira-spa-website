@@ -4,7 +4,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Black Currant",
         subtitle: "Dry Skin",
         category: "Skin Renewal",
-        image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcR8BPSjtNNDxktFHUU2xsiO4O_0yvqSUfbCEesxCcRpjkH2ncUSy6ozkzMpfdAEw2LgucWEORwvtz5DwRY",
+        image: "https://spame.in/wp-content/uploads/2025/03/body-scrub-massage-vs-traditional-massage-whats-the-difference-1-300x225.webp",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
     {
@@ -12,7 +12,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Chocolate",
         subtitle: "Brightening and Nourishing",
         category: "Skin Renewal",
-        image: "https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcQ5pUQ87o-IuoPz3tW_D4Ad7ztA9xPpCOv4NGLguY9d34vwEDXbALkIq038ka4-Hwg3qxoQWvNst5oqA3E",
+        image: "https://melocare.com/wp-content/uploads/2024/07/Body-Polishing.jpg",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
     {
@@ -20,7 +20,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Orange",
         subtitle: "De-tan",
         category: "Skin Renewal",
-        image: "https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcTJK8kpkgOAqfXebSlNBsu792TSjS_npcXjjWDZqJioxlz6QnkejGX1cL9n9VjBWeJ06ipy_XLWLCb_nDo",
+        image: "https://llb.cz/wp-content/uploads/2024/02/patient-getting-cbd-treatment-1024x683.jpg+",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
 ];

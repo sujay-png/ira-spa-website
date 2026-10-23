@@ -98,19 +98,19 @@ const steps = [
 		font-size: 0.75rem;
 		text-transform: uppercase;
 		letter-spacing: 0.1em;
-		color: --color-accent; /* Red accent matching your reference */
+		color: var(--color-accent); /* Red accent matching your reference */
 		margin-bottom: 1.5rem;
 	}
 
 	.eyebrow-pill .dot {
 		width: 6px;
 		height: 6px;
-		background-color: --color-accent;
+		background-color: var(--color-accent);
 		border-radius: 50%;
 	}
 
 	.process-header h2 {
-		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-size: clamp(1.85rem, 5vw + 0.5rem, 3.5rem);
 		font-weight: 700;
 		margin: 0 0 1rem 0;
 		line-height: 1.1;
@@ -118,7 +118,7 @@ const steps = [
 	}
 
 	.process-header .highlight {
-		color: --color-accent;
+		color: var(--color-accent);
 	}
 
 	.process-header .subtitle {
@@ -192,7 +192,7 @@ const steps = [
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: --color-accent;
+		color: var(--color-accent);
 		background: rgba(229, 57, 89, 0.05);
 	}
 
@@ -262,8 +262,20 @@ const steps = [
 			grid-template-columns: 1fr;
 		}
 		.process-card {
-			padding: 2rem;
+			padding: 1.75rem 1.25rem;
 			min-height: auto;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.how-it-works-modern {
+			padding: 2.75rem 0;
+		}
+		.process-header {
+			margin-bottom: 2.5rem;
+		}
+		.process-card {
+			padding: 1.35rem 1rem;
 		}
 	}
 </style>

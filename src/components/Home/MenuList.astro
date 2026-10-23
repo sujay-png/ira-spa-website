@@ -346,9 +346,10 @@ const categories = [
 
     .carousel__slide {
         flex: 0 0 100%;
-        min-width: 128%;
+        min-width: 100%;
+        width: 100%;
         scroll-snap-align: start;
-        padding-inline: -21rem;
+        padding-inline: 0;
         box-sizing: border-box;
     }
 
@@ -593,21 +594,20 @@ const categories = [
 
     @media (max-width: 768px) {
         .menu__card {
-            padding: 2rem 1rem;
+            padding: 1.75rem 0.85rem;
         }
 
         .carousel__track {
-            padding-inline: 2.8rem;
+            padding-inline: 1.85rem;
         }
 
         .carousel__slide {
-            padding-inline: 0.5rem;
+            padding-inline: 0;
         }
 
         .carousel__btn {
-            width: 36px;
-            height: 36px;
-
+            width: 34px;
+            height: 34px;
             font-size: 0.85rem;
         }
 
@@ -621,7 +621,6 @@ const categories = [
 
         .menu__category {
             font-size: 0.95rem;
-
             letter-spacing: 0.1em;
         }
 
@@ -630,11 +629,11 @@ const categories = [
         }
 
         .menu__item-name {
-            font-size: 0.82rem;
+            font-size: 0.85rem;
         }
 
         .menu__item-price {
-            font-size: 0.78rem;
+            font-size: 0.82rem;
         }
 
         .menu__item-sessions {
@@ -648,24 +647,37 @@ const categories = [
 
     @media (max-width: 480px) {
         .menu__card {
-            padding-inline: 0.75rem;
+            padding: 1.5rem 0.65rem;
         }
 
         .carousel__track {
-            padding-inline: 2.5rem;
+            padding-inline: 1.5rem;
         }
 
         .carousel__btn {
-            width: 34px;
-            height: 34px;
-        }
-
-        .menu__item-name {
+            width: 30px;
+            height: 30px;
             font-size: 0.75rem;
         }
 
+        .menu__item-top {
+            flex-wrap: wrap;
+            gap: 0.2rem 0.5rem;
+        }
+
+        .menu__item-name {
+            font-size: 0.78rem;
+            white-space: normal;
+            flex: 1 1 65%;
+        }
+
+        .menu__item-line {
+            display: none;
+        }
+
         .menu__item-price {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
+            margin-left: auto;
         }
 
         .menu__item-sessions {

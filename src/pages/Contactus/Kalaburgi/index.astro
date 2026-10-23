@@ -410,6 +410,21 @@ const breadcrumbData = {
 		font-size: 0.9rem;
 	}
 
+
+	.map-container {
+		width: 100%;
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		margin-top: var(--space-sm);
+	}
+
+	.map-container iframe {
+		width: 100% !important;
+		max-width: 100% !important;
+		height: 300px;
+		border: 0;
+		display: block;
+	}
 	.locations {
 		display: flex;
 		flex-direction: column;
@@ -506,6 +521,20 @@ const breadcrumbData = {
 		}
 		.form-row {
 			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.location-card {
+			padding: 1.25rem 1rem;
+		}
+		.location-card__hours {
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+		.directionbutton {
+			width: 100%;
+			margin: 0.5rem 0 0;
 		}
 	}
 </style>
