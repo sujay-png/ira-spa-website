@@ -36,6 +36,8 @@ export default defineConfig({
   redirects: {
     '/Contactus/': '/Contactus/Mangalore/',
     // Legacy Page URLs
+    '/services/': '/ourservice/',
+    '/services/lomi-lomi-massage/': '/ourservice/lomi-lomi-massage/',
     '/about-us/': '/about/',
     '/our-services/': '/ourservice/',
     '/kalaburgi-gulbarga/': '/Contactus/Kalaburgi/',
@@ -45,6 +47,8 @@ export default defineConfig({
     '/head-massage-benifits/': '/blogs/5-benefits-of-head-massage-therapy/',
 
     // Legacy Blog URLs
+    '/blogs/the-power-of-touch-why-the-ira-signature-therapy-is-truly-unique/':
+      '/blogs/ira-signature-therapy-in-mangalore/',
     '/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness/':
       '/blogs/traditional-thai-massage-the-ancient-healing-technique-for-energy-flow/',
     '/blogs/how-spa-treatments-can-improve-your-skin-health/':

@@ -7,6 +7,7 @@ export interface MomToBeCareItem {
   id: string;
   title: string;
   icon: ImageMetadata;
+  alt: string;
 }
 
 export interface MomToBeCareData {
@@ -23,16 +24,19 @@ export const momToBeCareData: MomToBeCareData = {
       id: "head-neck-massage",
       title: "Head and Neck Massage",
       icon: headNeckIcon,
+      alt: "Prenatal head and neck tension relief massage icon",
     },
     {
       id: "shoulder-back-massage",
       title: "Shoulder and Back Massage",
       icon: shoulderBackIcon,
+      alt: "Prenatal shoulder and back massage relief icon",
     },
     {
       id: "foot-reflexology",
       title: "Foot Reflexology",
       icon: footReflexologyIcon,
+      alt: "Foot reflexology massage icon for prenatal wellness",
     },
   ],
 };

@@ -5,6 +5,7 @@ export interface MomCareItem {
   id: string;
   title: string;
   icon: ImageMetadata;
+  alt: string;
 }
 
 export interface MomCareData {
@@ -21,6 +22,7 @@ export const momCareData: MomCareData = {
       id: "full-body-massage",
       title: "Full Body Massage",
       icon: fullBodyIcon,
+      alt: "Post-delivery restorative full body massage icon",
     },
   ],
 };
