@@ -344,6 +344,24 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 		canonical: "/ourservice/thai-therapy/",
 		ogType: "website"
 	},
+	"/ourservice/lomi-lomi-massage/": {
+		pageTitle: "Lomi Lomi Massage in Mangalore & Kalaburagi",
+		seoTitle: "Lomi Lomi Massage | Traditional Hawaiian Therapy – Ira Spa",
+		seoDescription:
+			"Experience authentic Hawaiian Lomi Lomi massage at Ira Spa in Mangalore and Kalaburagi. Long, flowing rhythmic strokes to melt stress and restore harmony.",
+		keywords: [
+			"lomi lomi massage mangalore",
+			"lomi lomi massage kalaburagi",
+			"hawaiian massage spa",
+			"full body relaxation massage",
+			"ira spa rituals"
+		],
+		image: "/images/lomi-lomi.webp",
+		imageAlt: "Lomi Lomi massage therapy at Ira Spa",
+		eyebrow: "Hawaiian Ritual",
+		canonical: "/ourservice/lomi-lomi-massage/",
+		ogType: "website"
+	},
 	"/contactus/mangalore/": {
 		pageTitle: "Contact Ira Spa – Mangalore",
 		seoTitle: "Contact Us | Book a Spa Appointment in Mangalore – Ira Spa",
@@ -699,6 +717,7 @@ export const galleryAltTexts: Record<string, string> = {
 	"quickmassage.jpg": "Express quick massage focusing on upper back, neck, and shoulder relief",
 	"thai-massage.jpg": "Traditional authentic Thai massage with assisted yoga stretches",
 	"TraditionalThai.jpg": "Authentic ancient Thai therapy and pressure-point stimulation",
+	"lomi-lomi.webp": "Authentic Hawaiian Lomi Lomi massage therapy with flowing rhythmic strokes at Ira Spa",
 
 	// --- Instagram Gallery Feed (public/insta-post) ---
 	"imgi_62_WhatsApp-Image-2026-06-15-at-2.43.04-PM-819x1024.jpg": "Holistic body massage treatment highlights from Ira Spa Instagram",

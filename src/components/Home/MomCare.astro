@@ -8,16 +8,16 @@ import {
 const { title, subtitle, items }: MomCareData = momCareData;
 ---
 
-<div class="mom-col" id="mom-care">
-  <div class="mom-col__header">
-    <h2 class="mom-col__title">{title}</h2>
-    <h3 class="mom-col__subtitle">{subtitle}</h3>
+<div class="mom-care-block" id="mom-care">
+  <div class="mom-care-header">
+    <h2 class="mom-care-title">{title}</h2>
+    <p class="mom-care-subtitle">{subtitle}</p>
   </div>
 
-  <ul class="mom-col__list">
+  <div class="mom-care-container">
     {items.map((item: MomCareItem) => (
-      <li class="mom-col__card">
-        <div class="mom-col__icon-box">
+      <div class="mom-care-card">
+        <div class="mom-care-card__icon-box">
           <img
             src={item.icon.src}
             alt=""
@@ -27,122 +27,164 @@ const { title, subtitle, items }: MomCareData = momCareData;
             loading="lazy"
           />
         </div>
-        <p class="mom-col__card-title">{item.title}</p>
-      </li>
+        <h4 class="mom-care-card__title">{item.title}</h4>
+        <p class="mom-care-card__desc">{item.description}</p>
+        <a href="/book-an-appointment/" class="mom-care-card__btn">Book Now</a>
+      </div>
     ))}
-  </ul>
+  </div>
 </div>
 
 <style>
-  .mom-col {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .mom-care-block {
     width: 100%;
-    max-width: 440px;
+    max-width: 1160px;
     margin-inline: auto;
   }
 
-  .mom-col__header {
+  .mom-care-header {
     text-align: center;
-    margin-bottom: var(--space-lg);
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
     width: 100%;
   }
 
-  .mom-col__title {
-    font-family: var(--font-display);
-    color: var(--color-text);
-    margin-bottom: var(--space-xs);
+  .mom-care-title {
+    font-family: var(--font-display, "Playfair Display", Georgia, serif);
+    font-size: clamp(2.2rem, 3.8vw, 3rem);
+    font-weight: 500;
+    color: #ffffff !important;
     line-height: 1.2;
     text-align: center;
-  }
-
-  .mom-col__subtitle {
-    font-family: var(--font-body);
-    font-size: var(--font-size-lg);
-    font-weight: 500;
-    color: var(--color-accent);
-    letter-spacing: 0.04em;
     margin: 0;
-    text-align: center;
   }
 
-  .mom-col__list {
-    list-style: none !important;
-    list-style-type: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+  .mom-care-subtitle {
+    font-family: var(--font-body, "Poppins", sans-serif);
+    font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+    font-weight: 500;
+    color: #cf9e3c !important;
+    letter-spacing: 0.08em;
+    text-align: center;
+    margin: 0.65rem 0 0 0;
+    text-transform: uppercase;
+  }
+
+  .mom-care-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .mom-care-card {
+    width: 100%;
+    max-width: 360px;
+    margin-inline: auto;
+    background: #171715;
+    border: 1px solid rgba(207, 162, 60, 0.22);
+    border-radius: 16px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    width: 100%;
-  }
-
-  .mom-col__card {
-    list-style: none !important;
-    list-style-type: none !important;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: 1.35rem 1.5rem;
-    display: flex;
-    flex-direction: row;
     align-items: center;
-    text-align: left;
-    gap: 1.5rem;
-    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .mom-col__card:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-border-strong);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  .mom-care-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(232, 185, 80, 0.55);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 0 24px rgba(232, 185, 80, 0.2);
   }
 
-  .mom-col__icon-box {
+  .mom-care-card__icon-box {
     width: 72px;
     height: 72px;
-    border-radius: var(--radius-md);
-    background: rgba(232, 185, 80, 0.1);
-    border: 1px solid rgba(232, 185, 80, 0.28);
+    border-radius: 50%;
+    background: rgba(232, 185, 80, 0.08);
+    border: 1.5px solid rgba(232, 185, 80, 0.38);
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1.5rem;
     flex-shrink: 0;
-    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .mom-col__card:hover .mom-col__icon-box {
-    transform: scale(1.05);
-    background: rgba(232, 185, 80, 0.18);
-    border-color: rgba(232, 185, 80, 0.45);
+  .mom-care-card:hover .mom-care-card__icon-box {
+    transform: scale(1.06);
+    background: rgba(232, 185, 80, 0.16);
+    border-color: rgba(232, 185, 80, 0.65);
+    box-shadow: 0 0 16px rgba(232, 185, 80, 0.25);
   }
 
-  .mom-col__icon-box img {
-    width: 42px;
-    height: 42px;
+  .mom-care-card__icon-box img {
+    width: 40px;
+    height: 40px;
     object-fit: contain;
-    filter: brightness(1.22) drop-shadow(0 2px 6px rgba(232, 185, 80, 0.25));
+    filter: brightness(1.2) drop-shadow(0 2px 6px rgba(232, 185, 80, 0.3));
   }
 
-  .mom-col__card-title {
-    font-family: var(--font-display);
-    font-size: clamp(1.15rem, 0.4vw + 1.1rem, 1.25rem);
+  .mom-care-card__title {
+    font-family: var(--font-display, "Playfair Display", Georgia, serif);
+    font-size: clamp(1.2rem, 0.3vw + 1.15rem, 1.35rem);
     font-weight: 500;
-    color: var(--color-text);
-    line-height: 1.4;
-    margin: 0;
+    color: #ffffff !important;
+    line-height: 1.3;
+    margin: 0 0 0.85rem 0;
+    text-align: center;
+  }
+
+  .mom-care-card__desc {
+    font-family: var(--font-body, "Poppins", sans-serif);
+    font-size: 0.9rem;
+    color: #a0a09c !important;
+    line-height: 1.6;
+    margin: 0 0 1.75rem 0;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .mom-care-card__btn,
+  a.mom-care-card__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    background: #cf9e3c !important;
+    color: #0b0b0a !important;
+    font-family: var(--font-body, "Poppins", sans-serif);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    border-radius: var(--radius-sm, 6px);
+    border: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(207, 158, 60, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+  }
+
+  .mom-care-card__btn:hover,
+  a.mom-care-card__btn:hover {
+    background: #dfb04c !important;
+    color: #0b0b0a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(207, 158, 60, 0.4);
+  }
+
+  .mom-care-card__btn:active,
+  a.mom-care-card__btn:active {
+    transform: translateY(0);
   }
 
   @media (max-width: 600px) {
-    .mom-col__card {
-      padding: 1.15rem 1.25rem;
-      gap: 1.25rem;
-    }
-
-    .mom-col__card-title {
-      font-size: 1.15rem;
+    .mom-care-card {
+      max-width: 100%;
+      padding: 24px 20px;
     }
   }
 </style>

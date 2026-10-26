@@ -32,3 +32,39 @@ const seo = getSEO("/ourservice/");
 	<MenuList />
 	<Footer />
 </Layout>
+
+<style>
+	@media (max-width: 768px) {
+		.page-banner {
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+
+		.page-banner .container {
+			width: 100%;
+			max-width: 100%;
+			padding-inline: 16px;
+			box-sizing: border-box;
+		}
+
+		.page-banner h1 {
+			width: 100%;
+			max-width: 100%;
+			font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+			box-sizing: border-box;
+		}
+
+		.page-banner p {
+			width: 100%;
+			max-width: 100%;
+			font-size: 1rem;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+			box-sizing: border-box;
+		}
+	}
+</style>

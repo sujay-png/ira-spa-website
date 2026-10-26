@@ -241,6 +241,7 @@ const jsonLd = {
 		position: fixed;
 		top: 0;
 		left: 0;
+		right: 0;
 		width: 100%;
 		height: var(--header-height);
 		z-index: 1000;
@@ -254,7 +255,7 @@ const jsonLd = {
 		max-width: var(--container-max);
 		height: 100%;
 		margin-inline: auto;
-		padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+		padding-inline: clamp(1rem, 4vw, 2.5rem);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -367,6 +368,10 @@ const jsonLd = {
 	}
 
 	@media (max-width: 860px) {
+		.site-header__inner {
+			padding-inline: 16px;
+		}
+
 		.header-cta {
 			display: none;
 		}

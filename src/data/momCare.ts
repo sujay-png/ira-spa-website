@@ -4,6 +4,7 @@ import fullBodyIcon from "../assets/icons/full-body-massage.svg";
 export interface MomCareItem {
   id: string;
   title: string;
+  description: string;
   icon: ImageMetadata;
 }
 
@@ -20,6 +21,8 @@ export const momCareData: MomCareData = {
     {
       id: "full-body-massage",
       title: "Full Body Massage",
+      description:
+        "Restore physical vitality and ease postpartum muscle soreness with certified post-delivery full body massage at IRA Spa Mangalore.",
       icon: fullBodyIcon,
     },
   ],
