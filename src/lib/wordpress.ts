@@ -6,7 +6,7 @@ const WP_BASE_URL = import.meta.env.PUBLIC_WP_BASE_URL || "https://dashboard.ira
 const WP_GRAPHQL_URL = `${WP_BASE_URL}/graphql`;
 
 export const POSTS_PER_PAGE = 9;
-const FALLBACK_IMAGE = "/images/spa-treatment.jpg";
+const FALLBACK_IMAGE = "/images/spa-treatment.webp";
 
 // --- TYPESCRIPT INTERFACES ---
 export interface WPTerm {

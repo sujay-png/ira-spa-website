@@ -12,7 +12,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Chocolate",
         subtitle: "Brightening and Nourishing",
         category: "Skin Renewal",
-        image: "https://melocare.com/wp-content/uploads/2024/07/Body-Polishing.jpg",
+        image: "https://melocare.com/wp-content/uploads/2024/07/Body-Polishing.webp",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
     {
@@ -20,7 +20,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Orange",
         subtitle: "De-tan",
         category: "Skin Renewal",
-        image: "https://llb.cz/wp-content/uploads/2024/02/patient-getting-cbd-treatment-1024x683.jpg",
+        image: "https://llb.cz/wp-content/uploads/2024/02/patient-getting-cbd-treatment-1024x683.webp",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
 ];

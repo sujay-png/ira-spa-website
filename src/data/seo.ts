@@ -135,7 +135,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"ira spa packages",
 			"wellness treatment costs"
 		],
-		image: "/images/spa-treatment.jpg",
+		image: "/images/spa-treatment.webp",
 		imageAlt: "Ira Spa Full Wellness, Massage, and Facial Treatment Menu",
 		eyebrow: "Services",
 		canonical: "/menu/",
@@ -153,7 +153,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"reserve spa session kalaburagi",
 			"online massage booking mangalore"
 		],
-		image: "/images/spa-treatment.jpg",
+		image: "/images/spa-treatment.webp",
 		imageAlt: "Book a Spa Appointment Online at Ira Spa Mangalore",
 		eyebrow: "Reservation",
 		canonical: "/book-an-appointment/",
@@ -171,7 +171,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"wellness treatments brochure",
 			"ira spa price list pdf"
 		],
-		image: "/images/spa-treatment.jpg",
+		image: "/images/spa-treatment.webp",
 		imageAlt: "Download Ira Spa Holistic Treatments Brochure",
 		eyebrow: "Brochure",
 		canonical: "/download-brochure/",
@@ -191,7 +191,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"thai therapy kalaburagi",
 			"body polishing"
 		],
-		image: "/images/spa-treatment.jpg",
+		image: "/images/spa-treatment.webp",
 		imageAlt: "Best Spa Therapy Services and Relaxation Rituals at Ira Spa",
 		eyebrow: "Our Rituals",
 		canonical: "/ourservice/",
@@ -210,7 +210,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"full body massage for men and women",
 			"relaxation massage mangalore"
 		],
-		image: "/images/spa-salon.jpg",
+		image: "/images/spa-salon.webp",
 		imageAlt: "Professional Full Body Massage at Ira Spa Mangalore",
 		eyebrow: "Massage Therapy",
 		canonical: "/ourservice/body-massage/",
@@ -320,7 +320,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"back pain massage",
 			"office stress relief massage"
 		],
-		image: "/images/spa-salon.jpg",
+		image: "/images/spa-salon.webp",
 		imageAlt: "Express Quick Massage for Neck, Shoulders and Back at Ira Spa",
 		eyebrow: "Express Relief",
 		canonical: "/ourservice/quick-massage/",
@@ -338,7 +338,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"acupressure yoga massage",
 			"authentic thai spa karnataka"
 		],
-		image: "/images/spa-salon.jpg",
+		image: "/images/spa-salon.webp",
 		imageAlt: "Traditional Thai Therapy and Acupressure Treatment at Ira Spa",
 		eyebrow: "Signature Therapies",
 		canonical: "/ourservice/thai-therapy/",
@@ -374,7 +374,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"book massage mangalore appointment",
 			"spa near AJ grand hotel"
 		],
-		image: "/images/spa-salon.jpg",
+		image: "/images/spa-salon.webp",
 		imageAlt: "Ira Spa Kodialbail Mangalore Facility and Reception",
 		eyebrow: "Get in Touch",
 		canonical: "/Contactus/Mangalore/",
@@ -392,7 +392,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"tulips inn hotel spa sedam road",
 			"best spa gulbarga"
 		],
-		image: "/images/spa-salon.jpg",
+		image: "/images/spa-salon.webp",
 		imageAlt: "Ira Spa Sedam Road Kalaburagi Facility and Reception",
 		eyebrow: "Get in Touch",
 		canonical: "/Contactus/Kalaburgi/",
@@ -411,7 +411,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"ira spa journal",
 			"self care advice"
 		],
-		image: "/images/spa-treatment.jpg",
+		image: "/images/spa-treatment.webp",
 		imageAlt: "Ira Spa Journal — Wellness Guides and Spa Tips",
 		eyebrow: "Our Journal",
 		canonical: "/blogs/",
@@ -688,44 +688,44 @@ export function createCustomSEO(custom: Partial<PageSEO>): PageSEO {
 export const galleryAltTexts: Record<string, string> = {
 	// --- Ira Spa Gallery Images (src/images) ---
 	"Aboutus_story.webp": "Therapist performing a restorative holistic massage ritual at Ira Spa",
-	"homepage_image.jpg": "Relaxing full body back massage with aromatic essential oils and frangipani flower",
-	"homepage_image1.jpg": "Client relaxing peacefully on a candlelit massage bed at Ira Spa",
-	"image1.jpg": "Traditional herbal potli poultice massage therapy for pain relief and relaxation",
+	"homepage_image.webp": "Relaxing full body back massage with aromatic essential oils and frangipani flower",
+	"homepage_image1.webp": "Client relaxing peacefully on a candlelit massage bed at Ira Spa",
+	"image1.webp": "Traditional herbal potli poultice massage therapy for pain relief and relaxation",
 	"ira-spa.png": "Therapist providing deep tissue shoulder and back massage therapy",
 	"logo.webp": "Ira Spa Luxury Massage and Wellness Sanctuary Emblem Logo",
-	"sacred stone.jpg": "Warm sacred hot stone therapy for deep muscle relaxation and stress relief",
-	"sacred-stone.jpg": "Warm sacred hot stone therapy for deep muscle relaxation and stress relief",
+	"sacred stone.webp": "Warm sacred hot stone therapy for deep muscle relaxation and stress relief",
+	"sacred-stone.webp": "Warm sacred hot stone therapy for deep muscle relaxation and stress relief",
 	"serviceimage1.webp": "Rejuvenating organic facial treatment with revitalizing skincare mask",
 	"serviceimage2.webp": "Gentle head, scalp, and temple acupressure massage for anxiety and headache relief",
-	"serviceimg2.jpg": "Nourishing facial cleanup and gentle skin exfoliation treatment",
+	"serviceimg2.webp": "Nourishing facial cleanup and gentle skin exfoliation treatment",
 	"Signature-Herbal-Gold-Facial-Instant-Glow-Naturally.webp": "Signature herbal gold facial treatment providing instant radiant skin glow",
-	"spa-reception.jpg": "Tranquil luxury reception and welcoming lounge area at Ira Spa",
-	"spa-salon.jpg": "Private luxury spa treatment suite with ambient mood lighting",
-	"spa-treatment.jpg": "Therapist applying botanical oils during a restorative spa treatment",
+	"spa-reception.webp": "Tranquil luxury reception and welcoming lounge area at Ira Spa",
+	"spa-salon.webp": "Private luxury spa treatment suite with ambient mood lighting",
+	"spa-treatment.webp": "Therapist applying botanical oils during a restorative spa treatment",
 	"spa.png": "Relaxing neck, cervical spine, and shoulder tension release massage",
-	"tea.jpg": "Post-treatment complimentary detox herbal tea ritual served in traditional teapot",
+	"tea.webp": "Post-treatment complimentary detox herbal tea ritual served in traditional teapot",
 
 	// --- Public Service & Treatment Gallery Assets (public/images) ---
-	"bodypolishing.jpg": "Exfoliating full body polishing treatment for radiant and soft skin",
-	"Clean-Ups And Facial-Essential.jpg": "Nourishing facial cleanup and botanical hydration treatment",
-	"deep-tissue.jpg": "Deep tissue therapeutic massage for chronic muscle tension relief",
-	"Facial-Premium And Signature.jpg": "Premium signature facial for skin brightening and anti-aging care",
-	"foot-spa.jpg": "Soothing foot spa soak and reflexology treatment at Ira Spa",
-	"footspa1.jpg": "Revitalizing foot spa and luxury pedicure therapy session",
-	"herbal-gold.jpg": "Luminous herbal gold facial ritual for instant natural glow",
-	"hot-stonetherapy.jpg": "Therapeutic hot stone massage along energy pathways",
-	"quickmassage.jpg": "Express quick massage focusing on upper back, neck, and shoulder relief",
-	"thai-massage.jpg": "Traditional authentic Thai massage with assisted yoga stretches",
-	"TraditionalThai.jpg": "Authentic ancient Thai therapy and pressure-point stimulation",
+	"bodypolishing.webp": "Exfoliating full body polishing treatment for radiant and soft skin",
+	"Clean-Ups And Facial-Essential.webp": "Nourishing facial cleanup and botanical hydration treatment",
+	"deep-tissue.webp": "Deep tissue therapeutic massage for chronic muscle tension relief",
+	"Facial-Premium And Signature.webp": "Premium signature facial for skin brightening and anti-aging care",
+	"foot-spa.webp": "Soothing foot spa soak and reflexology treatment at Ira Spa",
+	"footspa1.webp": "Revitalizing foot spa and luxury pedicure therapy session",
+	"herbal-gold.webp": "Luminous herbal gold facial ritual for instant natural glow",
+	"hot-stonetherapy.webp": "Therapeutic hot stone massage along energy pathways",
+	"quickmassage.webp": "Express quick massage focusing on upper back, neck, and shoulder relief",
+	"thai-massage.webp": "Traditional authentic Thai massage with assisted yoga stretches",
+	"TraditionalThai.webp": "Authentic ancient Thai therapy and pressure-point stimulation",
 	"lomi-lomi.webp": "Authentic Hawaiian Lomi Lomi massage therapy with flowing rhythmic strokes at Ira Spa",
 
 	// --- Instagram Gallery Feed (public/insta-post) ---
-	"imgi_62_WhatsApp-Image-2026-06-15-at-2.43.04-PM-819x1024.jpg": "Holistic body massage treatment highlights from Ira Spa Instagram",
-	"imgi_63_WhatsApp-Image-2026-06-15-at-1.16.26-PM-819x1024.jpg": "Relaxing spa therapy room and wellness setup from Ira Spa Instagram",
-	"imgi_64_720408192_17941609788232822_6146910874462510615_n-819x1024.jpg": "Client wellness and rejuvenation journey at Ira Spa",
-	"imgi_65_713563222_17940549111232822_7584340239445424097_n-819x1024.jpg": "Organic facial and skincare treatment session at Ira Spa",
-	"imgi_66_707561540_17939421015232822_95968831005194178_n-819x1024.jpg": "Therapeutic body scrub and skin polishing session at Ira Spa",
-	"imgi_67_700955472_17938645245232822_3396926590912006148_n-819x1024.jpg": "Ayurvedic herbal massage oils and therapies at Ira Spa",
+	"imgi_62_WhatsApp-Image-2026-06-15-at-2.43.04-PM-819x1024.webp": "Holistic body massage treatment highlights from Ira Spa Instagram",
+	"imgi_63_WhatsApp-Image-2026-06-15-at-1.16.26-PM-819x1024.webp": "Relaxing spa therapy room and wellness setup from Ira Spa Instagram",
+	"imgi_64_720408192_17941609788232822_6146910874462510615_n-819x1024.webp": "Client wellness and rejuvenation journey at Ira Spa",
+	"imgi_65_713563222_17940549111232822_7584340239445424097_n-819x1024.webp": "Organic facial and skincare treatment session at Ira Spa",
+	"imgi_66_707561540_17939421015232822_95968831005194178_n-819x1024.webp": "Therapeutic body scrub and skin polishing session at Ira Spa",
+	"imgi_67_700955472_17938645245232822_3396926590912006148_n-819x1024.webp": "Ayurvedic herbal massage oils and therapies at Ira Spa",
 	// --- Mom Care & Mom to Be Care Icons (src/assets/icons) ---
 	"foot-reflexology-new.svg": "Foot reflexology massage icon for prenatal wellness",
 	"full-body-massage.svg": "Post-delivery restorative full body massage icon",
@@ -740,7 +740,7 @@ export const galleryAltTexts: Record<string, string> = {
 
 /**
  * Resolves the centralized alt text for any gallery image.
- * Accepts filenames, relative paths, or URLs (e.g., 'tea.jpg', '../../images/tea.jpg', '/images/tea.jpg').
+ * Accepts filenames, relative paths, or URLs (e.g., 'tea.webp', '../../images/tea.webp', '/images/tea.webp').
  */
 export function getGalleryImageAlt(imagePathOrName: string, fallback?: string): string {
 	if (!imagePathOrName) return fallback || SITE_CONFIG.defaultImageAlt;

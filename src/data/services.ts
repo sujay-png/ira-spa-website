@@ -26,7 +26,7 @@ export const serviceData = {
             "An ancient healing system combining acupressure, energy line work and assisted yoga postures to release the strain of the daily grind.",
         price60: "₹2,400",
         price90: "₹3,600",
-        image: "/images/thai-massage.jpg",
+        image: "/images/thai-massage.webp",
     },
     "body-polishing": {
         name: "Body Polishing",
@@ -46,7 +46,7 @@ export const serviceData = {
             "Let our well trained aestheticians take over and grant you a nourished, smooth, and radiant skin.",
         price60: "₹700",
         price90: "₹2,000",
-        image: "/images/Clean-Ups And Facial-Essential.jpg",
+        image: "/images/Clean-Ups And Facial-Essential.webp",
     },
     "facial-premium-signature": {
         name: "Facial-Premium And Signature",
@@ -56,7 +56,7 @@ export const serviceData = {
             "Let our well trained aestheticians take over and grant you a nourished, smooth, and radiant skin.",
         price60: "₹2,400",
         price90: "₹3,500",
-        image: "/images/Facial-Premium And Signature.jpg",
+        image: "/images/Facial-Premium And Signature.webp",
     },
     "quick-massage": {
         name: "Quick Massage",
@@ -66,7 +66,7 @@ export const serviceData = {
             "A soothing massage using different kinds of essential oils for relaxing and de-stressing.",
         price60: "₹1,200",
         price90: "₹1,600",
-        image: "/images/quickmassage.jpg",
+        image: "/images/quickmassage.webp",
     },
     "foot-spa": {
         name: "Foot Spa",
@@ -76,7 +76,7 @@ export const serviceData = {
             "A soothing foot soak and massage ritual that relieves tired feet and improves circulation and comfort.",
         price60: "₹800",
         price90: "₹1,200",
-        image: "/images/footspa1.jpg",
+        image: "/images/footspa1.webp",
     },
     "lomi-lomi-massage": {
         name: "Lomi Lomi Massage",

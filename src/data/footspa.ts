@@ -4,7 +4,7 @@ export const footSpaTreatments = [
         name: "Classic Paraffin Wax Pedicure",
         subtitle: "Melon & Litchi",
         category: "Foot Care",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/man-woman-holding-hands-bathtub-close-up-1024x683.jpg",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/man-woman-holding-hands-bathtub-close-up-1024x683.webp",
         prices: [{ label: "45 min", price: "₹800" }],
     },
     {
@@ -12,7 +12,7 @@ export const footSpaTreatments = [
         name: "Anti-Oxidant Pedicure",
         subtitle: "Tangy Lemon",
         category: "Foot Care",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/foot-washing-spa-before-treatment-spa-treatment-product-female-feet-hand-spa-1024x683.jpg",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/foot-washing-spa-before-treatment-spa-treatment-product-female-feet-hand-spa-1024x683.webp",
         prices: [{ label: "60 min", price: "₹800" }],
     },
     {
@@ -20,7 +20,7 @@ export const footSpaTreatments = [
         name: "Moisturizing Exotic Pedicure",
         subtitle: "Berry",
         category: "Foot Care",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/woman-s-feet-bowl-with-water-petal-1024x688.jpg",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/woman-s-feet-bowl-with-water-petal-1024x688.webp",
         prices: [{ label: "60 min", price: "₹800" }],
     },
     {
@@ -36,7 +36,7 @@ export const footSpaTreatments = [
         name: "De-Stress Refreshment",
         subtitle: "Mint",
         category: "Foot Care",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/high-angle-woman-getting-massaged-spa-1-1024x683.jpg",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/high-angle-woman-getting-massaged-spa-1-1024x683.webp",
         prices: [{ label: "60 min", price: "₹1,000" }],
     },
 ];

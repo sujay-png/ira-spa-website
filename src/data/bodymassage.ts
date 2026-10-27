@@ -18,7 +18,7 @@ export const bodyMassageTreatments = [
         name: "Deep Tissue Therapy",
         description:
             "Deep Tissue technique uses slow, deep guided strokes and firm pressure designed to relieve severe tension and reach below the superficial muscles, consistent pain and soreness in muscles.",
-        image: "/images/deep-tissue.jpg",
+        image: "/images/deep-tissue.webp",
         prices: [
             { label: "60 min", price: "₹2,750" },
             { label: "90 min", price: "₹4,000" },
@@ -44,7 +44,7 @@ export const bodyMassageTreatments = [
         name: "Balinese Therapy",
         description:
             "The combination of technique, acupressure, Aroma Essential Oil and reflexology allows to work especially well on achy joints and muscle strains. It helps to ease sleep disorders, and many people find that the techniques are good for reducing stress and anxiety, and boosting a person's general sense of well-being.",
-        image: "/images/TraditionalThai.jpg",
+        image: "/images/TraditionalThai.webp",
         prices: [
             { label: "60 min", price: "₹2,750" },
             { label: "90 min", price: "₹4,000" },
@@ -81,7 +81,7 @@ export const bodyMassageTreatments = [
         alt: "Herbal Potli massage at Ira Spa",
         description:
             "A traditional Ayurvedic massage using warm potlis filled with herbs, pressed and rolled over the body to ease muscle stiffness, relieve joint pain and improve circulation.",
-        image: "/images/herbal-gold.jpg",
+        image: "/images/herbal-gold.webp",
         prices: [
             { label: "60 min", price: "₹3,000" },
             { label: "90 min", price: "₹4,000" },
@@ -93,7 +93,7 @@ export const bodyMassageTreatments = [
         alt: "Hot Stone therapy at Ira Spa",
         description:
             "Smooth heated stones are placed and glided over key points of the body to melt deep muscle tension, improve blood flow and bring lasting calm.",
-        image: "/images/hot-stonetherapy.jpg",
+        image: "/images/hot-stonetherapy.webp",
         prices: [
             { label: "60 min", price: "₹3,200" },
             { label: "90 min", price: "₹4,800" },

@@ -16,7 +16,7 @@ export const herbalTherapyTreatments = [
 	
 		description:
 			"Hot stone therapy involves placing hot stones on several spots of the body. The power from the hot stones and warm herbal oil will balance the circulation of blood and improve your excretory system. This massage is suitable for those who are tired from hard work, insufficient sleep, and suffered from abnormal excretory system.",
-		image: "/images/hot-stonetherapy.jpg",
+		image: "/images/hot-stonetherapy.webp",
 		prices: [
 			{ label: "60 min", price: "₹3,200" },
 			{ label: "90 min", price: "₹4,800" },
