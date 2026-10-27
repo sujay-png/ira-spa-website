@@ -22,8 +22,8 @@ if (isNaN(pageNum) || pageNum < 2) {
 	return Astro.redirect('/blogs/');
 }
 
-const allPosts = await getAllPosts();
-const categories = await getCategories();
+const [allPosts, categories] = await Promise.all([getAllPosts(), getCategories()]);
+
 const totalPages = Math.max(1, Math.ceil(allPosts.length / POSTS_PER_PAGE));
 
 // 3. If they try to go to a page that doesn't exist (like page 99), 404 them

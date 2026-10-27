@@ -20,8 +20,8 @@ const { title, subtitle, items }: MomToBeCareData = momToBeCareData;
         <div class="mom-to-be-card__icon-box">
           <img
             src={item.icon.src}
-            alt=""
-            aria-hidden="true"
+            alt={item.alt || item.title}
+
             width={item.icon.width || 42}
             height={item.icon.height || 42}
             loading="lazy"

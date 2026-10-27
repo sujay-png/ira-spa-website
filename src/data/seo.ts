@@ -345,20 +345,20 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 		ogType: "website"
 	},
 	"/ourservice/lomi-lomi-massage/": {
-		pageTitle: "Lomi Lomi Massage in Mangalore & Kalaburagi",
-		seoTitle: "Lomi Lomi Massage | Traditional Hawaiian Therapy – Ira Spa",
+		pageTitle: "Lomi Lomi Massage in Mangalore & Kalaburagi | Ira Spa",
+		seoTitle: "Authentic Hawaiian Lomi Lomi Massage in Mangalore | Ira Spa",
 		seoDescription:
-			"Experience authentic Hawaiian Lomi Lomi massage at Ira Spa in Mangalore and Kalaburagi. Long, flowing rhythmic strokes to melt stress and restore harmony.",
+			"Experience authentic Hawaiian Lomi Lomi massage therapy at Ira Spa in Mangalore & Kalaburagi. Flowing rhythmic strokes to release deep muscle tension. Book today.",
 		keywords: [
 			"lomi lomi massage mangalore",
-			"lomi lomi massage kalaburagi",
-			"hawaiian massage spa",
-			"full body relaxation massage",
-			"ira spa rituals"
+			"hawaiian massage kalaburagi",
+			"lomi lomi spa treatment",
+			"deep relaxation massage mangalore",
+			"body renewal therapy ira spa"
 		],
 		image: "/images/lomi-lomi.webp",
-		imageAlt: "Lomi Lomi massage therapy at Ira Spa",
-		eyebrow: "Hawaiian Ritual",
+		imageAlt: "Authentic Lomi Lomi Massage Therapy at Ira Spa",
+		eyebrow: "Hawaiian Body Ritual",
 		canonical: "/ourservice/lomi-lomi-massage/",
 		ogType: "website"
 	},
@@ -726,6 +726,11 @@ export const galleryAltTexts: Record<string, string> = {
 	"imgi_65_713563222_17940549111232822_7584340239445424097_n-819x1024.jpg": "Organic facial and skincare treatment session at Ira Spa",
 	"imgi_66_707561540_17939421015232822_95968831005194178_n-819x1024.jpg": "Therapeutic body scrub and skin polishing session at Ira Spa",
 	"imgi_67_700955472_17938645245232822_3396926590912006148_n-819x1024.jpg": "Ayurvedic herbal massage oils and therapies at Ira Spa",
+	// --- Mom Care & Mom to Be Care Icons (src/assets/icons) ---
+	"foot-reflexology-new.svg": "Foot reflexology massage icon for prenatal wellness",
+	"full-body-massage.svg": "Post-delivery restorative full body massage icon",
+	"shoulder-back-massage.svg": "Prenatal shoulder and back massage relief icon",
+	"head-neck-massage-new.svg": "Prenatal head and neck tension relief massage icon",
 	// --- WordPress Blog Uploads & Articles ---
 	"Spa_Body_Polishing_Guide": "Comprehensive Spa Body Polishing and Exfoliation Guide at Ira Spa",
 	"african-american-woman": "Client enjoying a rejuvenating head and facial massage at Ira Spa",
@@ -748,13 +753,16 @@ export function getGalleryImageAlt(imagePathOrName: string, fallback?: string): 
 	if (galleryAltTexts[filename]) return galleryAltTexts[filename];
 	if (galleryAltTexts[decoded]) return galleryAltTexts[decoded];
 
-	// Match case-insensitively or without extension
+	// Match case-insensitively, without extension, or stripping Astro content hash
 	const nameWithoutExt = filename.substring(0, filename.lastIndexOf(".")) || filename;
+	const nameWithoutHash = nameWithoutExt.replace(/\.[a-zA-Z0-9_-]{6,12}$/, "");
+
 	for (const [key, alt] of Object.entries(galleryAltTexts)) {
 		const keyWithoutExt = key.substring(0, key.lastIndexOf(".")) || key;
 		if (
 			key.toLowerCase() === filename.toLowerCase() ||
-			keyWithoutExt.toLowerCase() === nameWithoutExt.toLowerCase()
+			keyWithoutExt.toLowerCase() === nameWithoutExt.toLowerCase() ||
+			keyWithoutExt.toLowerCase() === nameWithoutHash.toLowerCase()
 		) {
 			return alt;
 		}
@@ -828,16 +836,20 @@ export function sanitizeContentImagesAlt(htmlContent: string, fallbackTitle: str
  * Used for server-level routing in astro.config.mjs and in-content URL rewriting.
  */
 export const legacyRedirects: Record<string, string> = {
-	// --- Legacy Page URLs ---
+	// --- Legacy Page URLs
+	"/services/": "/ourservice/",
+	"/services/lomi-lomi-massage/": "/ourservice/lomi-lomi-massage/",
 	"/about-us/": "/about/",
 	"/our-services/": "/ourservice/",
 	"/kalaburgi-gulbarga/": "/Contactus/Kalaburgi/",
 	"/contact/": "/Contactus/Mangalore/",
 	"/body-massage-at-ira-spa/": "/ourservice/body-massage/",
-	"/deep-tissue-massage-at-ira-spa/": "/services/body-massage/",
+	"/deep-tissue-massage-at-ira-spa/": "/ourservice/body-massage/",
 	"/head-massage-benifits/": "/blogs/5-benefits-of-head-massage-therapy/",
 
 	// --- Legacy Blog Slugs ---
+	"/blogs/the-power-of-touch-why-the-ira-signature-therapy-is-truly-unique/":
+		"/blogs/ira-signature-therapy-in-mangalore/",
 	"/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness/":
 		"/blogs/traditional-thai-massage-the-ancient-healing-technique-for-energy-flow/",
 	"/blogs/how-spa-treatments-can-improve-your-skin-health/":

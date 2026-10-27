@@ -9,7 +9,7 @@ export const facialPremiumSignatureGroups = [
                 category: "Facial-Premium",
                 description:
                     "Specially formulated with Larrea divaricata extract and Enantia chlorantha extract, softens oily skin resulting in a fresher complexion. Helps to control oil production eliminate breakouts",
-                image: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRa8mw-ODA1vds7cWimEqqFrnQiwJPAXGAzt5N21kYFP-F7uOFhAVBcdQR4ZPos_QhsTuSMi0ZeNeb-7KM",
+                image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/cosmetologist-cleaning-face-woman-beauty-salon-1024x683.jpg",
                 prices: [{ label: "60 min", price: "₹2,400" }],
             },
             {
@@ -19,7 +19,7 @@ export const facialPremiumSignatureGroups = [
                 category: "Facial-Premium",
                 description:
                     "One of the most effective, fastest and safest approaches to skin lightening by reducing Melanin formation. Contains broad-spectrum sun filters which minimize photo damage",
-                image: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcQaO9U20mWm3FiDYufzCAiQ44OQ_Xz3tzk8czBgH9lrCmyio4Kyum-ujme4IccoMyz6nHhnMvi6rW9rSJk",
+                image: "https://dashboard.iraspa.in/wp-content/uploads/2025/08/young-woman-lying-cosmetologist-s-table-rejuvenation-procedure-1024x683.jpg",
                 prices: [{ label: "60 min", price: "₹2,500" }],
             },
         ],
@@ -33,7 +33,7 @@ export const facialPremiumSignatureGroups = [
                 category: "Facial-Signature",
                 description:
                     "A natural retreat for your skin from handpicked herbal ingredients which gives instant results Gold reflects light, which can give skin a temporary luminous glow. to reduce pigmentation",
-                image: "https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcRpnPxbmqhTVPkLOxALdqZVkVXBNq6_FvRSfU02er-IKBkA4aTZSwy2pTwCa-DrxT-oUjecLj_VkjFWOxk",
+                image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/close-up-aromatherapy-spa-salt-with-candles-1024x684.jpg",
                 prices: [{ label: "60 min", price: "₹3,500" }],
             },
         ],

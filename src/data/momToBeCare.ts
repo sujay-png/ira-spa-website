@@ -8,6 +8,7 @@ export interface MomToBeCareItem {
   title: string;
   description: string;
   icon: ImageMetadata;
+  alt: string;
 }
 
 export interface MomToBeCareData {
@@ -26,6 +27,7 @@ export const momToBeCareData: MomToBeCareData = {
       description:
         "Relieve pregnancy tension headaches, screen fatigue, and cervical stiffness with gentle prenatal head and neck therapy at IRA Spa Mangalore.",
       icon: headNeckIcon,
+      alt: "Prenatal head and neck tension relief massage icon",
     },
     {
       id: "shoulder-back-massage",
@@ -33,6 +35,7 @@ export const momToBeCareData: MomToBeCareData = {
       description:
         "Alleviate upper back tightness, lumbar strain, and posture shifts caused by pregnancy with specialized maternity back care at IRA Spa Kodialbail Mangalore.",
       icon: shoulderBackIcon,
+      alt: "Prenatal shoulder and back massage relief icon",
     },
     {
       id: "foot-reflexology",
@@ -40,6 +43,7 @@ export const momToBeCareData: MomToBeCareData = {
       description:
         "Soothe tired arches and reduce pregnancy ankle swelling (edema) with safe prenatal foot reflexology at IRA Spa Mangalore.",
       icon: footReflexologyIcon,
+      alt: "Foot reflexology massage icon for prenatal wellness",
     },
   ],
 };

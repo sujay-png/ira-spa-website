@@ -6,6 +6,7 @@ export interface MomCareItem {
   title: string;
   description: string;
   icon: ImageMetadata;
+  alt: string;
 }
 
 export interface MomCareData {
@@ -24,6 +25,7 @@ export const momCareData: MomCareData = {
       description:
         "Restore physical vitality and ease postpartum muscle soreness with certified post-delivery full body massage at IRA Spa Mangalore.",
       icon: fullBodyIcon,
+      alt: "Post-delivery restorative full body massage icon",
     },
   ],
 };

@@ -31,16 +31,29 @@ export interface WPPost {
 	};
 }
 
+// In-memory caching with TTL
+let cachedPosts: WPPost[] | null = null;
+let lastPostsFetch = 0;
+const POSTS_CACHE_TTL = 3 * 60 * 1000; // 3 minutes
+
+let cachedCategories: WPTerm[] | null = null;
+let lastCategoriesFetch = 0;
+const CATEGORIES_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+
 // --- CORE GRAPHQL FETCHER ---
 async function fetchGraphQL(query: string, variables = {}) {
 	try {
+		const controller = new AbortController();
+		const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout guard
+
 		const res = await fetch(WP_GRAPHQL_URL, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			// CRITICAL FIX: Bypass Vercel's aggressive fetch caching
 			cache: "no-store", 
 			body: JSON.stringify({ query, variables }),
+			signal: controller.signal,
 		});
+		clearTimeout(timeoutId);
 
 		if (!res.ok) {
 			console.error(`[graphql] Responded with ${res.status}`);
@@ -62,6 +75,10 @@ async function fetchGraphQL(query: string, variables = {}) {
 // --- FETCH FUNCTIONS ---
 
 export async function getAllPosts(): Promise<WPPost[]> {
+	if (cachedPosts && Date.now() - lastPostsFetch < POSTS_CACHE_TTL) {
+		return cachedPosts;
+	}
+
 	const query = `
 		query AllPosts {
 			posts(first: 100, where: { orderby: { field: DATE, order: DESC } }) {
@@ -72,7 +89,6 @@ export async function getAllPosts(): Promise<WPPost[]> {
 					modified
 					title
 					excerpt
-					content
 					author { node { name } }
 					featuredImage { node { sourceUrl altText } }
 					categories { nodes { databaseId name slug } }
@@ -82,22 +98,24 @@ export async function getAllPosts(): Promise<WPPost[]> {
 	`;
 
 	const data = await fetchGraphQL(query);
-	if (!data?.posts?.nodes) return [];
+	if (!data?.posts?.nodes) {
+		return cachedPosts || [];
+	}
 
 	// Map the GraphQL response back to the REST shape so your .astro files don't break
-	return data.posts.nodes.map((node: any) => ({
+	const mapped = data.posts.nodes.map((node: any) => ({
 		id: node.databaseId,
 		slug: node.slug,
 		date: node.date,
 		modified: node.modified,
-		title: { rendered: node.title },
-		excerpt: { rendered: node.excerpt },
-		content: { rendered: node.content },
+		title: { rendered: node.title || "" },
+		excerpt: { rendered: node.excerpt || "" },
+		content: { rendered: "" },
 		_embedded: {
 			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
 			"wp:featuredmedia": [{
 				source_url: node.featuredImage?.node?.sourceUrl || FALLBACK_IMAGE,
-				alt_text: node.featuredImage?.node?.altText || node.title
+				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa"
 			}],
 			"wp:term": [
 				node.categories?.nodes?.map((cat: any) => ({
@@ -109,6 +127,10 @@ export async function getAllPosts(): Promise<WPPost[]> {
 			]
 		}
 	}));
+
+	cachedPosts = mapped;
+	lastPostsFetch = Date.now();
+	return mapped;
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
@@ -140,14 +162,14 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 		slug: node.slug,
 		date: node.date,
 		modified: node.modified,
-		title: { rendered: node.title },
-		excerpt: { rendered: node.excerpt },
-		content: { rendered: node.content },
+		title: { rendered: node.title || "" },
+		excerpt: { rendered: node.excerpt || "" },
+		content: { rendered: node.content || "" },
 		_embedded: {
 			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
 			"wp:featuredmedia": [{
 				source_url: node.featuredImage?.node?.sourceUrl || FALLBACK_IMAGE,
-				alt_text: node.featuredImage?.node?.altText || node.title
+				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa"
 			}],
 			"wp:term": [
 				node.categories?.nodes?.map((cat: any) => ({
@@ -162,6 +184,10 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 }
 
 export async function getCategories(): Promise<WPTerm[]> {
+	if (cachedCategories && Date.now() - lastCategoriesFetch < CATEGORIES_CACHE_TTL) {
+		return cachedCategories;
+	}
+
 	const query = `
 		query AllCategories {
 			categories(first: 100, where: { hideEmpty: true }) {
@@ -175,9 +201,11 @@ export async function getCategories(): Promise<WPTerm[]> {
 	`;
 
 	const data = await fetchGraphQL(query);
-	if (!data?.categories?.nodes) return [];
+	if (!data?.categories?.nodes) {
+		return cachedCategories || [];
+	}
 
-	return data.categories.nodes
+	const mapped = data.categories.nodes
 		.map((node: any) => ({
 			id: node.databaseId,
 			name: node.name,
@@ -185,6 +213,10 @@ export async function getCategories(): Promise<WPTerm[]> {
 			taxonomy: "category"
 		}))
 		.filter((c: WPTerm) => c.slug !== "uncategorized");
+
+	cachedCategories = mapped;
+	lastCategoriesFetch = Date.now();
+	return mapped;
 }
 
 // --- HELPER UTILITIES (Unchanged to maintain compatibility) ---
@@ -193,9 +225,9 @@ export function getFeaturedImage(post: WPPost): { src: string; alt: string; widt
 	const media = post._embedded?.["wp:featuredmedia"]?.[0];
 	return {
 		src: media?.source_url || FALLBACK_IMAGE,
-		alt: media?.alt_text || stripHtml(post.title.rendered),
-		width: media?.media_details?.width || 600,
-		height: media?.media_details?.height || 400,
+		alt: media?.alt_text || stripHtml(post.title?.rendered || "Ira Spa"),
+		width: 600,
+		height: 400,
 	};
 }
 

@@ -285,5 +285,28 @@ const seo = getSEO("/menu/");
 			font-size: var(--font-size-sm);
 		}
 	}
+
+	@media (max-width: 600px) {
+		.menu-page {
+			padding: var(--space-xl) 0;
+		}
+		.menu-category {
+			margin-bottom: 2.75rem;
+		}
+		.menu-item-row {
+			flex-wrap: wrap;
+			gap: 0.25rem 0.5rem;
+		}
+		.menu-item-name {
+			white-space: normal;
+			flex: 1 1 65%;
+		}
+		.menu-item-line {
+			display: none;
+		}
+		.menu-item-price {
+			margin-left: auto;
+		}
+	}
 </style>
 
