@@ -1,6 +1,5 @@
 ---
 import "../style/global.scss";
-import { ClientRouter } from "astro:transitions";
 
 import type { PageSEO } from "../data/seo";
 
@@ -166,8 +165,6 @@ const jsonLd = {
 
 		<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
-		<!-- Astro View Transitions -->
-		<ClientRouter />
 	</head>
 	<body>
 		<a href="#main-content" class="skip-link">Skip to content</a>
