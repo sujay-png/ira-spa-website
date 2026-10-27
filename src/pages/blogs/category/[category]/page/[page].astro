@@ -1,0 +1,60 @@
+---
+import Layout from "../../../../../layouts/Layout.astro";
+import Footer from "../../../../../components/Footer.astro";
+import PostGrid from "../../../../../components/blogs/PostGrid.astro";
+import { getAllPosts, getCategories, getPostCategories, POSTS_PER_PAGE } from "../../../../../lib/wordpress";
+import { getBlogCategorySEO } from "../../../../../data/seo";
+
+Astro.response.headers.set('Cache-Control', 's-maxage=60, stale-while-revalidate=3600');
+
+const { category, page } = Astro.params;
+const pageNum = Number(page);
+
+if (isNaN(pageNum) || pageNum < 2) {
+	return Astro.redirect(`/blogs/category/${category}/`);
+}
+
+const categories = await getCategories();
+const currentCat = categories.find((c) => c.slug === category);
+
+if (!currentCat) {
+	return Astro.redirect("/blogs/");
+}
+
+const allPosts = await getAllPosts();
+const posts = allPosts.filter((p) => getPostCategories(p).some((c) => c.slug === category));
+const totalPages = Math.max(1, Math.ceil(posts.length / POSTS_PER_PAGE));
+
+if (pageNum > totalPages) {
+	return new Response(null, {
+		status: 404,
+		statusText: 'Not found'
+	});
+}
+
+const pagePosts = posts.slice((pageNum - 1) * POSTS_PER_PAGE, pageNum * POSTS_PER_PAGE);
+const categoryName = currentCat.name;
+const seo = getBlogCategorySEO(`${categoryName} — Page ${pageNum}`, category || "blog");
+---
+
+<Layout seo={seo}>
+	<section class="page-banner" style="background-image: url('/images/spa-treatment.webp');">
+		<div class="container">
+			<span class="eyebrow">Journal Category</span>
+			<h1>{categoryName}</h1>
+			<p>Articles filed under {categoryName.toLowerCase()} (Page {pageNum}).</p>
+		</div>
+	</section>
+
+	<PostGrid
+		posts={pagePosts}
+		categories={categories}
+		activeCategorySlug={category}
+		currentPage={pageNum}
+		totalPages={totalPages}
+		basePath={`/blogs/category/${category}`}
+	/>
+
+	<Footer />
+</Layout>
+

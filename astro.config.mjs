@@ -33,6 +33,9 @@ export default defineConfig({
   trailingSlash: 'always',
   output: 'server',
   adapter: vercel(), 
+  devToolbar: {
+    enabled: false
+  }, 
   redirects: {
     '/Contactus/': '/Contactus/Mangalore/',
     // Legacy Page URLs
@@ -47,6 +50,7 @@ export default defineConfig({
     '/head-massage-benifits/': '/blogs/5-benefits-of-head-massage-therapy/',
 
     // Legacy Blog URLs
+    '/blogs/category/blog/': '/blogs/',
     '/blogs/the-power-of-touch-why-the-ira-signature-therapy-is-truly-unique/':
       '/blogs/ira-signature-therapy-in-mangalore/',
     '/blogs/traditional-thai-therapy-ancient-healing-for-modern-wellness/':

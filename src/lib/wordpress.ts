@@ -164,7 +164,7 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 		modified: node.modified,
 		title: { rendered: node.title || "" },
 		excerpt: { rendered: node.excerpt || "" },
-		content: { rendered: node.content || "" },
+		content: { rendered: (node.content || "").replace(/https?:\/\/(?:www\.)?iraspa\.in\/services\/?/g, "/ourservice/") },
 		_embedded: {
 			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
 			"wp:featuredmedia": [{
@@ -212,7 +212,7 @@ export async function getCategories(): Promise<WPTerm[]> {
 			slug: node.slug,
 			taxonomy: "category"
 		}))
-		.filter((c: WPTerm) => c.slug !== "uncategorized");
+		.filter((c: WPTerm) => c.slug !== "uncategorized" && c.slug !== "blog");
 
 	cachedCategories = mapped;
 	lastCategoriesFetch = Date.now();
@@ -237,7 +237,7 @@ export function getAuthorName(post: WPPost): string {
 
 export function getPostCategories(post: WPPost): WPTerm[] {
 	const termGroups = post._embedded?.["wp:term"] || [];
-	return termGroups.flat().filter((t) => t.taxonomy === "category" && t.slug !== "uncategorized");
+	return termGroups.flat().filter((t) => t.taxonomy === "category" && t.slug !== "uncategorized" && t.slug !== "blog");
 }
 
 export function stripHtml(html: string): string {

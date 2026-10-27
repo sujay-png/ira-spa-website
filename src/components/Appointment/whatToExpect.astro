@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
+import spaImg from "../../images/spa.webp";
+
 interface Props {
-	imageSrc?: string;
+	imageSrc?: any;
 }
 
-const { imageSrc = "/images/spa.png" } = Astro.props;
+const { imageSrc } = Astro.props;
 
 const steps = [
 	{
@@ -27,7 +30,22 @@ const steps = [
 <section class="expect">
 	<div class="container expect__grid">
 		<div class="expect__media">
-			<img src={imageSrc} alt="Ira Spa treatment room" width="560" height="440" loading="lazy" />
+			{
+				imageSrc && typeof imageSrc === "string" ? (
+					<img src={imageSrc} alt="Ira Spa treatment room" width="560" height="440" loading="lazy" />
+				) : (
+					<Image
+						src={imageSrc || spaImg}
+						alt="Ira Spa treatment room"
+						width={560}
+						height={440}
+						widths={[380, 526, 768]}
+						sizes="(max-width: 640px) 100vw, 526px"
+						loading="lazy"
+						decoding="async"
+					/>
+				)
+			}
 		</div>
 
 		<div class="expect__content">

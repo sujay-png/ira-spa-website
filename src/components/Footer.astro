@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import logo from "../images/logo.webp";
 ---
 
@@ -7,12 +8,13 @@ import logo from "../images/logo.webp";
 	<div class="container footer-container">
 		<div class="footer-logo">
 			<a href="/" aria-label="Ira Spa Home"
-				><img
-					src={logo.src}
+				><Image
+					src={logo}
 					alt="Ira Spa"
-					width="120"
-					height="120"
+					width={96}
+					height={96}
 					loading="lazy"
+					decoding="async"
 				/></a
 			>
 			<p class="footer-tagline">
