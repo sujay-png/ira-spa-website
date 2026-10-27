@@ -31,7 +31,7 @@ export const bodyMassageTreatments = [
         name: "Aroma Therapy",
         description:
             "Aromatherapy is a powerful way to enhance the effectiveness of massage. It can calm the nerves, promote physical and emotional health, lift the spirits, and energize the body.",
-        image: "/images/bodypolishing.jpg",
+        image: "/images/bodypolishing.webp",
         prices: [
             { label: "60 min", price: "₹2,400" },
             { label: "90 min", price: "₹3,600" },

@@ -36,7 +36,7 @@ export const serviceData = {
             "An exfoliating full-body ritual that lifts away dullness, leaving skin soft, smooth and visibly radiant.",
         price60: "₹2,200",
         price90: "₹3,400",
-        image: "/images/bodypolishing.jpg",
+        image: "/images/bodypolishing.webp",
     },
     "facial-essentials": {
         name: "Clean-Ups And Facial-Essential",
