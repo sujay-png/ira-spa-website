@@ -20,8 +20,7 @@ import logo from "../images/logo.webp";
 			</p>
 			<a
 				href="/download-brochure/"
-				class="btn-primary footer-brochure-btn"
-				>Download Brochure</a
+				class="btn-primary footer-brochure-btn">Download Brochure</a
 			>
 			<div class="social-icons">
 				<a
@@ -145,7 +144,7 @@ import logo from "../images/logo.webp";
 		gap: 0;
 	}
 
-	.footer-logo a {
+	.footer-logo > a:first-child {
 		display: inline-flex;
 		align-items: flex-start;
 		margin: 0;
@@ -183,26 +182,32 @@ import logo from "../images/logo.webp";
 		justify-content: center;
 		text-align: center;
 		height: auto;
-		min-height: unset;
+		min-height: 52px;
 		flex-shrink: 0;
 		align-self: flex-start;
 		width: auto;
-		padding: 14px 28px;
+		padding: 18px 40px;
 		font-size: 0.78rem;
 		font-weight: 700;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		line-height: 1.2;
+		line-height: 1.5;
 		white-space: nowrap;
-		margin: 20px 0 0 0;
+		margin: 20px 0px 0px 0px !important;
 		box-sizing: border-box;
-		background: linear-gradient(135deg, var(--color-accent), var(--color-accent-strong));
+		background: linear-gradient(
+			135deg,
+			var(--color-accent),
+			var(--color-accent-strong)
+		);
 		color: var(--color-on-accent);
 		border-radius: var(--radius-sm);
 		border: 1px solid transparent;
 		text-decoration: none;
 		box-shadow: 0 8px 24px rgba(207, 162, 60, 0.22);
-		transition: transform 0.3s ease, box-shadow 0.3s ease;
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
 	}
 
 	.footer-brochure-btn:hover {
@@ -332,7 +337,9 @@ import logo from "../images/logo.webp";
 		color: var(--color-text-muted);
 		white-space: nowrap;
 		text-decoration: none;
-		transition: color 0.2s ease, transform 0.2s ease;
+		transition:
+			color 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.footer-column ul li a:hover {
@@ -407,7 +414,7 @@ import logo from "../images/logo.webp";
 			margin: 0 0 28px 0;
 		}
 
-		.footer-logo a {
+		.footer-logo > a:first-child {
 			margin: 0;
 		}
 
@@ -420,19 +427,20 @@ import logo from "../images/logo.webp";
 		/* Brochure button: centered, clear 20px space above, comfortable padding */
 		.footer-brochure-btn {
 			align-self: center;
-			width: auto;
+			width: 100%;
 			min-width: unset;
+			max-width: 320px;
 			height: auto;
-			min-height: 46px;
-			padding: 14px 28px;
-			font-size: 0.8rem;
+			min-height: 48px;
+			padding: 14px 24px;
+			font-size: 0.88rem;
 			letter-spacing: 0.12em;
 			line-height: 1.2;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
 			text-align: center;
-			margin: 20px auto 16px auto !important;
+			margin: 20px auto 20px auto !important;
 		}
 
 		/* Social icons: centered row under button */
@@ -473,7 +481,8 @@ import logo from "../images/logo.webp";
 
 		/* Explore links in 2 columns; Refund & Return Policy fits on one line */
 		.explore-list {
-			grid-template-columns: 1fr 1.15fr;
+			grid-template-columns: 1fr 1fr;
+			justify-items: center;
 			column-gap: 12px;
 			row-gap: 12px;
 			width: 100%;
@@ -481,7 +490,8 @@ import logo from "../images/logo.webp";
 
 		.footer-column ul li a {
 			font-size: 0.85rem;
-			text-align: left;
+			justify-content: center;
+			text-align: center;
 			white-space: nowrap;
 			min-height: 40px;
 		}
@@ -572,7 +582,7 @@ import logo from "../images/logo.webp";
 		}
 
 		.footer-brochure-btn {
-			padding: 12px 24px;
+			padding: 16px 32px;
 			font-size: 0.76rem;
 		}
 
