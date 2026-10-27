@@ -692,6 +692,7 @@ export const galleryAltTexts: Record<string, string> = {
 	"homepage_image1.webp": "Client relaxing peacefully on a candlelit massage bed at Ira Spa",
 	"image1.webp": "Traditional herbal potli poultice massage therapy for pain relief and relaxation",
 	"ira-spa.png": "Therapist providing deep tissue shoulder and back massage therapy",
+	"ira-spa.webp": "Therapist providing deep tissue shoulder and back massage therapy",
 	"logo.webp": "Ira Spa Luxury Massage and Wellness Sanctuary Emblem Logo",
 	"sacred stone.webp": "Warm sacred hot stone therapy for deep muscle relaxation and stress relief",
 	"sacred-stone.webp": "Warm sacred hot stone therapy for deep muscle relaxation and stress relief",
