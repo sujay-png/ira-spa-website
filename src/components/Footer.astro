@@ -229,26 +229,22 @@ import logo from "../images/logo.webp";
 	}
 
 	.social-icons a {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 44px;
-		height: 44px;
-		min-width: 44px;
-		min-height: 44px;
-		flex: 0 0 44px;
-		flex-shrink: 0;
-		background-color: var(--color-accent);
-		color: var(--color-on-accent);
-		border-radius: var(--radius-sm);
-		transition: all 0.3s ease;
-		box-sizing: border-box;
-		margin: 0;
+	display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: rgba(207, 162, 60, 0.08);          /* 👈 Soft golden glass tint */
+    border: 1px solid rgba(207, 162, 60, 0.25);
+    color: var(--color-accent);
+    transition: all 0.3s ease; 
 	}
 
 	.social-icons a:hover {
-		background-color: var(--color-accent-soft);
-		transform: translateY(-2px);
+	   background-color: var(--color-accent);
+    color: var(--color-on-accent);
+    transform: translateY(-3px);
 	}
 
 	.social-icons a svg {
@@ -429,7 +425,7 @@ import logo from "../images/logo.webp";
 			align-self: center;
 			width: 100%;
 			min-width: unset;
-			max-width: 320px;
+			max-width: 200px;
 			height: auto;
 			min-height: 48px;
 			padding: 14px 24px;
