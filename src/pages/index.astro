@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import BookingsForm from "../components/Home/bookings_form.astro";
 import Aboutspa from "../components/Home/Aboutspa.astro";
@@ -20,13 +21,14 @@ const seo = getSEO("/");
 
 <Layout seo={seo}>
 	<section class="hero" id="hero-section">
-		<img
-			src={heroImg.src}
+		<Image
+			src={heroImg}
 			alt="Luxury Spa and Massage Treatment in Mangalore"
-			width="1536"
-			height="1022"
+			width={1200}
+			height={800}
 			fetchpriority="high"
 			loading="eager"
+			decoding="async"
 			class="hero__bg-image"
 		/>
 		<div class="hero__scrim" aria-hidden="true"></div>

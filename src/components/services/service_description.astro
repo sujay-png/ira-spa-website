@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 interface Props {
 	slug?: string;
 
@@ -6,7 +9,7 @@ interface Props {
 	description: string;
 	price60: string;
 	price90: string;
-	image: string;
+	image: ImageMetadata | string;
 	alt?: string;
 	reverse?: boolean;
 }
@@ -26,14 +29,25 @@ const {
 <section class={`ritual ${reverse ? "ritual--reverse" : ""}`} id={slug}>
 	<div class="container ritual__grid">
 		<div class="ritual__media">
-			<img
-				src={image}
-				alt={alt || title}
-				width="560"
-				height="420"
-				loading="lazy"
-				decoding="async"
-			/>
+			{typeof image === "string" ? (
+				<img
+					src={image}
+					alt={alt || title}
+					width="560"
+					height="420"
+					loading="lazy"
+					decoding="async"
+				/>
+			) : (
+				<Image
+					src={image}
+					alt={alt || title}
+					width={560}
+					height={420}
+					loading="lazy"
+					decoding="async"
+				/>
+			)}
 		</div>
 
 		<div class="ritual__content">

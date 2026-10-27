@@ -553,7 +553,7 @@ export function getServiceSEO(
 
 	const serviceTitle = service.title || service.name || "Spa Ritual";
 	const serviceDesc = service.description || SITE_CONFIG.defaultDescription;
-	const serviceImg = service.image || SITE_CONFIG.defaultImage;
+	const serviceImg = (typeof service.image === "object" && service.image?.src) ? service.image.src : (service.image || SITE_CONFIG.defaultImage);
 
 	return formatSEO({
 		pageTitle: serviceTitle,
