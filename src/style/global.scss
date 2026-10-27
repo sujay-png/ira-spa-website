@@ -138,6 +138,13 @@ svg,
 iframe {
   display: block;
   max-width: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
   height: auto;
 }
 
@@ -254,6 +261,13 @@ p {
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-inline: 16px;
+    box-sizing: border-box;
+  }
 }
 
 .container--narrow {
@@ -491,10 +505,34 @@ label {
   }
 
   @media (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     min-height: 40vh;
 
     .container {
+      width: 100%;
+      max-width: 100%;
+      padding-inline: 16px;
       padding-bottom: var(--space-lg);
+      box-sizing: border-box;
+    }
+
+    h1 {
+      width: 100%;
+      max-width: 100%;
+      font-size: clamp(1.75rem, 6.5vw, 2.25rem);
+      overflow-wrap: break-word;
+      word-break: break-word;
+      box-sizing: border-box;
+    }
+
+    p {
+      width: 100%;
+      max-width: 100%;
+      font-size: 1rem;
+      overflow-wrap: break-word;
+      box-sizing: border-box;
     }
   }
 }

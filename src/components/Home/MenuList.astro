@@ -312,6 +312,7 @@ const categories = [
         width: 100%;
         max-width: 900px;
         margin-inline: auto;
+        overflow: hidden;
     }
 
     /* =========================================
@@ -602,12 +603,17 @@ const categories = [
         }
 
         .carousel__slide {
+            flex: 0 0 100%;
+            min-width: 100%;
+            width: 100%;
             padding-inline: 0;
         }
 
         .carousel__btn {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            min-height: 36px;
             font-size: 0.85rem;
         }
 
@@ -655,9 +661,8 @@ const categories = [
         }
 
         .carousel__btn {
-            width: 30px;
-            height: 30px;
-            font-size: 0.75rem;
+            width: 32px;
+            height: 32px;
         }
 
         .menu__item-top {
@@ -711,6 +716,7 @@ const categories = [
            ========================================= */
 
         function updateCarousel(index: number) {
+            if (!track) return;
             const slideWidth = slides[0].getBoundingClientRect().width;
 
             track.scrollTo({

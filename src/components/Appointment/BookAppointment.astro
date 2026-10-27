@@ -105,7 +105,16 @@
 						>Promote deeper sleep</option
 					>
 					<option value="Pain relief">Pain relief</option>
+					<option value="Others">Others</option>
 				</select>
+
+				<input type="hidden" id="other-reason" name="other_reason" value="" />
+
+				<!-- Saved Reason Display under Dropdown -->
+				<div class="saved-reason-preview" id="saved-reason-preview" style="display: none;">
+					<span class="saved-reason-text">Reason: &ldquo;<span id="saved-reason-val"></span>&rdquo;</span>
+					<button type="button" class="saved-reason-edit" id="edit-other-reason-btn">Edit</button>
+				</div>
 			</div>
 
 			<button
@@ -122,6 +131,24 @@
 		</form>
 	</div>
 </section>
+
+<!-- Other Reason Popup Modal -->
+<div id="reason-modal" class="reason-modal-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="reason-modal-title">
+	<div class="reason-modal-card">
+		<button type="button" class="reason-modal-close" id="reason-modal-close" aria-label="Close popup">&times;</button>
+		<h3 id="reason-modal-title" class="reason-modal-title">Tell us your reason</h3>
+		<textarea
+			id="reason-modal-textarea"
+			class="reason-modal-textarea"
+			rows="3"
+			placeholder="Please type your reason here"
+		></textarea>
+		<div class="reason-modal-actions">
+			<button type="button" id="reason-modal-cancel" class="btn-secondary reason-modal-btn">Cancel</button>
+			<button type="button" id="reason-modal-save" class="btn-primary reason-modal-btn" disabled>Save</button>
+		</div>
+	</div>
+</div>
 
 <!-- Success Popup Modal -->
 <div id="success-modal" class="modal-overlay" style="display: none;">
@@ -156,6 +183,154 @@
 	.form-group {
 		display: flex;
 		flex-direction: column;
+	}
+
+	/* Saved Reason Preview under Dropdown */
+	.saved-reason-preview {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 0.6rem;
+		font-size: 0.85rem;
+		color: var(--color-accent, #cfa23c);
+		line-height: 1.4;
+	}
+
+	.saved-reason-text {
+		word-break: break-word;
+	}
+
+	.saved-reason-edit {
+		background: transparent;
+		border: none;
+		color: #ffffff;
+		text-decoration: underline;
+		font-size: 0.8rem;
+		font-weight: 600;
+		cursor: pointer;
+		padding: 2px 4px;
+		transition: color 0.2s ease;
+	}
+
+	.saved-reason-edit:hover {
+		color: var(--color-accent, #cfa23c);
+	}
+
+	/* Reason Popup Modal */
+	.reason-modal-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0, 0, 0, 0.75);
+		backdrop-filter: blur(4px);
+		z-index: 1000;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.reason-modal-card {
+		position: relative;
+		background: var(--color-surface, #1a1a1a);
+		border: 1px solid rgba(207, 162, 60, 0.4);
+		border-radius: 16px;
+		padding: 24px;
+		max-width: 420px;
+		width: 90%;
+		box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+		animation: reasonModalIn 0.25s ease-out forwards;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	@keyframes reasonModalIn {
+		0% {
+			opacity: 0;
+			transform: scale(0.92);
+		}
+		100% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.reason-modal-close {
+		position: absolute;
+		top: 12px;
+		right: 14px;
+		background: transparent;
+		border: none;
+		color: var(--color-text-faint, #888);
+		font-size: 1.6rem;
+		line-height: 1;
+		cursor: pointer;
+		padding: 4px 8px;
+		border-radius: 4px;
+		transition: color 0.2s ease;
+	}
+
+	.reason-modal-close:hover {
+		color: var(--color-accent, #cfa23c);
+	}
+
+	.reason-modal-title {
+		font-family: var(--font-heading, inherit);
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--color-accent, #cfa23c);
+		margin: 0;
+		padding-right: 1.75rem;
+	}
+
+	.reason-modal-textarea {
+		width: 100%;
+		padding: 0.85rem 1rem;
+		font-family: var(--font-body, inherit);
+		font-size: 0.95rem;
+		border: 1px solid var(--color-border-strong, #333);
+		border-radius: var(--radius-sm, 6px);
+		background-color: var(--color-surface, #1a1a1a);
+		color: var(--color-text, #fff);
+		resize: vertical;
+		min-height: 85px;
+		transition: border-color 0.25s ease, box-shadow 0.25s ease;
+	}
+
+	.reason-modal-textarea:focus {
+		outline: none;
+		border-color: var(--color-accent, #cfa23c);
+		box-shadow: 0 0 0 3px rgba(207, 162, 60, 0.15);
+	}
+
+	.reason-modal-textarea::placeholder {
+		color: var(--color-text-faint, #777);
+	}
+
+	.reason-modal-actions {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 0.75rem;
+		margin-top: 0.25rem;
+	}
+
+	.reason-modal-btn {
+		padding: 0.65rem 1.4rem;
+		min-height: 42px;
+		font-size: 0.8rem;
+		letter-spacing: 0.1em;
+	}
+
+	.reason-modal-btn:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+		pointer-events: none;
+		transform: none !important;
+		box-shadow: none !important;
 	}
 
 	.reserve-btn {
@@ -310,6 +485,120 @@
 		}
 	}
 
+	// "Others" Reason Modal Logic
+	const reasonSelect = document.getElementById("reason") as HTMLSelectElement | null;
+	const otherReasonHidden = document.getElementById("other-reason") as HTMLInputElement | null;
+	const reasonModal = document.getElementById("reason-modal") as HTMLDivElement | null;
+	const reasonModalClose = document.getElementById("reason-modal-close") as HTMLButtonElement | null;
+	const reasonModalCancel = document.getElementById("reason-modal-cancel") as HTMLButtonElement | null;
+	const reasonModalSave = document.getElementById("reason-modal-save") as HTMLButtonElement | null;
+	const reasonModalTextarea = document.getElementById("reason-modal-textarea") as HTMLTextAreaElement | null;
+	const savedReasonPreview = document.getElementById("saved-reason-preview") as HTMLDivElement | null;
+	const savedReasonVal = document.getElementById("saved-reason-val") as HTMLSpanElement | null;
+	const editOtherReasonBtn = document.getElementById("edit-other-reason-btn") as HTMLButtonElement | null;
+
+	function openReasonModal() {
+		if (!reasonModal || !reasonModalTextarea || !reasonModalSave) return;
+		const currentText = otherReasonHidden ? otherReasonHidden.value : "";
+		reasonModalTextarea.value = currentText;
+		reasonModalSave.disabled = currentText.trim().length === 0;
+
+		reasonModal.style.display = "flex";
+		document.body.style.overflow = "hidden";
+		setTimeout(() => {
+			reasonModalTextarea.focus();
+		}, 50);
+	}
+
+	function closeReasonModal() {
+		if (!reasonModal) return;
+		reasonModal.style.display = "none";
+		document.body.style.overflow = "";
+	}
+
+	function cancelReasonModal() {
+		closeReasonModal();
+		// Reset dropdown to default option
+		if (reasonSelect) {
+			reasonSelect.value = "";
+		}
+		// Clear text and hidden input
+		if (reasonModalTextarea) reasonModalTextarea.value = "";
+		if (otherReasonHidden) otherReasonHidden.value = "";
+		if (savedReasonVal) savedReasonVal.textContent = "";
+		if (savedReasonPreview) savedReasonPreview.style.display = "none";
+		if (reasonModalSave) reasonModalSave.disabled = true;
+	}
+
+	function saveReasonModal() {
+		if (!reasonModalTextarea || !reasonModalSave) return;
+		const text = reasonModalTextarea.value.trim();
+		if (!text) return;
+
+		// Save text in hidden input
+		if (otherReasonHidden) otherReasonHidden.value = text;
+		// Display saved reason
+		if (savedReasonVal) savedReasonVal.textContent = text;
+		if (savedReasonPreview) savedReasonPreview.style.display = "flex";
+
+		closeReasonModal();
+	}
+
+	function clearOtherReason() {
+		if (otherReasonHidden) otherReasonHidden.value = "";
+		if (reasonModalTextarea) reasonModalTextarea.value = "";
+		if (savedReasonVal) savedReasonVal.textContent = "";
+		if (savedReasonPreview) savedReasonPreview.style.display = "none";
+		if (reasonModalSave) reasonModalSave.disabled = true;
+	}
+
+	if (reasonSelect) {
+		reasonSelect.addEventListener("change", () => {
+			if (reasonSelect.value === "Others") {
+				openReasonModal();
+			} else {
+				clearOtherReason();
+			}
+		});
+	}
+
+	if (reasonModalTextarea && reasonModalSave) {
+		reasonModalTextarea.addEventListener("input", () => {
+			const hasText = reasonModalTextarea.value.trim().length > 0;
+			reasonModalSave.disabled = !hasText;
+		});
+	}
+
+	if (reasonModalSave) {
+		reasonModalSave.addEventListener("click", saveReasonModal);
+	}
+
+	if (reasonModalCancel) {
+		reasonModalCancel.addEventListener("click", cancelReasonModal);
+	}
+
+	if (reasonModalClose) {
+		reasonModalClose.addEventListener("click", cancelReasonModal);
+	}
+
+	if (editOtherReasonBtn) {
+		editOtherReasonBtn.addEventListener("click", openReasonModal);
+	}
+
+	if (reasonModal) {
+		reasonModal.addEventListener("click", (e) => {
+			if (e.target === reasonModal) {
+				cancelReasonModal();
+			}
+		});
+	}
+
+	window.addEventListener("keydown", (e) => {
+		if (e.key === "Escape" && reasonModal && reasonModal.style.display === "flex") {
+			cancelReasonModal();
+		}
+	});
+
 	if (form) {
 		form.addEventListener("submit", async (e) => {
 			e.preventDefault();
@@ -334,6 +623,7 @@
 				services: data.services,
 				duration: data.duration,
 				reason: data.reason,
+				other_reason: data.other_reason,
 				start_time: data.start_time,
 				STORE_ID: data.STORE_ID,
 			});
@@ -354,6 +644,7 @@
 
 				// Success State: Show Modal & Reset Form
 				form.reset();
+				clearOtherReason();
 				successModal.style.display = "flex";
 			} catch (error: any) {
 				// Error State: Show inline error message

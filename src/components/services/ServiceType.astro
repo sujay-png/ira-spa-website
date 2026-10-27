@@ -101,6 +101,32 @@ import { serviceData } from "../../data/services";
     .browse__card[hidden] {
         display: none;
     }
+
+    @media (max-width: 768px) {
+        .browse__search {
+            margin: var(--space-md) 0;
+        }
+
+        .browse__search input {
+            width: 100%;
+            max-width: 100%;
+            min-height: 44px;
+        }
+
+        .browse__grid {
+            grid-template-columns: 1fr;
+            gap: var(--space-sm);
+        }
+
+        .browse__card {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .browse__card img {
+            height: 200px;
+        }
+    }
 </style>
 
 <script>

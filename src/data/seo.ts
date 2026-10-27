@@ -717,6 +717,7 @@ export const galleryAltTexts: Record<string, string> = {
 	"quickmassage.jpg": "Express quick massage focusing on upper back, neck, and shoulder relief",
 	"thai-massage.jpg": "Traditional authentic Thai massage with assisted yoga stretches",
 	"TraditionalThai.jpg": "Authentic ancient Thai therapy and pressure-point stimulation",
+	"lomi-lomi.webp": "Authentic Hawaiian Lomi Lomi massage therapy with flowing rhythmic strokes at Ira Spa",
 
 	// --- Instagram Gallery Feed (public/insta-post) ---
 	"imgi_62_WhatsApp-Image-2026-06-15-at-2.43.04-PM-819x1024.jpg": "Holistic body massage treatment highlights from Ira Spa Instagram",
