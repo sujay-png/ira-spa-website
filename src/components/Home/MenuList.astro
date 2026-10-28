@@ -715,9 +715,14 @@ const categories = [
            UPDATE CAROUSEL
            ========================================= */
 
+        function getSlideWidth(): number {
+            const firstSlide = slides[0] as HTMLElement | undefined;
+            return firstSlide ? firstSlide.offsetWidth : (track?.clientWidth || 0);
+        }
+
         function updateCarousel(index: number) {
             if (!track) return;
-            const slideWidth = slides[0].getBoundingClientRect().width;
+            const slideWidth = getSlideWidth();
 
             track.scrollTo({
                 left: slideWidth * index,
@@ -781,28 +786,34 @@ const categories = [
            MANUAL SWIPE / SCROLL
            ========================================= */
 
+        let isTicking = false;
         track.addEventListener("scroll", () => {
-            const slideWidth = slides[0].getBoundingClientRect().width;
+            if (isTicking) return;
+            isTicking = true;
 
-            if (!slideWidth) return;
+            requestAnimationFrame(() => {
+                isTicking = false;
+                const slideWidth = getSlideWidth();
+                if (!slideWidth) return;
 
-            const newIndex = Math.round(track.scrollLeft / slideWidth);
+                const newIndex = Math.round(track.scrollLeft / slideWidth);
 
-            if (
-                newIndex !== currentIndex &&
-                newIndex >= 0 &&
-                newIndex < slides.length
-            ) {
-                currentIndex = newIndex;
-
-                updateDots(currentIndex);
-            }
-        });
+                if (
+                    newIndex !== currentIndex &&
+                    newIndex >= 0 &&
+                    newIndex < slides.length
+                ) {
+                    currentIndex = newIndex;
+                    updateDots(currentIndex);
+                }
+            });
+        }, { passive: true });
     }
 
     /* Initial load */
-    initMenuCarousel();
-
-    /* Astro View Transitions */
-    document.addEventListener("astro:page-load", initMenuCarousel);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initMenuCarousel);
+    } else {
+        initMenuCarousel();
+    }
 </script>

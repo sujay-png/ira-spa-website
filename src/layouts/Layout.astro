@@ -605,22 +605,15 @@ const jsonLd = {
         const nav = document.getElementById("nav");
         if (!toggle || !nav) return;
 
-        // Clone to clear previous listeners on View Transitions
-        const newToggle = toggle.cloneNode(true);
-        toggle.parentNode?.replaceChild(newToggle, toggle);
-
-        const freshToggle = document.getElementById("nav-toggle");
-        const freshNav = document.getElementById("nav");
-
         // Mobile Hamburger Toggle
-        freshToggle?.addEventListener("click", () => {
-            const isOpen = freshNav?.classList.toggle("is-open");
-            freshToggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.addEventListener("click", () => {
+            const isOpen = nav.classList.toggle("is-open");
+            toggle.setAttribute("aria-expanded", String(isOpen));
         });
 
         // Dropdown toggle click (Mobile Accordion)
-        const dropdownToggles = freshNav?.querySelectorAll(".dropdown__toggle");
-        dropdownToggles?.forEach((btn) => {
+        const dropdownToggles = nav.querySelectorAll(".dropdown__toggle");
+        dropdownToggles.forEach((btn) => {
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 const parent = btn.closest(".nav__dropdown");
@@ -630,15 +623,18 @@ const jsonLd = {
         });
 
         // Close drawer when an actual navigation link is tapped
-        freshNav?.querySelectorAll(".nav__list a").forEach((link) => {
+        nav.querySelectorAll(".nav__list a").forEach((link) => {
             link.addEventListener("click", () => {
-                freshNav.classList.remove("is-open");
-                freshToggle?.setAttribute("aria-expanded", "false");
-                freshNav.querySelectorAll(".nav__dropdown").forEach((d) => d.classList.remove("is-active"));
+                nav.classList.remove("is-open");
+                toggle.setAttribute("aria-expanded", "false");
+                nav.querySelectorAll(".nav__dropdown").forEach((d) => d.classList.remove("is-active"));
             });
         });
     }
 
-    initNav();
-    document.addEventListener("astro:after-swap", initNav);
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initNav);
+    } else {
+        initNav();
+    }
 </script>

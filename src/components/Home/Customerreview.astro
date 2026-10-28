@@ -61,7 +61,7 @@ const testimonials = [
 			<h2>What They’re Talking About Us</h2>
 		</div>
 
-		<div class="carousel" data-carousel>
+		<div class="carousel" data-review-carousel>
 			<div class="carousel__track" data-track>
 				{
 					testimonials.map((t) => (
@@ -248,7 +248,7 @@ const testimonials = [
 
 <script>
 	function initTestimonialCarousel() {
-		const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+		const carousels = document.querySelectorAll<HTMLElement>("[data-review-carousel]");
 
 		carousels.forEach((carousel) => {
 			const track = carousel.querySelector<HTMLElement>("[data-track]");
@@ -290,11 +290,16 @@ const testimonials = [
 			carousel.addEventListener("mouseenter", stopAutoplay);
 			carousel.addEventListener("mouseleave", startAutoplay);
 
-			render();
-			startAutoplay();
+			requestAnimationFrame(() => {
+				render();
+				startAutoplay();
+			});
 		});
 	}
 
-	initTestimonialCarousel();
-	document.addEventListener("astro:page-load", initTestimonialCarousel);
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", initTestimonialCarousel);
+	} else {
+		initTestimonialCarousel();
+	}
 </script>
