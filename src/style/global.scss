@@ -125,7 +125,7 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  text-rendering: auto;
   overflow-x: hidden;
   padding-top: var(--header-height);
 }
@@ -638,4 +638,26 @@ label {
     height: auto;
     border-radius: var(--radius-md);
   }
+}
+
+/* =========================================================
+   PERFORMANCE: Off-screen Content Optimization
+   Skip initial style & layout calculations for below-the-fold
+   sections, reducing main-thread Style & Layout time.
+   ========================================================= */
+
+.about-spa,
+.trust-indicators,
+.how-it-works,
+.benefits,
+.services,
+.menu,
+.mom-care-block,
+.mom-to-be-section,
+.reviews,
+.instagram-feed,
+.home-blogs,
+.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
