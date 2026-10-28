@@ -1,15 +1,20 @@
 ---
+import { Image } from "astro:assets";
+import aboutStoryImg from "../../images/Aboutus_story.webp";
 ---
 
 <section class="about-spa">
 	<div class="container about-spa__grid">
 		<div class="about-spa__media reveal">
-			<img
-				src="/images/Aboutus_story.webp"
+			<Image
+				src={aboutStoryImg}
 				alt="Therapist performing a relaxing massage at Ira Spa"
-				width="1140"
-				height="694"
+				width={550}
+				height={429}
+				widths={[280, 480, 600, 800]}
+				sizes="(max-width: 600px) 280px, (max-width: 900px) 480px, 550px"
 				loading="lazy"
+				decoding="async"
 			/>
 		</div>
 
