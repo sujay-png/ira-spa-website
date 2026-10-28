@@ -33,6 +33,9 @@ export default defineConfig({
   trailingSlash: 'always',
   output: 'server',
   adapter: vercel(), 
+  build: {
+    inlineStylesheets: 'always'
+  },
   devToolbar: {
     enabled: false
   }, 
