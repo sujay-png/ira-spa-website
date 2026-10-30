@@ -26,7 +26,19 @@ export interface WPPost {
 	content: { rendered: string };
 	_embedded?: {
 		author?: { name: string }[];
-		"wp:featuredmedia"?: { source_url: string; alt_text: string }[];
+		"wp:featuredmedia"?: {
+			source_url: string;
+			alt_text: string;
+			media_details?: {
+				sizes?: {
+					name?: string;
+					sourceUrl?: string;
+					source_url?: string;
+					width?: number | string;
+					height?: number | string;
+				}[];
+			};
+		}[];
 		"wp:term"?: WPTerm[][];
 	};
 }
@@ -90,7 +102,20 @@ export async function getAllPosts(): Promise<WPPost[]> {
 					title
 					excerpt
 					author { node { name } }
-					featuredImage { node { sourceUrl altText } }
+					featuredImage {
+						node {
+							sourceUrl
+							altText
+							mediaDetails {
+								sizes {
+									name
+									sourceUrl
+									width
+									height
+								}
+							}
+						}
+					}
 					categories { nodes { databaseId name slug } }
 				}
 			}
@@ -115,7 +140,10 @@ export async function getAllPosts(): Promise<WPPost[]> {
 			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
 			"wp:featuredmedia": [{
 				source_url: node.featuredImage?.node?.sourceUrl || FALLBACK_IMAGE,
-				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa"
+				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa",
+				media_details: {
+					sizes: node.featuredImage?.node?.mediaDetails?.sizes || []
+				}
 			}],
 			"wp:term": [
 				node.categories?.nodes?.map((cat: any) => ({
@@ -145,7 +173,20 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 				excerpt
 				content
 				author { node { name } }
-				featuredImage { node { sourceUrl altText } }
+				featuredImage {
+					node {
+						sourceUrl
+						altText
+						mediaDetails {
+							sizes {
+								name
+								sourceUrl
+								width
+								height
+							}
+						}
+					}
+				}
 				categories { nodes { databaseId name slug } }
 			}
 		}
@@ -169,7 +210,10 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
 			"wp:featuredmedia": [{
 				source_url: node.featuredImage?.node?.sourceUrl || FALLBACK_IMAGE,
-				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa"
+				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa",
+				media_details: {
+					sizes: node.featuredImage?.node?.mediaDetails?.sizes || []
+				}
 			}],
 			"wp:term": [
 				node.categories?.nodes?.map((cat: any) => ({
@@ -219,15 +263,58 @@ export async function getCategories(): Promise<WPTerm[]> {
 	return mapped;
 }
 
-// --- HELPER UTILITIES (Unchanged to maintain compatibility) ---
+// --- HELPER UTILITIES ---
 
-export function getFeaturedImage(post: WPPost): { src: string; alt: string; width?: number; height?: number } {
-	const media = post._embedded?.["wp:featuredmedia"]?.[0];
+export interface FeaturedImage {
+	src: string;
+	alt: string;
+	width: number;
+	height: number;
+	thumbnail: string;
+	medium: string;
+	large: string;
+	srcset?: string;
+}
+
+export function getFeaturedImage(post: WPPost): FeaturedImage {
+	const media = post._embedded?.["wp:featuredmedia"]?.[0] as any;
+	const originalUrl = media?.source_url || FALLBACK_IMAGE;
+	const alt = media?.alt_text || stripHtml(post.title?.rendered || "Ira Spa");
+
+	const rawSizes: any[] = Array.isArray(media?.media_details?.sizes)
+		? media.media_details.sizes
+		: [];
+
+	const findSize = (name: string): string | undefined => {
+		const s = rawSizes.find((item: any) => item?.name === name);
+		return s?.sourceUrl || s?.source_url;
+	};
+
+	const thumbnail = findSize("thumbnail");
+	const medium = findSize("medium");
+	const wcSingle = findSize("woocommerce_single");
+	const mediumLarge = findSize("medium_large");
+	const large = findSize("large");
+
+	const cardSrc = wcSingle || mediumLarge || medium || originalUrl;
+
+	const srcsetEntries: string[] = [];
+	if (medium) srcsetEntries.push(`${medium} 300w`);
+	if (wcSingle) srcsetEntries.push(`${wcSingle} 600w`);
+	if (mediumLarge && mediumLarge !== wcSingle) srcsetEntries.push(`${mediumLarge} 768w`);
+	if (large) srcsetEntries.push(`${large} 1024w`);
+
+	const srcset = srcsetEntries.length > 0 ? srcsetEntries.join(", ") : undefined;
+
 	return {
-		src: media?.source_url || FALLBACK_IMAGE,
-		alt: media?.alt_text || stripHtml(post.title?.rendered || "Ira Spa"),
+		src: cardSrc,
+		alt,
 		width: 600,
 		height: 400,
+		thumbnail: thumbnail || cardSrc,
+		medium: medium || cardSrc,
+		large: large || originalUrl,
+		srcset,
 	};
 }
 

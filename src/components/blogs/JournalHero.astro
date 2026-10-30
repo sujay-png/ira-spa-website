@@ -13,7 +13,7 @@ const excerpt = stripHtml(post.excerpt.rendered);
 ---
 
 <section class="journal-hero">
-	<div class="journal-hero__bg" style={`background-image: linear-gradient(to bottom, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.45) 50%, rgba(11, 11, 10, 0.94) 100%), url('${image.src}')`}></div>
+	<div class="journal-hero__bg" style={`background-image: linear-gradient(to bottom, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.45) 50%, rgba(11, 11, 10, 0.94) 100%), url('${image.large || image.src}')`}></div>
 
 	<div class="container journal-hero__container">
 		<span class="eyebrow">{category}</span>

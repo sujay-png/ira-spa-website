@@ -16,7 +16,16 @@ const excerpt = stripHtml(post.excerpt.rendered);
 	<a href={`/blogs/${post.slug}/`} class="post-card__link">
 		<div class="post-card__image">
 			{categories[0] && <span class="post-card__badge">{categories[0].name}</span>}
-			<img src={image.src} alt={image.alt} loading="lazy" width="480" height="300" />
+			<img
+				src={image.src}
+				srcset={image.srcset}
+				sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 480px"
+				alt={image.alt}
+				loading="lazy"
+				decoding="async"
+				width="480"
+				height="300"
+			/>
 		</div>
 		<div class="post-card__body">
 			<h3>{stripHtml(post.title.rendered)}</h3>

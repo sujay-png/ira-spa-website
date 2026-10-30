@@ -23,7 +23,8 @@ const title = stripHtml(post.title.rendered);
 	<a href={`/blogs/${post.slug}/`} class="read-next-card__link">
 		<div class="read-next-card__thumb">
 			<img
-				src={image.src}
+				src={image.thumbnail || image.src}
+				decoding="async"
 				alt={image.alt || title}
 				loading="lazy"
 				width="160"
