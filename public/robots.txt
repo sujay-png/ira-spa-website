@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://iraspa.in/sitemap-index.xml
+Sitemap: https://www.iraspa.in/sitemap-index.xml
