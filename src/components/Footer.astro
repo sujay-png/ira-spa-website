@@ -65,7 +65,7 @@ import logo from "../images/logo.webp";
 		</div>
 
 		<div class="footer-column footer-column--explore">
-			<h4>Explore</h4>
+			<h3>Explore</h3>
 			<ul class="explore-list">
 				<li><a href="/">Home</a></li>
 				<li><a href="/about/">Our Story</a></li>
@@ -85,7 +85,7 @@ import logo from "../images/logo.webp";
 		</div>
 
 		<div class="footer-column footer-card footer-card--gulbarga">
-			<h4>Kalaburagi &ndash; Gulbarga</h4>
+			<h3>Kalaburagi &ndash; Gulbarga</h3>
 			<p>
 				1st floor, Tulips Inn,<br />
 				by Vkg Hotel, Sedam Rd,<br />
@@ -100,7 +100,7 @@ import logo from "../images/logo.webp";
 		</div>
 
 		<div class="footer-column footer-card footer-card--mangalore">
-			<h4>Kodialbail &ndash; Mangalore</h4>
+			<h3>Kodialbail &ndash; Mangalore</h3>
 			<p>
 				#301, 3rd Floor,<br />
 				Lotus Paradise Elite,<br />
@@ -263,7 +263,7 @@ import logo from "../images/logo.webp";
 		flex-shrink: 0;
 	}
 
-	.footer-column h4 {
+	.footer-column h3, .footer-column h4 {
 		font-family: var(--font-display);
 		font-size: 1.05rem;
 		color: var(--color-text);
@@ -274,7 +274,7 @@ import logo from "../images/logo.webp";
 		text-align: left;
 	}
 
-	.footer-column h4::after {
+	.footer-column h3, .footer-column h4::after {
 		content: "";
 		position: absolute;
 		left: 0;
@@ -399,7 +399,7 @@ import logo from "../images/logo.webp";
 			box-sizing: border-box;
 		}
 
-		.footer-column.footer-card h4::after {
+		.footer-column.footer-card h3, .footer-column.footer-card h4::after {
 			display: none !important;
 		}
 	}
@@ -486,12 +486,12 @@ import logo from "../images/logo.webp";
 			margin: 0 0 28px 0;
 		}
 
-		.footer-column--explore h4 {
+		.footer-column--explore h3, .footer-column--explore h4 {
 			text-align: center;
 			margin: 0 0 1.25rem 0;
 		}
 
-		.footer-column--explore h4::after {
+		.footer-column--explore h3, .footer-column--explore h4::after {
 			left: 50%;
 			transform: translateX(-50%);
 			width: 40px;
@@ -533,7 +533,7 @@ import logo from "../images/logo.webp";
 			margin-bottom: 28px !important;
 		}
 
-		.footer-column.footer-card h4 {
+		.footer-column.footer-card h3, .footer-column.footer-card h4 {
 			font-size: 1rem;
 			font-weight: 600;
 			text-align: left;
@@ -541,7 +541,7 @@ import logo from "../images/logo.webp";
 			padding-bottom: 0;
 		}
 
-		.footer-column.footer-card h4::after {
+		.footer-column.footer-card h3, .footer-column.footer-card h4::after {
 			display: none !important;
 		}
 
