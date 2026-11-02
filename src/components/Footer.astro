@@ -5,7 +5,7 @@ import logo from "../images/logo.webp";
 ---
 
 <footer class="site-footer">
-	<div class="container footer-container">
+	<div class="footer-container">
 		<div class="footer-logo">
 			<a href="/" aria-label="Ira Spa Home"
 				><Image
@@ -35,7 +35,7 @@ import logo from "../images/logo.webp";
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<Icon name="mdi:instagram" width="20" height="20" />
+					<Icon name="mdi:instagram" width="22" height="22" />
 				</a>
 				<a
 					href="https://www.facebook.com/share/1BW2YTGEVW/"
@@ -43,7 +43,7 @@ import logo from "../images/logo.webp";
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<Icon name="mdi:facebook" width="20" height="20" />
+					<Icon name="mdi:facebook" width="22" height="22" />
 				</a>
 				<a
 					href="http://www.linkedin.com/in/ira-spa-a3a618382"
@@ -51,7 +51,7 @@ import logo from "../images/logo.webp";
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<Icon name="mdi:linkedin" width="20" height="20" />
+					<Icon name="mdi:linkedin" width="22" height="22" />
 				</a>
 				<a
 					href="https://www.youtube.com/@IraSpa-n5f"
@@ -59,7 +59,7 @@ import logo from "../images/logo.webp";
 					target="_blank"
 					rel="noopener noreferrer"
 				>
-					<Icon name="mdi:youtube" width="20" height="20" />
+					<Icon name="mdi:youtube" width="22" height="22" />
 				</a>
 			</div>
 		</div>
@@ -86,13 +86,13 @@ import logo from "../images/logo.webp";
 
 		<div class="footer-column footer-card footer-card--gulbarga">
 			<h3>Kalaburagi &ndash; Gulbarga</h3>
-			<p>
+			<p class="footer-address">
 				1st floor, Tulips Inn,<br />
 				by Vkg Hotel, Sedam Rd,<br />
 				opp. ESIC Hospital,<br />
 				Kalaburagi, Karnataka 585106
 			</p>
-			<a class="phone" href="tel:+917022865999">+91 7022865999</a>
+			<a class="phone" href="tel:+917022865999">+91 70228 65999</a>
 			<p class="timing">
 				<Icon name="mdi:clock-outline" width="16" height="16" />
 				<span>Mon &ndash; Sun: 9:00 AM to 9:30 PM</span>
@@ -101,7 +101,7 @@ import logo from "../images/logo.webp";
 
 		<div class="footer-column footer-card footer-card--mangalore">
 			<h3>Kodialbail &ndash; Mangalore</h3>
-			<p>
+			<p class="footer-address">
 				#301, 3rd Floor,<br />
 				Lotus Paradise Elite,<br />
 				Opp AJ Grand Hotel,<br />
@@ -133,32 +133,33 @@ import logo from "../images/logo.webp";
 
 	.footer-container {
 		width: 100%;
-		max-width: var(--container-max);
-		margin-inline: auto;
-		padding-inline: clamp(1rem, 4vw, 2.5rem);
+		max-width: 100%;
+		margin-inline: 0;
+		padding-inline: clamp(1.50rem, 3.9vw, 3rem);
 		box-sizing: border-box;
 		display: grid;
-		grid-template-columns: 1.1fr 1.4fr 1.25fr 1.25fr;
-		gap: clamp(1.5rem, 3vw, 3rem);
+		grid-template-columns: 1.2fr 1.35fr 1.25fr 1.25fr;
+		gap: clamp(1.5rem, 3vw, 3.5rem);
 		padding-bottom: 48px;
 	}
 
 	.footer-logo {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
+		align-items: center;
 		justify-content: flex-start;
-		text-align: left; 
+		text-align: center; 
 		height: auto;
-		margin: 0;
-		padding: 0;
+		margin: -20px 0 0 0;
+		padding-bottom: 30px;
 		gap: 0;
 	}
 
 	.footer-logo > a:first-child {
 		display: inline-flex;
-		align-items: flex-start;
-		margin: 0;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto;
 		padding: 0;
 		line-height: 1;
 		height: auto;
@@ -169,7 +170,7 @@ import logo from "../images/logo.webp";
 		height: auto;
 		display: block;
 		object-fit: contain;
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 	}
 
@@ -181,9 +182,9 @@ import logo from "../images/logo.webp";
 		width: 100%;
 		height: auto;
 		line-height: 1.6;
-		margin: 12px 0 0 0;
+		margin: 12px auto 0 auto;
 		padding: 0;
-		text-align: left;
+		text-align: center;
 		overflow: visible;
 	}
 
@@ -195,16 +196,16 @@ import logo from "../images/logo.webp";
 		height: auto;
 		min-height: 52px;
 		flex-shrink: 0;
-		align-self: flex-start;
+		align-self: center;
 		width: auto;
 		padding: 14px 32px;
-        font-size: 0.88rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
+		font-size: 0.88rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		line-height: 1.5;
 		white-space: nowrap;
-		margin: 20px 0px 0px 0px !important;
+		margin: 20px auto 0 auto !important;
 		box-sizing: border-box;
 		background: linear-gradient(
 			135deg,
@@ -230,48 +231,62 @@ import logo from "../images/logo.webp";
 	.social-icons {
 		display: flex;
 		flex-direction: row;
+		flex-wrap: nowrap;
 		align-items: center;
+		justify-content: center;
 		gap: 12px;
 		width: auto;
 		height: auto;
-		margin: 16px 0 0 0;
+		margin: 18px auto 0 auto;
 		padding: 0;
 		box-sizing: border-box;
 	}
 
 	.social-icons a {
-	display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background-color: rgba(207, 162, 60, 0.08);          /* 👈 Soft golden glass tint */
-    border: 1px solid rgba(207, 162, 60, 0.25);
-    color: var(--color-accent);
-    transition: all 0.3s ease; 
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		border-radius: 50%;
+		background-color: rgba(207, 162, 60, 0.08);
+		border: 1px solid rgba(207, 162, 60, 0.25);
+		color: var(--color-accent);
+		transition: all 0.3s ease; 
 	}
 
 	.social-icons a:hover {
-	   background-color: var(--color-accent);
-    color: var(--color-on-accent);
-    transform: translateY(-3px);
+		background-color: var(--color-accent);
+		color: var(--color-on-accent);
+		transform: translateY(-3px);
+		box-shadow: 0 6px 18px rgba(207, 162, 60, 0.3);
 	}
 
 	.social-icons a svg {
 		display: block;
 		flex-shrink: 0;
+		width: 22px;
+		height: 22px;
+	}
+
+	.footer-column {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
 	}
 
 	.footer-column h3, .footer-column h4 {
 		font-family: var(--font-display);
 		font-size: 1.05rem;
+		font-weight: 600;
 		color: var(--color-text);
 		position: relative;
 		padding-bottom: 10px;
 		margin: 0 0 1.25rem 0;
 		line-height: 1.2;
 		text-align: left;
+		align-self: flex-start;
 	}
 
 	.footer-column h3::after, .footer-column h4::after {
@@ -294,54 +309,100 @@ import logo from "../images/logo.webp";
 		margin: var(--space-sm) 0 0.5rem;
 	}
 
-	.footer-column p {
-		font-size: 0.92rem;
-		color: #dedad2;
-		line-height: 1.75;
-		margin-bottom: var(--space-sm);
-	}
-
-	.footer-column .timing {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		color: #dedad2;
+	/* Location address with lighter font weight to differentiate from navigation links */
+	.footer-column .footer-address,
+	.footer-column p:not(.timing):not(.footer-tagline) {
+		font-family: var(--font-body);
 		font-size: 0.9rem;
-		line-height: 1.5;
-		margin-top: 8px;
-		margin-bottom: 0;
+		font-weight: 300;
+		color: #dedad2;
+		line-height: 1.7;
+		margin: 0 0 14px 0;
+		padding: 0;
+		text-align: left;
+		align-self: flex-start;
 	}
 
-	.footer-column .timing svg {
-		flex-shrink: 0;
-		color: var(--color-accent);
-	}
-
+	/* Strict left-alignment on phone numbers: zero indent, clear hover state */
 	.footer-column .phone {
 		display: inline-flex;
 		align-items: center;
-		min-height: 40px;
+		align-self: flex-start;
+		min-height: unset;
+		font-family: var(--font-body);
 		font-size: 0.95rem;
 		color: var(--color-accent);
 		font-weight: 600;
+		letter-spacing: 0.02em;
 		text-decoration: none;
-		transition: color 0.2s ease;
+		text-align: left;
+		text-indent: 0 !important;
+		padding: 2px 0;
+		margin: 0 0 12px 0 !important;
+		transition:
+			color 0.25s ease,
+			text-decoration-color 0.25s ease,
+			transform 0.25s ease,
+			text-shadow 0.25s ease;
 	}
 
 	.footer-column .phone:hover {
 		color: var(--color-accent-soft);
 		text-decoration: underline;
+		text-decoration-color: var(--color-accent-soft);
+		text-underline-offset: 4px;
+		text-decoration-thickness: 1.5px;
+		transform: translateX(2px);
+		text-shadow: 0 0 12px rgba(232, 200, 119, 0.35);
 	}
 
+	/* Operating hours: clock icon perfectly aligns with the first line of text */
+	.footer-column .timing {
+		display: flex;
+		align-items: flex-start;
+		align-self: flex-start;
+		gap: 8px;
+		color: #dedad2;
+		font-family: var(--font-body);
+		font-size: 0.88rem;
+		font-weight: 400;
+		line-height: 1.5;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+	}
+
+	.footer-column .timing svg {
+		flex-shrink: 0;
+		color: var(--color-accent);
+		width: 16px;
+		height: 16px;
+		margin-top: 2.5px; /* Optically centers icon with the cap-height of line 1 */
+	}
+
+	.footer-column .timing span {
+		display: block;
+		text-align: left;
+	}
+
+	/* Explore navigation links: reduced vertical gap for cohesive grouping */
 	.explore-list {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		column-gap: 24px;
-		row-gap: 6px;
+		column-gap: 20px;
+		row-gap: 4px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
 	}
 
 	.footer-column ul {
 		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.footer-column ul li {
 		margin: 0;
 		padding: 0;
 	}
@@ -353,6 +414,7 @@ import logo from "../images/logo.webp";
 		padding-block: 2px;
 		font-size: 0.88rem;
 		font-weight: 500;
+		line-height: 1.4;
 		color: #dedad2;
 		white-space: nowrap;
 		text-decoration: none;
@@ -391,16 +453,38 @@ import logo from "../images/logo.webp";
 			padding-bottom: 40px;
 		}
 
+		.explore-list {
+			row-gap: 6px;
+		}
+
 		.footer-column.footer-card {
 			background: #171715;
 			border: 1px solid rgba(207, 162, 60, 0.25);
 			border-radius: 14px;
-			padding: 20px;
+			padding: 24px;
 			box-sizing: border-box;
 		}
 
 		.footer-column.footer-card h3::after, .footer-column.footer-card h4::after {
 			display: none !important;
+		}
+
+		.footer-column.footer-card .footer-address,
+		.footer-column.footer-card p:not(.timing) {
+			font-weight: 300;
+			margin-bottom: 12px;
+		}
+
+		.footer-column.footer-card .phone {
+			margin-bottom: 10px !important;
+		}
+
+		.footer-column.footer-card .timing {
+			align-items: flex-start;
+		}
+
+		.footer-column.footer-card .timing svg {
+			margin-top: 2.5px;
 		}
 	}
 
@@ -422,7 +506,7 @@ import logo from "../images/logo.webp";
 			max-width: 100%;
 		}
 
-		/* Brand block centered on the same center line */
+		/* Brand block centered relative to each other */
 		.footer-logo {
 			align-items: center;
 			text-align: center;
@@ -434,7 +518,11 @@ import logo from "../images/logo.webp";
 		}
 
 		.footer-logo > a:first-child {
-			margin: 0;
+			margin: 0 auto;
+		}
+
+		.footer-logo img {
+			margin: 0 auto;
 		}
 
 		.footer-tagline {
@@ -443,10 +531,10 @@ import logo from "../images/logo.webp";
 			margin: 12px auto 0 auto !important;
 		}
 
-		/* Brochure button: centered, clear 20px space above, comfortable padding */
+		/* Brochure button: centered */
 		.footer-brochure-btn {
 			align-self: center;
-			width: 100%;
+			width: auto;
 			min-width: unset;
 			max-width: 200px;
 			height: auto;
@@ -465,17 +553,24 @@ import logo from "../images/logo.webp";
 		/* Social icons: centered row under button */
 		.social-icons {
 			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
 			justify-content: center;
 			align-items: center;
 			width: auto;
 			gap: 12px;
-			margin: 0 auto 0 auto !important;
+			margin: 0 auto !important;
 		}
 
 		.social-icons a {
 			width: 44px;
 			height: 44px;
 			flex: 0 0 44px;
+		}
+
+		.social-icons a svg {
+			width: 22px;
+			height: 22px;
 		}
 
 		/* Explore section: centered heading with short gold underline */
@@ -488,6 +583,7 @@ import logo from "../images/logo.webp";
 
 		.footer-column--explore h3, .footer-column--explore h4 {
 			text-align: center;
+			align-self: center;
 			margin: 0 0 1.25rem 0;
 		}
 
@@ -498,12 +594,12 @@ import logo from "../images/logo.webp";
 			height: 2px;
 		}
 
-		/* Explore links in 2 columns; Refund & Return Policy fits on one line */
+		/* Explore links in 2 columns with cohesive spacing */
 		.explore-list {
 			grid-template-columns: 1fr 1fr;
 			justify-items: center;
 			column-gap: 12px;
-			row-gap: 12px;
+			row-gap: 6px;
 			width: 100%;
 		}
 
@@ -512,10 +608,11 @@ import logo from "../images/logo.webp";
 			justify-content: center;
 			text-align: center;
 			white-space: nowrap;
-			min-height: 40px;
+			min-height: 34px;
+			padding-block: 2px;
 		}
 
-		/* Branch cards: Kalaburagi & Kodialbail are 100% identical in style, border and spacing */
+		/* Branch cards: Kalaburagi & Kodialbail */
 		.footer-column.footer-card {
 			background: #171715 !important;
 			border: 1px solid rgba(207, 162, 60, 0.25) !important;
@@ -545,8 +642,10 @@ import logo from "../images/logo.webp";
 			display: none !important;
 		}
 
+		.footer-column.footer-card .footer-address,
 		.footer-column.footer-card p:not(.timing) {
 			font-size: 0.88rem;
+			font-weight: 300;
 			line-height: 1.65;
 			color: #dedad2;
 			margin: 0 0 10px 0;
@@ -556,12 +655,20 @@ import logo from "../images/logo.webp";
 		.footer-column.footer-card .phone {
 			display: inline-flex;
 			align-items: center;
-			min-height: 40px;
+			min-height: 36px;
 			font-size: 0.9rem;
 			color: var(--color-accent);
 			font-weight: 600;
-			margin: 0 0 10px 0;
+			margin: 0 0 10px 0 !important;
+			padding: 0;
+			text-indent: 0 !important;
 			text-decoration: none;
+		}
+
+		.footer-column.footer-card .phone:hover {
+			color: var(--color-accent-soft);
+			text-decoration: underline;
+			text-decoration-color: var(--color-accent-soft);
 		}
 
 		.footer-column.footer-card h5 {
@@ -574,17 +681,18 @@ import logo from "../images/logo.webp";
 
 		.footer-column.footer-card .timing {
 			display: inline-flex;
-			align-items: center;
+			align-items: flex-start;
 			gap: 8px;
 			font-size: 0.84rem;
 			color: #dedad2;
-			margin: 4px 0 0 0;
+			margin: 0;
 			text-align: left;
 		}
 
 		.footer-column.footer-card .timing svg {
 			flex-shrink: 0;
 			color: var(--color-accent);
+			margin-top: 2.5px;
 		}
 
 		/* Divider line & copyright */
@@ -596,7 +704,6 @@ import logo from "../images/logo.webp";
 
 	/* -------------------------------------------------------------
 	   4) SMALL PHONES (480px and below)
-	   Slightly smaller text and compact padding so nothing feels cramped.
 	   ------------------------------------------------------------- */
 	@media (max-width: 480px) {
 		.footer-container {
@@ -609,25 +716,28 @@ import logo from "../images/logo.webp";
 		}
 
 		.footer-brochure-btn {
-			padding: 16px 32px;
-			font-size: 0.76rem;
+			padding: 14px 28px;
+			font-size: 0.8rem;
 		}
 
 		.explore-list {
 			column-gap: 8px;
+			row-gap: 4px;
 		}
 
 		.footer-column ul li a {
 			font-size: 0.8rem;
-			min-height: 38px;
+			min-height: 30px;
 		}
 
 		.footer-column.footer-card {
 			padding: 16px !important;
 		}
 
+		.footer-column.footer-card .footer-address,
 		.footer-column.footer-card p:not(.timing) {
 			font-size: 0.84rem;
+			font-weight: 300;
 			color: #dedad2;
 		}
 
