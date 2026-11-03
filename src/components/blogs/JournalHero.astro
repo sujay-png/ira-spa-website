@@ -10,10 +10,21 @@ const { post } = Astro.props;
 const image = getFeaturedImage(post);
 const category = getPostCategories(post)[0]?.name ?? "Feature Story";
 const excerpt = stripHtml(post.excerpt.rendered);
+const heroSrc = image.large || image.src;
 ---
 
 <section class="journal-hero">
-	<div class="journal-hero__bg" style={`background-image: linear-gradient(to bottom, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.45) 50%, rgba(11, 11, 10, 0.94) 100%), url('${image.large || image.src}')`}></div>
+	<div class="journal-hero__bg">
+		<img
+			src={heroSrc}
+			alt={image.alt || stripHtml(post.title.rendered)}
+			class="journal-hero__img"
+			fetchpriority="high"
+			loading="eager"
+			decoding="async"
+		/>
+		<div class="journal-hero__overlay" aria-hidden="true"></div>
+	</div>
 
 	<div class="container journal-hero__container">
 		<span class="eyebrow">{category}</span>
@@ -39,9 +50,21 @@ const excerpt = stripHtml(post.excerpt.rendered);
 	.journal-hero__bg {
 		position: absolute;
 		inset: 0;
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
+		overflow: hidden;
+	}
+
+	.journal-hero__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		display: block;
+	}
+
+	.journal-hero__overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to bottom, rgba(11, 11, 10, 0.25) 0%, rgba(11, 11, 10, 0.45) 50%, rgba(11, 11, 10, 0.94) 100%);
 	}
 
 	.journal-hero__container {
