@@ -25,7 +25,15 @@ const seo = getServiceSEO(slug, service);
 ---
 
 <Layout seo={seo} preloadImage={seo.image}>
-    <section class="page-banner" style={`background-image: url('${seo.image}');`}>
+    <section class="page-banner">
+        <img
+            src={seo.image}
+            alt=""
+            class="page-banner__bg-image"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+        />
         <div class="container">
             <span class="eyebrow">{seo.eyebrow}</span>
             <h1>{seo.pageTitle}</h1>

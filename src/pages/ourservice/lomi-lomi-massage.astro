@@ -24,10 +24,15 @@ const treatments = [
 ---
 
 <Layout seo={seo} preloadImage="/images/spa-salon.webp">
-    <section
-        class="page-banner"
-        style={`background-image: url('/images/spa-salon.webp');`}
-    >
+    <section class="page-banner">
+        <img
+            src="/images/spa-salon.webp"
+            alt=""
+            class="page-banner__bg-image"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+        />
         <div class="container">
             <span class="eyebrow">Hawaiian Ritual</span>
             <h1>Lomi Lomi Massage in Mangalore & Kalaburagi</h1>
