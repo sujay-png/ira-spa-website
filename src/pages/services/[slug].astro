@@ -33,6 +33,6 @@ const seo = getServiceSEO(slug, service);
         </div>
     </section>
 
-    <ServiceDescription {...service} />
+    <ServiceDescription {...service} loading="eager" fetchpriority="high" />
     <Footer />
 </Layout>
