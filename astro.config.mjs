@@ -32,7 +32,16 @@ export default defineConfig({
   site: 'https://www.iraspa.in',
   trailingSlash: 'always',
   output: 'server',
-  adapter: vercel(), 
+  adapter: vercel({
+    imagesConfig: {
+      domains: ['dashboard.iraspa.in'],
+      sizes: [320, 380, 600, 768, 1024, 1200],
+    },
+  }),
+  image: {
+    domains: ['dashboard.iraspa.in'],
+    remotePatterns: [{ protocol: 'https', hostname: 'dashboard.iraspa.in' }],
+  }, 
   build: {
     inlineStylesheets: 'always'
   },

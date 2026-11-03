@@ -5,6 +5,7 @@ import JournalHero from "../../components/blogs/JournalHero.astro";
 import PostGrid from "../../components/blogs/PostGrid.astro";
 import { getAllPosts, getCategories, getFeaturedImage, POSTS_PER_PAGE } from "../../lib/wordpress";
 import { getSEO } from "../../data/seo";
+import { getImage } from "astro:assets";
 
 Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400');
 
@@ -16,19 +17,38 @@ const pagePosts = allPosts.slice(0, POSTS_PER_PAGE);
 const seo = getSEO("/blogs/");
 const featuredImage = featured ? getFeaturedImage(featured) : null;
 const heroImageUrl = featuredImage ? (featuredImage.large || featuredImage.src) : undefined;
+
+let preloadConfig = undefined;
+if (heroImageUrl) {
+	if (heroImageUrl.startsWith("http")) {
+		const optimizedPreload = await getImage({
+			src: heroImageUrl,
+			widths: [600, 960, 1200],
+			sizes: "100vw",
+			width: 1200,
+			height: 700,
+			format: "webp",
+			quality: 80,
+		});
+		preloadConfig = {
+			src: optimizedPreload.src,
+			srcset: optimizedPreload.srcSet.attribute,
+			sizes: "100vw",
+			type: "image/webp",
+		};
+	} else {
+		preloadConfig = {
+			src: heroImageUrl,
+			srcset: featuredImage?.srcset,
+			sizes: "100vw",
+		};
+	}
+}
 ---
 
 <Layout
 	seo={seo}
-	preloadImage={
-		heroImageUrl
-			? {
-					src: heroImageUrl,
-					srcset: featuredImage?.srcset,
-					sizes: "100vw",
-			  }
-			: undefined
-	}
+	preloadImage={preloadConfig}
 >
 	{featured && <JournalHero post={featured} />}
 

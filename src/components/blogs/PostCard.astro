@@ -1,6 +1,7 @@
 ---
 import type { WPPost } from "../../lib/wordpress";
 import { getFeaturedImage, getPostCategories, formatDate, stripHtml } from "../../lib/wordpress";
+import { Image } from "astro:assets";
 
 interface Props {
 	post: WPPost;
@@ -10,22 +11,35 @@ const { post } = Astro.props;
 const image = getFeaturedImage(post);
 const categories = getPostCategories(post);
 const excerpt = stripHtml(post.excerpt.rendered);
+const isRemote = Boolean(image.src && image.src.startsWith("http"));
 ---
 
 <article class="post-card">
 	<a href={`/blogs/${post.slug}/`} class="post-card__link">
 		<div class="post-card__image">
 			{categories[0] && <span class="post-card__badge">{categories[0].name}</span>}
-			<img
-				src={image.src}
-				srcset={image.srcset}
-				sizes="(max-width: 620px) 100vw, (max-width: 960px) 50vw, 380px"
-				alt={image.alt}
-				loading="lazy"
-				decoding="async"
-				width="380"
-				height="238"
-			/>
+			{isRemote ? (
+				<Image
+					src={image.src}
+					alt={image.alt}
+					widths={[380, 600]}
+					sizes="(max-width: 620px) 100vw, (max-width: 960px) 50vw, 380px"
+					width={380}
+					height={238}
+					format="webp"
+					loading="lazy"
+					decoding="async"
+				/>
+			) : (
+				<img
+					src={image.src}
+					alt={image.alt}
+					loading="lazy"
+					decoding="async"
+					width="380"
+					height="238"
+				/>
+			)}
 		</div>
 		<div class="post-card__body">
 			<h3>{stripHtml(post.title.rendered)}</h3>
