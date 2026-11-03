@@ -4,10 +4,19 @@ import Footer from "../../components/Footer.astro";
 import { getSEO } from "../../data/seo";
 
 const seo = getSEO("/menu/");
+const bannerImg = seo.image || "/images/serviceimage1.webp";
 ---
 
-<Layout seo={seo}>
-	<section class="page-banner" style={`background-image: url('${seo.image}');`}>
+<Layout seo={seo} preloadImage={bannerImg}>
+	<section class="page-banner">
+		<img
+			src={bannerImg}
+			alt=""
+			class="page-banner__bg-image"
+			fetchpriority="high"
+			loading="eager"
+			decoding="async"
+		/>
 		<div class="container">
 			<span class="eyebrow">{seo.eyebrow}</span>
 		    <h1><em class="italic-serif">Ira</em> Spa Menu</h1>
