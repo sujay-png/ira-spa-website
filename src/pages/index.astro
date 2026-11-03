@@ -1,7 +1,7 @@
 ---
 export const prerender = true;
 
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import BookingsForm from "../components/Home/bookings_form.astro";
 import Aboutspa from "../components/Home/Aboutspa.astro";
@@ -19,9 +19,26 @@ import heroImg from "../images/serviceimage1.webp";
 import { getSEO } from "../data/seo";
 
 const seo = getSEO("/");
+
+const heroPreload = await getImage({
+	src: heroImg,
+	widths: [380, 580, 768, 1024, 1200],
+	sizes: "100vw",
+	width: 1200,
+	height: 800,
+	format: "webp",
+});
 ---
 
-<Layout seo={seo}>
+<Layout
+	seo={seo}
+	preloadImage={{
+		src: heroPreload.src,
+		srcset: heroPreload.srcSet.attribute,
+		sizes: "100vw",
+		type: "image/webp",
+	}}
+>
 	<section class="hero" id="hero-section">
 		<Image
 			src={heroImg}
