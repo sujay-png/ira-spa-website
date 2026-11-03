@@ -38,7 +38,8 @@ export default defineConfig({
   },
   devToolbar: {
     enabled: false
-  }, 
+  },
+ 
   redirects: {
     '/Contactus/': '/Contactus/Mangalore/',
     // Legacy Page URLs
