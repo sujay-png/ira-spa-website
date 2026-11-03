@@ -10,7 +10,7 @@ import { getSEO } from "../../data/seo";
 const seo = getSEO("/ourservice/");
 ---
 
-<Layout seo={seo}>
+<Layout seo={seo} preloadImage={seo.image}>
 	<section class="page-banner" style={`background-image: url('${seo.image}');`}>
 		<div class="container">
 			

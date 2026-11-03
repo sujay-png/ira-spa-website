@@ -18,7 +18,7 @@ interface Props {
 	noindex?: boolean;
 	canonical?: string;
 	ogType?: "website" | "article";
-	preloadImage?: {
+	preloadImage?: string | {
 		src?: string;
 		srcset?: string;
 		sizes?: string;
@@ -28,7 +28,7 @@ interface Props {
 
 const props = Astro.props;
 const incomingSEO = props.seo || {};
-const preloadImage = props.preloadImage;
+const preloadConfig = typeof props.preloadImage === "string" ? { src: props.preloadImage } : props.preloadImage;
 
 const title =
 	incomingSEO.seoTitle ??
@@ -150,14 +150,14 @@ const jsonLd = {
 		/>
 		{imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
 
-		{preloadImage && (
+		{preloadConfig?.src && (
 			<link
 				rel="preload"
 				as="image"
-				href={preloadImage.src}
-				imagesrcset={preloadImage.srcset}
-				imagesizes={preloadImage.sizes}
-				type={preloadImage.type}
+				href={preloadConfig.src}
+				imagesrcset={preloadConfig.srcset}
+				imagesizes={preloadConfig.sizes}
+				type={preloadConfig.type}
 				fetchpriority="high"
 			/>
 		)}
