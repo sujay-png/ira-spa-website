@@ -20,7 +20,15 @@ const heroImageUrl = featuredImage ? (featuredImage.large || featuredImage.src) 
 
 <Layout
 	seo={seo}
-	preloadImage={heroImageUrl ? { src: heroImageUrl } : undefined}
+	preloadImage={
+		heroImageUrl
+			? {
+					src: heroImageUrl,
+					srcset: featuredImage?.srcset,
+					sizes: "100vw",
+			  }
+			: undefined
+	}
 >
 	{featured && <JournalHero post={featured} />}
 

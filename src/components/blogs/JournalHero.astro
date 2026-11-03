@@ -17,6 +17,8 @@ const heroSrc = image.large || image.src;
 	<div class="journal-hero__bg">
 		<img
 			src={heroSrc}
+			srcset={image.srcset}
+			sizes="100vw"
 			alt={image.alt || stripHtml(post.title.rendered)}
 			class="journal-hero__img"
 			fetchpriority="high"

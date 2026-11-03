@@ -281,28 +281,49 @@ export function getFeaturedImage(post: WPPost): FeaturedImage {
 	const originalUrl = media?.source_url || FALLBACK_IMAGE;
 	const alt = media?.alt_text || stripHtml(post.title?.rendered || "Ira Spa");
 
-	const rawSizes: any[] = Array.isArray(media?.media_details?.sizes)
-		? media.media_details.sizes
-		: [];
+	const sizesObj = media?.media_details?.sizes;
 
-	const findSize = (name: string): string | undefined => {
-		const s = rawSizes.find((item: any) => item?.name === name);
-		return s?.sourceUrl || s?.source_url;
+	const getSizeUrl = (name: string): string | undefined => {
+		if (!sizesObj) return undefined;
+		if (Array.isArray(sizesObj)) {
+			const s = sizesObj.find((item: any) => item?.name === name);
+			return s?.source_url || s?.sourceUrl;
+		}
+		const s = (sizesObj as Record<string, any>)[name];
+		return s?.source_url || s?.sourceUrl;
 	};
 
-	const thumbnail = findSize("thumbnail");
-	const medium = findSize("medium");
-	const wcSingle = findSize("woocommerce_single");
-	const mediumLarge = findSize("medium_large");
-	const large = findSize("large");
+	const thumbnail = getSizeUrl("thumbnail");
+	const medium = getSizeUrl("medium");
+	const wcSingle = getSizeUrl("woocommerce_single");
+	const mediumLarge = getSizeUrl("medium_large");
+	const large = getSizeUrl("large");
 
 	const cardSrc = wcSingle || mediumLarge || medium || originalUrl;
 
 	const srcsetEntries: string[] = [];
-	if (medium) srcsetEntries.push(`${medium} 300w`);
-	if (wcSingle) srcsetEntries.push(`${wcSingle} 600w`);
-	if (mediumLarge && mediumLarge !== wcSingle) srcsetEntries.push(`${mediumLarge} 768w`);
-	if (large) srcsetEntries.push(`${large} 1024w`);
+	if (sizesObj && typeof sizesObj === "object" && !Array.isArray(sizesObj)) {
+		const sortedSizes = Object.values(sizesObj)
+			.filter((s: any) => s && (s.source_url || s.sourceUrl) && s.width && s.width >= 300 && s.width <= 1200)
+			.sort((a: any, b: any) => a.width - b.width);
+
+		const seenWidths = new Set<number>();
+		for (const s of sortedSizes as any[]) {
+			const width = s.width;
+			const url = s.source_url || s.sourceUrl;
+			if (!seenWidths.has(width)) {
+				seenWidths.add(width);
+				srcsetEntries.push(`${url} ${width}w`);
+			}
+		}
+	}
+
+	if (srcsetEntries.length === 0) {
+		if (medium) srcsetEntries.push(`${medium} 300w`);
+		if (wcSingle) srcsetEntries.push(`${wcSingle} 600w`);
+		if (mediumLarge && mediumLarge !== wcSingle) srcsetEntries.push(`${mediumLarge} 768w`);
+		if (large) srcsetEntries.push(`${large} 1024w`);
+	}
 
 	const srcset = srcsetEntries.length > 0 ? srcsetEntries.join(", ") : undefined;
 
