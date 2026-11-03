@@ -94,7 +94,7 @@ const breadcrumbData = {
 };
 ---
 
-<Layout seo={seo}>
+<Layout seo={seo} preloadImage="/images/spa-reception.webp">
 	<Fragment slot="head">
 		<link rel="canonical" href={canonicalUrl} />
 		<meta property="og:type" content="website" />
@@ -120,10 +120,17 @@ const breadcrumbData = {
 
 	<section
 		class="page-banner"
-		style="background-image: url('/images/spa-reception.webp');"
-		role="img"
+		role="region"
 		aria-label="Ira Spa reception and relaxation area"
 	>
+		<img
+			src="/images/spa-reception.webp"
+			alt="Ira Spa reception and relaxation area"
+			class="page-banner__bg-image"
+			fetchpriority="high"
+			loading="eager"
+			decoding="async"
+		/>
 		<div class="container">
 			<nav aria-label="Breadcrumb" class="breadcrumb"></nav>
 			<span class="eyebrow">Private Service</span>

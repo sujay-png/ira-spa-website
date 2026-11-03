@@ -79,14 +79,28 @@ const seo = getBlogSEO({
 });
 ---
 
-<Layout seo={seo}>
+<Layout
+	seo={seo}
+	preloadImage={{
+		src: image.large || image.src,
+		srcset: image.srcset,
+		sizes: "100vw",
+	}}
+>
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 	<article class="post">
-		<header
-			class="post-header page-banner"
-			style={`background-image: url('${image.large || image.src}')`}
-		>
+		<header class="post-header page-banner">
+			<img
+				src={image.large || image.src}
+				srcset={image.srcset}
+				sizes="100vw"
+				alt={image.alt || title}
+				class="page-banner__bg-image"
+				fetchpriority="high"
+				loading="eager"
+				decoding="async"
+			/>
 			<div class="container">
 				{
 					categories[0] && (

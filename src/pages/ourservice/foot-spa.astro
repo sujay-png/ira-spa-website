@@ -10,10 +10,15 @@ const treatments = footSpaTreatments;
 ---
 
 <Layout seo={seo} preloadImage="/images/serviceimage2.webp">
-    <section
-        class="page-banner"
-        style={`background-image: url('/images/serviceimage2.webp');`}
-    >
+    <section class="page-banner">
+        <img
+            src="/images/serviceimage2.webp"
+            alt=""
+            class="page-banner__bg-image"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+        />
         <div class="container">
             <span class="eyebrow">Foot Care</span>
             <h1>Foot Spa in Mangalore & Kalaburagi</h1>

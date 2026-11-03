@@ -10,10 +10,15 @@ const treatments = bodyPolishingTreatments;
 ---
 
 <Layout seo={seo} preloadImage="/images/serviceimage1.webp">
-    <section
-        class="page-banner"
-        style={`background-image: url('/images/serviceimage1.webp');`}
-    >
+    <section class="page-banner">
+        <img
+            src="/images/serviceimage1.webp"
+            alt=""
+            class="page-banner__bg-image"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+        />
         <div class="container">
 <h1>Body Polishing in Mangalore & Kalaburagi</h1>
             <p>

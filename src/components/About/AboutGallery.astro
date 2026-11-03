@@ -38,7 +38,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row1Images.map((img) => (
           <div class="image-card">
-            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} widths={[220, 300, 440, 600]} sizes="(max-width: 768px) 220px, 300px" width={300} height={200} format="webp" loading="lazy" decoding="async" />
           </div>
         ))
       }
@@ -46,7 +46,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row1Images.map((img) => (
           <div class="image-card" aria-hidden="true">
-            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} widths={[220, 300, 440, 600]} sizes="(max-width: 768px) 220px, 300px" width={300} height={200} format="webp" loading="lazy" decoding="async" />
           </div>
         ))
       }
@@ -60,7 +60,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row2Images.map((img) => (
           <div class="image-card">
-            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} widths={[220, 300, 440, 600]} sizes="(max-width: 768px) 220px, 300px" width={300} height={200} format="webp" loading="lazy" decoding="async" />
           </div>
         ))
       }
@@ -68,7 +68,7 @@ const row2Images = images.slice(Math.ceil(images.length / 2));
       {
         row2Images.map((img) => (
           <div class="image-card" aria-hidden="true">
-            <Image src={img.metadata} alt={img.alt} width={400} height={300} format="webp" />
+            <Image src={img.metadata} alt={img.alt} widths={[220, 300, 440, 600]} sizes="(max-width: 768px) 220px, 300px" width={300} height={200} format="webp" loading="lazy" decoding="async" />
           </div>
         ))
       }

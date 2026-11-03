@@ -23,8 +23,16 @@ const categoryName = currentCat.name;
 const seo = getBlogCategorySEO(categoryName, category || "blog");
 ---
 
-<Layout seo={seo}>
-	<section class="page-banner" style="background-image: url('/images/spa-treatment.webp');">
+<Layout seo={seo} preloadImage="/images/spa-treatment.webp">
+	<section class="page-banner">
+		<img
+			src="/images/spa-treatment.webp"
+			alt=""
+			class="page-banner__bg-image"
+			fetchpriority="high"
+			loading="eager"
+			decoding="async"
+		/>
 		<div class="container">
 			<span class="eyebrow">Journal Category</span>
 			<h1>{categoryName}</h1>
