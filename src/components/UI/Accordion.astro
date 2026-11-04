@@ -1,5 +1,4 @@
 ---
-import "flowbite/dist/flowbite.min.css";
 ---
 
 <section class="faq-section">
@@ -9,18 +8,18 @@ import "flowbite/dist/flowbite.min.css";
       <h2>Frequently Asked Questions</h2>
     </div>
 
-    <div id="accordion-card" data-accordion="collapse" class="w-full">
+    <div id="accordion-card" data-faq-accordion class="w-full">
       <!-- Item 1 -->
       <h2 id="accordion-card-heading-1">
         <button
           type="button"
           class="flex items-center justify-between w-full p-5 font-medium rtl:text-right rounded-base shadow-xs border border-default gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none"
-          data-accordion-target="#accordion-card-body-1"
+          data-faq-target="#accordion-card-body-1"
           aria-expanded="true"
           aria-controls="accordion-card-body-1"
         >
           <span>What types of therapies and services does Ira Spa offer?</span>
-          <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <svg data-accordion-icon aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
           </svg>
         </button>
@@ -42,12 +41,12 @@ import "flowbite/dist/flowbite.min.css";
         <button
           type="button"
           class="flex items-center justify-between w-full p-5 font-medium rtl:text-right rounded-base shadow-xs border border-default gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none"
-          data-accordion-target="#accordion-card-body-2"
+          data-faq-target="#accordion-card-body-2"
           aria-expanded="false"
           aria-controls="accordion-card-body-2"
         >
           <span>Where are Ira Spa centers located, and what are the operational hours?</span>
-          <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <svg data-accordion-icon aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
           </svg>
         </button>
@@ -55,14 +54,7 @@ import "flowbite/dist/flowbite.min.css";
       <div id="accordion-card-body-2" class="hidden border border-t-0 border-default rounded-b-base shadow-xs" aria-labelledby="accordion-card-heading-2">
         <div class="p-5">
           <div class="faq-info-card">
-            <div class="faq-info-block">
-              <strong class="faq-info-label">Mangaluru (Kodialbail):</strong>
-              <p>#301, 3rd Floor, Lotus Paradise Elite, Opposite AJ Grand Hotel, Kodialbail, Mangaluru – 575003.</p>
-            </div>
-            <div class="faq-info-block mt-3">
-              <strong class="faq-info-label">Operational Hours:</strong>
-              <p>Monday to Sunday: 9:00 AM – 9:30 PM</p>
-            </div>
+            <p><strong>Mangaluru (Kodialbail):</strong> 3rd Floor, Lotus Paradise Elite, #301, Ks Rao Road, Opposite AJ Grand Hotel, Boloor, Kodialbail, Mangaluru – 575003.</p>
           </div>
         </div>
       </div>
@@ -72,12 +64,12 @@ import "flowbite/dist/flowbite.min.css";
         <button
           type="button"
           class="flex items-center justify-between w-full p-5 font-medium rtl:text-right rounded-base shadow-xs border border-default gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none"
-          data-accordion-target="#accordion-card-body-3"
+          data-faq-target="#accordion-card-body-3"
           aria-expanded="false"
           aria-controls="accordion-card-body-3"
         >
           <span>How does a therapy session work at Ira Spa?</span>
-          <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <svg data-accordion-icon aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
           </svg>
         </button>
@@ -106,12 +98,12 @@ import "flowbite/dist/flowbite.min.css";
         <button
           type="button"
           class="flex items-center justify-between w-full p-5 font-medium rtl:text-right rounded-base shadow-xs border border-default gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none"
-          data-accordion-target="#accordion-card-body-4"
+          data-faq-target="#accordion-card-body-4"
           aria-expanded="false"
           aria-controls="accordion-card-body-4"
         >
           <span>How long are the massage sessions, and how much do they cost?</span>
-          <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <svg data-accordion-icon aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
           </svg>
         </button>
@@ -139,12 +131,12 @@ import "flowbite/dist/flowbite.min.css";
         <button
           type="button"
           class="flex items-center justify-between w-full p-5 font-medium rtl:text-right rounded-base shadow-xs border border-default gap-3 [&[aria-expanded='true']]:rounded-b-none [&[aria-expanded='true']]:shadow-none"
-          data-accordion-target="#accordion-card-body-5"
+          data-faq-target="#accordion-card-body-5"
           aria-expanded="false"
           aria-controls="accordion-card-body-5"
         >
           <span>How do I book an appointment at Ira Spa?</span>
-          <svg data-accordion-icon class="w-5 h-5 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <svg data-accordion-icon aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7"/>
           </svg>
         </button>
@@ -169,6 +161,54 @@ import "flowbite/dist/flowbite.min.css";
     position: relative;
     z-index: 1;
     width: 100%;
+  }
+
+  :global(#accordion-card h2) {
+    margin: 0;
+  }
+
+  :global(#accordion-card h2 + h2) {
+    margin-top: 1rem;
+  }
+
+  :global(#accordion-card button) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border, rgba(255, 255, 255, 0.09));
+    border-radius: var(--radius-sm, 6px);
+    text-align: left;
+    cursor: pointer;
+  }
+
+  :global(#accordion-card button[aria-expanded="true"]) {
+    border-radius: var(--radius-sm, 6px) var(--radius-sm, 6px) 0 0;
+  }
+
+  :global(#accordion-card [data-accordion-icon]) {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  :global(#accordion-card button[aria-expanded="true"] [data-accordion-icon]) {
+    transform: rotate(180deg);
+  }
+
+  :global(#accordion-card [id^="accordion-card-body"]) {
+    width: 100%;
+  }
+
+  :global(#accordion-card .faq-info-card) {
+    padding: 1rem;
+  }
+
+  :global(#accordion-card .hidden) {
+    display: none !important;
   }
 
   :global(#accordion-card h2) {
@@ -284,10 +324,27 @@ import "flowbite/dist/flowbite.min.css";
 </style>
 
 <script>
-  import { initAccordions } from "flowbite";
+  const accordion = document.querySelector("#accordion-card");
 
-  initAccordions();
-  document.addEventListener("astro:page-load", () => {
-    initAccordions();
+  accordion?.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element)) return;
+
+    const button = event.target.closest("button[data-faq-target]");
+    if (!(button instanceof HTMLButtonElement) || !accordion.contains(button)) return;
+
+    const body = document.getElementById(button.getAttribute("aria-controls") ?? "");
+    if (!body) return;
+
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+    accordion.querySelectorAll("button[data-faq-target]").forEach((otherButton) => {
+      if (otherButton === button) return;
+      const otherBody = document.getElementById(otherButton.getAttribute("aria-controls") ?? "");
+      otherButton.setAttribute("aria-expanded", "false");
+      otherBody?.classList.add("hidden");
+    });
+
+    button.setAttribute("aria-expanded", String(!isExpanded));
+    body.classList.toggle("hidden", isExpanded);
   });
 </script>
