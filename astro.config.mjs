@@ -8,6 +8,7 @@ async function getBlogUrls() {
     const res = await fetch("https://dashboard.iraspa.in/graphql", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(4000),
       body: JSON.stringify({
         query: `
           query {
@@ -20,8 +21,9 @@ async function getBlogUrls() {
         `
       })
     });
+    if (!res.ok) return [];
     const json = await res.json();
-    return json.data.posts.nodes.map(post => `https://www.iraspa.in/blogs/${post.slug}/`);
+    return json?.data?.posts?.nodes?.map(post => `https://www.iraspa.in/blogs/${post.slug}/`) || [];
   } catch (err) {
     console.error("Failed to fetch blogs for sitemap:", err);
     return [];
