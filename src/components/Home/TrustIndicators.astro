@@ -192,10 +192,10 @@
         const updateCount = () => {
           currentCount += inc;
           if (currentCount < target) {
-            counter.innerText = Math.ceil(currentCount).toLocaleString();
+            counter.textContent = Math.ceil(currentCount).toLocaleString();
             requestAnimationFrame(updateCount);
           } else {
-            counter.innerText = target.toLocaleString();
+            counter.textContent = target.toLocaleString();
           }
         };
         requestAnimationFrame(updateCount);

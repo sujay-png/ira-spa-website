@@ -659,16 +659,19 @@ label {
 
 .about-spa,
 .trust-indicators,
-.how-it-works,
+.how-it-works-modern,
 .benefits,
 .services,
 .menu,
-.mom-care-block,
-.mom-to-be-section,
+.mom-care-section,
 .reviews,
-.instagram-feed,
+.faq-section,
+.instagram-section,
 .home-blogs,
+.treatments,
+.menu-page,
+.concierge-quote,
 .site-footer {
   content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
+  contain-intrinsic-size: auto 600px;
 }
