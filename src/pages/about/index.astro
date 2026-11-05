@@ -1,5 +1,4 @@
 ---
-import { Image, getImage } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
 import Aboutusstory from "../../components/About/Aboutusstory.astro";
 import VisionMission from "../../components/About/vision_mission.astro";
@@ -7,37 +6,34 @@ import AboutContent from "../../components/About/AboutContent.astro";
 import AboutGallery from "../../components/About/AboutGallery.astro";
 import Footer from "../../components/Footer.astro";
 import { getSEO } from "../../data/seo";
-import bannerImgAsset from "../../images/Aboutus_story.webp";
 
 const seo = getSEO("/about/");
-
-const bannerPreload = await getImage({
-	src: bannerImgAsset,
-	widths: [380, 480, 625],
-	sizes: "100vw",
-	format: "webp",
-});
+const bannerSrc = "/images/Aboutus_story.webp";
+const bannerSrcSet = "/images/Aboutus_story-480.webp 480w, /images/Aboutus_story.webp 640w";
+const bannerSizes = "(max-width: 640px) 480px, 640px";
 ---
 
 <Layout
 	seo={seo}
 	preloadImage={{
-		src: bannerPreload.src,
-		srcset: bannerPreload.srcSet.attribute,
-		sizes: "100vw",
+		src: bannerSrc,
+		srcset: bannerSrcSet,
+		sizes: bannerSizes,
 		type: "image/webp",
 	}}
 >
 	<section class="page-banner">
-		<Image
-			src={bannerImgAsset}
+		<img
+			src={bannerSrc}
+			srcset={bannerSrcSet}
+			sizes={bannerSizes}
 			alt="The Story and Heritage of Ira Spa"
-			widths={[380, 480, 625]}
-			sizes="100vw"
 			class="page-banner__bg-image"
 			fetchpriority="high"
 			loading="eager"
 			decoding="sync"
+			width="640"
+			height="500"
 		/>
 		<div class="container">
 			<span class="eyebrow">{seo.eyebrow}</span>
