@@ -115,6 +115,18 @@ const jsonLd = {
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		{preloadConfig?.src && (
+			<link
+				rel="preload"
+				as="image"
+				href={preloadConfig.src}
+				imagesrcset={preloadConfig.srcset}
+				imagesizes={preloadConfig.sizes}
+				type={preloadConfig.type}
+				fetchpriority="high"
+			/>
+		)}
 		<meta name="theme-color" content="#0b0b0a" />
 
 		<!-- Fixed Favicon declarations -->
@@ -150,17 +162,7 @@ const jsonLd = {
 		/>
 		{imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
 
-		{preloadConfig?.src && (
-			<link
-				rel="preload"
-				as="image"
-				href={preloadConfig.src}
-				imagesrcset={preloadConfig.srcset}
-				imagesizes={preloadConfig.sizes}
-				type={preloadConfig.type}
-				fetchpriority="high"
-			/>
-		)}
+
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
