@@ -8,9 +8,9 @@ import Footer from "../../components/Footer.astro";
 import { getSEO } from "../../data/seo";
 
 const seo = getSEO("/about/");
-const bannerSrc = "/images/Aboutus_story.webp";
-const bannerSrcSet = "/images/Aboutus_story-480.webp 480w, /images/Aboutus_story.webp 640w";
-const bannerSizes = "(max-width: 640px) 480px, 640px";
+const bannerSrc = "/images/Aboutus_story-420.webp";
+const bannerSrcSet = "/images/Aboutus_story-420.webp 420w, /images/Aboutus_story.webp 640w";
+const bannerSizes = "(max-width: 640px) 100vw, 640px";
 ---
 
 <Layout
@@ -32,8 +32,8 @@ const bannerSizes = "(max-width: 640px) 480px, 640px";
 			fetchpriority="high"
 			loading="eager"
 			decoding="sync"
-			width="640"
-			height="500"
+			width="420"
+			height="328"
 		/>
 		<div class="container">
 			<span class="eyebrow">{seo.eyebrow}</span>

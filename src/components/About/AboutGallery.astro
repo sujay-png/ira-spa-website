@@ -25,10 +25,10 @@ const images = await Promise.all(
   })
 );
 
-// Curate to 12 distinct treatment & ambiance images (6 per row) for optimal DOM size
-const curatedImages = images.slice(0, 12);
-const row1Images = curatedImages.slice(0, 6);
-const row2Images = curatedImages.slice(6, 12);
+// Curate to 8 distinct treatment & ambiance images (4 per row) for optimal DOM size
+const curatedImages = images.slice(0, 8);
+const row1Images = curatedImages.slice(0, 4);
+const row2Images = curatedImages.slice(4, 8);
 ---
 
 <section class="dual-carousel-section">
