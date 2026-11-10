@@ -46,22 +46,21 @@ export interface WPPost {
 // In-memory caching with TTL
 let cachedPosts: WPPost[] | null = null;
 let lastPostsFetch = 0;
-const POSTS_CACHE_TTL = 3 * 60 * 1000; // 3 minutes
+const POSTS_CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 let cachedCategories: WPTerm[] | null = null;
 let lastCategoriesFetch = 0;
-const CATEGORIES_CACHE_TTL = 10 * 60 * 1000; // 10 minutes
+const CATEGORIES_CACHE_TTL = 60 * 60 * 1000; // 60 minutes
 
 // --- CORE GRAPHQL FETCHER ---
 async function fetchGraphQL(query: string, variables = {}) {
 	try {
 		const controller = new AbortController();
-		const timeoutId = setTimeout(() => controller.abort(), 8000); // 8-second timeout guard
+		const timeoutId = setTimeout(() => controller.abort(), 4000); // 4-second timeout guard
 
 		const res = await fetch(WP_GRAPHQL_URL, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			cache: "no-store", 
 			body: JSON.stringify({ query, variables }),
 			signal: controller.signal,
 		});

@@ -7,7 +7,7 @@ import { getAllPosts, getCategories, getFeaturedImage, POSTS_PER_PAGE } from "..
 import { getSEO } from "../../data/seo";
 import { getImage } from "astro:assets";
 
-Astro.response.headers.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=86400');
+Astro.response.headers.set('Cache-Control', 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800');
 
 const [allPosts, categories] = await Promise.all([getAllPosts(), getCategories()]);
 
