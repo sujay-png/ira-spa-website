@@ -58,18 +58,6 @@ if (related.length < 3) {
 	related = related.slice(0, 3);
 }
 
-const jsonLd = {
-	"@context": "https://schema.org",
-	"@type": "Article",
-	headline: title,
-	image: image.src,
-	datePublished: post.date,
-	dateModified: post.modified,
-	author: { "@type": "Organization", name: author },
-	publisher: { "@type": "Organization", name: "Ira Spa" },
-	mainEntityOfPage: `https://iraspa.in/blogs/${post.slug}/`,
-};
-
 const seo = getBlogSEO({
 	title,
 	excerpt: description,
@@ -77,6 +65,20 @@ const seo = getBlogSEO({
 	featuredImage: { src: image.src, alt: title },
 	categories,
 });
+
+const jsonLd = {
+	"@context": "https://schema.org",
+	"@type": "Article",
+	headline: seo.seoTitle || title,
+	description: seo.seoDescription || description,
+	keywords: Array.isArray(seo.keywords) ? seo.keywords.join(", ") : (seo.keywords || ""),
+	image: seo.image || image.src,
+	datePublished: post.date,
+	dateModified: post.modified,
+	author: { "@type": "Organization", name: author },
+	publisher: { "@type": "Organization", name: "Ira Spa" },
+	mainEntityOfPage: `https://iraspa.in/blogs/${post.slug}/`,
+};
 ---
 
 <Layout

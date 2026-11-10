@@ -5,6 +5,21 @@
  */
 
 import { serviceData } from "./services";
+import rankMathPosts from "./rankmath_data.json";
+
+export interface RankMathSEOData {
+	slug: string;
+	title: string;
+	description: string;
+	keywords: string[];
+	ogImage?: string;
+}
+
+export const RANK_MATH_BLOG_DATA: Record<string, RankMathSEOData> = rankMathPosts as Record<string, RankMathSEOData>;
+
+export function getRankMathData(slug: string): RankMathSEOData | undefined {
+	return RANK_MATH_BLOG_DATA[slug];
+}
 
 export interface PageSEO {
 	/** Display heading for hero banners or visible page titles (e.g., "The Story of Ira Spa") */
@@ -595,21 +610,40 @@ export function getBlogSEO(
 	const rawExcerpt = typeof post.excerpt === "string" ? post.excerpt : post.excerpt?.rendered || "";
 	const cleanExcerpt = rawExcerpt.replace(/<[^>]*>/g, "").slice(0, 160).trim();
 
+	// Look up Rank Math SEO metadata
+	const rm = (post as any).rankMath || (post.slug ? getRankMathData(post.slug) : undefined);
+
+	// Rank Math custom SEO title or fallback
+	const seoTitle = rm?.title ? rm.title : `${cleanTitle} | Ira Spa Journal`;
+
+	// Rank Math custom meta description or fallback
+	const seoDescription = rm?.description
+		? rm.description
+		: (cleanExcerpt || `Read ${cleanTitle} on the Ira Spa wellness journal.`);
+
 	const categoryKeywords = post.categories ? post.categories.map((c) => c.name.toLowerCase()) : [];
-	const imgUrl = post.featuredImage?.src || SITE_CONFIG.defaultImage;
+
+	// Rank Math focus keywords prioritized first
+	const rmKeywords = rm?.keywords && rm.keywords.length > 0 ? rm.keywords : [];
+	const combinedKeywords = Array.from(
+		new Set([
+			...rmKeywords,
+			cleanTitle.toLowerCase(),
+			...categoryKeywords,
+			"ira spa journal",
+			"wellness blog",
+			"spa tips mangalore"
+		])
+	);
+
+	const imgUrl = rm?.ogImage || post.featuredImage?.src || SITE_CONFIG.defaultImage;
 	const imgAlt = post.featuredImage?.alt || cleanTitle;
 
 	return formatSEO({
 		pageTitle: cleanTitle,
-		seoTitle: `${cleanTitle} | Ira Spa Journal`,
-		seoDescription: cleanExcerpt || `Read ${cleanTitle} on the Ira Spa wellness journal.`,
-		keywords: [
-			...categoryKeywords,
-			"ira spa journal",
-			"wellness blog",
-			"spa tips mangalore",
-			"massage advice"
-		],
+		seoTitle,
+		seoDescription,
+		keywords: combinedKeywords,
 		image: imgUrl,
 		imageAlt: imgAlt,
 		eyebrow: post.categories?.[0]?.name || "Journal",
