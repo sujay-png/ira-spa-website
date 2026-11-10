@@ -623,18 +623,18 @@ export function getBlogSEO(
 
 	const categoryKeywords = post.categories ? post.categories.map((c) => c.name.toLowerCase()) : [];
 
-	// Rank Math focus keywords prioritized first
+	// Rank Math focus keyphrases (pure keyphrases, no meta title)
 	const rmKeywords = rm?.keywords && rm.keywords.length > 0 ? rm.keywords : [];
-	const combinedKeywords = Array.from(
-		new Set([
-			...rmKeywords,
-			cleanTitle.toLowerCase(),
-			...categoryKeywords,
-			"ira spa journal",
-			"wellness blog",
-			"spa tips mangalore"
-		])
-	);
+	const combinedKeywords = rmKeywords.length > 0
+		? rmKeywords
+		: Array.from(
+			new Set([
+				...categoryKeywords,
+				"ira spa journal",
+				"wellness blog",
+				"spa tips mangalore"
+			])
+		);
 
 	const imgUrl = rm?.ogImage || post.featuredImage?.src || SITE_CONFIG.defaultImage;
 	const imgAlt = post.featuredImage?.alt || cleanTitle;
