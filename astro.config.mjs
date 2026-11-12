@@ -52,6 +52,7 @@ export default defineConfig({
   },
  
   redirects: {
+    '/sitemap.xml': '/sitemap-index.xml',
     '/Contactus/': '/Contactus/Mangalore/',
     // Legacy Page URLs
     '/services/': '/ourservice/',
