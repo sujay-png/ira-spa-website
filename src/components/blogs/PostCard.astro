@@ -22,12 +22,12 @@ const isRemote = Boolean(image.src && image.src.startsWith("http"));
 				<Image
 					src={image.src}
 					alt={image.alt}
-					widths={[380, 600]}
-					sizes="(max-width: 620px) min(100vw - 32px, 380px), (max-width: 960px) 50vw, 380px"
+					widths={[320, 380]}
+					sizes="(max-width: 360px) 320px, 380px"
 					width={380}
 					height={238}
 					format="webp"
-					quality={75}
+					quality={68}
 					loading="lazy"
 					decoding="async"
 				/>
