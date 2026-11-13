@@ -2,28 +2,26 @@
 import { Image } from "astro:assets";
 import { getGalleryImageAlt } from "../../data/seo";
 
-// Load images dynamically
+// Load images statically at build time
 const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
-  "../../images/*.{jpg,jpeg,png,webp}"
+  "../../images/*.{jpg,jpeg,png,webp}",
+  { eager: true }
 );
 
-// Filter out logo.webp so only actual treatment and spa ambiance photos appear in the gallery
+// Filter out logo.webp and Aboutus_story.webp (already used in page banner)
 const galleryEntries = Object.entries(imageFiles).filter(
-  ([path]) => !path.includes("logo.webp")
+  ([path]) => !path.includes("logo.webp") && !path.includes("Aboutus_story")
 );
 
-const images = await Promise.all(
-  galleryEntries.map(async ([path, loader]) => {
-    const mod = await loader();
-    const filename = path.split("/").pop() || "";
-    return {
-      metadata: mod.default,
-      path,
-      filename,
-      alt: getGalleryImageAlt(filename),
-    };
-  })
-);
+const images = galleryEntries.map(([path, mod]) => {
+  const filename = path.split("/").pop() || "";
+  return {
+    metadata: mod.default,
+    path,
+    filename,
+    alt: getGalleryImageAlt(filename),
+  };
+});
 
 // Curate to 8 distinct treatment & ambiance images (4 per row) for optimal DOM size
 const curatedImages = images.slice(0, 8);
