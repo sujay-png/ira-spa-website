@@ -65,6 +65,13 @@ const canonicalURL = new URL(
 );
 const siteName = "Ira Spa";
 
+if (Astro.response) {
+	Astro.response.headers.set(
+		"X-Robots-Tag",
+		noindex ? "noindex, nofollow" : "index, follow",
+	);
+}
+
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@graph": [
@@ -140,7 +147,19 @@ const jsonLd = {
 		<meta name="description" content={description} />
 		{keywords && <meta name="keywords" content={keywords} />}
 		<link rel="canonical" href={canonicalURL} />
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{
+			noindex ? (
+				<meta name="robots" content="noindex, nofollow" />
+			) : (
+				<meta
+					name="robots"
+					content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+				/>
+			)
+		}
+		<meta name="publisher" content={siteName} />
+		<meta name="author" content={siteName} />
+		<link rel="publisher" href="https://www.iraspa.in" />
 
 		<!-- Open Graph / social -->
 		<meta property="og:type" content={ogType} />
