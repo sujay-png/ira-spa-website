@@ -946,7 +946,54 @@ export function sanitizePostContent(htmlContent: string, fallbackTitle: string =
 	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Kalaburgi(["'])/gi, '$1/Contactus/Kalaburgi/$2');
 
 	// 4. Ensure all images have proper alt text
-	return sanitizeContentImagesAlt(cleaned, fallbackTitle);
+	cleaned = sanitizeContentImagesAlt(cleaned, fallbackTitle);
+
+	// 5. Optimize content images with responsive srcset, sizes, and Vercel edge compression
+	cleaned = optimizePostContentImages(cleaned);
+
+	return cleaned;
+}
+
+export function optimizePostContentImages(htmlContent: string): string {
+	if (!htmlContent) return "";
+
+	return htmlContent.replace(/<img\b([^>]*?)(\/?)>/gi, (match, attrs, slash) => {
+		const srcMatch = attrs.match(/\bsrc=(["'])(.*?)\1/i);
+		if (!srcMatch) return match;
+		const rawSrc = srcMatch[2];
+		if (!rawSrc.includes("dashboard.iraspa.in")) return match;
+
+		const masterSrc = rawSrc.replace(/-\d+x\d+(\.[a-z0-9]+)$/i, "$1");
+
+		const optSrc = `/_image?href=${encodeURIComponent(masterSrc)}&w=680&q=75`;
+		const optSrcset = [
+			`/_image?href=${encodeURIComponent(masterSrc)}&w=380&q=75 380w`,
+			`/_image?href=${encodeURIComponent(masterSrc)}&w=600&q=75 600w`,
+			`/_image?href=${encodeURIComponent(masterSrc)}&w=768&q=75 768w`
+		].join(", ");
+		const optSizes = "(max-width: 720px) min(100vw - 32px, 680px), 680px";
+
+		let newAttrs = attrs;
+		newAttrs = newAttrs.replace(/\bsrc=(["']).*?\1/i, `src="${optSrc}"`);
+		if (/\bsrcset=(["']).*?\1/i.test(newAttrs)) {
+			newAttrs = newAttrs.replace(/\bsrcset=(["']).*?\1/i, `srcset="${optSrcset}"`);
+		} else {
+			newAttrs += ` srcset="${optSrcset}"`;
+		}
+		if (/\bsizes=(["']).*?\1/i.test(newAttrs)) {
+			newAttrs = newAttrs.replace(/\bsizes=(["']).*?\1/i, `sizes="${optSizes}"`);
+		} else {
+			newAttrs += ` sizes="${optSizes}"`;
+		}
+		if (!/\bloading=(["']).*?\1/i.test(newAttrs)) {
+			newAttrs += ` loading="lazy"`;
+		}
+		if (!/\bdecoding=(["']).*?\1/i.test(newAttrs)) {
+			newAttrs += ` decoding="async"`;
+		}
+
+		return `<img${newAttrs} ${slash ? "/" : ""}>`;
+	});
 }
 
 export default getSEO;
