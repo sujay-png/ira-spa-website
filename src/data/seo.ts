@@ -940,10 +940,10 @@ export function sanitizePostContent(htmlContent: string, fallbackTitle: string =
 	}
 
 	// 3. Fix un-slashed common paths inside post content
-	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/ourservice(["'])/gi, '$1/ourservice/$2');
-	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/book-an-appointment(["'])/gi, '$1/book-an-appointment/$2');
-	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Mangalore(["'])/gi, '$1/Contactus/Mangalore/$2');
-	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Kalaburgi(["'])/gi, '$1/Contactus/Kalaburgi/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/ourservice\/?(["'])/gi, '$1/ourservice/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/book-an-appointment\/?(["'])/gi, '$1/book-an-appointment/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Mangalore\/?(["'])/gi, '$1/Contactus/Mangalore/$2');
+	cleaned = cleaned.replace(/(href=["'])(?:https?:\/\/(?:www\.)?iraspa\.in)?\/Contactus\/Kalaburgi\/?(["'])/gi, '$1/Contactus/Kalaburgi/$2');
 
 	// 4. Ensure all images have proper alt text
 	cleaned = sanitizeContentImagesAlt(cleaned, fallbackTitle);
@@ -965,11 +965,11 @@ export function optimizePostContentImages(htmlContent: string): string {
 
 		const masterSrc = rawSrc.replace(/-\d+x\d+(\.[a-z0-9]+)$/i, "$1");
 
-		const optSrc = `/_image?href=${encodeURIComponent(masterSrc)}&w=680&q=75`;
+		const optSrc = `/_image/?href=${encodeURIComponent(masterSrc)}&w=680&q=75`;
 		const optSrcset = [
-			`/_image?href=${encodeURIComponent(masterSrc)}&w=380&q=75 380w`,
-			`/_image?href=${encodeURIComponent(masterSrc)}&w=600&q=75 600w`,
-			`/_image?href=${encodeURIComponent(masterSrc)}&w=768&q=75 768w`
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=380&q=75 380w`,
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=600&q=75 600w`,
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=768&q=75 768w`
 		].join(", ");
 		const optSizes = "(max-width: 720px) min(100vw - 32px, 680px), 680px";
 
