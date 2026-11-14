@@ -965,13 +965,14 @@ export function optimizePostContentImages(htmlContent: string): string {
 
 		const masterSrc = rawSrc.replace(/-\d+x\d+(\.[a-z0-9]+)$/i, "$1");
 
-		const optSrc = `/_image/?href=${encodeURIComponent(masterSrc)}&w=680&q=75`;
+		const optSrc = `/_image/?href=${encodeURIComponent(masterSrc)}&w=680&q=70`;
 		const optSrcset = [
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=380&q=75 380w`,
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=600&q=75 600w`,
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=768&q=75 768w`
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=320&q=70 320w`,
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=380&q=70 380w`,
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=600&q=70 600w`,
+			`/_image/?href=${encodeURIComponent(masterSrc)}&w=680&q=70 680w`
 		].join(", ");
-		const optSizes = "(max-width: 720px) min(100vw - 32px, 680px), 680px";
+		const optSizes = "(max-width: 360px) 320px, (max-width: 480px) 380px, (max-width: 768px) 600px, 680px";
 
 		let newAttrs = attrs;
 		newAttrs = newAttrs.replace(/\bsrc=(["']).*?\1/i, `src="${optSrc}"`);
