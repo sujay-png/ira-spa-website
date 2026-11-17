@@ -5,7 +5,7 @@ export const quickMassageTreatments = [
         category: "Express Rituals",
         description:
             "Stimulate and massage pressure points in legs to release the tension and relax tired legs.",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/high-angle-woman-getting-massaged-spa-1-1024x683.webp",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2026/02/foot-massage-health-wellness-mangalore.webp",
         prices: [{ label: "30 min", price: "₹1,200" }],
     },
     {
@@ -13,7 +13,7 @@ export const quickMassageTreatments = [
         name: "Back",
         subtitle: "Without Shower",
         category: "Express Rituals",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/closeup-man-having-back-massage-spa-treatment-wellness-center-1024x683.webp",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2026/01/quick-massage-treatments-mangalore.webp",
         prices: [{ label: "30 min", price: "₹1,600" }],
     },
     {
@@ -22,7 +22,7 @@ export const quickMassageTreatments = [
         category: "Express Rituals",
         description:
             "Relax, de-stress, revive, and renew the body with perfect massage strokes",
-        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/10/closeup-man-getting-head-massage-relaxing-with-eyes-closed-spa-1024x683.webp",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2026/02/head-neck-shoulder-massage-mangalore.webp",
         prices: [{ label: "30 min", price: "₹1,300" }],
     },
 ];
