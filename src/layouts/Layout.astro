@@ -65,13 +65,6 @@ const canonicalURL = new URL(
 );
 const siteName = "Ira Spa";
 
-if (Astro.response) {
-	Astro.response.headers.set(
-		"X-Robots-Tag",
-		noindex ? "noindex, nofollow" : "index, follow",
-	);
-}
-
 const jsonLd = {
 	"@context": "https://schema.org",
 	"@graph": [
