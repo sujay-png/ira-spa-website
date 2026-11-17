@@ -4,7 +4,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Black Currant",
         subtitle: "Dry Skin",
         category: "Skin Renewal",
-        image: "https://spame.in/wp-content/uploads/2025/03/body-scrub-massage-vs-traditional-massage-whats-the-difference-1-300x225.webp",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/11/full-body-polishing-mangalore.webp",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
     {
@@ -12,7 +12,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Chocolate",
         subtitle: "Brightening and Nourishing",
         category: "Skin Renewal",
-        image: "https://melocare.com/wp-content/uploads/2024/07/Body-Polishing.webp",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/12/chocolate-body-polish-mangalore.webp",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
     {
@@ -20,7 +20,7 @@ export const bodyPolishingTreatments = [
         name: "Full Body – Orange",
         subtitle: "De-tan",
         category: "Skin Renewal",
-        image: "https://llb.cz/wp-content/uploads/2024/02/patient-getting-cbd-treatment-1024x683.webp",
+        image: "https://dashboard.iraspa.in/wp-content/uploads/2025/12/range-body-polish-mangalore.webp",
         prices: [{ label: "60 min", price: "₹3,500" }],
     },
 ];
