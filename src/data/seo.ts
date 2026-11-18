@@ -957,35 +957,23 @@ export function sanitizePostContent(htmlContent: string, fallbackTitle: string =
 export function optimizePostContentImages(htmlContent: string): string {
 	if (!htmlContent) return "";
 
-	return htmlContent.replace(/<img\b([^>]*?)(\/?)>/gi, (match, attrs, slash) => {
+	return htmlContent.replace(/<img\b([^>]*?)(\/?)>/gi, (match, attrs) => {
 		const srcMatch = attrs.match(/\bsrc=(["'])(.*?)\1/i);
 		if (!srcMatch) return match;
 		const rawSrc = srcMatch[2];
 		if (!rawSrc.includes("dashboard.iraspa.in")) return match;
 
 		const masterSrc = rawSrc.replace(/-\d+x\d+(\.[a-z0-9]+)$/i, "$1");
+		const encodedSrc = encodeURIComponent(masterSrc);
 
-		const optSrc = `/_image/?href=${encodeURIComponent(masterSrc)}&w=680&q=70`;
-		const optSrcset = [
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=320&q=70 320w`,
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=380&q=70 380w`,
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=600&q=70 600w`,
-			`/_image/?href=${encodeURIComponent(masterSrc)}&w=680&q=70 680w`
-		].join(", ");
-		const optSizes = "(max-width: 360px) 320px, (max-width: 480px) 380px, (max-width: 768px) 600px, 680px";
+		const mobileSrc = `/_image/?href=${encodedSrc}&w=380&q=68&f=webp`;
+		const desktopSrc = `/_image/?href=${encodedSrc}&w=680&q=68&f=webp`;
 
-		let newAttrs = attrs;
-		newAttrs = newAttrs.replace(/\bsrc=(["']).*?\1/i, `src="${optSrc}"`);
-		if (/\bsrcset=(["']).*?\1/i.test(newAttrs)) {
-			newAttrs = newAttrs.replace(/\bsrcset=(["']).*?\1/i, `srcset="${optSrcset}"`);
-		} else {
-			newAttrs += ` srcset="${optSrcset}"`;
-		}
-		if (/\bsizes=(["']).*?\1/i.test(newAttrs)) {
-			newAttrs = newAttrs.replace(/\bsizes=(["']).*?\1/i, `sizes="${optSizes}"`);
-		} else {
-			newAttrs += ` sizes="${optSizes}"`;
-		}
+		let newAttrs = attrs
+			.replace(/\bsrc=(["']).*?\1/i, `src="${desktopSrc}"`)
+			.replace(/\s*\bsrcset=(["']).*?\1/gi, "")
+			.replace(/\s*\bsizes=(["']).*?\1/gi, "");
+
 		if (!/\bloading=(["']).*?\1/i.test(newAttrs)) {
 			newAttrs += ` loading="lazy"`;
 		}
@@ -993,7 +981,7 @@ export function optimizePostContentImages(htmlContent: string): string {
 			newAttrs += ` decoding="async"`;
 		}
 
-		return `<img${newAttrs} ${slash ? "/" : ""}>`;
+		return `<picture><source media="(max-width: 640px)" srcset="${mobileSrc}" /><img${newAttrs} /></picture>`;
 	});
 }
 
