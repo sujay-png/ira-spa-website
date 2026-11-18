@@ -957,11 +957,16 @@ export function sanitizePostContent(htmlContent: string, fallbackTitle: string =
 export function optimizePostContentImages(htmlContent: string): string {
 	if (!htmlContent) return "";
 
+	let imgIndex = 0;
+
 	return htmlContent.replace(/<img\b([^>]*?)(\/?)>/gi, (match, attrs) => {
 		const srcMatch = attrs.match(/\bsrc=(["'])(.*?)\1/i);
 		if (!srcMatch) return match;
 		const rawSrc = srcMatch[2];
 		if (!rawSrc.includes("dashboard.iraspa.in")) return match;
+
+		const isLcpCandidate = imgIndex === 0 || /\bfetchpriority=(["'])high\1/i.test(attrs);
+		imgIndex++;
 
 		const masterSrc = rawSrc.replace(/-\d+x\d+(\.[a-z0-9]+)$/i, "$1");
 		const encodedSrc = encodeURIComponent(masterSrc);
@@ -974,7 +979,12 @@ export function optimizePostContentImages(htmlContent: string): string {
 			.replace(/\s*\bsrcset=(["']).*?\1/gi, "")
 			.replace(/\s*\bsizes=(["']).*?\1/gi, "");
 
-		if (!/\bloading=(["']).*?\1/i.test(newAttrs)) {
+		if (isLcpCandidate) {
+			newAttrs = newAttrs.replace(/\s*\bloading=(["']).*?\1/gi, "");
+			if (!/\bfetchpriority=(["']).*?\1/i.test(newAttrs)) {
+				newAttrs += ` fetchpriority="high"`;
+			}
+		} else if (!/\bloading=(["']).*?\1/i.test(newAttrs)) {
 			newAttrs += ` loading="lazy"`;
 		}
 		if (!/\bdecoding=(["']).*?\1/i.test(newAttrs)) {

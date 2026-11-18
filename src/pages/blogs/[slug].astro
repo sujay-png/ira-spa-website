@@ -79,14 +79,33 @@ const jsonLd = {
 	publisher: { "@type": "Organization", name: "Ira Spa" },
 	mainEntityOfPage: `https://iraspa.in/blogs/${post.slug}/`,
 };
+
+const rawBannerSrc = image.large || image.src;
+const isWpBanner = rawBannerSrc.includes("dashboard.iraspa.in");
+const masterBannerSrc = isWpBanner
+	? rawBannerSrc.replace(/-\d+x\d+(\.[a-z0-9]+)$/i, "$1")
+	: rawBannerSrc;
+const encodedBannerSrc = encodeURIComponent(masterBannerSrc);
+
+const bannerSrc = isWpBanner
+	? `/_image/?href=${encodedBannerSrc}&w=1024&q=65&f=webp`
+	: rawBannerSrc;
+const bannerSrcset = isWpBanner
+	? [
+			`/_image/?href=${encodedBannerSrc}&w=480&q=65&f=webp 480w`,
+			`/_image/?href=${encodedBannerSrc}&w=768&q=65&f=webp 768w`,
+			`/_image/?href=${encodedBannerSrc}&w=1024&q=65&f=webp 1024w`,
+		].join(", ")
+	: image.srcset;
 ---
 
 <Layout
 	seo={seo}
 	preloadImage={{
-		src: image.large || image.src,
-		srcset: image.srcset,
+		src: bannerSrc,
+		srcset: bannerSrcset,
 		sizes: "100vw",
+		type: isWpBanner ? "image/webp" : undefined,
 	}}
 >
 	<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
@@ -94,8 +113,8 @@ const jsonLd = {
 	<article class="post">
 		<header class="post-header page-banner">
 			<img
-				src={image.large || image.src}
-				srcset={image.srcset}
+				src={bannerSrc}
+				srcset={bannerSrcset}
 				sizes="100vw"
 				alt={image.alt || title}
 				class="page-banner__bg-image"
