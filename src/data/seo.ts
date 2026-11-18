@@ -371,7 +371,7 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 			"deep relaxation massage mangalore",
 			"body renewal therapy ira spa"
 		],
-		image: "/images/lomi-lomi.webp",
+		image: "/images/Lomi_massage.webp",
 		imageAlt: "Authentic Lomi Lomi Massage Therapy at Ira Spa",
 		eyebrow: "Hawaiian Body Ritual",
 		canonical: "/ourservice/lomi-lomi-massage/",

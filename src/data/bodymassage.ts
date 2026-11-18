@@ -57,7 +57,7 @@ export const bodyMassageTreatments = [
         name: "Ira Signature Therapy",
         description:
             "Ira Signature simultaneously connects and revitalizes body, mind, heart and soul. Working at the core of our being, it calms, inspires and empowers us to create the life we desire. It nurtures us with healing and abundant blessings, improves all systems and organs, cleansing and detoxifying, brings harmony and balance.",
-        image: "/images/lomi-lomi.webp",
+        image: "/images/Lomi_massage.webp",
         prices: [
             { label: "60 min", price: "₹3,000" },
             { label: "90 min", price: "₹4,500" },

@@ -8,7 +8,7 @@ import facialEssentialsImg from "../images/Clean-Ups And Facial-Essential.webp";
 import facialPremiumImg from "../images/Facial-Premium And Signature.webp";
 import quickMassageImg from "../images/quickmassage.webp";
 import footSpaImg from "../images/footspa1.webp";
-import lomiLomiImg from "../images/lomi-lomi.webp";
+import lomiLomiImg from "../images/Lomi_massage.webp";
 
 export interface ServiceDetail {
     name: string;
