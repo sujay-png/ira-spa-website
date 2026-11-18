@@ -1,5 +1,3 @@
-import { google } from 'googleapis';
-
 export async function appendToGoogleSheet(payload: any) {
   try {
     const serviceAccountEmail = import.meta.env.GOOGLE_SERVICE_ACCOUNT_EMAIL || process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -10,6 +8,8 @@ export async function appendToGoogleSheet(payload: any) {
       console.error('Google Sheets credentials not fully set. Skipping sheets append.');
       return { success: false, error: 'Credentials missing' };
     }
+
+    const { google } = await import('googleapis');
 
     const auth = new google.auth.GoogleAuth({
       credentials: {
