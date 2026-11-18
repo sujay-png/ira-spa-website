@@ -226,6 +226,97 @@ export async function getPostBySlug(slug: string): Promise<WPPost | null> {
 	};
 }
 
+export async function getPostWithRelated(slug: string): Promise<{ post: WPPost | null; recentPosts: WPPost[] }> {
+	const query = `
+		query PostWithRelated($slug: ID!) {
+			post(id: $slug, idType: SLUG) {
+				databaseId
+				slug
+				date
+				modified
+				title
+				excerpt
+				content
+				author { node { name } }
+				featuredImage {
+					node {
+						sourceUrl
+						altText
+					}
+				}
+				categories { nodes { databaseId name slug } }
+			}
+			recentPosts: posts(first: 12, where: { orderby: { field: DATE, order: DESC } }) {
+				nodes {
+					databaseId
+					slug
+					date
+					modified
+					title
+					excerpt
+					featuredImage {
+						node {
+							sourceUrl
+							altText
+							mediaDetails {
+								sizes {
+									name
+									sourceUrl
+									width
+									height
+								}
+							}
+						}
+					}
+					categories { nodes { databaseId name slug } }
+				}
+			}
+		}
+	`;
+
+	const data = await fetchGraphQL(query, { slug });
+	if (!data?.post) {
+		return { post: null, recentPosts: [] };
+	}
+
+	const mapNode = (node: any, includeContent: boolean): WPPost => ({
+		id: node.databaseId,
+		slug: node.slug,
+		date: node.date,
+		modified: node.modified,
+		title: { rendered: node.title || "" },
+		excerpt: { rendered: node.excerpt || "" },
+		content: {
+			rendered: includeContent
+				? (node.content || "").replace(/https?:\/\/(?:www\.)?iraspa\.in\/services\/?/g, "/ourservice/")
+				: ""
+		},
+		_embedded: {
+			author: [{ name: node.author?.node?.name || "Ira Spa Team" }],
+			"wp:featuredmedia": [{
+				source_url: node.featuredImage?.node?.sourceUrl || FALLBACK_IMAGE,
+				alt_text: node.featuredImage?.node?.altText || node.title || "Ira Spa",
+				media_details: {
+					sizes: node.featuredImage?.node?.mediaDetails?.sizes || []
+				}
+			}],
+			"wp:term": [
+				node.categories?.nodes?.map((cat: any) => ({
+					id: cat.databaseId,
+					name: cat.name,
+					slug: cat.slug,
+					taxonomy: "category"
+				})) || []
+			]
+		}
+	});
+
+	const post = mapNode(data.post, true);
+	const recentPosts = (data.recentPosts?.nodes || []).map((n: any) => mapNode(n, false));
+
+	return { post, recentPosts };
+}
+
 export async function getCategories(): Promise<WPTerm[]> {
 	if (cachedCategories && Date.now() - lastCategoriesFetch < CATEGORIES_CACHE_TTL) {
 		return cachedCategories;

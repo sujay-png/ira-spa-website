@@ -35,6 +35,10 @@ export default defineConfig({
   trailingSlash: 'always',
   output: 'server',
   adapter: vercel({
+    isr: {
+      expiration: 3600,
+      exclude: [/^\/api\//, /^\/book-an-appointment/],
+    },
     imagesConfig: {
       domains: ['dashboard.iraspa.in'],
       sizes: [320, 380, 600, 768, 1024, 1200],

@@ -5,8 +5,7 @@ import BlogReadNextCard from "../../components/blogs/BlogReadNextCard.astro";
 import BlogBookingForm from "../../components/blogs/BlogBookingForm.astro";
 
 import {
-	getPostBySlug,
-	getAllPosts,
+	getPostWithRelated,
 	getFeaturedImage,
 	getAuthorName,
 	getPostCategories,
@@ -19,8 +18,10 @@ import { getBlogSEO, sanitizePostContent } from "../../data/seo";
 // 1. Grab the slug directly from the URL (No getStaticPaths needed in SSR)
 const { slug } = Astro.params;
 
-// 2. Fetch the exact post dynamically
-const post = slug ? await getPostBySlug(slug) : null;
+// 2. Fetch the exact post and recent related posts in a single GraphQL round-trip
+const { post, recentPosts: allPosts } = slug
+	? await getPostWithRelated(slug)
+	: { post: null, recentPosts: [] };
 
 // 3. If the post doesn't exist, safely trigger a 404
 if (!post) {
@@ -30,8 +31,14 @@ if (!post) {
 	});
 }
 
-// 4. Fetch all posts to generate the "Read Next" section
-const allPosts = await getAllPosts();
+Astro.response.headers.set(
+	"Cache-Control",
+	"public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800",
+);
+Astro.response.headers.set(
+	"Vercel-CDN-Cache-Control",
+	"public, s-maxage=86400, stale-while-revalidate=604800",
+);
 
 const image = getFeaturedImage(post);
 const categories = getPostCategories(post);
