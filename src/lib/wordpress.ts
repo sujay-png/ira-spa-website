@@ -56,7 +56,7 @@ const CATEGORIES_CACHE_TTL = 60 * 60 * 1000; // 60 minutes
 async function fetchGraphQL(query: string, variables = {}) {
 	try {
 		const controller = new AbortController();
-		const timeoutId = setTimeout(() => controller.abort(), 4000); // 4-second timeout guard
+		const timeoutId = setTimeout(() => controller.abort(), 9000); // 9-second timeout guard
 
 		const res = await fetch(WP_GRAPHQL_URL, {
 			method: "POST",

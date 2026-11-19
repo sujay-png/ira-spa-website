@@ -676,8 +676,8 @@ export function getBlogCategorySEO(
 		image: SITE_CONFIG.defaultImage,
 		imageAlt: `${categoryName} - Ira Spa Journal Articles`,
 		eyebrow: "Journal Category",
-		canonical: `/blogs/category/${categorySlug}/`,
-		noindex: pageNum > 1,
+		canonical: pageNum > 1 ? `/blogs/category/${categorySlug}/page/${pageNum}/` : `/blogs/category/${categorySlug}/`,
+		noindex: false,
 		ogType: "website",
 		...overrides
 	});
@@ -701,7 +701,7 @@ export function getBlogPaginationSEO(
 		imageAlt: `Ira Spa Journal Feed Page ${pageNum}`,
 		eyebrow: "Our Journal",
 		canonical: `/blogs/page/${pageNum}/`,
-		noindex: true, // Paginated subpages shouldn't compete with main blog index
+		noindex: false,
 		ogType: "website",
 		...overrides
 	});

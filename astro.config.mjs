@@ -91,6 +91,8 @@ export default defineConfig({
       '/blogs/how-herbal-therapy-improves-health-wellness/',
     '/blogs/discover-how-spa-therapy-transforms-your-sleep/':
       '/blogs/how-spa-therapy-improves-sleep-quality/',
+    '/blogs/spa-therapy-for-sleep-improvement/':
+      '/blogs/how-spa-therapy-improves-sleep-quality/',
     '/blogs/deep-pore-cleansing-reveal-your-skins-natural-glow/':
       '/blogs/how-deep-pore-cleansing-facial-helps-prevent-acne-and-oil-build-up/',
     '/blogs/discover-the-benefits-of-bamboo-therapy-a-natural-path-to-wellness/':
