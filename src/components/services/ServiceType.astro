@@ -24,6 +24,7 @@ import { serviceData } from "../../data/services";
                             width={380}
                             height={200}
                             loading={index < 2 ? "eager" : "lazy"}
+                            fetchpriority={index === 0 ? "high" : undefined}
                             decoding="async"
                         />
                         <div class="browse__card-body">

@@ -42,7 +42,6 @@ const bannerPreload = await getImage({
 			width={1200}
 			height={800}
 			format="webp"
-			fetchpriority="high"
 			loading="eager"
 			decoding="async"
 		/>
@@ -57,7 +56,13 @@ const bannerPreload = await getImage({
 	<div class="ritual-showcase">
 		{
 			Object.entries(serviceData).map(([slug, service], i) => (
-				<ServiceDescription {...service} slug={slug} reverse={i % 2 === 1} />
+				<ServiceDescription
+					{...service}
+					slug={slug}
+					reverse={i % 2 === 1}
+					loading={i === 0 ? "eager" : "lazy"}
+					fetchpriority={i === 0 ? "high" : "auto"}
+				/>
 			))
 		}
 	</div>

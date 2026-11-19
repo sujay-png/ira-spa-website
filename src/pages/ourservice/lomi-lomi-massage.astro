@@ -31,7 +31,6 @@ const treatments = [
             src="/images/Lomi_massage.webp"
             alt=""
             class="page-banner__bg-image"
-            fetchpriority="high"
             loading="eager"
             decoding="async"
         />
@@ -58,7 +57,9 @@ const treatments = [
                                 alt={treatment.alt || treatment.name}
                                 width="600"
                                 height="420"
-                                loading="lazy"
+                                loading={i === 0 ? "eager" : "lazy"}
+                                fetchpriority={i === 0 ? "high" : undefined}
+                                decoding="async"
                             />
                         </div>
                         <div class="treatment-content">
