@@ -10,13 +10,12 @@ const seo = getSEO("/ourservice/body-massage/");
 const treatments = bodyMassageTreatments;
 ---
 
-<Layout seo={seo} preloadImage="/images/spa-salon.webp">
+<Layout seo={seo} preloadImage={treatments[0]?.image || "/images/serviceimage2.webp"}>
     <section class="page-banner">
         <img
             src="/images/spa-salon.webp"
             alt=""
             class="page-banner__bg-image"
-            fetchpriority="high"
             loading="eager"
             decoding="async"
         />
@@ -43,7 +42,9 @@ const treatments = bodyMassageTreatments;
                                 alt={treatment.alt || treatment.name}
                                 width="600"
                                 height="420"
-                                loading="lazy"
+                                loading={i === 0 ? "eager" : "lazy"}
+                                fetchpriority={i === 0 ? "high" : undefined}
+                                decoding="async"
                             />
                         </div>
                         <div class="treatment-content">
