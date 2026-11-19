@@ -3,21 +3,21 @@ export const prerender = true;
 
 import { Image, getImage } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
-import BookingsForm from "../components/Home/bookings_form.astro";
-import Aboutspa from "../components/Home/Aboutspa.astro";
-import TrustIndicators from "../components/Home/TrustIndicators.astro";
-import HowItWorks from "../components/Home/HowItWorks.astro";
-import Benefits from "../components/Home/list.astro";
-import Services from "../components/Home/Services-list.astro";
-import MenuList from "../components/Home/MenuList.astro";
-import MomCareSection from "../components/Home/MomCareSection.astro";
-import Customerreview from "../components/Home/Customerreview.astro";
-import InstagramFeed from "../components/Home/InstagramFeed.astro";
-import HomeBlogs from "../components/Home/HomeBlogs.astro";
-import Footer from "../components/Footer.astro";
+import BookingsForm from "../components/home/bookings_form.astro";
+import Aboutspa from "../components/home/Aboutspa.astro";
+import TrustIndicators from "../components/home/TrustIndicators.astro";
+import HowItWorks from "../components/home/HowItWorks.astro";
+import Benefits from "../components/home/list.astro";
+import Services from "../components/home/Services-list.astro";
+import MenuList from "../components/shared/MenuList.astro";
+import MomCareSection from "../components/home/MomCareSection.astro";
+import Customerreview from "../components/home/Customerreview.astro";
+import InstagramFeed from "../components/home/InstagramFeed.astro";
+import HomeBlogs from "../components/home/HomeBlogs.astro";
+import Footer from "../components/common/Footer.astro";
 import heroImg from "../images/serviceimage1.webp";
 import { getSEO } from "../data/seo";
-import Accordion from "../components/UI/Accordion.astro";
+import Accordion from "../components/shared/Accordion.astro";
 
 const seo = getSEO("/");
 

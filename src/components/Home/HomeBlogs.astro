@@ -1,6 +1,6 @@
 ---
 import { getAllPosts } from "../../lib/wordpress";
-import PostCard from "../blogs/PostCard.astro";
+import PostCard from "../blog/PostCard.astro";
 
 const allPosts = await getAllPosts();
 const latestPosts = allPosts.slice(0, 3);
