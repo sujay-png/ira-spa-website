@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
-import { supabaseAdmin } from '../../lib/supabaseAdmin';
-import { appendToGoogleSheet } from '../../lib/googleSheets';
+import { supabaseAdmin } from '../../lib/supabase/admin';
+import { appendToGoogleSheet } from '../../lib/google/sheets';
 
 const submitToElementor = async (data: any) => {
   const WP_BASE_URL = import.meta.env.PUBLIC_WP_BASE_URL || "https://dashboard.iraspa.in";
