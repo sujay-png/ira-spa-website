@@ -68,8 +68,8 @@ export const SITE_CONFIG = {
 		"body massage",
 		"thai therapy",
 		"herbal treatment",
-		"karnataka spa"
-	]
+		"karnataka spa"]
+	
 };
 
 /**
@@ -104,13 +104,15 @@ export const staticPagesSEO: Record<string, PageSEO> = {
 		keywords: [
 			"spa in mangalore",
 			"luxury massage mangalore",
+			"mangalore massage centre",
 			"wellness spa kalaburagi",
 			"body massage mangalore",
 			"herbal spa karnataka",
 			"best spa in mangalore",
 			"couples massage mangalore",
 			"ayurvedic spa treatment",
-			"day spa mangalore"
+			"day spa mangalore",
+			
 		],
 		image: "/images/serviceimage1.webp",
 		imageAlt: "Luxury Spa and Massage Treatment in Mangalore at Ira Spa",
