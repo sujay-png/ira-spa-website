@@ -40,7 +40,7 @@ const homeSchema = {
       "url": "https://www.iraspa.in/",
       "logo": "https://www.iraspa.in/logo.webp",
       "image": "https://www.iraspa.in/images/serviceimage1.webp",
-      "description": "Relax, rejuvenate and restore at Ira Spa — premium massage therapy, herbal treatments and body rituals in Mangalore and Kalaburagi. Book your session online.",
+      "description": "Ira Spa — Luxury Massage & Wellness Spa in Mangalore & Kalaburagi offering full-body massages, herbal therapies, body polishing, facials, and express spa rituals.",
       "sameAs": [
         "https://www.instagram.com/the_ira_spa/",
         "https://www.facebook.com/share/1BW2YTGEVW/",
@@ -57,35 +57,25 @@ const homeSchema = {
       ]
     },
     {
-      "@type": "WebSite",
-      "@id": "https://www.iraspa.in/#website",
-      "url": "https://www.iraspa.in/",
-      "name": "Ira Spa",
-      "publisher": {
-        "@id": "https://www.iraspa.in/#organization"
-      },
-      "inLanguage": "en-US"
-    },
-    {
       "@type": "WebPage",
       "@id": "https://www.iraspa.in/#webpage",
       "url": "https://www.iraspa.in/",
       "name": "Ira Spa | Luxury Massage & Wellness Spa in Mangalore & Kalaburgi",
-      "description": "Relax, rejuvenate and restore at Ira Spa — premium massage therapy, herbal treatments and body rituals in Mangalore and Kalaburagi. Book your session online.",
       "isPartOf": {
-        "@id": "https://www.iraspa.in/#website"
+        "@type": "WebSite",
+        "@id": "https://www.iraspa.in/#website",
+        "url": "https://www.iraspa.in/",
+        "name": "Ira Spa",
+        "publisher": {
+          "@id": "https://www.iraspa.in/#organization"
+        }
       },
       "about": {
         "@id": "https://www.iraspa.in/#organization"
       },
-      "mainEntity": [
-        {
-          "@id": "https://www.iraspa.in/#dayspa-mangalore"
-        },
-        {
-          "@id": "https://www.iraspa.in/#dayspa-kalaburagi"
-        }
-      ],
+      "mainEntity": {
+        "@id": "https://www.iraspa.in/#faq"
+      },
       "inLanguage": "en-US",
       "keywords": [
         "spa in mangalore",
@@ -115,8 +105,8 @@ const homeSchema = {
       },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "#301, 3rd Floor, Lotus Paradise Elite, Opp AJ Grand Hotel, Kodialbail",
-        "addressLocality": "Mangalore",
+        "streetAddress": "3rd Floor, Lotus Paradise Elite, #301, KS Rao Road, Opposite AJ Grand Hotel, Boloor, Kodialbail",
+        "addressLocality": "Mangaluru",
         "postalCode": "575003",
         "addressRegion": "Karnataka",
         "addressCountry": "IN"
@@ -127,9 +117,9 @@ const homeSchema = {
         "longitude": 74.8431
       },
       "areaServed": [
+        "Mangaluru",
         "Mangalore",
         "Kodialbail",
-        "Dakshina Kannada",
         "Karnataka"
       ],
       "openingHoursSpecification": [
@@ -156,11 +146,8 @@ const homeSchema = {
         },
         "result": {
           "@type": "Reservation",
-          "name": "Book Spa Appointment in Mangalore"
+          "name": "Book Spa Appointment in Mangaluru"
         }
-      },
-      "hasOfferCatalog": {
-        "@id": "https://www.iraspa.in/#service-catalog"
       },
       "sameAs": [
         "https://www.instagram.com/the_ira_spa/",
@@ -185,7 +172,7 @@ const homeSchema = {
       },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "1st floor, Tulips Inn by Vkg Hotel, Sedam Rd, opp. ESIC Hospital",
+        "streetAddress": "1st Floor, Tulips Inn by VKG Hotel, Sedam Rd, Opp. ESIC Hospital",
         "addressLocality": "Kalaburagi",
         "postalCode": "585106",
         "addressRegion": "Karnataka",
@@ -223,9 +210,6 @@ const homeSchema = {
           "name": "Book Spa Appointment in Kalaburagi"
         }
       },
-      "hasOfferCatalog": {
-        "@id": "https://www.iraspa.in/#service-catalog"
-      },
       "sameAs": [
         "https://www.instagram.com/the_ira_spa/",
         "https://www.facebook.com/share/1BW2YTGEVW/",
@@ -234,233 +218,50 @@ const homeSchema = {
       ]
     },
     {
-      "@type": "OfferCatalog",
-      "@id": "https://www.iraspa.in/#service-catalog",
-      "name": "Ira Spa Massage & Wellness Rituals Menu",
-      "itemListElement": [
-        {
-          "@type": "OfferCatalog",
-          "name": "Body Massage",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Classic Swedish Therapy (60 / 90 / 120 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "2200"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Deep Tissue Therapy (60 / 90 / 120 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "2750"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Aroma Therapy (60 / 90 / 120 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "2400"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Balinese Therapy (60 / 90 / 120 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "2750"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Ira Signature Therapy (60 / 90 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "3000"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Tandem (Four Hands) Therapy (60 / 90 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "4000"
-            }
-          ]
-        },
-        {
-          "@type": "OfferCatalog",
-          "name": "Herbal & Ayurvedic Spa Therapy",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Herbal Potli Therapy (60 / 90 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "3000"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Hot Stone Therapy (60 / 90 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "3200"
-            }
-          ]
-        },
-        {
-          "@type": "OfferCatalog",
-          "name": "Thai Therapy",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Traditional Thai Therapy (60 / 90 / 120 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "2400"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Bamboo Therapy (60 / 90 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "4000"
-            }
-          ]
-        },
-        {
-          "@type": "OfferCatalog",
-          "name": "Body Polishing",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Full Body Polishing - Black Currant, Chocolate, or Orange (60 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "3500"
-            }
-          ]
-        },
-        {
-          "@type": "OfferCatalog",
-          "name": "Facials & Clean-Ups",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Watermelon & Strawberry Clean-Ups (30 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "700"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Essential Facials - Hydra Dew, Rejuvenating, Herbal Pearl (45 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "1000"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Premium & Signature Facials - Deep Pore Cleansing, Whitening, Herbal Gold (60 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "2400"
-            }
-          ]
-        },
-        {
-          "@type": "OfferCatalog",
-          "name": "Quick Massage & Foot Spa",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Quick Massage - Foot Reflexology, Head/Neck/Shoulder, or Back Massage (30 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "1200"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Foot Spa / Pedicure Rituals (45 - 60 mins)"
-              },
-              "priceCurrency": "INR",
-              "price": "800"
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Mom to Be Pre-Delivery & Post-Delivery Mom Care"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
       "@type": "FAQPage",
       "@id": "https://www.iraspa.in/#faq",
+      "isPartOf": {
+        "@id": "https://www.iraspa.in/#webpage"
+      },
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Where is Ira Spa located in Mangalore and Kalaburagi?",
+          "name": "What types of therapies and services does Ira Spa offer?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ira Spa has two branches in Karnataka: in Mangalore at #301, 3rd Floor, Lotus Paradise Elite, Opp AJ Grand Hotel, Kodialbail, Mangalore 575003 (+91 89716 67199), and in Kalaburagi (Gulbarga) at 1st floor, Tulips Inn by Vkg Hotel, Sedam Rd, opp. ESIC Hospital, Kalaburagi, Karnataka 585106 (+91 7022865999)."
+            "text": "Ira Spa offers a comprehensive range of wellness treatments including: Full Body Massages, Specialized & Herbal Therapies, Skincare & Grooming, Targeted & Express Relief, and Mom-to-Be & Maternity Care."
           }
         },
         {
           "@type": "Question",
-          "name": "What massage and wellness treatments does Ira Spa offer?",
+          "name": "Where are Ira Spa centers located, and what are the operational hours?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ira Spa offers full-body massages (Classic Swedish, Deep Tissue, Aroma, Balinese, Ira Signature, and Tandem Four Hands), Herbal & Ayurvedic therapies (Herbal Potli and Hot Stone), Traditional Thai and Bamboo therapies, Full Body Polishing (Orange, Chocolate, Black Currant), Essential & Signature Facials (including Herbal Pearl and Herbal Gold), 30-minute Quick Massages, Foot Spa pedicures, and Pre-Delivery & Post-Delivery Mom Care."
+            "text": "Mangaluru (Kodialbail): 3rd Floor, Lotus Paradise Elite, #301, KS Rao Road, Opposite AJ Grand Hotel, Boloor, Kodialbail, Mangaluru – 575003. Kalaburagi (Gulbarga): 1st Floor, Tulips Inn by VKG Hotel, Sedam Rd, Opp. ESIC Hospital, Kalaburagi, Karnataka – 585106. Both centers are open Monday to Sunday from 9:00 AM to 9:30 PM."
           }
         },
         {
           "@type": "Question",
-          "name": "What are the starting prices for spa treatments at Ira Spa?",
+          "name": "How does a therapy session work at Ira Spa?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "At Ira Spa, 30-minute clean-ups start at ₹700, Foot Spa pedicures start at ₹800, 30-minute Quick Massages start at ₹1,200, 60-minute full-body massages start at ₹2,200, Herbal Potli Therapy starts at ₹3,000, and 60-minute Full Body Polishing or Herbal Gold Signature Facials are ₹3,500."
+            "text": "Meeting & Consultation: A warm check-in where therapists discuss your personal wellness goals, comfort level, and target areas of tension. Treatment: A customized session inside a private, serene room equipped with calming aromatherapy and soothing ambient music. Finalizing & Aftercare: Time to rehydrate, relax, review post-massage care tips for extended relief, and plan future visits."
           }
         },
         {
           "@type": "Question",
-          "name": "What are Ira Spa's opening hours and how can I book an appointment?",
+          "name": "How long are the massage sessions, and how much do they cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Both the Mangalore and Kalaburagi branches of Ira Spa are open daily from Monday to Sunday, 9:00 AM to 9:30 PM. You can book your session online at https://www.iraspa.in/book-an-appointment/ or call +91 89716 67199 (Mangalore) or +91 7022865999 (Kalaburagi)."
+            "text": "Sessions generally range from 30, 60, 90, to 120 minutes depending on the therapy chosen. Express & Targeted Sessions (30–45 mins): Clean-ups, foot reflexology, and express massages start from ₹700 to ₹1,600. Full Body Massages (60–120 mins): Standard therapies like Swedish and Aroma start at ₹2,200 to ₹2,400 for 60 minutes, while specialized treatments (Deep Tissue, Balinese, Potli, or Tandem) range between ₹2,750 and ₹5,500 depending on duration."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I book an appointment at Ira Spa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book directly through the website at https://www.iraspa.in/book-an-appointment/ by choosing your preferred service, branch location (Mangaluru or Kalaburagi), date, and time slot using the online reservation form. Alternatively, you can call directly at +91 89716 67199 (Mangaluru) or +91 7022865999 (Kalaburagi) to reserve your session."
           }
         }
       ]
