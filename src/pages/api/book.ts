@@ -67,7 +67,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Prepare Supabase operations
     const runSupabaseOperations = async () => {
-      const STORE_ID = 1;
+      const STORE_ID = Number(data.business_id || data.STORE_ID || 3);
 
       // 1. Check and Insert Customer Data
       const { data: existingCustomer, error: selectError } = await supabaseAdmin
