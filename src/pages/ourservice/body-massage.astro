@@ -97,7 +97,7 @@ const treatments = bodyMassageTreatments;
     </script>
 </Layout>
 
-<style define:vars={{}}>
+<style>
     :root {
         --bm-bg: #0a0a0a;
         --bm-gold: #d4af5a;
@@ -163,6 +163,11 @@ const treatments = bodyMassageTreatments;
         gap: 60px;
         padding: 60px 0;
         border-bottom: 1px solid rgba(245, 241, 232, 0.08);
+    }
+
+    .treatment-row:not(:first-child) {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 500px;
     }
 
     .treatment-row:last-child {
